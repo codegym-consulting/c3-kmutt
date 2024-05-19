@@ -17,7 +17,7 @@ const navigations = [
       </NuxtLink>
       <ul>
         <li v-for="{ to, label } in navigations" :key="label">
-          <CommonLink :to="to" :label="label" variant="secondary" />
+          <NormalLink :to="to" :label="label" variant="secondary" />
         </li>
       </ul>
     </UContainer>

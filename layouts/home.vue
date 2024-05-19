@@ -7,9 +7,9 @@ const affixRef = ref();
     class="bg-[url('/header_bg_mobile.webp')] sm:bg-[url('/header_bg.webp')] bg-[top_center] bg-no-repeat bg-contain"
   >
     <UContainer id="page-container" ref="affixRef">
-      <CommonNavbar :relative-element="affixRef" />
+      <Navbar :relative-element="affixRef" />
       <slot></slot>
     </UContainer>
-    <CommonFooter />
+    <Footer />
   </div>
 </template>

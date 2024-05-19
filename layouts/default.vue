@@ -5,9 +5,9 @@ const affixRef = ref();
 <template>
   <div>
     <UContainer id="page-container" ref="affixRef">
-      <CommonNavbar :relative-element="affixRef" />
+      <Navbar :relative-element="affixRef" />
       <slot></slot>
     </UContainer>
-    <CommonFooter />
+    <Footer />
   </div>
 </template>

@@ -15,7 +15,7 @@ const bottomSheet = ref(false);
 
 <template>
   <div>
-    <CommonAffix
+    <Affix
       target-name="#page-container"
       :relative-element="props.relativeElement"
       :offSetY="0"
@@ -38,7 +38,7 @@ const bottomSheet = ref(false);
         </NuxtLink>
         <ul class="navigation-menu">
           <li v-for="{ to, label } in navigations" :key="label">
-            <CommonLink :to="to" :label="label" />
+            <NormalLink :to="to" :label="label" />
           </li>
         </ul>
         <div class="action-group">
@@ -56,8 +56,8 @@ const bottomSheet = ref(false);
           @click="bottomSheet = true"
         />
       </nav>
-    </CommonAffix>
-    <CommonBottomSheet v-model="bottomSheet">
+    </Affix>
+    <BottomSheet v-model="bottomSheet">
       <div class="bottom-sheet-menu">
         <img class="logo" src="/logo_full.svg" alt="3c_logo" />
         <ul class="mobile-navigation-menu">
@@ -65,12 +65,12 @@ const bottomSheet = ref(false);
             v-for="{ to, label } in navigations"
             :key="`bottom-sheet-${label}`"
           >
-            <CommonLink :to="to" :label="label" />
+            <NormalLink :to="to" :label="label" />
           </li>
         </ul>
         <UButton label="Login" />
       </div>
-    </CommonBottomSheet>
+    </BottomSheet>
   </div>
 </template>
 

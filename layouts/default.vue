@@ -8,6 +8,6 @@ const affixRef = ref();
       <Navbar :relative-element="affixRef" />
       <slot></slot>
     </UContainer>
-    <Footer />
+    <AppFooter />
   </div>
 </template>

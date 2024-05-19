@@ -3,6 +3,9 @@ export default defineAppConfig({
     icons: {
       dynamic: true,
     },
+    container: {
+      constrained: "max-w-[83rem]",
+    },
     button: {
       base: "justify-center transition-all",
       rounded: "rounded-lg",

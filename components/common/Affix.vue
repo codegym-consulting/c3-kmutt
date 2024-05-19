@@ -77,6 +77,6 @@ onUnmounted(() => {
   }
 }
 .affix__teleport.-active {
-  @apply top-0 left-0 z-50 fixed px-4 lg:px-10 w-full;
+  @apply top-0 left-0 z-50 fixed w-full;
 }
 </style>

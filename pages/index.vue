@@ -4,4 +4,4 @@ definePageMeta({
 });
 </script>
 
-<template><div class="h-[5000px]"></div></template>
+<template><div class="h-[2500px]"></div></template>

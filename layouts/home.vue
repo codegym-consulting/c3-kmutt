@@ -10,5 +10,6 @@ const affixRef = ref();
       <CommonNavbar :relative-element="affixRef" />
       <slot></slot>
     </UContainer>
+    <CommonFooter />
   </div>
 </template>

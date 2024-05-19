@@ -6,7 +6,7 @@ const props = defineProps<{
 }>();
 const navigations = [
   { to: "/", label: "Home" },
-  { to: "/about", label: "About us" },
+  { to: "/about", label: "About" },
   { to: "/contact", label: "Contact us" },
 ];
 
@@ -16,10 +16,12 @@ const bottomSheet = ref(false);
 <template>
   <div>
     <CommonAffix
-      :relative-element="props.relativeElement"
       target-name="#page-container"
+      :relative-element="props.relativeElement"
+      :offSetY="0"
       :active-class="
         [
+          'px-4 lg:px-[60px]',
           '[&>nav_.show-on-affix]:hidden [&>nav_.show-on-affix]:md:block [&>nav_.hide-on-affix]:hidden',
           '[&>nav]:bg-transparent [&>nav]:md:bg-[linear-gradient(110.72deg,rgba(255,255,255,0.36)_1.21%,rgba(196,196,196,0.06)_100%)]',
           'p-0 [&>nav]:md:py-4 [&>nav]:md:px-4 [&>nav]:lg:pr-6 [&>nav]:lg:pl-16 [&>nav]:rounded-lg',

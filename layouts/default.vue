@@ -8,5 +8,3 @@ const affixRef = ref();
     <slot></slot>
   </UContainer>
 </template>
-
-<style lang="postcss" scoped></style>

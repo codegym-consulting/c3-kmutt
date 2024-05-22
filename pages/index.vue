@@ -12,7 +12,7 @@ const projects = new Array(10).fill(0).map((_, i) => ({
   id: i,
   description:
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  thumbnail: "/header_bg.webp",
+  thumbnail: "/kmutt-smart-house.png",
   location: "Bangkok",
   tag: "Project",
 }));
@@ -89,6 +89,7 @@ const networks = [
           <ClientOnly>
             <Teleport to="#sneak-peak" :is="'div'" :disabled="!isMobile">
               <div
+                data-aos="fade-up"
                 :class="
                   $classes(
                     'mt-[88px] mobile:mt-0',
@@ -172,7 +173,7 @@ const networks = [
         )
       "
     >
-      <h2 class="px-4">
+      <h2 data-aos="fade-up" class="px-4">
         we pick the networks we
         <span
           class="inline-block py-1 px-4 text-white bg-[radial-gradient(95.67%_228.37%_at_0.26%_99.57%,#FAB32E_0%,#F96234_49%,#E22E73_78%,#5449FF_100%)]"
@@ -180,7 +181,7 @@ const networks = [
         ><br />
         meticulously, jump in early and know them inside-out
       </h2>
-      <UContainer class="mt-16 overflow-x-auto no-scrollbar">
+      <UContainer data-aos="fade-up" class="mt-16 overflow-x-auto no-scrollbar">
         <ul class="flex justify-center gap-x-6 w-[1240px] md:w-auto">
           <li
             v-for="(network, i) in networks"
@@ -190,6 +191,92 @@ const networks = [
             <CardNetwork v-bind="network" />
           </li>
         </ul>
+      </UContainer>
+    </section>
+    <section>
+      <UContainer class="flex gap-x-4 gap-y-6 flex-col md:flex-row">
+        <article
+          data-aos="fade-up"
+          :class="
+            $classes(
+              'relative flex-1 rounded-[32px] bg-white',
+              'bg-[url(/card_bg.webp)]',
+              'bg-no-repeat bg-cover bg-[bottom_center]'
+            )
+          "
+        >
+          <div
+            :class="
+              $classes(
+                'flex flex-col pt-12 px-6 md:px-12 pb-[20%]',
+                'w-full h-full mx-auto'
+              )
+            "
+          >
+            <h2
+              :class="
+                $classes(
+                  'text-[36px] leading-10 md:text-[48px] md:leading-[56px]',
+                  'text-white font-bold'
+                )
+              "
+            >
+              DISCOVER US
+            </h2>
+            <p
+              :class="
+                $classes(
+                  'mt-6 text-base md:text-lg font-medium',
+                  'font-bold text-white'
+                )
+              "
+            >
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Ut.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Ut.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut.
+            </p>
+            <UButton class="w-fit mt-12" label="Know us more" />
+          </div>
+        </article>
+        <article
+          data-aos="fade-up"
+          class="relative flex-1 rounded-[32px] bg-white"
+        >
+          <div
+            :class="
+              $classes(
+                'z-[1] absolute inset-0 w-full h-full',
+                'bg-[linear-gradient(0deg,rgba(255,255,255,1)_50%,rgba(255,255,255,0)_80%)]'
+              )
+            "
+          ></div>
+          <img
+            class="w-full object-contain rounded-t-[32px]"
+            src="/kmutt-smart-house.png"
+            alt="bg"
+          />
+          <div class="flex relative z-[2] pb-[20%]">
+            <p
+              :class="
+                $classes(
+                  'self-end h-[60%]',
+                  'flex justify-center items-center',
+                  'text-base md:text-lg font-medium w-[90%] md:w-[80%] mx-auto',
+                  'font-bold text-gray-10'
+                )
+              "
+            >
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Ut.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Ut.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed.
+            </p>
+          </div>
+        </article>
       </UContainer>
     </section>
   </div>

@@ -12,7 +12,7 @@ const navigations = [
 <template>
   <footer>
     <UContainer class="footer">
-      <small>{{ $dayjs().format('YYYY') }} All Right reserved</small>
+      <small>{{ $dayjs().format("YYYY") }} All Right reserved</small>
       <NuxtLink class="flex-shrink-0" to="/">
         <img src="/footer_logo.svg" alt="3c_logo" />
       </NuxtLink>

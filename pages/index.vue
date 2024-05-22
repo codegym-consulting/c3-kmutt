@@ -121,17 +121,19 @@ const networks = [
           <CardProject v-bind="project" classes="mx-auto" />
         </SwiperSlide>
         <SwiperSlide class="mobile:!w-fit self-center">
-          <NuxtLink
-            to="/projects/"
-            class="flex items-center gap-x-2 pl-6 pr-[calc(calc(100vw-theme(screens.container)+4rem)/2)]"
-          >
-            <span class="font-semibold text-xl text-white">View more</span>
-            <div
-              class="round-icon-btn -invert hover:!bg-white hover:!text-chrysler-blue"
+          <div class="flex items-center h-[471px] md:h-[497px]">
+            <NuxtLink
+              to="/projects/"
+              class="flex items-center gap-x-2 pl-6 pr-[calc(calc(100vw-theme(screens.container)+4rem)/2)]"
             >
-              <UIcon name="material-symbols:arrow-forward" />
-            </div>
-          </NuxtLink>
+              <span class="font-semibold text-xl text-white">View more</span>
+              <div
+                class="round-icon-btn -invert hover:!bg-white hover:!text-chrysler-blue"
+              >
+                <UIcon name="material-symbols:arrow-forward" />
+              </div>
+            </NuxtLink>
+          </div>
         </SwiperSlide>
       </Swiper>
       <div class="!hidden mobile:!block">

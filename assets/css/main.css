@@ -26,3 +26,17 @@
 body {
   font-family: "Sukhumvit Set", sans-serif;
 }
+
+.swiper-pagination-bullet-active {
+  @apply !bg-chrysler-blue;
+}
+
+.swiper-pagination-bullet {
+  @apply !w-3 !h-[6px] !rounded-[20px];
+}
+
+.swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet,
+.swiper-pagination-horizontal.swiper-pagination-bullets
+  .swiper-pagination-bullet {
+  @apply !mx-[1px];
+}

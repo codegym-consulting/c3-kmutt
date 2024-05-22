@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Navigation } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
 definePageMeta({
   layout: "home",
 });
@@ -41,9 +41,12 @@ const projects = new Array(10).fill(0).map((_, i) => ({
       />
     </div>
     <div id="sneak-peak"></div>
-    <div class="relative overflow-hidden w-screen mt-6 mobile:mt-[120px]">
+    <section
+      id="highlight-projects"
+      class="relative overflow-x-hidden w-screen mt-6 mobile:mt-[120px]"
+    >
       <Swiper
-        :modules="[Navigation]"
+        :modules="[Navigation, Pagination]"
         :navigation="{
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',
@@ -129,7 +132,13 @@ const projects = new Array(10).fill(0).map((_, i) => ({
           <UIcon name="material-symbols:arrow-forward" />
         </div>
       </div>
-    </div>
+    </section>
+    <section>
+      <h2>
+        we pick the networks we <span>support</span> meticulously, jump in early
+        and know them inside-out
+      </h2>
+    </section>
   </div>
 </template>
 
@@ -146,30 +155,47 @@ picture {
     @apply mx-auto;
   }
 }
-div :deep(.swiper-wrapper) {
-  @apply pb-4;
-}
-div :deep(.swiper-button-disabled) {
-  @apply !hidden;
+#highlight-projects {
+  :deep(.swiper-button-prev),
+  :deep(.swiper-button-next) {
+    @apply !top-[40%];
+  }
+  :deep(.swiper-wrapper) {
+    @apply pb-4;
+  }
+  :deep(.swiper-button-disabled) {
+    @apply !hidden;
+  }
+  :deep(.swiper) {
+    @apply pb-2;
+  }
+  :deep(.swiper-pagination) {
+    @apply bottom-0 hidden justify-center;
+  }
 }
 @media screen and (max-width: 1264px) {
-  div :deep(.swiper) {
+  #highlight-projects :deep(.swiper) {
     @apply px-8;
   }
 }
 @media screen and (max-width: 1024px) {
-  div :deep(.swiper) {
+  #highlight-projects :deep(.swiper) {
     @apply px-6;
   }
 }
 @media screen and (max-width: 768px) {
-  div :deep(.swiper) {
+  #highlight-projects :deep(.swiper) {
     @apply px-4;
   }
 }
 @media screen and (max-width: 500px) {
-  div :deep(.swiper article) {
-    @apply !w-full;
+  #highlight-projects {
+    :deep(.swiper article) {
+      @apply !w-full;
+    }
+    :deep(.swiper-pagination) {
+      @apply flex;
+    }
   }
 }
 </style>

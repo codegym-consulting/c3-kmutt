@@ -14,7 +14,7 @@ export default {
         "gray-8": "#5a5a5a",
         "gray-9": "#3b3b3b",
         "gray-10": "#1b1b1b",
-        "chrysler-blue": "#000EDC",
+        "chrysler-blue": "#5549FF",
       },
       screens: {
         mobile: "500px",

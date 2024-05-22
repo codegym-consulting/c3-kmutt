@@ -46,7 +46,7 @@ const networks = [
 </script>
 
 <template>
-  <div class="flex flex-col items-center min-h-[2500px]">
+  <div class="flex flex-col items-center">
     <div
       data-aos="fade-up"
       class="flex flex-col justify-center items-center relative h-fit md:h-[650px] mt-16 md:mt-0"
@@ -99,9 +99,7 @@ const networks = [
                   )
                 "
               >
-                <h2
-                  class="text-[32px] md:text-[48px] md:pr-6 font-bold leading-10 md:leading-[56px] text-white"
-                >
+                <h2 class="heading-label md:pr-6 text-white">
                   SNEAK PEAK OUR PROJECTS
                 </h2>
                 <p
@@ -164,9 +162,9 @@ const networks = [
     <section
       :class="
         $classes(
+          'heading-label',
           'mt-[86px] md:mt-[140px] lg:mt-[160px]',
           'pb-[86px] md:pb-[140px] lg:pb-[160px]',
-          'text-[32px] leading-10 md:text-[48px] md:leading-[56px] font-bold',
           'text-center w-full text-dark-theme',
           'bg-[url(/highlight_bg_mobile.webp)] sm:bg-[url(/highlight_bg_tablet.webp)] lg:bg-[url(/highlight_bg.webp)]',
           'bg-[length:100vw_500px] sm:bg-contain bg-[bottom_center] sm:bg-[55%_center] bg-no-repeat'
@@ -213,14 +211,7 @@ const networks = [
               )
             "
           >
-            <h2
-              :class="
-                $classes(
-                  'text-[36px] leading-10 md:text-[48px] md:leading-[56px]',
-                  'text-white font-bold'
-                )
-              "
-            >
+            <h2 :class="$classes('heading-label', 'text-white')">
               DISCOVER US
             </h2>
             <p
@@ -265,7 +256,7 @@ const networks = [
                   'self-end h-[60%]',
                   'flex justify-center items-center',
                   'text-base md:text-lg font-medium w-[90%] md:w-[80%] mx-auto',
-                  'font-bold text-gray-10'
+                  'text-gray-10'
                 )
               "
             >
@@ -278,6 +269,30 @@ const networks = [
           </div>
         </article>
       </UContainer>
+    </section>
+    <section
+      :class="
+        $classes(
+          'pt-[120px] pb-20 md:pb-[120px] lg:pb-[210px]',
+          'w-full',
+          'bg-[url(/footer_bg_mobile.webp)] mobile:bg-[url(/footer_bg.webp)]',
+          'bg-no-repeat bg-cover mobile:bg-contain bg-[center_10%] mobile:bg-[bottom_center]'
+        )
+      "
+    >
+      <div
+        data-aos="fade-up"
+        class="px-4 max-w-[852px] w-full mx-auto flex flex-col items-center gap-y-8"
+      >
+        <h2 class="heading-label">Interest in registering?</h2>
+        <p class="text-sm md:text-base font-semibold text-gray-10">
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </p>
+        <UButton label="Register now" />
+      </div>
     </section>
   </div>
 </template>

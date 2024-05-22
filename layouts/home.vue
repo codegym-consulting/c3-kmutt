@@ -22,8 +22,10 @@ const affixRef = ref();
       <Navbar :relative-element="affixRef" />
     </UContainer>
     <slot></slot>
-    <UContainer>
-      <AppFooter />
-    </UContainer>
+    <div class="bg-white">
+      <UContainer>
+        <AppFooter />
+      </UContainer>
+    </div>
   </div>
 </template>

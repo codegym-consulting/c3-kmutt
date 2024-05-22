@@ -4,7 +4,7 @@ export default defineAppConfig({
       dynamic: true,
     },
     container: {
-      constrained: "max-w-[83rem]",
+      constrained: "max-w-screen-container",
     },
     button: {
       base: "justify-center transition-all",
@@ -14,13 +14,18 @@ export default defineAppConfig({
       },
       color: {
         primary: {
-          solid: "bg-[#1b1b1b] text-white hover:bg-white hover:text-[#1b1b1b]",
+          solid: "bg-gray-10 text-white hover:bg-white hover:text-gray-10",
           outline:
-            "text-[#1b1b1b] border-[#1b1b1b] hover:text-white hover:border-white border",
+            "text-gray-10 border-gray-10 hover:text-white hover:border-white border",
+        },
+        white: {
+          solid: "bg-white text-gray-10 hover:bg-gray-10 hover:text-white",
+          outline:
+            "text-white border-white hover:text-gray-10 hover:border-gray-10 border",
         },
       },
       variant: {
-        icon: "rounded-2xl h-12 min-w-12 bg-[#1b1b1b] text-white hover:bg-white hover:text-[#1b1b1b]",
+        icon: "rounded-2xl h-12 min-w-12 bg-gray-10 text-white hover:bg-white hover:text-gray-10",
       },
       default: {
         size: "md",

@@ -6,11 +6,13 @@ const props = withDefaults(
     targetName?: string;
     offSetY?: number;
     activeClass?: string;
+    activeStyle?: string;
   }>(),
   {
     relativeElement: () => ({}),
     targetName: "",
     activeClass: "",
+    activeStyle: "",
     offSetY: 100,
   }
 );
@@ -61,6 +63,7 @@ onUnmounted(() => {
           :class="`affix__teleport ${
             isTeleport ? `${props.activeClass} -active` : ''
           }`"
+          :style="isTeleport ? props.activeStyle : ''"
         >
           <slot></slot>
         </div>

@@ -3,11 +3,13 @@ const affixRef = ref();
 </script>
 
 <template>
-  <div>
-    <UContainer id="page-container" ref="affixRef">
+  <div id="page-container" ref="affixRef">
+    <UContainer>
       <Navbar :relative-element="affixRef" />
-      <slot></slot>
     </UContainer>
-    <AppFooter />
+    <slot></slot>
+    <UContainer>
+      <AppFooter />
+    </UContainer>
   </div>
 </template>

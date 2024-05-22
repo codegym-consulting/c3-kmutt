@@ -14,7 +14,7 @@ const emit = defineEmits<{
       wrapper: 'inset-[unset] top-[50%] bottom-0',
       width: 'max-w-full',
       overlay: {
-        background: 'bg-[#3b3b3b]/80',
+        background: 'bg-gray-9/80',
       },
       translate: {
         base: 'translate-y-0 translate-x-0',

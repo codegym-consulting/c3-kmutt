@@ -4,12 +4,16 @@ const affixRef = ref();
 
 <template>
   <div
-    class="bg-[url('/header_bg_mobile.webp')] sm:bg-[url('/header_bg.webp')] bg-[top_center] bg-no-repeat bg-contain"
+    id="page-container"
+    ref="affixRef"
+    class="bg-[url('/header_bg_mobile.webp')] sm:bg-[url('/header_bg_tablet.webp')] lg:bg-[url('/header_bg.webp')] bg-[top_center] bg-no-repeat bg-contain"
   >
-    <UContainer id="page-container" ref="affixRef">
+    <UContainer>
       <Navbar :relative-element="affixRef" />
-      <slot></slot>
     </UContainer>
-    <AppFooter />
+    <slot></slot>
+    <UContainer>
+      <AppFooter />
+    </UContainer>
   </div>
 </template>

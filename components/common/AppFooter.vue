@@ -29,7 +29,7 @@ const navigations = [
   @apply flex justify-between items-center gap-x-4 h-auto md:h-[128px] lg:h-[82px] bg-white relative;
 }
 small {
-  @apply text-sm font-semibold text-[#959595];
+  @apply text-sm font-semibold text-gray-6;
 }
 img {
   @apply absolute inset-0 m-auto;

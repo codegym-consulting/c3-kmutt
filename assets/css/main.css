@@ -2,6 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .round-icon-btn {
+    @apply transition-all w-12 h-12 bg-gray-10 rounded-full text-white flex items-center justify-center text-xl;
+    &:hover {
+      @apply !bg-chrysler-blue !text-white;
+    }
+    svg {
+      @apply w-[22px];
+    }
+    &.-invert {
+      @apply bg-white text-gray-10;
+    }
+    &.-big {
+      @apply w-[66px] h-[66px] text-2xl;
+      svg {
+        @apply w-[29px];
+      }
+    }
+  }
+}
+
 body {
   font-family: "Sukhumvit Set", sans-serif;
 }

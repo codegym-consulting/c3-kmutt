@@ -13,10 +13,12 @@
     "@nuxt/ui": "^2.16.0",
     "@nuxtjs/tailwindcss": "^6.12.0",
     "nuxt": "^3.11.2",
+    "nuxt-swiper": "^1.2.2",
     "vue": "^3.4.27",
     "vue-router": "^4.3.2"
   },
   "devDependencies": {
+    "nuxt-aos": "^1.2.4",
     "@vueuse/core": "^10.9.0",
     "@vueuse/nuxt": "^10.9.0"
   }

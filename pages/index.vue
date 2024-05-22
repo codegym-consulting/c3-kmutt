@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import type { Swiper } from "swiper";
 import { Navigation, Pagination } from "swiper/modules";
 definePageMeta({
   layout: "home",
@@ -43,6 +44,16 @@ const networks = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labo",
   },
 ];
+
+const onSlideChange = (swiper: Swiper) => {
+  if (swiper.activeIndex === projects.length) {
+    document
+      .querySelectorAll("#highlight-projects .swiper-pagination-bullet")
+      ?.[swiper.activeIndex - 1]?.classList.add(
+        "swiper-pagination-bullet-active"
+      );
+  }
+};
 </script>
 
 <template>
@@ -84,6 +95,7 @@ const networks = [
           500: { slidesPerView: 'auto' },
         }"
         :pagination="{ clickable: true }"
+        @slide-change-transition-end="onSlideChange"
       >
         <SwiperSlide class="!hidden mobile:!block mobile:!w-fit">
           <ClientOnly>
@@ -182,7 +194,9 @@ const networks = [
         meticulously, jump in early and know them inside-out
       </h2>
       <UContainer data-aos="fade-up" class="mt-16 overflow-x-auto no-scrollbar">
-        <ul class="flex justify-center gap-x-6 w-[1240px] md:w-auto">
+        <ul
+          class="grid grid-cols-[repeat(4,minmax(0,1fr))] gap-x-6 w-[1240px] md:w-auto"
+        >
           <li
             v-for="(network, i) in networks"
             :key="network.title"
@@ -244,17 +258,28 @@ const networks = [
           <div
             :class="
               $classes(
-                'z-[1] absolute inset-0 w-full h-full rounded-[32px]',
-                'bg-[linear-gradient(0deg,rgba(255,255,255,1)_50%,rgba(255,255,255,0)_80%)]'
+                'z-[2] absolute inset-0 w-full h-full rounded-[32px]',
+                'bg-[linear-gradient(0deg,rgba(255,255,255,1)_55%,rgba(255,255,255,0)_80%)]'
               )
             "
           ></div>
-          <img
-            class="w-full object-contain rounded-t-[32px]"
-            src="/kmutt-smart-house.png"
-            alt="bg"
-          />
-          <div class="flex relative z-[2] pb-[20%]">
+          <div
+            :class="
+              $classes(
+                'relative',
+                `after:content-[''] after:block after:absolute after:z-[1]`,
+                'after:inset-0 after:w-full after:h-full after:opacity-20',
+                'after:bg-[url(/noise.webp)] after:bg-repeat after:bg-cover after:rounded-t-[32px]'
+              )
+            "
+          >
+            <img
+              :class="$classes('w-full object-contain rounded-t-[32px]')"
+              src="/kmutt-smart-house.png"
+              alt="bg"
+            />
+          </div>
+          <div class="flex relative z-[2] pt-4 pb-[20%]">
             <p
               :class="
                 $classes(
@@ -328,6 +353,9 @@ picture {
   }
   :deep(.swiper) {
     @apply pb-2;
+  }
+  :deep(.swiper-pagination-bullet:last-of-type) {
+    @apply hidden;
   }
   :deep(.swiper-pagination) {
     @apply bottom-0 hidden justify-center;

@@ -199,7 +199,10 @@ const networks = [
             $classes(
               'relative flex-1 rounded-[32px] bg-white',
               'bg-[url(/card_bg.webp)]',
-              'bg-no-repeat bg-cover bg-[bottom_center]'
+              'bg-no-repeat bg-cover bg-[bottom_center]',
+              `after:content-[''] after:block after:absolute`,
+              'after:inset-0 after:w-full after:h-full after:opacity-[0.15]',
+              'after:bg-[url(/noise.webp)] after:bg-repeat after:bg-cover after:rounded-[32px]'
             )
           "
         >
@@ -207,7 +210,7 @@ const networks = [
             :class="
               $classes(
                 'flex flex-col pt-12 px-6 md:px-12 pb-[20%]',
-                'w-full h-full mx-auto'
+                'w-full h-full mx-auto relative z-[1]'
               )
             "
           >
@@ -239,7 +242,7 @@ const networks = [
           <div
             :class="
               $classes(
-                'z-[1] absolute inset-0 w-full h-full',
+                'z-[1] absolute inset-0 w-full h-full rounded-[32px]',
                 'bg-[linear-gradient(0deg,rgba(255,255,255,1)_50%,rgba(255,255,255,0)_80%)]'
               )
             "

@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+const { $classes } = useNuxtApp();
 const affixRef = ref();
 </script>
 
@@ -6,7 +7,16 @@ const affixRef = ref();
   <div
     id="page-container"
     ref="affixRef"
-    class="bg-[url('/header_bg_mobile.webp')] sm:bg-[url('/header_bg_tablet.webp')] lg:bg-[url('/header_bg.webp')] bg-[top_center] bg-no-repeat bg-contain"
+    :class="
+      $classes(
+        'relative',
+        'bg-[url(/header_bg_mobile.webp)] sm:bg-[url(/header_bg_tablet.webp)] lg:bg-[url(/header_bg.webp)]',
+        'bg-[top_center] bg-no-repeat bg-contain',
+        `after:content-[''] after:block after:absolute`,
+        'after:inset-0 after:w-full after:h-full after:opacity-10',
+        'after:bg-[url(/noise.webp)] after:bg-repeat after:bg-cover after:z-[-1]'
+      )
+    "
   >
     <UContainer>
       <Navbar :relative-element="affixRef" />

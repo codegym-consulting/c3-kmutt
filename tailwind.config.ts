@@ -14,6 +14,7 @@ export default {
         "gray-8": "#5a5a5a",
         "gray-9": "#3b3b3b",
         "gray-10": "#1b1b1b",
+        "dark-theme": "#262A37",
         "chrysler-blue": "#5549FF",
       },
       screens: {

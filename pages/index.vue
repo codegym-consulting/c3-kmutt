@@ -16,13 +16,40 @@ const projects = new Array(10).fill(0).map((_, i) => ({
   location: "Bangkok",
   tag: "Project",
 }));
+
+const networks = [
+  {
+    iconName: "streamline:eye-optic",
+    title: "Researcher hub & Project showcase",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labo",
+  },
+  {
+    iconName: "clarity:bullseye-line",
+    title: "The learning hub & Collaboration center",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labo",
+  },
+  {
+    iconName: "uil:comment-message",
+    title: "Communicating story to connect & inspire",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labo",
+  },
+  {
+    iconName: "clarity:bullseye-line",
+    title: "Storage your inner spark",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labo",
+  },
+];
 </script>
 
 <template>
   <div class="flex flex-col items-center min-h-[2500px]">
     <div
       data-aos="fade-up"
-      class="flex flex-col justify-center items-center relative"
+      class="flex flex-col justify-center items-center relative h-fit md:h-[650px] mt-16 md:mt-0"
     >
       <picture>
         <source media="(min-width: 768px)" srcset="/3c_water_mark.svg" />
@@ -43,7 +70,7 @@ const projects = new Array(10).fill(0).map((_, i) => ({
     <div id="sneak-peak"></div>
     <section
       id="highlight-projects"
-      class="relative overflow-x-hidden w-screen mt-6 mobile:mt-[120px]"
+      class="relative overflow-x-hidden w-screen mt-6 mobile:mt-[140px]"
     >
       <Swiper
         :modules="[Navigation, Pagination]"
@@ -133,26 +160,52 @@ const projects = new Array(10).fill(0).map((_, i) => ({
         </div>
       </div>
     </section>
-    <section>
-      <h2>
-        we pick the networks we <span>support</span> meticulously, jump in early
-        and know them inside-out
+    <section
+      :class="
+        $classes(
+          'mt-[86px] md:mt-[140px] lg:mt-[160px]',
+          'pb-[86px] md:pb-[140px] lg:pb-[160px]',
+          'text-[32px] leading-10 md:text-[48px] md:leading-[56px] font-bold',
+          'text-center w-full text-dark-theme',
+          'bg-[url(/highlight_bg_mobile.webp)] sm:bg-[url(/highlight_bg_tablet.webp)] lg:bg-[url(/highlight_bg.webp)]',
+          'bg-[length:100vw_500px] sm:bg-contain bg-[bottom_center] sm:bg-[55%_center] bg-no-repeat'
+        )
+      "
+    >
+      <h2 class="px-4">
+        we pick the networks we
+        <span
+          class="inline-block py-1 px-4 text-white bg-[radial-gradient(95.67%_228.37%_at_0.26%_99.57%,#FAB32E_0%,#F96234_49%,#E22E73_78%,#5449FF_100%)]"
+          >support</span
+        ><br />
+        meticulously, jump in early and know them inside-out
       </h2>
+      <UContainer class="mt-16 overflow-x-auto no-scrollbar">
+        <ul class="flex justify-center gap-x-6 w-[1240px] md:w-auto">
+          <li
+            v-for="(network, i) in networks"
+            :key="network.title"
+            :class="[{ 'p-0 md:pt-8': i % 2 === 0 }]"
+          >
+            <CardNetwork v-bind="network" />
+          </li>
+        </ul>
+      </UContainer>
     </section>
   </div>
 </template>
 
 <style lang="postcss" scoped>
 h1 {
-  @apply mt-[136px] md:mt-[200px] text-center text-4xl md:text-[75px] font-medium leading-[47px] md:leading-[100px] text-white;
+  @apply text-center text-4xl md:text-[75px] font-medium leading-[47px] md:leading-[100px] text-white;
   > span {
     @apply text-[45px] md:text-[96px] font-bold;
   }
 }
 picture {
-  @apply absolute inset-0 m-auto mt-[50px] md:mt-0;
+  @apply absolute inset-0 m-auto;
   > * {
-    @apply mx-auto;
+    @apply mx-auto h-full object-contain;
   }
 }
 #highlight-projects {

@@ -24,7 +24,6 @@ export default defineNuxtPlugin(() => {
 declare module "#app" {
   interface NuxtApp {
     $dayjs: (date?: dayjs.ConfigType) => dayjs.Dayjs;
-    $toRelativeDate: (date: string) => string;
   }
 }
 

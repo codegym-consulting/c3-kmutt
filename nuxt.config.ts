@@ -11,7 +11,7 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss",
     "@vueuse/nuxt",
   ],
-  css: ["./assets/css/main.css"],
+  css: ["./assets/css/main.css", "v-network-graph/lib/style.css"],
   colorMode: {
     preference: "light",
   },

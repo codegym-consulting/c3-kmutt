@@ -1,9 +1,16 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  // nitro: {
-  //   preset: 'bun' // 'node-server'
-  // },
   devtools: { enabled: true },
+  routeRules: {
+    "/": { prerender: true },
+    "/login": { prerender: true },
+    "/register": { prerender: true },
+    "/about": { prerender: true },
+    "/contact": { prerender: true },
+    "/search": { prerender: true },
+    "/workspace": { prerender: true },
+    "/api/**": { cors: true },
+  },
   modules: [
     "@nuxt/ui",
     "nuxt-aos",
@@ -47,11 +54,15 @@ export default defineNuxtConfig({
       ],
     },
   },
+  typescript: {
+    typeCheck: true,
+  },
   experimental: {
     viewTransition: true,
   },
   // https://nuxt.com/docs/guide/directory-structure/server#server-storage
   // nitro: {
+  //   preset: 'bun'
   //   storage: {
   //     redis: {
   //       driver: 'redis',

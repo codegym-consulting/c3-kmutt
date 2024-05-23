@@ -24,8 +24,10 @@
     "vue-router": "^4.3.2"
   },
   "devDependencies": {
-    "nuxt-aos": "^1.2.4",
     "@vueuse/core": "^10.9.0",
-    "@vueuse/nuxt": "^10.9.0"
+    "@vueuse/nuxt": "^10.9.0",
+    "nuxt-aos": "^1.2.4",
+    "typescript": "^5.4.5",
+    "vue-tsc": "^1"
   }
 }

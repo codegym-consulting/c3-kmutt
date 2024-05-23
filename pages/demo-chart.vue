@@ -4,6 +4,13 @@
 </template>
 
 <script setup lang="ts">
+
+type Node = {
+    name: string;
+    color: string;
+    radius: number;
+}
+
 import { reactive, ref } from 'vue';
 import * as vNG from "v-network-graph"
 
@@ -67,15 +74,15 @@ const configs = reactive({
         selectable: true,
         normal: {
             type: 'circle',
-            radius: (node) => node.radius,
-            color: (node) => node.color,
+            radius: (node: Node) => node.radius,
+            color: (node: Node) => node.color,
         },
         hover: {
             color: "#f0f0f0",
         },
         label: {
             visible: true,
-            text: (node) => node.name,
+            text: (node: Node) => node.name,
             color: '#FFFFFF',
             fontSize: 14,
             direction: "center",

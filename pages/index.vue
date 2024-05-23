@@ -13,7 +13,7 @@ const projects = new Array(10).fill(0).map((_, i) => ({
   id: i,
   description:
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  thumbnail: "/kmutt-smart-house.png",
+  thumbnail: "/kmutt-smart-house.webp",
   location: "Bangkok",
   tag: "Project",
 }));
@@ -275,7 +275,7 @@ const onSlideChange = (swiper: Swiper) => {
           >
             <img
               :class="$classes('w-full object-contain rounded-t-[32px]')"
-              src="/kmutt-smart-house.png"
+              src="/kmutt-smart-house.webp"
               alt="bg"
             />
           </div>

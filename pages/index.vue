@@ -306,7 +306,7 @@ const onSlideChange = (swiper: Swiper) => {
           'pt-[120px] pb-20 md:pb-[120px] lg:pb-[210px]',
           'w-full',
           'bg-[url(/footer_bg_mobile.webp)] mobile:bg-[url(/footer_bg.webp)]',
-          'bg-no-repeat bg-cover mobile:bg-contain bg-[center_10%] mobile:bg-[bottom_center]'
+          'bg-no-repeat bg-cover bg-[center_10%] mobile:bg-[bottom_center]'
         )
       "
     >

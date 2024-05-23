@@ -10,11 +10,11 @@ const affixRef = ref();
     :class="
       $classes(
         'relative',
-        'bg-[url(/header_bg_mobile.webp)] sm:bg-[url(/header_bg_tablet.webp)] lg:bg-[url(/header_bg.webp)]',
+        'bg-[url(/landing/header_bg_mobile.webp)] sm:bg-[url(/landing/header_bg_tablet.webp)] lg:bg-[url(/landing/header_bg.webp)]',
         'bg-[top_center] bg-no-repeat bg-contain',
         `after:content-[''] after:block after:absolute`,
         'after:inset-0 after:w-full after:h-full after:opacity-10',
-        'after:bg-[url(/noise.webp)] after:bg-repeat after:bg-cover after:z-[-1]'
+        'after:bg-[url(/landing/noise.webp)] after:bg-repeat after:bg-cover after:z-[-1]'
       )
     "
   >

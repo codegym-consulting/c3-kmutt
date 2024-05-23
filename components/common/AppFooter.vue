@@ -14,7 +14,7 @@ const navigations = [
     <UContainer class="footer">
       <small>{{ $dayjs().format("YYYY") }} All Right reserved</small>
       <NuxtLink class="flex-shrink-0" to="/">
-        <img src="/footer_logo.svg" alt="3c_logo" />
+        <img src="/footer/footer_logo.svg" alt="3c_logo" />
       </NuxtLink>
       <ul>
         <li v-for="{ to, label } in navigations" :key="label">

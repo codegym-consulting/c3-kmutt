@@ -13,7 +13,7 @@ const projects = new Array(10).fill(0).map((_, i) => ({
   id: i,
   description:
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  thumbnail: "/kmutt-smart-house.webp",
+  thumbnail: "/landing/kmutt-smart-house.webp",
   location: "Bangkok",
   tag: "Project",
 }));
@@ -63,8 +63,8 @@ const onSlideChange = (swiper: Swiper) => {
       class="flex flex-col justify-center items-center relative h-fit md:h-[650px] mt-16 md:mt-0"
     >
       <picture>
-        <source media="(min-width: 768px)" srcset="/3c_water_mark.svg" />
-        <img src="/3c_water_mark_mobile.svg" alt="3c_water_mark" />
+        <source media="(min-width: 768px)" srcset="/landing/3c_water_mark.svg" />
+        <img src="/landing/3c_water_mark_mobile.svg" alt="3c_water_mark" />
       </picture>
       <h1>
         <span>KMUTT</span> network<br />
@@ -180,7 +180,7 @@ const onSlideChange = (swiper: Swiper) => {
           'mt-[86px] md:mt-[140px] lg:mt-[160px]',
           'pb-[86px] md:pb-[140px] lg:pb-[160px]',
           'text-center w-full text-dark-theme',
-          'bg-[url(/highlight_bg_mobile.webp)] sm:bg-[url(/highlight_bg_tablet.webp)] lg:bg-[url(/highlight_bg.webp)]',
+          'bg-[url(/landing/highlight_bg_mobile.webp)] sm:bg-[url(/landing/highlight_bg_tablet.webp)] lg:bg-[url(/landing/highlight_bg.webp)]',
           'bg-[length:100vw_500px] sm:bg-contain bg-[bottom_center] sm:bg-[55%_center] bg-no-repeat'
         )
       "
@@ -214,11 +214,11 @@ const onSlideChange = (swiper: Swiper) => {
           :class="
             $classes(
               'relative flex-1 rounded-[32px] bg-white',
-              'bg-[url(/card_bg.webp)]',
+              'bg-[url(/landing/card_bg.webp)]',
               'bg-no-repeat bg-cover bg-[bottom_center]',
               `after:content-[''] after:block after:absolute`,
               'after:inset-0 after:w-full after:h-full after:opacity-[0.15]',
-              'after:bg-[url(/noise.webp)] after:bg-repeat after:bg-cover after:rounded-[32px]'
+              'after:bg-[url(/landing/noise.webp)] after:bg-repeat after:bg-cover after:rounded-[32px]'
             )
           "
         >
@@ -269,13 +269,13 @@ const onSlideChange = (swiper: Swiper) => {
                 'relative',
                 `after:content-[''] after:block after:absolute after:z-[1]`,
                 'after:inset-0 after:w-full after:h-full after:opacity-20',
-                'after:bg-[url(/noise.webp)] after:bg-repeat after:bg-cover after:rounded-t-[32px]'
+                'after:bg-[url(/landing/noise.webp)] after:bg-repeat after:bg-cover after:rounded-t-[32px]'
               )
             "
           >
             <img
               :class="$classes('w-full object-contain rounded-t-[32px]')"
-              src="/kmutt-smart-house.webp"
+              src="/landing/kmutt-smart-house.webp"
               alt="bg"
             />
           </div>
@@ -305,7 +305,7 @@ const onSlideChange = (swiper: Swiper) => {
         $classes(
           'pt-[120px] pb-20 md:pb-[120px] lg:pb-[210px]',
           'w-full',
-          'bg-[url(/footer_bg_mobile.webp)] mobile:bg-[url(/footer_bg.webp)]',
+          'bg-[url(/footer/footer_bg_mobile.webp)] mobile:bg-[url(/footer/footer_bg.webp)]',
           'bg-no-repeat bg-cover bg-[center_10%] mobile:bg-[bottom_center]'
         )
       "

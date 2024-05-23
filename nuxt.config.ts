@@ -1,5 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  // nitro: {
+  //   preset: 'bun' // 'node-server'
+  // },
   devtools: { enabled: true },
   modules: [
     "@nuxt/ui",
@@ -8,7 +11,7 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss",
     "@vueuse/nuxt",
   ],
-  css: ["@/assets/css/main.css"],
+  css: ["./assets/css/main.css"],
   colorMode: {
     preference: "light",
   },

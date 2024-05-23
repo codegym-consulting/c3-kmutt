@@ -1,4 +1,7 @@
 export default defineAppConfig({
+  theme: {
+    primaryColor: "#1B1B1B",
+  },
   ui: {
     icons: {
       dynamic: true,

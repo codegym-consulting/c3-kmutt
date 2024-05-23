@@ -26,7 +26,7 @@ const bottomSheet = ref(false);
         $classes(
           `px-4 lg:px-8 lg:max-w-[calc(theme(screens.container)+4rem)] lg:m-auto lg:right-0`,
           '[&>nav_.show-on-affix]:hidden [&>nav_.show-on-affix]:md:block [&>nav_.hide-on-affix]:hidden',
-          '[&>nav]:bg-transparent [&>nav]:md:bg-[linear-gradient(110.72deg,rgba(255,255,255,0.36)_1.21%,rgba(196,196,196,0.06)_100%)],[&>nav]:md:backdrop-blur-lg',
+          '[&>nav]:bg-transparent [&>nav]:md:bg-[linear-gradient(110.72deg,rgba(255,255,255,0.36)_1.21%,rgba(196,196,196,0.06)_100%)] [&>nav]:md:backdrop-blur-lg',
           'p-0 [&>nav]:md:py-4 [&>nav]:md:px-4 [&>nav]:lg:pr-6 [&>nav]:lg:pl-8 [&>nav]:rounded-lg'
         )
       "

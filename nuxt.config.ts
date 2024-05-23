@@ -11,14 +11,14 @@ export default defineNuxtConfig({
     "/workspace": { prerender: true },
     "/api/**": { cors: true },
   },
-  modules: [
-    "@nuxt/ui",
-    "nuxt-aos",
-    "nuxt-swiper",
-    "@nuxtjs/tailwindcss",
-    "@vueuse/nuxt",
-  ],
-  css: ["./assets/css/main.css", "v-network-graph/lib/style.css"],
+  modules: ["@nuxt/ui", "nuxt-aos", "nuxt-swiper", "@vueuse/nuxt"],
+  css: ["~/assets/css/main.css", "v-network-graph/lib/style.css"],
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+    },
+  },
   colorMode: {
     preference: "light",
   },
@@ -55,7 +55,7 @@ export default defineNuxtConfig({
     },
   },
   typescript: {
-    typeCheck: true,
+    typeCheck: "build",
   },
   experimental: {
     viewTransition: true,

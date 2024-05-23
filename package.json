@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "@nuxt/ui": "^2.16.0",
-    "@nuxtjs/tailwindcss": "^6.12.0",
     "dayjs": "^1.11.11",
     "nuxt": "^3.11.2",
     "nuxt-swiper": "^1.2.2",
@@ -26,7 +25,10 @@
   "devDependencies": {
     "@vueuse/core": "^10.9.0",
     "@vueuse/nuxt": "^10.9.0",
+    "autoprefixer": "^10.4.19",
     "nuxt-aos": "^1.2.4",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.3",
     "typescript": "^5.4.5",
     "vue-tsc": "^1"
   }

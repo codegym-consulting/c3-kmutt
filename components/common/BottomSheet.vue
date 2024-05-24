@@ -1,10 +1,10 @@
 <script setup lang="ts">
 const props = defineProps<{
-  modelValue: boolean;
-}>();
+  modelValue: boolean
+}>()
 const emit = defineEmits<{
-  (e: "update:modelValue", value: boolean): void;
-}>();
+  (e: 'update:modelValue', value: boolean): void
+}>()
 </script>
 
 <template>
@@ -25,6 +25,6 @@ const emit = defineEmits<{
     :model-value="props.modelValue"
     @update:model-value="(val) => emit('update:modelValue', val)"
   >
-    <slot></slot>
+    <slot />
   </USlideover>
 </template>

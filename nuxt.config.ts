@@ -2,17 +2,23 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   routeRules: {
-    "/": { prerender: true },
-    "/login": { prerender: true },
-    "/register": { prerender: true },
-    "/about": { prerender: true },
-    "/contact": { prerender: true },
-    "/search": { prerender: true },
-    "/workspace": { prerender: true },
-    "/api/**": { cors: true },
+    '/': { prerender: true },
+    '/login': { prerender: true },
+    '/register': { prerender: true },
+    '/about': { prerender: true },
+    '/contact': { prerender: true },
+    '/search': { prerender: true },
+    '/workspace': { prerender: true },
+    '/api/**': { cors: true },
   },
-  modules: ["@nuxt/ui", "nuxt-aos", "nuxt-swiper", "@vueuse/nuxt"],
-  css: ["~/assets/css/main.css", "v-network-graph/lib/style.css"],
+  modules: [
+    '@nuxt/ui',
+    'nuxt-aos',
+    'nuxt-swiper',
+    '@vueuse/nuxt',
+    '@nuxt/eslint',
+  ],
+  css: ['~/assets/css/main.css', 'v-network-graph/lib/style.css'],
   postcss: {
     plugins: {
       tailwindcss: {},
@@ -20,36 +26,54 @@ export default defineNuxtConfig({
     },
   },
   colorMode: {
-    preference: "light",
+    preference: 'light',
   },
   components: [
     {
-      path: "~/components/common",
+      path: '~/components/common',
       pathPrefix: false,
     },
-    "~/components",
+    '~/components',
   ],
   app: {
     head: {
-      title: "KMUTT Network knowledge sharing platform",
+      title: 'C3 KMUTT Network',
       meta: [
-        { charset: "utf-8" },
+        { charset: 'utf-8' },
         {
-          name: "viewport",
+          name: 'viewport',
           content:
-            "width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0",
+            'width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0',
+        },
+        {
+          name: 'description',
+          content: 'KMUTT network knowledge sharing platform',
+        },
+        {
+          name: 'theme-color',
+          media: '(prefers-color-scheme: light)',
+          content: '#1B1B1B',
+        },
+        {
+          name: 'color-scheme',
+          content: 'light dark',
         },
       ],
       link: [
         {
-          rel: "icon",
-          type: "image/svg+xml",
-          href: "/favicon/favicon.svg",
+          rel: 'icon',
+          type: 'image/svg+xml',
+          href: '/favicon/favicon.svg',
         },
         {
-          rel: "icon",
-          type: "image/png",
-          href: "/favicon/favicon.png",
+          rel: 'icon',
+          type: 'image/png',
+          href: '/favicon/favicon.png',
+        },
+        {
+          rel: 'apple-touch-icon',
+          type: 'image/png',
+          href: '/favicon/favicon.png',
         },
         {
           rel: "preconnect",
@@ -67,14 +91,19 @@ export default defineNuxtConfig({
     },
   },
   typescript: {
-    typeCheck: "build",
+    typeCheck: 'build',
+  },
+  eslint: {
+    config: {
+      stylistic: true,
+    },
   },
   experimental: {
     viewTransition: true,
   },
   // https://nuxt.com/docs/guide/directory-structure/server#server-storage
   // nitro: {
-  //   preset: 'bun'
+  //   preset: 'bun',
   //   storage: {
   //     redis: {
   //       driver: 'redis',
@@ -82,6 +111,11 @@ export default defineNuxtConfig({
   //       host: "127.0.0.1",
   //       db: 0,
   //     }
-  //   }
+  //   },
+  // esbuild: {
+  //   options: {
+  //     target: "esnext",
+  //   },
+  // },
   // }
-});
+})

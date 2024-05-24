@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 const props = defineProps<{
-  iconName: string;
-  title: string;
-  description: string;
-}>();
+  iconName: string
+  title: string
+  description: string
+}>()
 </script>
 
 <template>
@@ -16,6 +16,8 @@ const props = defineProps<{
     <h3 class="mt-[22px] text-[22px] leading-[26px] font-bold break-words">
       {{ props.title }}
     </h3>
-    <p class="mt-[16px] text-sm font-medium">{{ props.description }}</p>
+    <p class="mt-[16px] text-sm font-medium">
+      {{ props.description }}
+    </p>
   </article>
 </template>

@@ -1,9 +1,9 @@
-import { mergeClasses } from "~/utils/style";
+import { mergeClasses } from '~/utils/style'
 
 export default defineNuxtPlugin(() => {
   return {
     provide: {
       classes: mergeClasses,
     },
-  };
-});
+  }
+})

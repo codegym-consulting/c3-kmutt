@@ -1,15 +1,15 @@
-import type { RouterOptions } from "@nuxt/schema";
+import type { RouterOptions } from '@nuxt/schema'
 
 export default <RouterOptions>{
-  //to, from, savedPosition
+  // to, from, savedPosition
   scrollBehavior() {
-    const nuxtApp = useNuxtApp();
+    const nuxtApp = useNuxtApp()
 
-    return new Promise(async (resolve) => {
-      nuxtApp.hooks.hookOnce("page:finish", async () => {
-        await nextTick();
-        resolve({ top: 0, left: 0 });
-      });
-    });
+    return new Promise((resolve) => {
+      nuxtApp.hooks.hookOnce('page:finish', async () => {
+        await nextTick()
+        resolve({ top: 0, left: 0 })
+      })
+    })
   },
-};
+}

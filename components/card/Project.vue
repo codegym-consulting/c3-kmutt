@@ -1,22 +1,22 @@
 <script lang="ts" setup>
 const props = withDefaults(
   defineProps<{
-    id?: string | number;
-    thumbnail?: string;
-    tag?: string;
-    description?: string;
-    location?: string;
-    classes?: string;
+    id?: string | number
+    thumbnail?: string
+    tag?: string
+    description?: string
+    location?: string
+    classes?: string
   }>(),
   {
-    id: "",
-    thumbnail: "",
-    tag: "",
-    description: "",
-    location: "",
-    classes: "",
-  }
-);
+    id: '',
+    thumbnail: '',
+    tag: '',
+    description: '',
+    location: '',
+    classes: '',
+  },
+)
 </script>
 
 <template>
@@ -39,15 +39,14 @@ const props = withDefaults(
           class="w-full h-[229px] object-cover rounded-lg"
           :src="props.thumbnail"
           alt="Project Image"
-        />
+        >
       </figure>
     </template>
 
     <div class="flex flex-col gap-y-4">
       <em
         class="text-xs text-gray-10 font-medium w-fit not-italic px-2 py-1 border border-gray-10 rounded-[100px]"
-        >{{ props.tag }}</em
-      >
+      >{{ props.tag }}</em>
       <NuxtLink :to="'/project/' + props.id + '/'">
         <p
           class="transition-all line-clamp-3 text-lg md:text-xl font-semibold text-gray-10 leading-[22px] md:leading-6 h-[66px] md:h-[72px] hover:text-chrysler-blue"
@@ -60,12 +59,16 @@ const props = withDefaults(
     <template #footer>
       <div class="flex gap-x-4 justify-between items-center">
         <address class="not-italic text-xs text-gray-10 font-medium">
-          <UIcon name="i-cil-location-pin" class="text-gray-10" />
+          <UIcon
+            name="i-cil-location-pin"
+            class="text-gray-10"
+          />
           {{ props.location }}
         </address>
-        <NuxtLink :to="'/project/' + props.id + '/'" class="round-icon-btn"
-          ><UIcon name="material-symbols:arrow-forward"
-        /></NuxtLink>
+        <NuxtLink
+          :to="'/project/' + props.id + '/'"
+          class="round-icon-btn"
+        ><UIcon name="material-symbols:arrow-forward" /></NuxtLink>
       </div>
     </template>
   </UCard>

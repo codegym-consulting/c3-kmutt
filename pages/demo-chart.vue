@@ -1,13 +1,24 @@
 <template>
-  <section>
-    <UButton label="Download chart" type="primary" @click="downloadAsSvg" />
-    <v-network-graph ref="graph" class="graph" :nodes="nodes" :edges="edges" :configs="configs" />
-  </section>
+  <div class="bg-gray-3">
+    <UContainer>
+      <div
+        class="flex  flex-col space-y-2 shadow-lg flex-shrink-0 pt-4 max-w-[295px] border-0 bg-white px-4 py-5 sm:px-6 rounded">
+        <h2 class="text-md font-medium">Knowledge</h2>
+        <input id="search" v-model="value" type="text" placeholder="Type interest keyword here"
+          class="block flex-1 p-2 rounded-sm text-sm border-0 bg-gray-1 text-gray-10 border-none placeholder:text-gray-400 sm:text-md sm:leading-6">
+      </div>
+      <UButton label="Download chart" type="primary" @click="downloadAsSvg" />
+      <v-network-graph ref="graph" class="graph" :nodes="nodes" :edges="edges" :configs="configs" :layers="layers"
+        :event-handlers="eventHandlers" />
+    </UContainer>
+  </div>
 </template>
 
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
-import type * as vNG from 'v-network-graph'
+import * as vNG from 'v-network-graph'
+
+const value = ref('')
 
 type Node = {
   name: string
@@ -69,17 +80,32 @@ const edges = reactive({
   edge12: { source: 'publicSpace', target: 'footpaths' },
 })
 
+const layers = {
+  // {layername}: {position}
+  badge: 'nodes',
+}
+
 // Configuration for the graph
-const configs = reactive({
+const configs = reactive(vNG.defineConfigs({
+  view: {
+    autoPanAndZoomOnLoad: 'fit-content',
+    fitContentMargin: '10%',
+    scalingObjects: false,
+    minZoomLevel: 1.0,
+    maxZoomLevel: 16,
+    panEnabled: false,
+    zoomEnabled: false,
+  },
   node: {
     selectable: true,
+    // draggable: false,
     normal: {
       type: 'circle',
       radius: (node: Node) => node.radius,
       color: (node: Node) => node.color,
     },
     hover: {
-      color: '#f0f0f0',
+      color: '#1b1b1b',
     },
     label: {
       visible: true,
@@ -95,7 +121,17 @@ const configs = reactive({
       width: 2,
     },
   },
-})
+}))
+
+const eventHandlers: vNG.EventHandlers = {
+  'node:click': ({ node }) => {
+    // toggle
+    console.log('node:click', node)
+    nodes[node].active = !nodes[node].active
+    console.log(node)
+    value.value = node
+  },
+}
 </script>
 
 <style>

@@ -197,7 +197,7 @@ const onSlideChange = (swiper: Swiper) => {
           'mt-[86px] md:mt-[140px] lg:mt-[160px]',
           'pb-[86px] md:pb-[140px] lg:pb-[160px]',
           'text-center w-full text-dark-theme',
-          'bg-[url(/landing/highlight_bg_mobile.webp)] sm:bg-[url(/landing/highlight_bg_tablet.webp)] lg:bg-[url(/landing/highlight_bg.webp)]',
+          'bg-[url(~/public/landing/highlight_bg_mobile.webp)] sm:bg-[url(~/public/landing/highlight_bg_tablet.webp)] lg:bg-[url(~/public/landing/highlight_bg.webp)]',
           'bg-[length:100vw_500px] sm:bg-contain bg-[bottom_center] sm:bg-[55%_center] bg-no-repeat',
         )
       "
@@ -236,11 +236,11 @@ const onSlideChange = (swiper: Swiper) => {
           :class="
             $classes(
               'relative flex-1 rounded-[32px] bg-white',
-              'bg-[url(/landing/card_bg.webp)]',
+              'bg-[url(~/public/landing/card_bg.webp)]',
               'bg-no-repeat bg-cover bg-[bottom_center]',
               `after:content-[''] after:block after:absolute`,
               'after:inset-0 after:w-full after:h-full after:opacity-[0.15]',
-              'after:bg-[url(/landing/noise.webp)] after:bg-repeat after:bg-cover after:rounded-[32px]',
+              'after:bg-[url(~/public/landing/noise.webp)] after:bg-repeat after:bg-cover after:rounded-[32px]',
             )
           "
         >
@@ -294,7 +294,7 @@ const onSlideChange = (swiper: Swiper) => {
                 'relative',
                 `after:content-[''] after:block after:absolute after:z-[1]`,
                 'after:inset-0 after:w-full after:h-full after:opacity-20',
-                'after:bg-[url(/landing/noise.webp)] after:bg-repeat after:bg-cover after:rounded-t-[32px]',
+                'after:bg-[url(~/public/landing/noise.webp)] after:bg-repeat after:bg-cover after:rounded-t-[32px]',
               )
             "
           >
@@ -330,7 +330,7 @@ const onSlideChange = (swiper: Swiper) => {
         $classes(
           'pt-[120px] pb-20 md:pb-[120px] lg:pb-[210px]',
           'w-full',
-          'bg-[url(/footer/footer_bg_mobile.webp)] mobile:bg-[url(/footer/footer_bg.webp)]',
+          'bg-[url(~/public/footer/footer_bg_mobile.webp)] mobile:bg-[url(~/public/footer/footer_bg.webp)]',
           'bg-no-repeat bg-cover bg-[center_10%] mobile:bg-[bottom_center]',
         )
       "

@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "nuxt dev --host 127.0.0.1",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
@@ -35,5 +35,8 @@
     "tailwindcss": "^3.4.3",
     "typescript": "^5.4.5",
     "vue-tsc": "^1"
-  }
+  },
+  "browserslist": [
+    "defaults"
+  ]
 }

@@ -18,11 +18,12 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@nuxt/eslint',
   ],
-  css: ['~/assets/css/main.css', 'v-network-graph/lib/style.css'],
+  css: ['@/assets/css/main.css', 'v-network-graph/lib/style.css'],
   postcss: {
     plugins: {
-      tailwindcss: {},
-      autoprefixer: {},
+      'postcss-import': {},
+      'tailwindcss': {},
+      'autoprefixer': {},
     },
   },
   colorMode: {
@@ -50,13 +51,8 @@ export default defineNuxtConfig({
           content: 'KMUTT network knowledge sharing platform',
         },
         {
-          name: 'theme-color',
-          media: '(prefers-color-scheme: light)',
-          content: '#1B1B1B',
-        },
-        {
           name: 'color-scheme',
-          content: 'light dark',
+          content: 'light',
         },
       ],
       link: [
@@ -93,13 +89,9 @@ export default defineNuxtConfig({
   typescript: {
     typeCheck: 'build',
   },
-  eslint: {
-    config: {
-      stylistic: true,
-    },
-  },
   experimental: {
     viewTransition: true,
+    appManifest: false,
   },
   // https://nuxt.com/docs/guide/directory-structure/server#server-storage
   // nitro: {

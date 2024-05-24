@@ -20,12 +20,6 @@ import * as vNG from 'v-network-graph'
 
 const value = ref('')
 
-type Node = {
-  name: string
-  color: string
-  radius: number
-}
-
 const graph = ref<vNG.Instance>()
 
 async function downloadAsSvg() {
@@ -101,15 +95,15 @@ const configs = reactive(vNG.defineConfigs({
     // draggable: false,
     normal: {
       type: 'circle',
-      radius: (node: Node) => node.radius,
-      color: (node: Node) => node.color,
+      radius: (node) => Number(node.radius),
+      color: (node) => String(node.color),
     },
     hover: {
       color: '#1b1b1b',
     },
     label: {
       visible: true,
-      text: (node: Node) => node.name,
+      text: (node) => String(node.name),
       color: '#FFFFFF',
       fontSize: 14,
       direction: 'center',
@@ -127,7 +121,6 @@ const eventHandlers: vNG.EventHandlers = {
   'node:click': ({ node }) => {
     // toggle
     console.log('node:click', node)
-    nodes[node].active = !nodes[node].active
     console.log(node)
     value.value = node
   },

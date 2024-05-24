@@ -3,5 +3,5 @@
     "eslint.experimental.useFlatConfig": true,
     "[vue]": {
         "editor.defaultFormatter": "Vue.volar"
-    }
+    },
 }

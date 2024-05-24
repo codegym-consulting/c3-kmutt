@@ -3,8 +3,8 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   routeRules: {
     '/': { prerender: true },
-    '/login': { prerender: true },
-    '/register': { prerender: true },
+    // '/login': { prerender: true },
+    // '/register': { prerender: true },
     '/about': { prerender: true },
     '/contact': { prerender: true },
     '/search': { prerender: true },

@@ -45,11 +45,11 @@ const props = withDefaults(
 
     <div class="flex flex-col gap-y-4">
       <em
-        class="text-xs text-gray-10 font-medium w-fit not-italic px-2 py-1 border border-gray-10 rounded-[100px]"
+        class="font-bai-jamjuree text-xs text-gray-10 font-medium w-fit not-italic px-2 py-1 border border-gray-10 rounded-[100px]"
       >{{ props.tag }}</em>
       <NuxtLink :to="'/project/' + props.id + '/'">
         <p
-          class="transition-all line-clamp-3 text-lg md:text-xl font-semibold text-gray-10 leading-[22px] md:leading-6 h-[66px] md:h-[72px] hover:text-chrysler-blue"
+          class="transition-all line-clamp-3 text-lg md:text-xl font-medium text-gray-10 leading-[22px] md:leading-6 h-[66px] md:h-[72px] hover:text-chrysler-blue"
         >
           {{ props.description }}
         </p>

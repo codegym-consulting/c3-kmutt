@@ -73,11 +73,12 @@ const onSlideChange = (swiper: Swiper) => {
           alt="3c_water_mark"
         >
       </picture>
+      <div class="flex flex-col items-center">
       <h1>
-        <span>KMUTT</span> network<br>
-        knowledge <span>sharing</span><br>
-        <span>platform</span>
+        We are a collaborative<br > platform for sharing<br > knowledge in innovation
       </h1>
+      <p class="text-sm md:text-lg font-medium max-w-[730px] px-4 text-center text-white">built environments, and transformative technologies that shape the future of society and the creative economy. Discover, apply, and collaborate on groundbreaking projects with industry and community partners to drive future economic growth. </p>
+      </div>
       <UButton
         class="block lg:hidden mt-10 z-10"
         label="Search"
@@ -193,7 +194,6 @@ const onSlideChange = (swiper: Swiper) => {
     <section
       :class="
         $classes(
-          'heading-label',
           'mt-[86px] md:mt-[140px] lg:mt-[160px]',
           'pb-[86px] md:pb-[140px] lg:pb-[160px]',
           'text-center w-full text-dark-theme',
@@ -204,13 +204,13 @@ const onSlideChange = (swiper: Swiper) => {
     >
       <h2
         data-aos="fade-up"
-        class="px-4"
+        class="px-4 text-[22px] md:text-2xl lg:text-[32px] leading-[26px] md:leading-7 lg:leading-10 font-bold"
       >
-        we pick the networks we
+        We’re your launchpad for commercially
         <span
-          class="inline-block py-1 px-4 text-white bg-[radial-gradient(95.67%_228.37%_at_0.26%_99.57%,#FAB32E_0%,#F96234_49%,#E22E73_78%,#5449FF_100%)]"
-        >support</span><br>
-        meticulously, jump in early and know them inside-out
+          class="text-[32px] font-bold leading-10 inline-block my-4 md:my-2 lg:m-0 py-1 px-4 text-white bg-[radial-gradient(95.67%_228.37%_at_0.26%_99.57%,#FAB32E_0%,#F96234_49%,#E22E73_78%,#5449FF_100%)]"
+        >Viable innovations</span><br>
+        blending design, science, tech, and business tailor solutions for diverse  user needs and lifestyle
       </h2>
       <UContainer
         data-aos="fade-up"
@@ -258,17 +258,12 @@ const onSlideChange = (swiper: Swiper) => {
             <p
               :class="
                 $classes(
-                  'mt-6 text-base md:text-lg font-medium',
-                  'font-bold text-white',
+                  'mt-6 text-sm md:text-lg',
+                  'font-normal text-white',
                 )
               "
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              Ut.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              Ut.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut.
+            Creative Collaborative Community Platform is a digital platform for creative & innovation knowledge sharing, designed to collect knowledge and exchange experiences in creative innovation, built environments, social and cultural innovation, and technologies that enhance the future of society and the creative economy. Providing KMUTT University with a modern knowledge base in innovation and technology, we empower individuals to explore, apply knowledge, and collaborate with private sectors and community partners on multidisciplinary projects that drive economic growth.
             </p>
             <UButton
               class="w-fit mt-12"
@@ -310,7 +305,7 @@ const onSlideChange = (swiper: Swiper) => {
                 $classes(
                   'self-end h-[60%]',
                   'flex justify-center items-center',
-                  'text-base md:text-lg font-medium w-[90%] md:w-[80%] mx-auto',
+                  'text-base md:text-lg font-normal w-[90%] md:w-[80%] mx-auto',
                   'text-gray-10',
                 )
               "
@@ -339,14 +334,11 @@ const onSlideChange = (swiper: Swiper) => {
         data-aos="fade-up"
         class="px-4 max-w-[852px] w-full mx-auto flex flex-col items-center gap-y-8"
       >
-        <h2 class="heading-label">
+        <h2 class="heading-label text-center whitespace-nowrap">
           Interest in registering?
         </h2>
-        <p class="text-sm md:text-base font-semibold text-gray-10">
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
+        <p class="text-sm md:text-xl text-center font-normal text-gray-10">
+            Join our community of innovators and gain access to our collaborative projects and expert networks. Start your journey with us today and make a lasting impact.
         </p>
         <UButton label="Register now" />
       </div>
@@ -356,7 +348,7 @@ const onSlideChange = (swiper: Swiper) => {
 
 <style lang="postcss" scoped>
 h1 {
-  @apply text-center text-4xl md:text-[75px] font-medium leading-[47px] md:leading-[100px] text-white;
+  @apply text-center text-[32px] md:text-[72px] font-bold  leading-[40px] md:leading-[76px] text-white;
   > span {
     @apply text-[45px] md:text-[96px] font-bold;
   }

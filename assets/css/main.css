@@ -34,7 +34,7 @@
     scrollbar-width: none; /* Firefox */
   }
   .heading-label {
-    @apply text-[36px] leading-10 md:text-[48px] md:leading-[56px] font-bold;
+    @apply text-[32px] leading-10 md:text-[48px] md:leading-[56px] font-bold;
   }
 }
 

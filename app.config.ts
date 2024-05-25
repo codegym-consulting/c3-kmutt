@@ -12,7 +12,7 @@ export default defineAppConfig({
       base: 'justify-center transition-all',
       rounded: 'rounded-lg',
       size: {
-        md: 'min-w-[180px] h-[44px] text-base font-semibold',
+        md: 'min-w-[180px] h-[44px] text-base font-medium',
       },
       color: {
         primary: {

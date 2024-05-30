@@ -21,25 +21,25 @@ const projects = new Array(10).fill(0).map((_, i) => ({
 
 const networks = [
   {
-    iconName: 'streamline:eye-optic',
+    iconName: 'c3/eye',
     title: 'Researcher hub & Project showcase',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labo',
   },
   {
-    iconName: 'clarity:bullseye-line',
+    iconName: 'c3/bullseye',
     title: 'The learning hub & Collaboration center',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labo',
   },
   {
-    iconName: 'uil:comment-message',
+    iconName: 'c3/comment',
     title: 'Communicating story to connect & inspire',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labo',
   },
   {
-    iconName: 'clarity:bullseye-line',
+    iconName: 'c3/bullseye',
     title: 'Storage your inner spark',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labo',

@@ -31,7 +31,6 @@ const policy = ref(false)
             padding: 'px-4 py-16 md:pt-14 md:pb-[104px]',
           },
         }"
-        1
       >
         <div
           class="max-w-[610px] mx-auto text-center w-full flex flex-col items-center gap-y-[56px]"

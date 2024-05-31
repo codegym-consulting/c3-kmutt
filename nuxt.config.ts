@@ -114,10 +114,5 @@ export default defineNuxtConfig({
   //       db: 0,
   //     }
   //   },
-  // esbuild: {
-  //   options: {
-  //     target: "esnext",
-  //   },
-  // },
   }
 })

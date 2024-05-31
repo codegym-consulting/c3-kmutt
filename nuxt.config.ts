@@ -99,9 +99,13 @@ export default defineNuxtConfig({
     viewTransition: true,
     appManifest: false,
   },
+
   // https://nuxt.com/docs/guide/directory-structure/server#server-storage
-  // nitro: {
-  //   preset: 'bun',
+  nitro: {
+    // preset: 'bun', // node-server, netlify_edge
+    rollupConfig: {
+      external: ["cloudflare:sockets"],
+    },
   //   storage: {
   //     redis: {
   //       driver: 'redis',
@@ -115,5 +119,5 @@ export default defineNuxtConfig({
   //     target: "esnext",
   //   },
   // },
-  // }
+  }
 })

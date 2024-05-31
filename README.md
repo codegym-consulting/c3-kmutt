@@ -66,3 +66,10 @@ bun run preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+
+## Related Errors
+
+- https://github.com/nuxt/cli/issues/405
+- https://github.com/nuxt/nuxt/issues/20895
+- https://github.com/nuxt/cli/issues/240npx nuxi info

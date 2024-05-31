@@ -55,7 +55,7 @@ const bottomSheet = ref(false)
             <NormalLink :to="to" :label="label" />
           </li>
         </ul>
-        <UButton label="Login" />
+        <UButton label="Login" to="/login" />
       </div>
     </BottomSheet>
   </div>

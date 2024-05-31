@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   routeRules: {
     '/': { prerender: true },
-    // '/login': { prerender: true },
+    '/login': { prerender: true },
     // '/register': { prerender: true },
     '/about': { prerender: true },
     '/contact': { prerender: true },

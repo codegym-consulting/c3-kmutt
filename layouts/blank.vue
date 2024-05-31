@@ -1,12 +1,6 @@
-<script lang="ts" setup>
-const { $classes } = useNuxtApp()
-const affixRef = ref()
-</script>
-
 <template>
   <div
     id="page-container"
-    ref="affixRef"
     :class="
       $classes(
         'relative min-h-screen',
@@ -16,14 +10,6 @@ const affixRef = ref()
       )
     "
   >
-    <UContainer>
-      <Navbar :relative-element="affixRef" />
-    </UContainer>
     <slot />
-    <div class="bg-white">
-      <UContainer>
-        <AppFooter />
-      </UContainer>
-    </div>
   </div>
 </template>

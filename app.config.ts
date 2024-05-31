@@ -8,6 +8,13 @@ export default defineAppConfig({
     container: {
       constrained: 'max-w-screen-container',
     },
+    modal: {
+      padding: '!p-4',
+      container: 'flex min-h-full items-center justify-center text-center',
+      base: 'py-14 px-4 md:px-12',
+      rounded: 'rounded-[40px]',
+      width: '!max-w-[872px]',
+    },
     button: {
       base: 'justify-center transition-all',
       rounded: 'rounded-lg',

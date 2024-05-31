@@ -9,7 +9,7 @@ const affixRef = ref()
     ref="affixRef"
     :class="
       $classes(
-        'relative',
+        'relative min-h-screen',
         'bg-[url(~/public/landing/header_bg_mobile.webp)] sm:bg-[url(~/public/landing/header_bg_tablet.webp)] lg:bg-[url(~/public/landing/header_bg.webp)]',
         'bg-[top_center] bg-no-repeat bg-contain',
         `after:content-[''] after:block after:absolute`,

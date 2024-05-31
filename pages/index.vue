@@ -67,17 +67,23 @@ const onSlideChange = (swiper: Swiper) => {
         <source
           media="(min-width: 768px)"
           srcset="/landing/3c_water_mark.svg"
-        >
-        <img
-          src="/landing/3c_water_mark_mobile.svg"
-          alt="3c_water_mark"
-        >
+        />
+        <img src="/landing/3c_water_mark_mobile.svg" alt="3c_water_mark" />
       </picture>
       <div class="flex flex-col items-center">
-      <h1>
-        We are a collaborative<br > platform for sharing<br > knowledge in innovation
-      </h1>
-      <p class="text-sm md:text-lg font-medium max-w-[730px] px-4 text-center text-white">built environments, and transformative technologies that shape the future of society and the creative economy. Discover, apply, and collaborate on groundbreaking projects with industry and community partners to drive future economic growth. </p>
+        <h1>
+          We are a collaborative<br />
+          platform for sharing<br />
+          knowledge in innovation
+        </h1>
+        <p
+          class="text-sm md:text-lg font-medium max-w-[730px] px-4 text-center text-white"
+        >
+          built environments, and transformative technologies that shape the
+          future of society and the creative economy. Discover, apply, and
+          collaborate on groundbreaking projects with industry and community
+          partners to drive future economic growth.
+        </p>
       </div>
       <UButton
         class="block lg:hidden mt-10 z-10"
@@ -107,11 +113,7 @@ const onSlideChange = (swiper: Swiper) => {
       >
         <SwiperSlide class="!hidden mobile:!block mobile:!w-fit">
           <ClientOnly>
-            <Teleport
-              :is="'div'"
-              to="#sneak-peak"
-              :disabled="!isMobile"
-            >
+            <Teleport :is="'div'" to="#sneak-peak" :disabled="!isMobile">
               <div
                 data-aos="fade-up"
                 :class="
@@ -132,10 +134,7 @@ const onSlideChange = (swiper: Swiper) => {
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit,sed do
                   eiusmod tempor incididunt ut labore et.
                 </p>
-                <UButton
-                  class="mt-6"
-                  label="Browse more"
-                />
+                <UButton class="mt-6" label="Browse more" to="/search" />
               </div>
             </Teleport>
           </ClientOnly>
@@ -145,10 +144,7 @@ const onSlideChange = (swiper: Swiper) => {
           :key="project.id"
           class="mobile:!w-fit"
         >
-          <CardProject
-            v-bind="project"
-            classes="mx-auto"
-          />
+          <CardProject v-bind="project" classes="mx-auto" />
         </SwiperSlide>
         <SwiperSlide class="mobile:!w-fit self-center">
           <div class="flex items-center h-[471px] md:h-[497px]">
@@ -209,13 +205,12 @@ const onSlideChange = (swiper: Swiper) => {
         We’re your launchpad for commercially
         <span
           class="text-[32px] font-bold leading-10 inline-block my-4 md:my-2 lg:m-0 py-1 px-4 text-white bg-[radial-gradient(95.67%_228.37%_at_0.26%_99.57%,#FAB32E_0%,#F96234_49%,#E22E73_78%,#5449FF_100%)]"
-        >Viable innovations</span><br>
-        blending design, science, tech, and business tailor solutions for diverse  user needs and lifestyle
+          >Viable innovations</span
+        ><br />
+        blending design, science, tech, and business tailor solutions for
+        diverse user needs and lifestyle
       </h2>
-      <UContainer
-        data-aos="fade-up"
-        class="mt-16 overflow-x-auto no-scrollbar"
-      >
+      <UContainer data-aos="fade-up" class="mt-16 overflow-x-auto no-scrollbar">
         <ul
           class="grid grid-cols-[repeat(4,minmax(0,1fr))] gap-x-6 w-[1240px] md:w-auto"
         >
@@ -257,18 +252,21 @@ const onSlideChange = (swiper: Swiper) => {
             </h2>
             <p
               :class="
-                $classes(
-                  'mt-6 text-sm md:text-lg',
-                  'font-normal text-white',
-                )
+                $classes('mt-6 text-sm md:text-lg', 'font-normal text-white')
               "
             >
-            Creative Collaborative Community Platform is a digital platform for creative & innovation knowledge sharing, designed to collect knowledge and exchange experiences in creative innovation, built environments, social and cultural innovation, and technologies that enhance the future of society and the creative economy. Providing KMUTT University with a modern knowledge base in innovation and technology, we empower individuals to explore, apply knowledge, and collaborate with private sectors and community partners on multidisciplinary projects that drive economic growth.
+              Creative Collaborative Community Platform is a digital platform
+              for creative & innovation knowledge sharing, designed to collect
+              knowledge and exchange experiences in creative innovation, built
+              environments, social and cultural innovation, and technologies
+              that enhance the future of society and the creative economy.
+              Providing KMUTT University with a modern knowledge base in
+              innovation and technology, we empower individuals to explore,
+              apply knowledge, and collaborate with private sectors and
+              community partners on multidisciplinary projects that drive
+              economic growth.
             </p>
-            <UButton
-              class="w-fit mt-12"
-              label="Know us more"
-            />
+            <UButton class="w-fit mt-12" label="Know us more" to="/about" />
           </div>
         </article>
         <article
@@ -297,7 +295,7 @@ const onSlideChange = (swiper: Swiper) => {
               :class="$classes('w-full object-contain rounded-t-[32px]')"
               src="/landing/kmutt-smart-house.webp"
               alt="bg"
-            >
+            />
           </div>
           <div class="flex relative z-[2] pt-4 pb-[20%]">
             <p
@@ -338,9 +336,11 @@ const onSlideChange = (swiper: Swiper) => {
           Interest in registering?
         </h2>
         <p class="text-sm md:text-xl text-center font-normal text-gray-10">
-            Join our community of innovators and gain access to our collaborative projects and expert networks. Start your journey with us today and make a lasting impact.
+          Join our community of innovators and gain access to our collaborative
+          projects and expert networks. Start your journey with us today and
+          make a lasting impact.
         </p>
-        <UButton label="Register now" />
+        <UButton label="Register now" to="/register" />
       </div>
     </section>
   </div>
@@ -348,58 +348,72 @@ const onSlideChange = (swiper: Swiper) => {
 
 <style lang="postcss" scoped>
 h1 {
-  @apply text-center text-[32px] md:text-[72px] font-bold  leading-[40px] md:leading-[76px] text-white;
+  @apply text-center text-[32px] md:text-[72px] font-bold leading-[40px] md:leading-[76px] text-white;
+
   > span {
     @apply text-[45px] md:text-[96px] font-bold;
   }
 }
+
 picture {
   @apply absolute inset-0 m-auto;
+
   > * {
     @apply mx-auto h-full object-contain;
   }
 }
+
 #highlight-projects {
   :deep(.swiper-button-prev),
   :deep(.swiper-button-next) {
     @apply !top-[40%];
   }
+
   :deep(.swiper-wrapper) {
     @apply pb-4;
   }
+
   :deep(.swiper-button-disabled) {
     @apply !hidden;
   }
+
   :deep(.swiper) {
     @apply pb-2;
   }
+
   :deep(.swiper-pagination-bullet:last-of-type) {
     @apply hidden;
   }
+
   :deep(.swiper-pagination) {
     @apply bottom-0 hidden justify-center;
   }
 }
+
 @media screen and (max-width: 1264px) {
   #highlight-projects :deep(.swiper) {
     @apply px-8;
   }
 }
+
 @media screen and (max-width: 1024px) {
   #highlight-projects :deep(.swiper) {
     @apply px-6;
   }
 }
+
 @media screen and (max-width: 768px) {
   #highlight-projects :deep(.swiper) {
     @apply px-4;
   }
 }
+
 @media screen and (max-width: 500px) {
   #highlight-projects {
     :deep(.swiper article) {
       @apply !w-full;
     }
+
     :deep(.swiper-pagination) {
       @apply flex;
     }

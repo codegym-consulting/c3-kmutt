@@ -1,19 +1,19 @@
 <script setup lang="ts">
-const { $classes } = useNuxtApp();
+const { $classes } = useNuxtApp()
 const networks = [
   {
-    iconName: "c3/comment",
-    title: "For researcher and Innovators",
+    iconName: 'c3/comment',
+    title: 'For researcher and Innovators',
     description:
-      "Access our database to create portfolios of research works or group projects that feature innovative products and technology solutions with commercial potential, fostering dissemination and collaboration. Additionally, you can utilize our platform to find partnerships or expert teams to enhance the development of your projects in all comprehensive aspects.",
+      'Access our database to create portfolios of research works or group projects that feature innovative products and technology solutions with commercial potential, fostering dissemination and collaboration. Additionally, you can utilize our platform to find partnerships or expert teams to enhance the development of your projects in all comprehensive aspects.',
   },
   {
-    iconName: "c3/bullseye",
-    title: "For private, public, and community organizations",
+    iconName: 'c3/bullseye',
+    title: 'For private, public, and community organizations',
     description:
-      "Connect with research teams or solutions for innovation development through our platform. Use our database to search for expert researchers skilled in science, technology, engineering, and creativity, or explore projects that contribute to the advancement of both industries and communities.",
+      'Connect with research teams or solutions for innovation development through our platform. Use our database to search for expert researchers skilled in science, technology, engineering, and creativity, or explore projects that contribute to the advancement of both industries and communities.',
   },
-];
+]
 </script>
 
 <template>
@@ -23,7 +23,7 @@ const networks = [
       $classes(
         'flex flex-col',
         'bg-[url(~/public/about/bg_mobile.webp)] md:bg-[url(~/public/about/bg_tablet.webp)] lg:bg-[url(~/public/about/bg.webp)]',
-        'bg-no-repeat bg-[size:100%_80%] bg-[center_bottom]'
+        'bg-no-repeat bg-[size:100%_80%] bg-[center_bottom]',
       )
     "
   >
@@ -32,7 +32,7 @@ const networks = [
         :class="
           $classes(
             'font-bold text-gray-10 text-[32px] leading-10 md:text-[72px] md:leading-[76px]',
-            'mr-auto lg:m-0'
+            'mr-auto lg:m-0',
           )
         "
       >
@@ -61,7 +61,7 @@ const networks = [
       :class="
         $classes(
           'mb-14 md:mb-[112px] lg:mb-[124px] mt-[30px] md:mt-[94px] lg:mt-[112px]',
-          'w-full flex justify-between gap-x-[82px] flex-col lg:flex-row'
+          'w-full flex justify-between gap-x-[82px] flex-col lg:flex-row',
         )
       "
     >
@@ -69,7 +69,7 @@ const networks = [
         :class="
           $classes(
             'flex gap-y-4 gap-x-6 w-full lg:w-full',
-            'flex-col md:flex-row'
+            'flex-col md:flex-row',
           )
         "
       >
@@ -92,7 +92,7 @@ const networks = [
           research, this platform effectively expands networks and enhances
           innovation projects.
         </p>
-        <UButton class="mt-6" label="Explore now" />
+        <UButton class="mt-6" label="Explore now" to="/search" />
       </article>
     </UContainer>
   </div>

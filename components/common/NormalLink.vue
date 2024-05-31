@@ -6,13 +6,12 @@ const props = withDefaults(defineProps<Props>(), {
 const classes = computed(() => {
   return {
     primary: {
-      active: 'font-medium',
+      active: 'font-bold',
       inActive: 'transition-all text-gray-10 hover:text-white font-medium',
     },
     secondary: {
-      active: 'font-medium text-gray-6',
-      inActive:
-        'transition-all text-gray-6 hover:text-gray-10 font-medium',
+      active: 'font-bold text-gray-6',
+      inActive: 'transition-all text-gray-6 hover:text-gray-10 font-medium',
     },
   }[props.variant]
 })
@@ -29,5 +28,6 @@ interface Props {
     :to="props.to"
     :active-class="classes.active"
     :inactive-class="classes.inActive"
-  >{{ props.label }}</ULink>
+    >{{ props.label }}</ULink
+  >
 </template>

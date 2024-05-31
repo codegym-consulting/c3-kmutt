@@ -41,7 +41,7 @@ const networks = [
         Community<br />
         Platform
       </h1>
-      <div class="flex flex-col gap-y-12 ml-auto lg:m-0">
+      <div class="flex flex-col gap-y-6 md:gap-y-12 ml-auto lg:m-0">
         <p>
           is a digital platform for creative & innovation knowledge sharing,
           designed to collect knowledge and exchange experiences in creative

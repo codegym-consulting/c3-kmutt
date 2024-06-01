@@ -1,18 +1,12 @@
 <script lang="ts" setup>
 import type { VNodeRef } from 'vue'
+import { navigations } from '~/configs/home'
 
 const props = defineProps<{
   relativeElement?: VNodeRef
 }>()
 
 const { $classes } = useNuxtApp()
-
-const navigations = [
-  { to: '/', label: 'Home' },
-  { to: '/about', label: 'About us' },
-  { to: '/contact', label: 'Contact us' },
-]
-
 const bottomSheet = ref(false)
 </script>
 
@@ -61,20 +55,7 @@ const bottomSheet = ref(false)
         />
       </nav>
     </Affix>
-    <BottomSheet v-model="bottomSheet">
-      <div class="bottom-sheet-menu">
-        <img class="logo" src="/logo/logo_full.svg" alt="3c_logo" />
-        <ul class="mobile-navigation-menu">
-          <li
-            v-for="{ to, label } in navigations"
-            :key="`bottom-sheet-${label}`"
-          >
-            <NormalLink :to="to" :label="label" />
-          </li>
-        </ul>
-        <UButton label="Login" to="/login" />
-      </div>
-    </BottomSheet>
+    <BottomSheetNavbar v-model="bottomSheet" />
   </div>
 </template>
 
@@ -91,16 +72,8 @@ nav {
   @apply mt-6 flex items-center gap-x-4;
 }
 
-.bottom-sheet-menu {
-  @apply flex flex-col items-center justify-center gap-y-10 py-8 px-4;
-}
-
 .navigation-menu {
   @apply items-center justify-end gap-x-12 flex-none hidden md:flex lg:flex-1 ml-auto lg:ml-0;
-}
-
-.mobile-navigation-menu {
-  @apply flex flex-col items-center justify-center gap-y-6;
 }
 
 li {

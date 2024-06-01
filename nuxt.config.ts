@@ -16,6 +16,7 @@ export default defineNuxtConfig({
     'nuxt-icons',
     'nuxt-aos',
     'nuxt-swiper',
+    '@pinia/nuxt',
     '@vueuse/nuxt',
     '@nuxt/eslint',
   ],

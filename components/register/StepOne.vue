@@ -51,7 +51,7 @@ watch(
       !isEmpty(value.nationality)
 
     // Check if all required fields are filled and then validate the form at once
-    emit('validate', allRequiredFieldAreFilled && validate())
+    emit('validate', !!(allRequiredFieldAreFilled && validate()))
   },
   { deep: true },
 )

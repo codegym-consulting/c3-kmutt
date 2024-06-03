@@ -55,7 +55,7 @@ const add = () => {
   emit('add', search.value)
 }
 
-const apply = (close) => {
+const apply = (close: Function) => {
   updateValue(tempModelValue.value)
   close()
 }

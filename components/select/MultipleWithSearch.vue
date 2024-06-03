@@ -198,7 +198,12 @@ const removeChip = (chip: Option) => {
           <div
             class="flex items-center justify-between px-4 h-12 w-full shadow-[0_-5px_20px_0_#0000000D]"
           >
-            <button class="text-button" type="button" @click="clear">
+            <button
+              class="text-button"
+              type="button"
+              :disabled="!tempModelValue.length"
+              @click="clear"
+            >
               Clear selected
             </button>
             <button

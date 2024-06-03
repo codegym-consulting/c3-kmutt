@@ -17,7 +17,7 @@ const policy = ref(false)
       "
     ></div>
     <UContainer
-      class="flex justify-center pt-[160px] md:pt-[290px] lg:pt-[140px]"
+      class="flex justify-center pt-[115px] md:pt-[245px] lg:pt-[95px] pb-16"
     >
       <UCard
         data-aos="fade-up"
@@ -33,7 +33,7 @@ const policy = ref(false)
         }"
       >
         <div
-          class="max-w-[610px] mx-auto text-center w-full flex flex-col items-center gap-y-[56px]"
+          class="max-w-[610px] mx-auto text-center w-full flex flex-col items-center gap-y-14"
         >
           <picture>
             <source

@@ -168,7 +168,7 @@ const removeChip = (chip: Option) => {
                 >
                   <UCheckbox
                     :label="option.label"
-                    :id="option.value"
+                    :id="`${option.value}`"
                     :model-value="
                       !!tempModelValue.find((o) => o.value === option.value)
                     "

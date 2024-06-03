@@ -5,6 +5,7 @@ definePageMeta({
   layout: 'register',
 })
 
+const router = useRouter()
 const register = useRegisterStore()
 const step = ref(1)
 
@@ -43,11 +44,13 @@ const onValidateStep = (value: boolean) => {
 const onClickNext = () => {
   if (step.value === 1) {
     step.value = 2
+    return
   }
 
   if (step.value === 2) {
     //Done
-    console.log(stepOneState, stepTwoState)
+    register.setIsRegisterationSuccess(true)
+    router.push('/register/success')
   }
 }
 </script>

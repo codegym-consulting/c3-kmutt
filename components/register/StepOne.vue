@@ -25,6 +25,7 @@ const { errors, validate } = useFormValidation(
 const emit = defineEmits<{
   (event: 'update:modelValue', value: typeof state): void
   (event: 'touched'): void
+  (event: 'focus'): void
   (event: 'validate', vakue: boolean): void
 }>()
 
@@ -78,6 +79,7 @@ onMounted(() => {
           required
           :error="errors.title"
           :options="titles"
+          @focus="emit('focus')"
           @touched="onTouch('title')"
         />
         <Select
@@ -86,6 +88,7 @@ onMounted(() => {
           name="academicTitle"
           placeholder="Select academic title"
           :options="academicTitles"
+          @focus="emit('focus')"
           @touched="onTouch('academicTitle')"
         />
       </div>
@@ -96,6 +99,7 @@ onMounted(() => {
           name="name"
           required
           :error="errors.name"
+          @focus="emit('focus')"
           @touched="onTouch('name')"
         />
         <Input
@@ -104,6 +108,7 @@ onMounted(() => {
           name="surname"
           required
           :error="errors.surname"
+          @focus="emit('focus')"
           @touched="onTouch('surname')"
         />
       </div>
@@ -114,6 +119,7 @@ onMounted(() => {
           name="nationality"
           required
           :options="nationalities"
+          @focus="emit('focus')"
           @touched="onTouch('nationality')"
         />
         <div></div>

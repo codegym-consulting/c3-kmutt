@@ -27,6 +27,7 @@ const forceFocus = ref(false)
 const emit = defineEmits<{
   (event: 'update:modelValue', value: string): void
   (event: 'touched'): void
+  (event: 'focus'): void
 }>()
 
 const updateValue = (value: string) => {
@@ -74,7 +75,12 @@ const clearValue = async () => {
           },
         },
       }"
-      @focus="focus = true"
+      @focus="
+        () => {
+          emit('focus')
+          focus = true
+        }
+      "
       @blur="
         () => {
           emit('touched')

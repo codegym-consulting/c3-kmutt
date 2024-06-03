@@ -59,7 +59,7 @@ const onClickNext = () => {
         v-if="step === 1"
         v-model="stepOneState"
         @validate="onValidateStep"
-        @touched="register.setRegisterNavbarFullSize(false)"
+        @focus="register.setRegisterNavbarFullSize(false)"
       />
       <RegisterStepTwo v-if="step === 2" />
     </div>

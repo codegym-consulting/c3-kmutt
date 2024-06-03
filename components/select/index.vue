@@ -21,6 +21,7 @@ const emit = defineEmits<{
     value: string | number | Record<string, any> | unknown[],
   ): void
   (event: 'touched'): void
+  (event: 'focus'): void
 }>()
 
 const isPopper = ref(false)
@@ -88,7 +89,12 @@ const updateValue = (
           base: 'border-t border-gray-1 text-dark-theme',
         },
       }"
-      @open="isPopper = true"
+      @open="
+        () => {
+          emit('focus')
+          isPopper = true
+        }
+      "
       @close="
         () => {
           emit('touched')

@@ -10,7 +10,7 @@ const props = withDefaults(
     disabledBack?: boolean
   }>(),
   {
-    buttons: ['', 'next'],
+    buttons: ['', 'next'] as any,
     disabledNext: true,
     disabledBack: true,
   },

@@ -22,6 +22,14 @@ export const selectSchema = z
   })
   .strict()
 
+export const optionalSelectSchema = z.union([
+  z.object({
+    label: z.string(),
+    value: z.string(),
+  }),
+  z.object({}).strict(),
+])
+
 export const nameSchema = z
   .string()
   .min(1, 'Required')

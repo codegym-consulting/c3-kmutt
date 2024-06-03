@@ -13,6 +13,9 @@ const formatZodError = (error: ZodError): { [key: string]: string } => {
   return formattedErrors
 }
 
+// @NOTE: Order of each field in the state are matter
+// (When the error message is shown, it will show the error message from the first field to the touched field)
+// @NOTE: schema must be z.Object for this composables to work properly
 export function useFormValidation<T>(
   schema: ZodSchema<T>,
   state: any,

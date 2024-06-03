@@ -1,10 +1,46 @@
 <script lang="ts" setup>
+import { nationalities } from '~/configs/common'
+
 definePageMeta({
   layout: 'register',
 })
 
 const register = useRegisterStore()
 const step = ref(1)
+
+const validate = reactive({
+  stepOne: false,
+  stepTwo: false,
+})
+
+const stepOneState = reactive({
+  title: {},
+  academicTitle: {},
+  name: '',
+  surname: '',
+  nationality: nationalities[0],
+})
+
+const onValidateStep = (value: boolean) => {
+  if (step.value === 1) {
+    validate.stepOne = value
+  }
+
+  if (step.value === 2) {
+    validate.stepTwo = value
+  }
+}
+
+const onClickNext = () => {
+  if (step.value === 1) {
+    step.value = 2
+  }
+
+  if (step.value === 2) {
+    //Done
+    console.log(stepOneState)
+  }
+}
 </script>
 
 <template>
@@ -19,11 +55,20 @@ const step = ref(1)
     </p>
     <Stepper v-model="step" :step="2" />
     <div class="mt-6 md:mt-8">
-      <RegisterStepOne />
-      <RegisterStepTwo v-if="false" />
+      <RegisterStepOne
+        v-if="step === 1"
+        v-model="stepOneState"
+        @validate="onValidateStep"
+        @touched="register.setRegisterNavbarFullSize(false)"
+      />
+      <RegisterStepTwo v-if="step === 2" />
     </div>
     <RegisterActionFooter
       :buttons="step === 1 ? ['', 'next'] : ['back', 'done']"
+      :disabled-next="step === 1 ? !validate.stepOne : !validate.stepTwo"
+      :disabled-back="false"
+      @click-back="step--"
+      @click-next="onClickNext"
     />
   </div>
 </template>

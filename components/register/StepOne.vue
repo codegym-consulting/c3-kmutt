@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { isEmpty } from '~/utils/validator'
 import { titles, academicTitles, nationalities } from '~/configs/common'
 import { registerStepOneSchema } from '~/models/register'
 
@@ -10,6 +11,10 @@ const state = reactive({
   nationality: nationalities[0],
 })
 
+const props = defineProps<{
+  modelValue: typeof state
+}>()
+
 const touchedField = ref('')
 const { errors, validate } = useFormValidation(
   registerStepOneSchema,
@@ -17,25 +22,45 @@ const { errors, validate } = useFormValidation(
   touchedField,
 )
 
+const emit = defineEmits<{
+  (event: 'update:modelValue', value: typeof state): void
+  (event: 'touched'): void
+  (event: 'validate', vakue: boolean): void
+}>()
+
 const onTouch = (field: string) => {
   touchedField.value = field
   validate()
+  emit('touched')
 }
 
-async function onSubmit() {
-  if (validate()) {
-    // Submit the form data
-  }
-}
+watch(
+  () => state,
+  () => {
+    emit('update:modelValue', state)
+    const allRequiredFieldAreFilled =
+      !isEmpty(state.title) &&
+      state.name &&
+      state.surname &&
+      !isEmpty(state.nationality)
+
+    // Check if all required fields are filled and then validate the form at once
+    emit('validate', allRequiredFieldAreFilled && validate())
+  },
+  { deep: true },
+)
+
+onMounted(() => {
+  state.title = props.modelValue?.title ?? {}
+  state.academicTitle = props.modelValue?.academicTitle ?? {}
+  state.name = props.modelValue?.name ?? ''
+  state.surname = props.modelValue?.surname ?? ''
+  state.nationality = props.modelValue?.nationality ?? nationalities[0]
+})
 </script>
 
 <template>
-  <UForm
-    :schema="registerStepOneSchema"
-    :state="state"
-    @submit="onSubmit"
-    @error="validate"
-  >
+  <UForm :schema="registerStepOneSchema" :state="state" @error="validate">
     <CardEmailProfile
       v-bind="{
         avatar: '/landing/card_bg.webp',
@@ -61,6 +86,7 @@ async function onSubmit() {
           name="academicTitle"
           placeholder="Select academic title"
           :options="academicTitles"
+          @touched="onTouch('academicTitle')"
         />
       </div>
       <div class="row">

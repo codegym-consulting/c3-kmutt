@@ -1,10 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    './components/*/*.vue',
-    './layouts/*/*.vue',
-    './pages/*/*.vue',
-  ],
+  content: ['./components/*/*.vue', './layouts/*/*.vue', './pages/*/*.vue'],
   theme: {
     extend: {
       fontFamily: {
@@ -23,6 +19,7 @@ export default {
         'gray-10': '#1b1b1b',
         'dark-theme': '#262A37',
         'chrysler-blue': '#5549FF',
+        'giants-orange': '#D24F28',
       },
       screens: {
         mobile: '500px',

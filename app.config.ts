@@ -1,12 +1,19 @@
 export default defineAppConfig({
   ui: {
-    primary: 'chrysler-blue',
+    primary: 'blue',
     secondary: 'gray-10',
     icons: {
       dynamic: true,
     },
     container: {
       constrained: 'max-w-screen-container',
+    },
+    formGroup: {
+      label: {
+        wrapper: 'mb-4',
+        base: 'text-base text-gray-10',
+        required: "after:content-['*'] after:ms-0.5 after:text-giants-orange",
+      },
     },
     modal: {
       padding: '!p-4',
@@ -34,6 +41,7 @@ export default defineAppConfig({
         },
       },
       variant: {
+        link: 'min-w-fit w-fit h-fit text-gray-10 text-base leading-5 font-bold !border-0 !ring-0 !outline-none hover:text-gray-10 [&_svg]:-translate-y-[1px] disabled:text-gray-4 disabled:no-underline',
         icon: 'rounded-2xl h-12 min-w-12 bg-gray-10 text-white hover:bg-white hover:text-gray-10',
       },
       default: {

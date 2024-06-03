@@ -46,6 +46,7 @@ const bottomSheet = ref(false)
         strategy: 'override',
         base: 'base-card -content',
         body: {
+          base: 'h-full',
           padding: 'p-0',
         },
       }"
@@ -64,7 +65,7 @@ const bottomSheet = ref(false)
     @apply transition-all relative max-w-full lg:max-w-[505px] w-full px-4 py-6 md:p-10;
 
     &.-static {
-      @apply overflow-hidden rounded-t-none rounded-b-[40px] lg:rounded-[40px] h-[403px] md:h-[502px] lg:h-[784px] bg-[url(~/public/register/bg_mobile_full.webp)] md:bg-[url(~/public/register/bg_tablet_full.webp)] lg:bg-[url(~/public/register/bg.webp)] bg-no-repeat bg-cover md:bg-contain bg-bottom;
+      @apply overflow-hidden rounded-t-none rounded-b-3xl md:rounded-b-[40px] lg:rounded-[40px] h-[403px] md:h-[502px] lg:h-[784px] bg-[url(~/public/register/bg_mobile_full.webp)] md:bg-[url(~/public/register/bg_tablet_full.webp)] lg:bg-[url(~/public/register/bg.webp)] bg-no-repeat bg-cover md:bg-contain bg-bottom;
 
       &.-half {
         @apply flex items-end md:block h-[147px] md:h-[206px] lg:h-[784px] bg-cover lg:bg-contain bg-[url(~/public/register/bg_mobile_half.webp)] md:bg-[url(~/public/register/bg_tablet_half.webp)] lg:bg-[url(~/public/register/bg.webp)];
@@ -76,7 +77,7 @@ const bottomSheet = ref(false)
     }
 
     &.-content {
-      @apply flex-1 lg:flex-none rounded-[40px] lg:h-[784px] max-w-full lg:max-w-[715px] overflow-x-auto;
+      @apply flex-1 lg:flex-none rounded-3xl md:rounded-[40px] lg:h-[784px] max-w-full lg:max-w-[715px] overflow-x-auto;
     }
   }
 }

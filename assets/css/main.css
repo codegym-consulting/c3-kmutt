@@ -36,6 +36,36 @@
   .heading-label {
     @apply text-[32px] leading-10 md:text-5xl md:leading-[56px] font-bold;
   }
+  .fancy-border {
+    @apply relative [&_*]:z-[1];
+  }
+  .fancy-border::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    border-radius: 9px;
+    padding: 3px;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    background: radial-gradient(
+      95.67% 228.37% at 0.26% 99.57%,
+      #fab32e 0%,
+      #f96234 49%,
+      #e22e73 78%,
+      #5449ff 100%
+    );
+    -webkit-mask: radial-gradient(
+      95.67% 228.37% at 0.26% 99.57%,
+      #fab32e 0%,
+      #f96234 49%,
+      #e22e73 78%,
+      #5449ff 100%
+    );
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
 }
 
 body {

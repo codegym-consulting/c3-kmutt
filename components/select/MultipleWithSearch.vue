@@ -40,13 +40,6 @@ watch(
   },
 )
 
-watch(
-  () => props.error,
-  (value) => {
-    console.log(value)
-  },
-)
-
 const filterOptions = computed(() => {
   if (!search.value) return props.options
   return props.options.filter((option) =>
@@ -132,7 +125,7 @@ const removeChip = (chip: Option) => {
             >
               {{ chip.label }}
               <UIcon
-                class="transition-all w-4 h-4 cursor-pointer z-[1] hover:text-gray-10"
+                class="transition-all w-4 h-4 cursor-pointer hover:text-gray-10"
                 name="humbleicons:times"
                 @click.stop="removeChip(chip)"
               />

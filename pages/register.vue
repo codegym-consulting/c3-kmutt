@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { nationalities } from '~/configs/common'
+import { nationalities, organizations } from '~/configs/common'
 
 definePageMeta({
   layout: 'register',
@@ -21,6 +21,15 @@ const stepOneState = reactive({
   nationality: nationalities[0],
 })
 
+const stepTwoState = reactive({
+  occupation: {},
+  teachingExperience: '',
+  expertise: [],
+  organization: organizations[0],
+  subUnit: {},
+  areaOfInterest: [],
+})
+
 const onValidateStep = (value: boolean) => {
   if (step.value === 1) {
     validate.stepOne = value
@@ -38,7 +47,7 @@ const onClickNext = () => {
 
   if (step.value === 2) {
     //Done
-    console.log(stepOneState)
+    console.log(stepOneState, stepTwoState)
   }
 }
 </script>
@@ -61,7 +70,11 @@ const onClickNext = () => {
         @validate="onValidateStep"
         @focus="register.setRegisterNavbarFullSize(false)"
       />
-      <RegisterStepTwo v-if="step === 2" />
+      <RegisterStepTwo
+        v-if="step === 2"
+        v-model="stepTwoState"
+        @validate="onValidateStep"
+      />
     </div>
     <RegisterActionFooter
       :buttons="step === 1 ? ['', 'next'] : ['back', 'done']"

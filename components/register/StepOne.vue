@@ -1,19 +1,32 @@
 <script lang="ts" setup>
+import type { Option } from '~/models/common'
 import { isEmpty } from '~/utils/validator'
 import { titles, academicTitles, nationalities } from '~/configs/common'
 import { registerStepOneSchema } from '~/models/register'
 
-const state = reactive({
-  title: {},
-  academicTitle: {},
-  name: '',
-  surname: '',
-  nationality: nationalities[0],
-})
+type StepOneState = {
+  title: Option
+  academicTitle: Option
+  name: string
+  surname: string
+  nationality: Option
+}
 
 const props = defineProps<{
-  modelValue: typeof state
+  modelValue: StepOneState
 }>()
+
+const emit = defineEmits<{
+  (event: 'update:modelValue', value: StepOneState): void
+  (event: 'touched'): void
+  (event: 'focus'): void
+  (event: 'validate', vakue: boolean): void
+}>()
+
+const state = computed({
+  get: () => props.modelValue,
+  set: (value) => emit('update:modelValue', value),
+})
 
 const touchedField = ref('')
 const { errors, validate } = useFormValidation(
@@ -22,13 +35,6 @@ const { errors, validate } = useFormValidation(
   touchedField,
 )
 
-const emit = defineEmits<{
-  (event: 'update:modelValue', value: typeof state): void
-  (event: 'touched'): void
-  (event: 'focus'): void
-  (event: 'validate', vakue: boolean): void
-}>()
-
 const onTouch = (field: string) => {
   touchedField.value = field
   validate()
@@ -36,28 +42,19 @@ const onTouch = (field: string) => {
 }
 
 watch(
-  () => state,
-  () => {
-    emit('update:modelValue', state)
+  () => state.value,
+  (value) => {
     const allRequiredFieldAreFilled =
-      !isEmpty(state.title) &&
-      state.name &&
-      state.surname &&
-      !isEmpty(state.nationality)
+      !isEmpty(value.title) &&
+      value.name &&
+      value.surname &&
+      !isEmpty(value.nationality)
 
     // Check if all required fields are filled and then validate the form at once
     emit('validate', allRequiredFieldAreFilled && validate())
   },
   { deep: true },
 )
-
-onMounted(() => {
-  state.title = props.modelValue?.title ?? {}
-  state.academicTitle = props.modelValue?.academicTitle ?? {}
-  state.name = props.modelValue?.name ?? ''
-  state.surname = props.modelValue?.surname ?? ''
-  state.nationality = props.modelValue?.nationality ?? nationalities[0]
-})
 </script>
 
 <template>

@@ -22,6 +22,12 @@ export const selectSchema = z
   })
   .strict()
 
+export type Option = {
+  value: string | number
+  label: string
+  disabled?: boolean
+}
+
 export const optionalSelectSchema = z.union([
   z.object({
     label: z.string(),

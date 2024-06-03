@@ -22,6 +22,12 @@ export default defineAppConfig({
       rounded: 'rounded-[40px]',
       width: '!max-w-[872px]',
     },
+    checkbox: {
+      border: 'border border-gray-7',
+      rounded: 'rounded-none',
+      color: 'text-chrysler-blue',
+      label: 'text-base text-gray-10 font-bai-jamjuree',
+    },
     button: {
       base: 'justify-center transition-all',
       rounded: 'rounded-lg',

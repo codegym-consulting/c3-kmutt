@@ -52,7 +52,7 @@ const buttonConfig = computed(() => ({
     :class="
       $classes(
         'sticky bottom-0 box-content rounded-b-3xl md:rounded-b-[40px] bg-gray-1',
-        'flex justify-between items-center w-full h-12 px-4 md:h-16 md:px-10 mt-auto',
+        'flex shrink-0 justify-between items-center w-full h-12 px-4 md:h-16 md:px-10 mt-auto',
         '-translate-x-4 translate-y-6 md:-translate-x-10 md:translate-y-10',
       )
     "

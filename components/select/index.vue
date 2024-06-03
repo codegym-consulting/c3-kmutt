@@ -5,6 +5,7 @@ const props = withDefaults(
     options: {
       value: string | number
       label: string
+      disabled?: boolean
     }[]
     label: string
     name?: string
@@ -86,7 +87,8 @@ const updateValue = (
         rounded: 'rounded-t-none rounded-b-lg',
         option: {
           selected: 'text-gray-5',
-          base: 'border-t border-gray-1 text-dark-theme',
+          disabled: 'cursor-not-allowed opacity-100 font-bold',
+          base: 'border-t border-gray-1 text-dark-theme relative',
         },
       }"
       @open="

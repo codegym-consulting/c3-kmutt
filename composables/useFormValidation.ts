@@ -24,8 +24,9 @@ export function useFormValidation<T>(
   const errors = reactive<{ [key: string]: string }>({})
 
   const validate = () => {
+    const _state = state.value
     try {
-      schema.parse(state)
+      schema.parse(_state)
       Object.keys(errors).forEach((key) => {
         delete errors[key]
       })
@@ -41,10 +42,10 @@ export function useFormValidation<T>(
 
         // remove error message below the touched field
         if (touchField?.value) {
-          const touchFieldIndex = Object.keys(state).findIndex(
+          const touchFieldIndex = Object.keys(_state).findIndex(
             (key) => key === touchField.value,
           )
-          const belowTouchedField = Object.keys(state).slice(
+          const belowTouchedField = Object.keys(_state).slice(
             touchFieldIndex + 1,
           )
           for (const key of belowTouchedField) {

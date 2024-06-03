@@ -8,3 +8,12 @@ export const registerStepOneSchema = z.object({
   surname: nameSchema,
   nationality: selectSchema,
 })
+
+export const registerStepTwoSchema = z.object({
+  occupation: selectSchema,
+  teachingExperience: z.string().optional(),
+  expertise: z.array(selectSchema).min(1, 'Required'),
+  organization: selectSchema,
+  subUnit: selectSchema,
+  areaOfInterest: z.array(selectSchema).min(1, 'Required'),
+})

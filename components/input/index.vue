@@ -3,20 +3,25 @@ import { nextTick, type VNodeRef } from 'vue'
 
 const props = withDefaults(
   defineProps<{
-    label: string
     modelValue: string
+    label?: string
     name?: string
     placeholder?: string
     type?: string
     required?: boolean
     error?: string
+    ui?: any
+    icon?: string
   }>(),
   {
+    label: '',
+    icon: '',
     name: 'noname',
     placeholder: '',
     error: '',
     type: 'text',
     required: false,
+    ui: {},
   },
 )
 
@@ -53,6 +58,7 @@ const clearValue = async () => {
   >
     <UInput
       ref="input"
+      :icon="props.icon"
       :placeholder="props.placeholder"
       :modelValue="props.modelValue"
       :type="props.type"
@@ -74,6 +80,7 @@ const clearValue = async () => {
             wrapper: '!pointer-events-auto',
           },
         },
+        ...props.ui,
       }"
       @focus="
         () => {

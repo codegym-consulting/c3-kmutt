@@ -38,7 +38,7 @@ const navigations = [
   </footer>
 </template>
 
-<style lang="postcss" scoped>
+<style lang="pcss" scoped>
 .footer {
   @apply flex justify-between items-center gap-x-4 h-auto md:h-[128px] lg:h-[82px] bg-white relative;
 }

@@ -72,4 +72,4 @@ Check out the [deployment documentation](https://nuxt.com/docs/getting-started/d
 
 - https://github.com/nuxt/cli/issues/405
 - https://github.com/nuxt/nuxt/issues/20895
-- https://github.com/nuxt/cli/issues/240npx nuxi info
+- https://github.com/gitFoxCode/nuxt-icons/issues/56

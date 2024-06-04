@@ -79,7 +79,7 @@ onUnmounted(() => {
   </ClientOnly>
 </template>
 
-<style lang="postcss" scoped>
+<style lang="pcss" scoped>
 .affix {
   @apply flex flex-col;
   .affix__ref {

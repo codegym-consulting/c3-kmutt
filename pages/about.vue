@@ -98,7 +98,7 @@ const networks = [
   </div>
 </template>
 
-<style lang="postcss" scoped>
+<style lang="pcss" scoped>
 #heading-section {
   @apply flex items-end flex-col lg:flex-row gap-x-16 mt-[34px] md:mt-[64px] lg:mt-[104px];
 

@@ -59,7 +59,7 @@ const bottomSheet = ref(false)
   </div>
 </template>
 
-<style lang="postcss" scoped>
+<style lang="pcss" scoped>
 .show-on-affix {
   @apply hidden;
 }

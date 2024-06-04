@@ -346,7 +346,7 @@ const onSlideChange = (swiper: Swiper) => {
   </div>
 </template>
 
-<style lang="postcss" scoped>
+<style lang="pcss" scoped>
 h1 {
   @apply text-center text-[32px] md:text-[72px] font-bold leading-[40px] md:leading-[76px] text-white;
 

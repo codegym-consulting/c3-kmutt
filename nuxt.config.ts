@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   routeRules: {
     '/': { prerender: true },
     '/login': { prerender: true },
-    // '/register': { prerender: true },
+    '/register': { prerender: true },
     '/about': { prerender: true },
     '/contact': { prerender: true },
     '/search': { prerender: true },

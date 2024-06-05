@@ -4,7 +4,7 @@ import { expertise } from "../schema/schema";
 export default defineEventHandler(async () => {
   try {
     const result = await db
-      .select({ id: expertise.id, value: expertise.id, label: expertise.name })
+      .select({ label: expertise.name, value: expertise.id })
       .from(expertise)
       .orderBy(expertise.id)
     return result;

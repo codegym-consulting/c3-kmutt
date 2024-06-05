@@ -69,7 +69,7 @@ const policy = ref(false)
             <p class="mt-2 text-sm leading-[18px] text-gray-7 md:!w-[90%]">
               By clicking “Continue with Google”, you acknowledge that you have
               read, understood, and agree to C3’s
-              <span tabindex="0" @click="terms = true">Terms & Conditions</span>
+              <span tabindex="0" @click="terms = true">Terms &amp; Conditions</span>
               and
               <span tabindex="1" @click="policy = true">Privacy Policy.</span>
             </p>

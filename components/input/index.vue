@@ -31,8 +31,7 @@ const forceFocus = ref(false)
 
 const emit = defineEmits<{
   (event: 'update:modelValue', value: string): void
-  (event: 'touched'): void
-  (event: 'focus'): void
+  (event: 'touched' | 'focus'): void
 }>()
 
 const updateValue = (value: string) => {

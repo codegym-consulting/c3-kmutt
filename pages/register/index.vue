@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { nationalities, organizations } from '~/configs/common'
+import { organizations } from '~/data/common'
 
 definePageMeta({
   layout: 'register',
@@ -19,7 +19,10 @@ const stepOneState = reactive({
   academicTitle: {},
   name: '',
   surname: '',
-  nationality: nationalities[0],
+  nationality: {
+    label: 'Thai',
+    value: 'thai'
+  },
 })
 
 const stepTwoState = reactive({

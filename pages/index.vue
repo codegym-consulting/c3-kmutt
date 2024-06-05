@@ -256,7 +256,7 @@ const onSlideChange = (swiper: Swiper) => {
               "
             >
               Creative Collaborative Community Platform is a digital platform
-              for creative & innovation knowledge sharing, designed to collect
+              for creative &amp; innovation knowledge sharing, designed to collect
               knowledge and exchange experiences in creative innovation, built
               environments, social and cultural innovation, and technologies
               that enhance the future of society and the creative economy.

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { Option } from '~/models/common'
 import { isEmpty } from '~/utils/validator'
-import { titles, academicTitles, nationalities } from '~/configs/common'
+import { titles, academicTitles, nationalities } from '~/data/common'
 import { registerStepOneSchema } from '~/models/register'
 
 type StepOneState = {
@@ -18,8 +18,7 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   (event: 'update:modelValue', value: StepOneState): void
-  (event: 'touched'): void
-  (event: 'focus'): void
+  (event: 'touched' | 'focus'): void
   (event: 'validate', vakue: boolean): void
 }>()
 

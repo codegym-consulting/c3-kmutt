@@ -21,8 +21,7 @@ const emit = defineEmits<{
     event: 'update:modelValue',
     value: string | number | Record<string, any> | unknown[],
   ): void
-  (event: 'touched'): void
-  (event: 'focus'): void
+  (event: 'touched' | 'focus'): void
 }>()
 
 const isPopper = ref(false)

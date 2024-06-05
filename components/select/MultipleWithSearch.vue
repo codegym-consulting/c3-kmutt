@@ -24,8 +24,7 @@ const props = withDefaults(
 
 const emit = defineEmits<{
   (event: 'update:modelValue', value: Option[]): void
-  (event: 'touched'): void
-  (event: 'focus'): void
+  (event: 'touched' | 'focus'): void
   (event: 'add', value: string): void
 }>()
 

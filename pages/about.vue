@@ -36,14 +36,14 @@ const networks = [
           )
         "
       >
-        Creative<br />
-        Collaborative<br />
-        Community<br />
+        Creative<br>
+        Collaborative<br>
+        Community<br>
         Platform
       </h1>
       <div class="flex flex-col gap-y-6 md:gap-y-12 ml-auto lg:m-0">
         <p>
-          is a digital platform for creative & innovation knowledge sharing,
+          is a digital platform for creative &amp; innovation knowledge sharing,
           designed to collect knowledge and exchange experiences in creative
           innovation, sustainable environments, social and cultural innovation,
           and technologies that enhance the future of society and the creative

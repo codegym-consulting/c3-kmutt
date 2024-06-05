@@ -1,13 +1,12 @@
 import db from "../libs/pg";
-import { users } from "../schema/schema";
+import { expertise } from "../schema/schema";
 
 export default defineEventHandler(async () => {
   try {
     const result = await db
-      .select({ id: users.id, name: users.fullName, phone: users.phone })
-      .from(users)
-      .orderBy(users.fullName)
-      .limit(10);
+      .select({ id: expertise.id, value: expertise.id, label: expertise.name })
+      .from(expertise)
+      .orderBy(expertise.id)
     return result;
   } catch (error) {
     console.error(error)

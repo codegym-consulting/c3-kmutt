@@ -41,8 +41,8 @@ const updateValue = (
     :error="props.error"
   >
     <USelectMenu
-      selectedIcon=""
-      :modelValue="props.modelValue"
+      selected-icon=""
+      :model-value="props.modelValue"
       :options="props.options"
       :placeholder="props.placeholder"
       :popper="{ offsetDistance: 0 }"
@@ -102,7 +102,7 @@ const updateValue = (
           isPopper = false
         }
       "
-      @update:modelValue="updateValue"
+      @update:model-value="updateValue"
     >
       <template #option="{ option }">
         <span class="font-bai-jamjuree text-base">{{ option.label }}</span>

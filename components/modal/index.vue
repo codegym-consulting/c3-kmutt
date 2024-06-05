@@ -21,7 +21,7 @@ const updateValue = (value: boolean) => {
 </script>
 
 <template>
-  <UModal :modelValue="props.modelValue" @update:modelValue="updateValue">
+  <UModal :model-value="props.modelValue" @update:model-value="updateValue">
     <div class="flex items-center justify-between gap-x-4">
       <slot name="title"
         ><h3 v-if="props.title" class="heading-label text-gray-10">
@@ -41,6 +41,6 @@ const updateValue = (value: boolean) => {
         >{{ props.subTitle }}</em
       ></slot
     >
-    <slot></slot>
+    <slot/>
   </UModal>
 </template>

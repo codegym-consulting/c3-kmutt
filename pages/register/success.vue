@@ -24,7 +24,7 @@ onMounted(() => {
           'bg-no-repeat bg-cover bg-center',
         )
       "
-    ></div>
+    />
     <UContainer class="flex justify-center absolute inset-0 h-fit m-auto">
       <UCard
         data-aos="fade-up"
@@ -43,7 +43,7 @@ onMounted(() => {
           class="max-w-[820px] mx-auto text-center w-full flex flex-col items-center gap-y-14"
         >
           <figure class="hidden md:block">
-            <img src="/logo/logo_full.svg" alt="3c_logo" />
+            <img src="/logo/logo_full.svg" alt="3c_logo" >
           </figure>
           <div class="flex flex-col items-center gap-y-6">
             <UIcon name="prime:thumbs-up" class="w-12 h-12 text-gray-10" />
@@ -53,7 +53,7 @@ onMounted(() => {
               <UButton variant="inline-link" to="/resume/create"
                 >create an online resume</UButton
               >
-              to<br />
+              to<br >
               showcase your skills and experiences.
             </p>
           </div>

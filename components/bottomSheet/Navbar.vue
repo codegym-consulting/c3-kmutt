@@ -15,9 +15,9 @@ const updateValue = (value: boolean) => {
 </script>
 
 <template>
-  <BottomSheet :modelValue="props.modelValue" @update:modelValue="updateValue">
+  <BottomSheet :model-value="props.modelValue" @update:model-value="updateValue">
     <div class="flex flex-col items-center justify-center gap-y-10 py-8 px-4">
-      <img class="logo" src="/logo/logo_full.svg" alt="3c_logo" />
+      <img class="logo" src="/logo/logo_full.svg" alt="3c_logo" >
       <ul class="flex flex-col items-center justify-center gap-y-6">
         <li v-for="{ to, label } in navigations" :key="`bottom-sheet-${label}`">
           <NormalLink

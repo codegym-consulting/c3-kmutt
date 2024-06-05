@@ -39,7 +39,7 @@ export const optionalSelectSchema = z.union([
 export const nameSchema = z
   .string()
   .min(1, 'Required')
-  .refine((value) => !/[\!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]/.test(value), {
+  .refine((value) => !/[\\!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]/.test(value), {
     message:
       'Special characters are not allowed (e.g., !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~)',
   })

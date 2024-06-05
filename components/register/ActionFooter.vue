@@ -18,8 +18,7 @@ const props = withDefaults(
 const { $classes } = useNuxtApp()
 
 const emit = defineEmits<{
-  (event: 'clickNext'): void
-  (event: 'clickBack'): void
+  (event: 'clickNext' | 'clickBack'): void
 }>()
 
 const buttonConfig = computed(() => ({
@@ -71,7 +70,7 @@ const buttonConfig = computed(() => ({
         @click="buttonConfig[buttonType].click"
         >{{ buttonConfig[buttonType].text }}</UButton
       >
-      <div v-else></div>
+      <div v-else/>
     </template>
   </div>
 </template>

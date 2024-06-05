@@ -16,8 +16,8 @@ const updateValue = (value: boolean) => {
   <Modal
     title="Privacy & Policy"
     sub-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
-    :modelValue="props.modelValue"
-    @update:modelValue="updateValue"
+    :model-value="props.modelValue"
+    @update:model-value="updateValue"
   >
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod

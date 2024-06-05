@@ -59,7 +59,7 @@ const clearValue = async () => {
       ref="input"
       :icon="props.icon"
       :placeholder="props.placeholder"
-      :modelValue="props.modelValue"
+      :model-value="props.modelValue"
       :type="props.type"
       :class="[{ 'fancy-border': (focus && !error) || forceFocus }]"
       :ui="{
@@ -94,7 +94,7 @@ const clearValue = async () => {
           forceFocus = false
         }
       "
-      @update:modelValue="updateValue"
+      @update:model-value="updateValue"
     >
       <template #trailing>
         <UButton

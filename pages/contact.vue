@@ -8,7 +8,7 @@
           'bg-no-repeat bg-cover bg-center',
         )
       "
-    ></div>
+    />
     <UContainer
       class="flex justify-center pt-6 pb-8 md:pt-[235px] md:pb-[195px] lg:pt-14 lg:pb-[70px]"
     >
@@ -32,8 +32,8 @@
             <source
               media="(min-width: 1024px)"
               srcset="/logo/logo_full_vertical.svg"
-            />
-            <img src="/logo/logo_full.svg" alt="3c_logo" />
+            >
+            <img src="/logo/logo_full.svg" alt="3c_logo" >
           </picture>
           <p
             class="font-bold text-[22px] leading-[26px] md:text-2xl md:leading-7 text-gray-10"
@@ -50,9 +50,9 @@
           <address
             class="not-italic text-sm leading-[18px] lg:text-base lg:leading-5 text-gray-6"
           >
-            King Mongkut’s University of Technology Thonburi<br />
+            King Mongkut’s University of Technology Thonburi<br >
             126 Pracha Uthit Rd., Bang Mod, Thung Khru, Bangkok 10140,
-            Thailand<br />
+            Thailand<br >
             Office Hours: Monday - Friday, 08:30 AM - 04:30 PM
           </address>
           <div class="flex flex-col items-center -mt-2 gap-y-[10px]">
@@ -61,7 +61,7 @@
                 class="grayscale"
                 src="/contact/line_qr_code.webp"
                 alt="LINE QR Code"
-              />
+              >
             </figure>
             <em class="not-italic text-base leading-5 text-gray-10"
               >LINE ID: @396gmubi</em

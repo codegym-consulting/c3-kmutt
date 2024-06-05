@@ -32,6 +32,6 @@ const updateValue = (value: number) => {
         },
       ]"
       @click="updateValue(i)"
-    ></button>
+    />
   </div>
 </template>

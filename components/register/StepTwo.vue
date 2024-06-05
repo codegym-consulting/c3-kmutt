@@ -149,7 +149,7 @@ watch(
   </UForm>
 </template>
 
-<style lang="postcss" scoped>
+<style lang="pcss" scoped>
 .row {
   @apply flex gap-4 flex-col md:flex-row [&>*]:flex-1;
 }

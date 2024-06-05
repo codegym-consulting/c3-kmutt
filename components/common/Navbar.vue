@@ -28,10 +28,10 @@ const bottomSheet = ref(false)
       <nav>
         <NuxtLink class="flex-shrink-0" to="/">
           <picture class="hide-on-affix">
-            <source media="(min-width: 768px)" srcset="/logo/logo_full.svg" />
-            <img src="/logo/logo.svg" alt="3c_logo" />
+            <source media="(min-width: 768px)" srcset="/logo/logo_full.svg" >
+            <img src="/logo/logo.svg" alt="3c_logo" >
           </picture>
-          <img class="show-on-affix" src="/logo/logo.svg" alt="3c_logo" />
+          <img class="show-on-affix" src="/logo/logo.svg" alt="3c_logo" >
         </NuxtLink>
         <ul class="navigation-menu">
           <li v-for="{ to, label } in navigations" :key="label">

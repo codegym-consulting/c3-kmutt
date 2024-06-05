@@ -54,7 +54,7 @@ const add = () => {
   emit('add', search.value)
 }
 
-const apply = (close: Function) => {
+const apply = (close: () => void) => {
   updateValue(tempModelValue.value)
   close()
 }
@@ -166,8 +166,8 @@ const removeChip = (chip: Option) => {
                   class="pt-[10px] pb-[17px] border-b border-gray-1"
                 >
                   <UCheckbox
-                    :label="option.label"
                     :id="`${option.value}`"
+                    :label="option.label"
                     :model-value="
                       !!tempModelValue.find((o) => o.value === option.value)
                     "
@@ -175,7 +175,7 @@ const removeChip = (chip: Option) => {
                       wrapper: 'items-center',
                       inner: 'flex-1',
                     }"
-                    @update:modelValue="(checked) => onCheck(checked, option)"
+                    @update:model-value="(checked) => onCheck(checked, option)"
                   />
                 </li>
               </ul>
@@ -219,7 +219,7 @@ const removeChip = (chip: Option) => {
   </UFormGroup>
 </template>
 
-<style lang="postcss" scoped>
+<style lang="pcss" scoped>
 .text-button {
   @apply font-bai-jamjuree text-xs font-medium text-chrysler-blue cursor-pointer disabled:text-gray-4 disabled:cursor-not-allowed;
 }

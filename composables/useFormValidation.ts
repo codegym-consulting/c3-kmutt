@@ -1,4 +1,4 @@
-import { ZodSchema, ZodError, type ZodIssue } from 'zod'
+import { ZodError, type ZodSchema, type ZodIssue } from 'zod';
 
 const formatZodIssue = (issue: ZodIssue): string => {
   const { message } = issue

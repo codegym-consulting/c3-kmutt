@@ -67,13 +67,13 @@ const onSlideChange = (swiper: Swiper) => {
         <source
           media="(min-width: 768px)"
           srcset="/landing/3c_water_mark.svg"
-        />
-        <img src="/landing/3c_water_mark_mobile.svg" alt="3c_water_mark" />
+        >
+        <img src="/landing/3c_water_mark_mobile.svg" alt="3c_water_mark" >
       </picture>
       <div class="flex flex-col items-center">
         <h1>
-          We are a collaborative<br />
-          platform for sharing<br />
+          We are a collaborative<br >
+          platform for sharing<br >
           knowledge in innovation
         </h1>
         <p
@@ -206,7 +206,7 @@ const onSlideChange = (swiper: Swiper) => {
         <span
           class="text-[32px] font-bold leading-10 inline-block my-4 md:my-2 lg:m-0 py-1 px-4 text-white bg-[radial-gradient(95.67%_228.37%_at_0.26%_99.57%,#FAB32E_0%,#F96234_49%,#E22E73_78%,#5449FF_100%)]"
           >Viable innovations</span
-        ><br />
+        ><br >
         blending design, science, tech, and business tailor solutions for
         diverse user needs and lifestyle
       </h2>
@@ -295,7 +295,7 @@ const onSlideChange = (swiper: Swiper) => {
               :class="$classes('w-full object-contain rounded-t-[32px]')"
               src="/landing/kmutt-smart-house.webp"
               alt="bg"
-            />
+            >
           </div>
           <div class="flex relative z-[2] pt-4 pb-[20%]">
             <p

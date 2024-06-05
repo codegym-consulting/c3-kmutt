@@ -15,7 +15,7 @@ const policy = ref(false)
           'bg-no-repeat bg-cover bg-center',
         )
       "
-    ></div>
+    />
     <UContainer
       class="flex justify-center pt-[115px] md:pt-[245px] lg:pt-[95px] pb-16"
     >
@@ -39,11 +39,11 @@ const policy = ref(false)
             <source
               media="(min-width: 1024px)"
               srcset="/logo/logo_full_vertical.svg"
-            />
-            <img src="/logo/logo_full.svg" alt="3c_logo" />
+            >
+            <img src="/logo/logo_full.svg" alt="3c_logo" >
           </picture>
           <h1 class="text-3xl md:text-[40px] md:leading-[50px] text-gray-6">
-            <span>KMUTT</span> network<br />
+            <span>KMUTT</span> network<br >
             knowledge <span>sharing platform</span>
           </h1>
           <div class="flex flex-col items-center gap-y-2 [&>*]:w-full">
@@ -82,7 +82,7 @@ const policy = ref(false)
   </div>
 </template>
 
-<style lang="postcss" scoped>
+<style lang="pcss" scoped>
 h1 > span {
   @apply font-bold text-4xl md:text-[48px] md:leading-[56px] text-gray-10;
 }

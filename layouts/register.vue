@@ -22,8 +22,8 @@ const bottomSheet = ref(false)
           <source
             media="(min-width: 768px)"
             srcset="/logo/logo_full_vertical.svg"
-          />
-          <img src="/logo/logo.svg" alt="3c_logo" />
+          >
+          <img src="/logo/logo.svg" alt="3c_logo" >
         </picture>
         <UButton
           class="inline-flex md:hidden ml-auto"
@@ -33,10 +33,10 @@ const bottomSheet = ref(false)
         />
       </div>
       <h1>
-        <span>KMUTT</span> network<br />
+        <span>KMUTT</span> network<br >
         knowledge
         <span
-          >sharing<br />
+          >sharing<br >
           platform</span
         >
       </h1>
@@ -57,7 +57,7 @@ const bottomSheet = ref(false)
   </div>
 </template>
 
-<style lang="postcss" scoped>
+<style lang="pcss" scoped>
 #page-container {
   @apply relative flex items-center justify-start lg:justify-center gap-y-2 md:gap-y-6 gap-x-5 min-h-screen bg-gray-3 overflow-y-auto flex-col lg:flex-row pb-8 md:px-14 lg:px-4 lg:py-6;
 

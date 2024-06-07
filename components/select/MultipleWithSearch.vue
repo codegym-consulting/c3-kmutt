@@ -124,7 +124,7 @@ const removeChip = (chip: Option) => {
             >
               {{ chip.label }}
               <UIcon
-                class="transition-all w-4 h-4 cursor-pointer hover:text-gray-10"
+                class="flex-shrink-0 transition-all w-4 h-4 cursor-pointer hover:text-gray-10"
                 name="humbleicons:times"
                 @click.stop="removeChip(chip)"
               />

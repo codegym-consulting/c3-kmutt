@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 const props = withDefaults(
   defineProps<{
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     modelValue: string | number | Record<string, any> | unknown[]
     options: {
       value: string | number
@@ -19,6 +20,7 @@ const props = withDefaults(
 const emit = defineEmits<{
   (
     event: 'update:modelValue',
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     value: string | number | Record<string, any> | unknown[],
   ): void
   (event: 'touched' | 'focus'): void
@@ -27,6 +29,7 @@ const emit = defineEmits<{
 const isPopper = ref(false)
 
 const updateValue = (
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   value: string | number | Record<string, any> | unknown[],
 ) => {
   emit('update:modelValue', value)

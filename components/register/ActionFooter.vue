@@ -10,7 +10,7 @@ const props = withDefaults(
     disabledBack?: boolean
   }>(),
   {
-    buttons: ['', 'next'] as any,
+    buttons: () => ['', 'next'],
     disabledNext: true,
     disabledBack: true,
   },
@@ -70,7 +70,7 @@ const buttonConfig = computed(() => ({
         @click="buttonConfig[buttonType].click"
         >{{ buttonConfig[buttonType].text }}</UButton
       >
-      <div v-else/>
+      <div v-else />
     </template>
   </div>
 </template>

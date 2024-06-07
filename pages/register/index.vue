@@ -1,5 +1,13 @@
 <script lang="ts" setup>
-import { organizations } from '~/data/common'
+import { getExpertises, getInterests } from '~/services/register'
+import {
+  organizations,
+  occupations,
+  subUnits,
+  titles,
+  academicTitles,
+  nationalities,
+} from '~/data/common'
 
 definePageMeta({
   layout: 'register',
@@ -8,6 +16,8 @@ definePageMeta({
 const router = useRouter()
 const register = useRegisterStore()
 const step = ref(1)
+const { data: expertises } = await getExpertises()
+const { data: areaOfInterests } = await getInterests()
 
 const validate = reactive({
   stepOne: false,
@@ -21,7 +31,7 @@ const stepOneState = reactive({
   surname: '',
   nationality: {
     label: 'Thai',
-    value: 'thai'
+    value: 'thai',
   },
 })
 
@@ -73,12 +83,20 @@ const onClickNext = () => {
       <RegisterStepOne
         v-if="step === 1"
         v-model="stepOneState"
+        :titles="titles"
+        :academic-titles="academicTitles"
+        :nationalities="nationalities"
         @validate="onValidateStep"
         @focus="register.setRegisterNavbarFullSize(false)"
       />
       <RegisterStepTwo
         v-if="step === 2"
         v-model="stepTwoState"
+        :expertises="expertises ?? []"
+        :area-of-interests="areaOfInterests ?? []"
+        :organizations="organizations"
+        :occupations="occupations"
+        :sub-units="subUnits"
         @validate="onValidateStep"
       />
     </div>

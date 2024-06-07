@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import type { Option } from '~/models/common'
 import { isEmpty } from '~/utils/validator'
-import { titles, academicTitles, nationalities } from '~/data/common'
 import { registerStepOneSchema } from '~/models/register'
 
 type StepOneState = {
@@ -12,9 +11,19 @@ type StepOneState = {
   nationality: Option
 }
 
-const props = defineProps<{
-  modelValue: StepOneState
-}>()
+const props = withDefaults(
+  defineProps<{
+    modelValue: StepOneState
+    titles?: Option[]
+    academicTitles?: Option[]
+    nationalities?: Option[]
+  }>(),
+  {
+    titles: () => [],
+    academicTitles: () => [],
+    nationalities: () => [],
+  },
+)
 
 const emit = defineEmits<{
   (event: 'update:modelValue', value: StepOneState): void
@@ -74,7 +83,7 @@ watch(
           placeholder="Select title"
           required
           :error="errors.title"
-          :options="titles"
+          :options="props.titles"
           @focus="emit('focus')"
           @touched="onTouch('title')"
         />
@@ -83,7 +92,7 @@ watch(
           label="Academic title"
           name="academicTitle"
           placeholder="Select academic title"
-          :options="academicTitles"
+          :options="props.academicTitles"
           @focus="emit('focus')"
           @touched="onTouch('academicTitle')"
         />
@@ -114,11 +123,11 @@ watch(
           label="Nationality"
           name="nationality"
           required
-          :options="nationalities"
+          :options="props.nationalities"
           @focus="emit('focus')"
           @touched="onTouch('nationality')"
         />
-        <div/>
+        <div />
       </div>
     </div>
   </UForm>

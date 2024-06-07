@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-dynamic-delete */
 import { ZodError, type ZodSchema, type ZodIssue } from 'zod';
 
 const formatZodIssue = (issue: ZodIssue): string => {
@@ -18,6 +19,7 @@ const formatZodError = (error: ZodError): { [key: string]: string } => {
 // @NOTE: schema must be z.Object for this composables to work properly
 export function useFormValidation<T>(
   schema: ZodSchema<T>,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   state: any,
   touchField?: Ref<string>,
 ) {

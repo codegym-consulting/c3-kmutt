@@ -11,6 +11,11 @@ export default defineNuxtConfig({
     '/workspace': { prerender: true },
     '/api/**': { cors: true },
   },
+  runtimeConfig: {
+    public: {
+      baseApiUrl: process.env.NUXT_PUBLIC_BASE_API_URL,
+    },
+  },
   modules: [
     '@nuxt/ui',
     'nuxt-icons',
@@ -24,8 +29,8 @@ export default defineNuxtConfig({
   postcss: {
     plugins: {
       'postcss-import': {},
-      'tailwindcss': {},
-      'autoprefixer': {},
+      tailwindcss: {},
+      autoprefixer: {},
     },
   },
   colorMode: {
@@ -87,8 +92,7 @@ export default defineNuxtConfig({
         },
         {
           rel: 'stylesheet',
-          href:
-            'https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap',
+          href: 'https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap',
         },
       ],
     },
@@ -105,15 +109,15 @@ export default defineNuxtConfig({
   nitro: {
     // preset: 'bun', // node-server, netlify_edge
     rollupConfig: {
-      external: ["cloudflare:sockets"],
+      external: ['cloudflare:sockets'],
     },
-  //   storage: {
-  //     redis: {
-  //       driver: 'redis',
-  //       port: 6379,
-  //       host: "127.0.0.1",
-  //       db: 0,
-  //     }
-  //   },
-  }
+    //   storage: {
+    //     redis: {
+    //       driver: 'redis',
+    //       port: 6379,
+    //       host: "127.0.0.1",
+    //       db: 0,
+    //     }
+    //   },
+  },
 })

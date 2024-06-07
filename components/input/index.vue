@@ -10,6 +10,7 @@ const props = withDefaults(
     type?: string
     required?: boolean
     error?: string
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ui?: any
     icon?: string
   }>(),

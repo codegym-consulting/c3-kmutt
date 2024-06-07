@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import type { Option } from '~/models/common'
 import { isEmpty } from '~/utils/validator'
-import { occupations, expertises, subUnits } from '~/data/common'
 import { registerStepTwoSchema } from '~/models/register'
 
 type StepTwoState = {
@@ -13,9 +12,23 @@ type StepTwoState = {
   areaOfInterest: Option[]
 }
 
-const props = defineProps<{
-  modelValue: StepTwoState
-}>()
+const props = withDefaults(
+  defineProps<{
+    modelValue: StepTwoState
+    expertises?: Option[]
+    areaOfInterests?: Option[]
+    occupations?: Option[]
+    subUnits?: Option[]
+    organizations?: Option[]
+  }>(),
+  {
+    occupations: () => [],
+    subUnits: () => [],
+    organizations: () => [],
+    expertises: () => [],
+    areaOfInterests: () => [],
+  },
+)
 
 const state = computed({
   get: () => props.modelValue,
@@ -81,7 +94,7 @@ watch(
           placeholder="Select occupation"
           required
           :error="errors.occupation"
-          :options="occupations"
+          :options="props.occupations"
           @focus="emit('focus')"
           @touched="onTouch('occupation')"
         />
@@ -103,7 +116,7 @@ watch(
           placeholder="Select expertise"
           required
           :error="errors.expertise"
-          :options="expertises"
+          :options="props.expertises"
           @focus="emit('focus')"
           @touched="onTouch('expertise')"
         />
@@ -116,7 +129,7 @@ watch(
           placeholder="Select organization"
           required
           :error="errors.organization"
-          :options="occupations"
+          :options="props.organizations"
           @focus="emit('focus')"
           @touched="onTouch('organization')"
         />
@@ -127,7 +140,7 @@ watch(
           placeholder="Select sub unit"
           required
           :error="errors.subUnit"
-          :options="subUnits"
+          :options="props.subUnits"
           @focus="emit('focus')"
           @touched="onTouch('subUnit')"
         />
@@ -140,7 +153,7 @@ watch(
           placeholder="Select area of interest"
           required
           :error="errors.areaOfInterest"
-          :options="expertises"
+          :options="props.areaOfInterests"
           @focus="emit('focus')"
           @touched="onTouch('areaOfInterest')"
         />

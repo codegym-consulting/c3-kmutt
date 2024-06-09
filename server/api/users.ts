@@ -1,12 +1,12 @@
+import { users } from "../drizzle/schema";
 import db from "../libs/pg";
-import { users } from "../schema/schema";
 
 export default defineEventHandler(async () => {
   try {
     const result = await db
-      .select({ id: users.id, name: users.fullName, phone: users.phone })
+      .select({ id: users.id, name: users.full_name, phone: users.phone })
       .from(users)
-      .orderBy(users.fullName)
+      .orderBy(users.full_name)
       .limit(10);
     return result;
   } catch (error) {

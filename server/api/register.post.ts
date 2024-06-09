@@ -20,8 +20,9 @@ export default defineEventHandler(async (event) => {
   const body = await readBody(event)
   try {
     // Validate the body
-    const validatedBody = schema.parse(body);
-    return { body: validatedBody };
+    schema.parse(body);
+    setResponseStatus(event, 201)
+    return { statusMessage: 'User created successfully' };
   } catch (error) {
     const zodError = JSON.parse(error as string)[0].message
 

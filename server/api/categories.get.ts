@@ -1,5 +1,5 @@
+import { expertise } from "../drizzle/schema";
 import db from "../libs/pg";
-import { expertise } from "../schema/schema";
 
 export default defineEventHandler(async () => {
   try {

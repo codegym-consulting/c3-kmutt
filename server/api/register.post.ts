@@ -17,18 +17,17 @@ const schema = z.object({
 });
 
 export default defineEventHandler(async (event) => {
-  const body = await readBody(event)
-  try {
-    // Validate the body
-    schema.parse(body);
+    const result = await readValidatedBody(event, body => schema.safeParse(body))
+
+    if (!result.success) {
+      throw createError({
+        statusCode: 400,
+        statusMessage: result.error.issues[0].message
+      })
+    }
+
+    console.log(result.data)
+  
     setResponseStatus(event, 201)
     return { statusMessage: 'User created successfully' };
-  } catch (error) {
-    const zodError = JSON.parse(error as string)[0].message
-
-    throw createError({
-      statusCode: 400,
-      statusMessage: zodError,
-    })
-  }
 });

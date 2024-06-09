@@ -1,12 +1,18 @@
+import { ilike } from "drizzle-orm";
 import { expertise } from "../drizzle/schema";
 import db from "../libs/pg";
 
-export default defineEventHandler(async () => {
+export default defineEventHandler(async (event) => {
   try {
-    const result = await db
+    const query = getQuery(event)
+    const dbQuery = db
       .select({ label: expertise.name, value: expertise.id })
       .from(expertise)
-      .orderBy(expertise.id)
+      .where(ilike(expertise.name, `%${query.query ?? ''}%`))
+      .orderBy(expertise.id);
+
+    const result = await dbQuery;
+    return result;
     return result;
   } catch (error) {
     console.error(error)

@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     '/contact': { prerender: true },
     '/search': { prerender: true },
     '/workspace': { prerender: true },
-    '/api/**': { cors: true },
+    '/api/**': { cors: false }, // enable when deploy prod
   },
   runtimeConfig: {
     public: {

@@ -8,10 +8,10 @@
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "nuxi-clean": "npx nuxi cleanup",
-    "nuxi-analyze": "npx nuxi analyze",
-    "nuxi-typecheck": "npx nuxi typecheck",
-    "nuxi-info": "npx nuxi info",
+    "clean": "npx nuxi cleanup",
+    "analyze": "npx nuxi analyze",
+    "typecheck": "npx nuxi typecheck",
+    "info": "npx nuxi info",
     "db-generate": "drizzle-kit generate",
     "db-apply": "drizzle-kit migrate",
     "db-pull": "drizzle-kit introspect",
@@ -25,12 +25,14 @@
     "@nuxt/ui": "^2.16.0",
     "@pinia/nuxt": "^0.5.1",
     "dayjs": "^1.11.11",
-    "drizzle-orm": "^0.31.1",
+    "drizzle-orm": "^0.31.2",
     "nuxt": "^3.11.2",
+    "nuxt-auth-utils": "^0.0.25",
     "nuxt-icons": "^3.2.1",
     "nuxt-swiper": "^1.2.2",
     "pinia": "^2.1.7",
     "postgres": "^3.4.4",
+    "unstorage": "^1.10.2",
     "v-network-graph": "^0.9.15",
     "vue": "^3.4.27",
     "vue-router": "^4.3.2",
@@ -41,18 +43,18 @@
     "@vueuse/core": "^10.10.0",
     "@vueuse/nuxt": "^10.10.0",
     "autoprefixer": "^10.4.19",
-    "drizzle-kit": "^0.22.2",
+    "drizzle-kit": "^0.22.6",
     "eslint": "^9.4.0",
     "nuxt-aos": "^1.2.4",
     "postcss": "^8.4.38",
-    "tailwindcss": "^3.4.3",
+    "tailwindcss": "^3.4.4",
     "typescript": "^5.4.5",
     "vue-tsc": "1.8.22"
   },
   "browserslist": [
     "defaults"
   ],
-  "engines" : {
-    "node" : ">=20"
+  "engines": {
+    "node": ">=20"
   }
 }

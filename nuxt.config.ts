@@ -1,21 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  routeRules: {
-    '/': { prerender: true },
-    '/login': { prerender: true },
-    '/register': { prerender: true },
-    '/about': { prerender: true },
-    '/contact': { prerender: true },
-    '/search': { prerender: true },
-    '/workspace': { prerender: true },
-    '/api/**': { cors: false }, // enable when deploy prod
-  },
-  runtimeConfig: {
-    public: {
-      baseApiUrl: process.env.NUXT_PUBLIC_BASE_API_URL,
-    },
-  },
   modules: [
     '@nuxt/ui',
     'nuxt-icons',
@@ -24,7 +9,30 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@vueuse/nuxt',
     '@nuxt/eslint',
+    "nuxt-auth-utils"
   ],
+  routeRules: {
+    '/register/success': { static: true },
+    '/resume/success': { static: true },
+    '/about': { static: true },
+    '/contact': { static: true },
+    '/search': { prerender: true },
+    '/api/**': { cors: true }, // enable when deploy prod
+  },
+  runtimeConfig: {
+    public: {
+      baseApiUrl: process.env.NUXT_PUBLIC_BASE_API_URL
+    },
+    session: {
+      maxAge: 60 * 60 * 24 * 14 // 2 week
+    },
+    oauth: {
+      google: {
+        clientId: process.env.GOOGLE_ID,
+        clientSecret: process.env.GOOGLE_SECRET
+      },
+    }
+  },
   css: ['@/assets/css/main.css', 'v-network-graph/lib/style.css'],
   postcss: {
     plugins: {

@@ -20,10 +20,10 @@ export default defineEventHandler(async (event) => {
     }
 
     files.forEach(file => {
-        const filePath = path.join(process.cwd(), 'uploads', file.filename as string)
+        const filePath = path.join(process.cwd(), 'tmp', file.filename as string)
         fs.writeFileSync(filePath, file.data)
         uploadFilePath.push(filePath)
     })
 
-    return uploadFilePath
+    return { urls: uploadFilePath }
 })

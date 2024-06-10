@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { typeOfDegrees, typeOfSources } from '~/data/common';
 
 const Experience = z.object({
     title: z.string().optional(),
@@ -9,7 +10,7 @@ const Experience = z.object({
 })
 
 const Education = z.object({
-    typeOfDegree: z.string().optional(),
+    typeOfDegree: z.enum([typeOfDegrees[0].value, ...(typeOfDegrees.slice(1).map(item => item.value))] as [string, ...string[]]),
     institution: z.string().optional(),
     fieldOfStudy: z.string().optional(),
     graduationYear: z.string().optional(),
@@ -40,7 +41,7 @@ const Author = z.object({
 })
 
 const Publication = z.object({
-    typeOfSource: z.string(),
+    typeOfSource: z.enum([typeOfSources[0].value, ...(typeOfSources.slice(1).map(item => item.value))] as [string, ...string[]]),
     city: z.string().optional(),
     authors: z.array(Author)
 })

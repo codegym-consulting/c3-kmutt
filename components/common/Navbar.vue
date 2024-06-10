@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { VNodeRef } from 'vue'
 import { navigations } from '~/configs/home'
+import { formatName } from '~/utils/formatter'
 
 const props = defineProps<{
   relativeElement?: VNodeRef
@@ -9,10 +10,6 @@ const props = defineProps<{
 const { $classes } = useNuxtApp()
 const bottomSheet = ref(false)
 const { user } = useUserSession()
-
-const formatName = (name: string) => {
-  return name.split(' ')[0] + ' ' + name.split(' ')[1].charAt(0) + '.'
-}
 </script>
 
 <template>

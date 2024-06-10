@@ -5,10 +5,10 @@ definePageMeta({
 
 const terms = ref(false)
 const policy = ref(false)
-// i want to redirect to /workspace if user is logged in
+const login = ref(false)
 const { loggedIn } = useUserSession()
 
-watch(loggedIn, () => {
+onMounted(() => {
   if (loggedIn.value) {
     navigateTo('/workspace')
   }
@@ -37,10 +37,12 @@ const microsoftUrl = `https://auth.kmutt.ac.th/adfs/oauth2/authorize?client_id=4
         },
       }">
         <div class="max-w-[610px] mx-auto text-center w-full flex flex-col items-center gap-y-14">
-          <picture>
-            <source media="(min-width: 1024px)" srcset="/logo/logo_full_vertical.svg">
-            <img src="/logo/logo_full.svg" alt="3c_logo">
-          </picture>
+          <ULink to="/">
+            <picture>
+              <source media="(min-width: 1024px)" srcset="/logo/logo_full_vertical.svg">
+              <img src="/logo/logo_full.svg" alt="3c_logo">
+            </picture>
+          </ULink>
           <h1 class="text-3xl md:text-[40px] md:leading-[50px] text-gray-6">
             <span>KMUTT</span> network<br>
             knowledge <span>sharing platform</span>
@@ -51,7 +53,7 @@ const microsoftUrl = `https://auth.kmutt.ac.th/adfs/oauth2/authorize?client_id=4
                 <NuxtIcon class="icon text-[30px]" name="c3/kmutt" filled />
               </template>
             </UButton>
-            <UButton id="email-login" label="Continue with KMUTT account">
+            <UButton id="email-login" label="Continue with KMUTT account" @click="login = true">
               <template #leading>
                 <NuxtIcon class="icon text-2xl" name="c3/email" filled />
               </template>
@@ -74,6 +76,7 @@ const microsoftUrl = `https://auth.kmutt.ac.th/adfs/oauth2/authorize?client_id=4
     </UContainer>
     <ModalTerms v-model="terms" />
     <ModalPolicy v-model="policy" />
+    <ModalLogin v-model="login" />
     <UNotifications />
   </div>
 </template>

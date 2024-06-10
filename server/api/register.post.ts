@@ -10,10 +10,10 @@ const schema = z.object({
   nationality: z.string(),
   occupation: z.string(),
   teachingExperience: z.array(z.any()),
-  expertise: z.array(z.number()),
+  expertise: z.array(z.number().int()),
   organization: z.string(),
-  subUnit: z.number(),
-  areaOfInterest: z.array(z.number()),
+  subUnit: z.number().int(),
+  areaOfInterest: z.array(z.number().int()),
 });
 
 export default defineEventHandler(async (event) => {

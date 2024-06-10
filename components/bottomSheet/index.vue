@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 const props = defineProps<{
   modelValue: boolean
 }>()
@@ -8,7 +8,7 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <USlideover
+  <USlideover 
     :ui="{
       base: 'relative flex-1 flex flex-col w-full focus:outline-none rounded-t-[40px] overflow-y-auto',
       wrapper: 'inset-[unset] top-[50%] bottom-0',
@@ -21,10 +21,10 @@ const emit = defineEmits<{
         right:
           'translate-y-full rtl:-translate-y-full translate-x-0 rtl:-translate-x-0',
       },
-    }"
-    :model-value="props.modelValue"
+    }" 
+    :model-value="props.modelValue" 
     @update:model-value="(val) => emit('update:modelValue', val)"
-  >
+    >
     <slot />
   </USlideover>
 </template>

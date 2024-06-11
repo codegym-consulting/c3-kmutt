@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import type { Option } from '~/models/common'
-import { watch } from 'vue'
 
 const props = withDefaults(
   defineProps<{
@@ -67,8 +66,10 @@ const pop = (open: boolean) => {
   isPopper.value = open
   if (!open) {
     searchModel.value = ''
+    clear()
     emit('touched')
   } else {
+    tempModelValue.value = props.modelValue
     emit('focus')
   }
 }

@@ -16,6 +16,8 @@ const schema = z.object({
   areaOfInterests: z.array(z.number().int()),
 });
 
+export type Schema = z.infer<typeof schema>;
+
 export default defineEventHandler(async (event) => {
     const result = await readValidatedBody(event, body => schema.safeParse(body))
 

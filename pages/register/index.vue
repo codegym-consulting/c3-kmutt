@@ -1,13 +1,19 @@
 <script lang="ts" setup>
-import { getExpertises, getInterests } from '~/services/register'
+import {
+  getExpertises,
+  getInterests,
+  getSubUnits,
+  postRegister,
+} from '~/services/register'
 import {
   organizations,
   occupations,
-  subUnits,
   titles,
   academicTitles,
   nationalities,
 } from '~/data/common'
+import type { Option } from '~/models/common'
+import { watchDebounced } from '@vueuse/core'
 
 definePageMeta({
   layout: 'register',
@@ -16,15 +22,30 @@ definePageMeta({
 const router = useRouter()
 const register = useRegisterStore()
 const step = ref(1)
-const { data: expertises } = await getExpertises()
-const { data: areaOfInterests } = await getInterests()
+const expertiseSearch = ref('')
+const areaOfInterestSearch = ref('')
+const options = reactive<{
+  expertises: Option[]
+  areaOfInterests: Option[]
+  subUnits: Option[]
+}>({
+  expertises: [],
+  areaOfInterests: [],
+  subUnits: [],
+})
 
 const validate = reactive({
   stepOne: false,
   stepTwo: false,
 })
 
-const stepOneState = reactive({
+const stepOneState = reactive<{
+  title: Option | {}
+  academicTitle: Option | {}
+  name: string
+  surname: string
+  nationality: Option | {}
+}>({
   title: {},
   academicTitle: {},
   name: '',
@@ -35,7 +56,14 @@ const stepOneState = reactive({
   },
 })
 
-const stepTwoState = reactive({
+const stepTwoState = reactive<{
+  occupation: Option | {}
+  teachingExperience: string
+  expertise: Option[]
+  organization: Option | {}
+  subUnit: Option | {}
+  areaOfInterest: Option[]
+}>({
   occupation: {},
   teachingExperience: '',
   expertise: [],
@@ -43,6 +71,21 @@ const stepTwoState = reactive({
   subUnit: {},
   areaOfInterest: [],
 })
+
+const queryExpertises = async (search?: string) => {
+  const { data: expertises } = await getExpertises(search)
+  options.expertises = expertises?.value ?? []
+}
+
+const queryAreaOfInterests = async (search?: string) => {
+  const { data: areaOfInterests } = await getInterests(search)
+  options.areaOfInterests = areaOfInterests?.value ?? []
+}
+
+const querySubUnits = async (search?: string) => {
+  const { data: subUnits } = await getSubUnits(search)
+  options.subUnits = subUnits?.value ?? []
+}
 
 const onValidateStep = (value: boolean) => {
   if (step.value === 1) {
@@ -54,18 +97,54 @@ const onValidateStep = (value: boolean) => {
   }
 }
 
-const onClickNext = () => {
+const onClickNext = async () => {
   if (step.value === 1) {
     step.value = 2
     return
   }
 
   if (step.value === 2) {
-    //Done
-    register.setIsRegisterationSuccess(true)
-    router.push('/register/success')
+    const res = await postRegister({
+      email: 'pitikorn.chu@gmail.com',
+      title: (stepOneState.title as Option).value.toString(),
+      name: stepOneState.name,
+      surname: stepOneState.surname,
+      academicTitle: (stepOneState.academicTitle as Option).value.toString(),
+      nationality: (stepOneState.nationality as Option).toString(),
+      occupation: (stepTwoState.occupation as Option).value.toString(),
+      teachingExperiences: [101, 102],
+      expertises: stepTwoState.expertise.map((e) => +e.value),
+      organization: (stepTwoState.organization as Option).value.toString(),
+      subUnit: +(stepTwoState.subUnit as Option).value,
+      areaOfInterests: stepTwoState.areaOfInterest.map((a) => +a.value),
+    })
+
+    if (res.status.value === 'success') {
+      register.setIsRegisterationSuccess(true)
+      router.push('/register/success')
+    }
   }
 }
+
+watchDebounced(
+  expertiseSearch,
+  (value) => {
+    queryExpertises(value)
+  },
+  { debounce: 500 },
+)
+
+watchDebounced(
+  areaOfInterestSearch,
+  (value) => {
+    queryAreaOfInterests(value)
+  },
+  { debounce: 500 },
+)
+
+await queryExpertises()
+await queryAreaOfInterests()
+await querySubUnits()
 </script>
 
 <template>
@@ -92,11 +171,13 @@ const onClickNext = () => {
       <RegisterStepTwo
         v-if="step === 2"
         v-model="stepTwoState"
-        :expertises="expertises ?? []"
-        :area-of-interests="areaOfInterests ?? []"
+        v-model:expertise-search="expertiseSearch"
+        v-model:area-of-interest-search="areaOfInterestSearch"
+        :expertises="options.expertises"
+        :area-of-interests="options.areaOfInterests"
         :organizations="organizations"
         :occupations="occupations"
-        :sub-units="subUnits"
+        :sub-units="options.subUnits"
         @validate="onValidateStep"
       />
     </div>

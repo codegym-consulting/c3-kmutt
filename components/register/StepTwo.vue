@@ -30,6 +30,9 @@ const props = withDefaults(
   },
 )
 
+const expertiseSearch = defineModel<string>('expertiseSearch')
+const areaOfInterestSearch = defineModel<string>('areaOfInterestSearch')
+
 const state = computed({
   get: () => props.modelValue,
   set: (value) => emit('update:modelValue', value),
@@ -110,6 +113,7 @@ watch(
       </div>
       <div class="row">
         <SelectMultipleWithSearch
+          v-model:search="expertiseSearch"
           v-model="state.expertise"
           label="Expertise"
           name="expertise"
@@ -147,6 +151,7 @@ watch(
       </div>
       <div class="row">
         <SelectMultipleWithSearch
+          v-model:search="areaOfInterestSearch"
           v-model="state.areaOfInterest"
           label="Area of interest"
           name="areaOfInterest"

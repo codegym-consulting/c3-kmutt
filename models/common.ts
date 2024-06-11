@@ -20,6 +20,7 @@ export const selectSchema = z
   .object({
     value: z.union([z.string(), z.number()]),
     label: z.string(),
+    disabled: z.boolean().optional(),
   })
   .strict()
 
@@ -32,10 +33,16 @@ export type Option = {
 export const optionalSelectSchema = z.union([
   z.object({
     label: z.string(),
-    value: z.string(),
+    value: z.union([z.string(), z.number()]),
+    disabled: z.boolean().optional(),
   }),
   z.object({}).strict(),
 ])
+
+export type Response = {
+  statusCode?: number
+  statusMessage: string
+}
 
 export const nameSchema = z
   .string()

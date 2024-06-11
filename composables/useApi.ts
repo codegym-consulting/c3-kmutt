@@ -7,12 +7,10 @@ export type useApiOptions<T> =
   | (UseFetchOptions<T, (res: T) => T> & { [others: string]: any })
   | undefined
 
-export default async function useApi<T>(
+function generateCacheKey(
   request: NitroFetchRequest,
-  options?: useApiOptions<T>,
-) {
-  const config = useRuntimeConfig()
-  const _request = request
+  options?: useApiOptions<any>,
+): string {
   const compositeKey: string =
     Object.keys(options?.body ?? {}).length > 0
       ? JSON.stringify(options?.body ?? {})
@@ -21,17 +19,40 @@ export default async function useApi<T>(
       : Object.keys(options?.query ?? {}).length > 0
       ? JSON.stringify(options?.query ?? {})
       : ''
+  return `${request}-${compositeKey}-${options?.method}`
+}
+
+export default async function useApi<T>(
+  request: NitroFetchRequest,
+  options?: useApiOptions<T>,
+) {
+  const nuxtApp = useNuxtApp()
+  const config = useRuntimeConfig()
+  const _request = request
+  const cacheKey = generateCacheKey(_request, options)
 
   //@TODO add token to headers
   const headers: any = {
     ...(options?.headers ?? {}),
   }
 
+  const isGet = options?.method === 'GET' || options?.method === 'get'
+  const isNoCache = options?.cache === 'no-cache'
+  const cacheLayer =
+    !isGet || isNoCache
+      ? {}
+      : {
+          getCachedData: (key: string) => {
+            return nuxtApp.payload.data[key] || nuxtApp.static.data[key]
+          },
+        }
+
   const opts: any = options ? (({ headers, ...opts }) => opts)(options) : null
-  const response = useFetch<T>(_request, {
-    key: _request + compositeKey + options?.method,
+  const response = await useFetch<T>(_request, {
+    key: cacheKey,
     baseURL: config.public.baseApiUrl,
     headers,
+    ...cacheLayer,
     ...opts,
   })
 

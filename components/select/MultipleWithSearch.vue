@@ -22,13 +22,14 @@ const props = withDefaults(
   },
 )
 
+const searchModel = defineModel<string>('search')
+
 const emit = defineEmits<{
   (event: 'update:modelValue', value: Option[]): void
   (event: 'touched' | 'focus'): void
-  (event: 'add', value: string): void
+  (event: 'add', value?: string): void
 }>()
 
-const search = ref('')
 const isPopper = ref(false)
 const tempModelValue = ref<Option[]>([])
 
@@ -39,19 +40,12 @@ watch(
   },
 )
 
-const filterOptions = computed(() => {
-  if (!search.value) return props.options
-  return props.options.filter((option) =>
-    option.label.toLowerCase().includes(search.value.toLowerCase()),
-  )
-})
-
 const clear = () => {
   tempModelValue.value = []
 }
 
 const add = () => {
-  emit('add', search.value)
+  emit('add', searchModel.value)
 }
 
 const apply = (close: () => void) => {
@@ -72,7 +66,7 @@ const onCheck = (checked: boolean, option: Option) => {
 const pop = (open: boolean) => {
   isPopper.value = open
   if (!open) {
-    search.value = ''
+    searchModel.value = ''
     emit('touched')
   } else {
     emit('focus')
@@ -118,7 +112,7 @@ const removeChip = (chip: Option) => {
           >{{ props.placeholder }}</span
         >
         <ul v-else class="flex flex-wrap gap-1">
-          <li v-for="chip in props.modelValue" :key="chip.label">
+          <li v-for="(chip, i) in props.modelValue" :key="chip.label + i">
             <span
               class="inline-flex gap-x-1 font-bai-jamjuree items-center px-4 py-[7px] text-base text-gray-7 rounded-full bg-gray-2"
             >
@@ -149,7 +143,7 @@ const removeChip = (chip: Option) => {
         <div class="flex flex-col w-[294px] h-[337px]">
           <div class="p-4 pb-0">
             <Input
-              v-model="search"
+              v-model="searchModel"
               placeholder="Type your expertise"
               icon="i-heroicons-magnifying-glass-20-solid"
               :ui="{
@@ -159,9 +153,9 @@ const removeChip = (chip: Option) => {
               }"
             />
             <div class="overflow-y-auto h-[215px] w-full mt-4">
-              <ul v-if="filterOptions.length" class="flex flex-col">
+              <ul v-if="props.options.length" class="flex flex-col">
                 <li
-                  v-for="option in filterOptions"
+                  v-for="option in props.options"
                   :key="option.label"
                   class="pt-[10px] pb-[17px] border-b border-gray-1"
                 >
@@ -183,7 +177,7 @@ const removeChip = (chip: Option) => {
                 v-else
                 class="flex justify-between items-start gap-x-2 w-full"
               >
-                <p class="break-words w-[220px]">{{ search }}</p>
+                <p class="break-words w-[220px]">{{ searchModel }}</p>
                 <button
                   class="text-button !text-base"
                   type="button"

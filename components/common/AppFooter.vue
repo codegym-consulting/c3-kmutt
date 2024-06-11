@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 const { $dayjs } = useNuxtApp()
 const navigations = [
   { to: '/', label: 'Home' },
@@ -13,25 +13,12 @@ const navigations = [
   <footer>
     <UContainer class="footer">
       <small>{{ $dayjs().format("YYYY") }} All Right reserved</small>
-      <NuxtLink
-        class="flex-shrink-0"
-        to="/"
-      >
-        <img
-          src="/footer/footer_logo.svg"
-          alt="3c_logo"
-        >
+      <NuxtLink class="flex-shrink-0" to="/">
+        <img src="/footer/footer_logo.svg" alt="3c_logo">
       </NuxtLink>
       <ul>
-        <li
-          v-for="{ to, label } in navigations"
-          :key="label"
-        >
-          <NormalLink
-            :to="to"
-            :label="label"
-            variant="secondary"
-          />
+        <li v-for="{ to, label } in navigations" :key="label">
+          <NormalLink :to="to" :label="label" variant="secondary" />
         </li>
       </ul>
     </UContainer>

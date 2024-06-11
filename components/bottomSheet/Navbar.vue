@@ -1,5 +1,8 @@
 <script lang="ts" setup>
 import { navigations } from '~/configs/home'
+import { formatName } from '~/utils/formatter'
+
+const { user } = useUserSession()
 
 const props = defineProps<{
   modelValue: boolean
@@ -27,7 +30,17 @@ const updateValue = (value: boolean) => {
           />
         </li>
       </ul>
-      <UButton label="Login" to="/login" />
+      <UButton v-if="user" :label="formatName(user.name)" to="/workspace">
+        <template #leading>
+          <UAvatar
+            :src="user.photoUrl"
+            icon="i-heroicons-photo"
+            size="xs"
+            alt="avatar"
+          />
+        </template>
+      </UButton>
+      <UButton v-else label="Login" to="/login" />
     </div>
   </BottomSheet>
 </template>

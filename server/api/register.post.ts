@@ -9,11 +9,11 @@ const schema = z.object({
   academicTitle:  z.union([z.enum([academicTitles[0].value, ...(academicTitles.slice(1).map(title => title.value))] as [string, ...string[]]), z.null()]),
   nationality: z.string(),
   occupation: z.string(),
-  teachingExperience: z.array(z.any()),
-  expertise: z.array(z.number()),
+  teachingExperiences: z.array(z.any()),
+  expertises: z.array(z.number().int()),
   organization: z.string(),
-  subUnit: z.number(),
-  areaOfInterest: z.array(z.number()),
+  subUnit: z.number().int(),
+  areaOfInterests: z.array(z.number().int()),
 });
 
 export default defineEventHandler(async (event) => {

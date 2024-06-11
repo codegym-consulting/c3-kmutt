@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { VNodeRef } from 'vue'
 import { navigations } from '~/configs/home'
+import { formatName } from '~/utils/formatter'
 
 const props = defineProps<{
   relativeElement?: VNodeRef
@@ -8,6 +9,7 @@ const props = defineProps<{
 
 const { $classes } = useNuxtApp()
 const bottomSheet = ref(false)
+const { user } = useUserSession()
 </script>
 
 <template>
@@ -45,7 +47,18 @@ const bottomSheet = ref(false)
             variant="outline"
             to="/search"
           />
-          <UButton label="Login" to="/login" />
+          <UButton v-if="user" :label="formatName(user.name)" to="/workspace">
+            <template #leading>
+              <UAvatar
+                :src="user.photoUrl"
+                icon="i-heroicons-photo"
+                size="xs"
+                alt="avatar"
+              />
+            </template>
+          </UButton>
+          <UButton v-else label="Login" to="/login" />
+
         </div>
         <UButton
           class="inline-flex md:hidden ml-auto"

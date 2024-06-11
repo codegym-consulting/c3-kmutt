@@ -57,7 +57,7 @@ const { errors, validate } = useFormValidation(
 const emit = defineEmits<{
   (event: 'update:modelValue', value: StepTwoState): void
   (event: 'touched' | 'focus'): void
-  (event: 'validate', vakue: boolean): void
+  (event: 'validate', value: boolean): void
 }>()
 
 const onTouch = (field: string) => {

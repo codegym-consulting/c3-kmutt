@@ -445,3 +445,66 @@ export const subUnits = [
     value: 'Interculture Lab',
   },
 ]
+
+export const typeOfDegrees = [
+  {
+    label: 'Diploma',
+    value: 'diploma',
+  },
+  {
+    label: 'Bachelor',
+    value: 'bachelor',
+  },
+  {
+    label: 'Master',
+    value: 'master',
+  },
+  {
+    label: 'Doctorate',
+    value: 'doctor',
+  },
+]
+
+export const typeOfSources = [{
+  label: 'Book',
+  value: 'book',
+}, {
+  label: 'Book section',
+  value: 'book_section',
+}, {
+  label: 'Journal article',
+  value: 'journal_article',
+}, {
+  label: 'Article in a Periodical',
+  value: 'article_in_a_periodical',
+}, {
+  label: 'Conference proceedings',
+  value: 'conference',
+}, {
+  label: 'Report',
+  value: 'report',
+}, {
+  label: 'Website',
+  value: 'website',
+}, {
+  label: 'Electronic source',
+  value: 'electronic',
+}, {
+  label: 'Art',
+  value: 'art',
+}, {
+  label: 'Sound recording',
+  value: 'sound_recording',
+}, {
+  label: 'Performance',
+  value: 'performance',
+}, {
+  label: 'Film',
+  value: 'film',
+}, {
+  label: 'Interview',
+  value: 'interview',
+}, {
+  label: 'Patent',
+  value: 'patent',
+}]

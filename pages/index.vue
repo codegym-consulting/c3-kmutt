@@ -3,7 +3,7 @@ import type { Swiper } from 'swiper'
 import { Navigation, Pagination } from 'swiper/modules'
 
 definePageMeta({
-  layout: 'home',
+  layout: 'home'
 })
 
 const { $classes } = useNuxtApp()

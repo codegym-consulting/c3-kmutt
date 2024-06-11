@@ -28,7 +28,7 @@ const props = withDefaults(
 const emit = defineEmits<{
   (event: 'update:modelValue', value: StepOneState): void
   (event: 'touched' | 'focus'): void
-  (event: 'validate', vakue: boolean): void
+  (event: 'validate', value: boolean): void
 }>()
 
 const state = computed({

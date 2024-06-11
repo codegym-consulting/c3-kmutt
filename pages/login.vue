@@ -1,67 +1,64 @@
 <script lang="ts" setup>
-definePageMeta({ layout: 'blank' })
+definePageMeta({
+  layout: 'blank',
+})
 
 const terms = ref(false)
 const policy = ref(false)
+const login = ref(false)
+const { loggedIn } = useUserSession()
+
+onMounted(() => {
+  if (loggedIn.value) {
+    navigateTo('/workspace')
+  }
+})
+
+const appHostname = 'http://localhost:3000'
+const microsoftUrl = `https://auth.kmutt.ac.th/adfs/oauth2/authorize?client_id=40c3f68a-059d-42d4-a443-a63285dd1377&response_type=code&redirect_uri=${appHostname}&response_mode=query&state=123456`
 </script>
 
 <template>
   <div>
-    <div
-      :class="
-        $classes(
-          'absolute inset-0 m-auto w-full h-full -z-10',
-          'bg-[url(~/public/login/bg_mobile.webp)] md:bg-[url(~/public/login/bg_tablet.webp)] lg:bg-[url(~/public/login/bg.webp)]',
-          'bg-no-repeat bg-cover bg-center',
-        )
-      "
-    />
-    <UContainer
-      class="flex justify-center pt-[115px] md:pt-[245px] lg:pt-[95px] pb-16"
-    >
-      <UCard
-        data-aos="fade-up"
-        as="article"
-        :ui="{
-          strategy: 'override',
-          base: 'max-w-[820px] w-full',
-          divide: 'divide-y-0',
-          rounded: 'rounded-2xl',
-          body: {
-            padding: 'px-4 py-16 md:pt-14 md:pb-[104px]',
-          },
-        }"
-      >
-        <div
-          class="max-w-[610px] mx-auto text-center w-full flex flex-col items-center gap-y-14"
-        >
-          <picture>
-            <source
-              media="(min-width: 1024px)"
-              srcset="/logo/logo_full_vertical.svg"
-            >
-            <img src="/logo/logo_full.svg" alt="3c_logo" >
-          </picture>
+    <div :class="$classes(
+      'absolute inset-0 m-auto w-full h-full -z-10',
+      'bg-[url(~/public/login/bg_mobile.webp)] md:bg-[url(~/public/login/bg_tablet.webp)] lg:bg-[url(~/public/login/bg.webp)]',
+      'bg-no-repeat bg-cover bg-center',
+    )
+      " />
+    <UContainer class="flex justify-center pt-[115px] md:pt-[245px] lg:pt-[95px] pb-16">
+      <UCard data-aos="fade-up" as="article" :ui="{
+        strategy: 'override',
+        base: 'max-w-[820px] w-full',
+        divide: 'divide-y-0',
+        rounded: 'rounded-2xl',
+        body: {
+          padding: 'px-4 py-16 md:pt-14 md:pb-[104px]',
+        },
+      }">
+        <div class="max-w-[610px] mx-auto text-center w-full flex flex-col items-center gap-y-14">
+          <ULink to="/">
+            <picture>
+              <source media="(min-width: 1024px)" srcset="/logo/logo_full_vertical.svg">
+              <img src="/logo/logo_full.svg" alt="3c_logo">
+            </picture>
+          </ULink>
           <h1 class="text-3xl md:text-[40px] md:leading-[50px] text-gray-6">
-            <span>KMUTT</span> network<br >
+            <span>KMUTT</span> network<br>
             knowledge <span>sharing platform</span>
           </h1>
           <div class="flex flex-col items-center gap-y-2 [&>*]:w-full">
-            <UButton id="kmutt-login" label="Continue with KMUTT account">
+            <UButton id="kmutt-login" label="Continue with KMUTT account" :to='microsoftUrl' external>
               <template #leading>
                 <NuxtIcon class="icon text-[30px]" name="c3/kmutt" filled />
               </template>
             </UButton>
-            <UButton id="email-login" label="Continue with KMUTT account">
+            <UButton id="email-login" label="Continue with KMUTT account" @click="login = true">
               <template #leading>
                 <NuxtIcon class="icon text-2xl" name="c3/email" filled />
               </template>
             </UButton>
-            <UButton
-              id="google-login"
-              class="login-button"
-              label="Continue with Gmail"
-            >
+            <UButton id="google-login" class="login-button" label="Continue with Google" to="/auth/google" external>
               <template #leading>
                 <NuxtIcon class="icon text-xl" name="c3/google" filled />
               </template>
@@ -79,6 +76,8 @@ const policy = ref(false)
     </UContainer>
     <ModalTerms v-model="terms" />
     <ModalPolicy v-model="policy" />
+    <ModalLogin v-model="login" />
+    <UNotifications />
   </div>
 </template>
 

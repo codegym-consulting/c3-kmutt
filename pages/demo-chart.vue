@@ -14,9 +14,13 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { reactive, ref } from 'vue'
 import * as vNG from 'v-network-graph'
+
+definePageMeta({
+  layout: 'blank'
+})
 
 const value = ref('')
 

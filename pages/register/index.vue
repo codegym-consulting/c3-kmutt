@@ -110,7 +110,7 @@ const onClickNext = async () => {
       name: stepOneState.name,
       surname: stepOneState.surname,
       academicTitle: (stepOneState.academicTitle as Option).value.toString(),
-      nationality: (stepOneState.nationality as Option).toString(),
+      nationality: (stepOneState.nationality as Option).value.toString(),
       occupation: (stepTwoState.occupation as Option).value.toString(),
       teachingExperiences: [101, 102],
       expertises: stepTwoState.expertise.map((e) => +e.value),

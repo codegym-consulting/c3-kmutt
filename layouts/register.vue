@@ -5,53 +5,42 @@ const bottomSheet = ref(false)
 
 <template>
   <div id="page-container">
-    <UCard
-      :ui="{
-        strategy: 'override',
-        base:
-          'base-card -static' +
-          (!register.registerNavbarFullSize ? ' -half' : ''),
-        body: {
-          base: 'w-full',
-          padding: 'p-0',
-        },
-      }"
-    >
+    <UCard :ui="{
+      strategy: 'override',
+      base:
+        'base-card -static' +
+        (!register.registerNavbarFullSize ? ' -half' : ''),
+      body: {
+        base: 'w-full',
+        padding: 'p-0',
+      },
+    }">
       <div class="flex justify-between gap-x-6">
-        <picture>
-          <source
-            media="(min-width: 768px)"
-            srcset="/logo/logo_full_vertical.svg"
-          >
-          <img src="/logo/logo.svg" alt="3c_logo" >
-        </picture>
-        <UButton
-          class="inline-flex md:hidden ml-auto"
-          icon="i-cil-hamburger-menu"
-          variant="icon"
-          @click="bottomSheet = true"
-        />
+        <ULink to="/">
+          <picture>
+            <source media="(min-width: 768px)" srcset="/logo/logo_full_vertical.svg">
+            <img src="/logo/logo.svg" alt="3c_logo">
+          </picture>
+        </ULink>
+        <UButton class="inline-flex md:hidden ml-auto" icon="i-cil-hamburger-menu" variant="icon"
+          @click="bottomSheet = true" />
       </div>
       <h1>
-        <span>KMUTT</span> network<br >
+        <span>KMUTT</span> network<br>
         knowledge
-        <span
-          >sharing<br >
-          platform</span
-        >
+        <span>sharing<br>
+          platform</span>
       </h1>
     </UCard>
-    <UCard
-      :ui="{
-        strategy: 'override',
-        base: 'base-card -content',
-        body: {
-          base: 'h-full flex-1 flex flex-col',
-          padding: 'p-0',
-        },
-      }"
-    >
-      <slot />
+    <UCard :ui="{
+      strategy: 'override',
+      base: 'base-card -content',
+      body: {
+        base: 'h-full flex-1 flex flex-col',
+        padding: 'p-0',
+      },
+    }">
+      <slot/>
     </UCard>
     <BottomSheetNavbar v-model="bottomSheet" />
   </div>

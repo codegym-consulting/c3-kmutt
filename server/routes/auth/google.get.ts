@@ -21,7 +21,12 @@ export default oauth.googleEventHandler({
         provider: 'google'
       })
       setCookie(event, 'accessToken', tokens.access_token, { httpOnly: true, secure: true, sameSite: 'lax' })
-      return sendRedirect(event, '/workspace')
+
+      // TODO: not found user then redirect to register page
+      return sendRedirect(event, '/register')
+
+      // return sendRedirect(event, '/workspace')
+      
     },
     // Optional, will return a json error and 401 status code by default
     onError(event, error) {

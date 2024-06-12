@@ -17,13 +17,29 @@ import { watchDebounced } from '@vueuse/core'
 
 definePageMeta({
   layout: 'register',
+  validate() {
+    const { loggedIn } = useUserSession()
+    if (!loggedIn.value) {
+      return {
+        statusCode: 302,
+        name: 'login',
+      }
+    }
+    return true
+  },
 })
 
+const { user, clear } = useUserSession()
 const router = useRouter()
 const register = useRegisterStore()
 const step = ref(1)
 const expertiseSearch = ref('')
 const areaOfInterestSearch = ref('')
+const userData = reactive({
+  email: user.value?.email ?? '',
+  avatar: user.value?.photoUrl ?? '',
+  name: user.value?.name ?? '',
+})
 const options = reactive<{
   expertises: Option[]
   areaOfInterests: Option[]
@@ -105,7 +121,7 @@ const onClickNext = async () => {
 
   if (step.value === 2) {
     const res = await postRegister({
-      email: 'pitikorn.chu@gmail.com',
+      email: userData.email,
       title: (stepOneState.title as Option).value.toString(),
       name: stepOneState.name,
       surname: stepOneState.surname,
@@ -145,6 +161,11 @@ watchDebounced(
 await queryExpertises()
 await queryAreaOfInterests()
 await querySubUnits()
+
+onMounted(() => {
+  // Clear the user session beforehand
+  clear()
+})
 </script>
 
 <template>
@@ -162,6 +183,7 @@ await querySubUnits()
       <RegisterStepOne
         v-if="step === 1"
         v-model="stepOneState"
+        :user-data="userData"
         :titles="titles"
         :academic-titles="academicTitles"
         :nationalities="nationalities"

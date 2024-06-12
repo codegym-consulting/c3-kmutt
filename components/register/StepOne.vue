@@ -14,6 +14,11 @@ type StepOneState = {
 const props = withDefaults(
   defineProps<{
     modelValue: StepOneState
+    userData: {
+      email: string
+      avatar: string
+      name: string
+    }
     titles?: Option[]
     academicTitles?: Option[]
     nationalities?: Option[]
@@ -67,13 +72,7 @@ watch(
 
 <template>
   <UForm :schema="registerStepOneSchema" :state="state" @error="validate">
-    <CardEmailProfile
-      v-bind="{
-        avatar: '/landing/card_bg.webp',
-        email: 'beam@gmail.com',
-        name: 'Pitikorn Chulitawong',
-      }"
-    />
+    <CardEmailProfile v-bind="props.userData" />
     <div class="flex flex-col gap-y-6 mt-[60px] md:mt-8 lg:mt-10">
       <div class="row">
         <Select

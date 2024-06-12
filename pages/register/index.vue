@@ -17,16 +17,7 @@ import { watchDebounced } from '@vueuse/core'
 
 definePageMeta({
   layout: 'register',
-  validate() {
-    const { loggedIn } = useUserSession()
-    if (!loggedIn.value) {
-      return {
-        statusCode: 302,
-        name: 'login',
-      }
-    }
-    return true
-  },
+  middleware: 'auth'
 })
 
 const { user, clear } = useUserSession()
@@ -37,7 +28,7 @@ const expertiseSearch = ref('')
 const areaOfInterestSearch = ref('')
 const userData = reactive({
   email: user.value?.email ?? '',
-  avatar: user.value?.photoUrl ?? '',
+  photoUrl: user.value?.photoUrl ?? '',
   name: user.value?.name ?? '',
 })
 const options = reactive<{

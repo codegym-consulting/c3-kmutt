@@ -1,8 +1,4 @@
 <script lang="ts" setup>
-import { isEmpty } from '~/utils/validator'
-
-
-
 const props = defineProps<{
   modelValue: boolean
 }>()

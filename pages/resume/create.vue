@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 definePageMeta({
     layout: 'register',
+    middleware: 'auth'
 })
 
 const step = ref(1)

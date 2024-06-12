@@ -16,7 +16,7 @@ const props = withDefaults(
     modelValue: StepOneState
     userData: {
       email: string
-      avatar: string
+      photoUrl: string | null
       name: string
     }
     titles?: Option[]
@@ -68,6 +68,7 @@ watch(
   },
   { deep: true },
 )
+
 </script>
 
 <template>

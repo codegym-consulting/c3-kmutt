@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-dynamic-delete */
-import { ZodError, type ZodSchema, type ZodIssue } from 'zod';
+import { ZodError, type ZodSchema, type ZodIssue } from 'zod'
 
 const formatZodIssue = (issue: ZodIssue): string => {
   const { message } = issue
@@ -26,7 +26,7 @@ export function useFormValidation<T>(
   const errors = reactive<{ [key: string]: string }>({})
 
   const validate = () => {
-    const _state = state.value
+    const _state = state?.value ?? state
     try {
       schema.parse(_state)
       Object.keys(errors).forEach((key) => {

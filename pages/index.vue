@@ -1,23 +1,17 @@
 <script lang="ts" setup>
 import type { Swiper } from 'swiper'
 import { Navigation, Pagination } from 'swiper/modules'
+import { getProjects } from '~/services/landing'
 
 definePageMeta({
-  layout: 'home'
+  layout: 'home',
 })
 
 const { $classes } = useNuxtApp()
 const { width } = useWindowSize()
 const isMobile = computed(() => width.value < 500)
 
-const projects = new Array(10).fill(0).map((_, i) => ({
-  id: i,
-  description:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-  thumbnail: '/landing/kmutt-smart-house.webp',
-  location: 'Bangkok',
-  tag: 'Project',
-}))
+const { data: projects } = await getProjects()
 
 const networks = [
   {
@@ -47,7 +41,7 @@ const networks = [
 ]
 
 const onSlideChange = (swiper: Swiper) => {
-  if (swiper.activeIndex === projects.length) {
+  if (swiper.activeIndex === projects.value?.length) {
     document
       .querySelectorAll('#highlight-projects .swiper-pagination-bullet')
       ?.[swiper.activeIndex - 1]?.classList.add(
@@ -67,13 +61,13 @@ const onSlideChange = (swiper: Swiper) => {
         <source
           media="(min-width: 768px)"
           srcset="/landing/3c_water_mark.svg"
-        >
-        <img src="/landing/3c_water_mark_mobile.svg" alt="3c_water_mark" >
+        />
+        <img src="/landing/3c_water_mark_mobile.svg" alt="3c_water_mark" />
       </picture>
       <div class="flex flex-col items-center">
         <h1>
-          We are a collaborative<br >
-          platform for sharing<br >
+          We are a collaborative<br />
+          platform for sharing<br />
           knowledge in innovation
         </h1>
         <p
@@ -206,7 +200,7 @@ const onSlideChange = (swiper: Swiper) => {
         <span
           class="text-[32px] font-bold leading-10 inline-block my-4 md:my-2 lg:m-0 py-1 px-4 text-white bg-[radial-gradient(95.67%_228.37%_at_0.26%_99.57%,#FAB32E_0%,#F96234_49%,#E22E73_78%,#5449FF_100%)]"
           >Viable innovations</span
-        ><br >
+        ><br />
         blending design, science, tech, and business tailor solutions for
         diverse user needs and lifestyle
       </h2>
@@ -256,12 +250,12 @@ const onSlideChange = (swiper: Swiper) => {
               "
             >
               Creative Collaborative Community Platform is a digital platform
-              for creative &amp; innovation knowledge sharing, designed to collect
-              knowledge and exchange experiences in creative innovation, built
-              environments, social and cultural innovation, and technologies
-              that enhance the future of society and the creative economy.
-              Providing KMUTT University with a modern knowledge base in
-              innovation and technology, we empower individuals to explore,
+              for creative &amp; innovation knowledge sharing, designed to
+              collect knowledge and exchange experiences in creative innovation,
+              built environments, social and cultural innovation, and
+              technologies that enhance the future of society and the creative
+              economy. Providing KMUTT University with a modern knowledge base
+              in innovation and technology, we empower individuals to explore,
               apply knowledge, and collaborate with private sectors and
               community partners on multidisciplinary projects that drive
               economic growth.
@@ -295,7 +289,7 @@ const onSlideChange = (swiper: Swiper) => {
               :class="$classes('w-full object-contain rounded-t-[32px]')"
               src="/landing/kmutt-smart-house.webp"
               alt="bg"
-            >
+            />
           </div>
           <div class="flex relative z-[2] pt-4 pb-[20%]">
             <p

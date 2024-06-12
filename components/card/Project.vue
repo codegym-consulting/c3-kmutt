@@ -2,17 +2,17 @@
 const props = withDefaults(
   defineProps<{
     id?: string | number
-    thumbnail?: string
-    tag?: string
-    description?: string
+    imageUrl?: string
+    category?: string
+    title?: string
     location?: string
     classes?: string
   }>(),
   {
     id: '',
-    thumbnail: '',
-    tag: '',
-    description: '',
+    imageUrl: '',
+    category: '',
+    title: '',
     location: '',
     classes: '',
   },
@@ -37,7 +37,7 @@ const props = withDefaults(
       <figure>
         <img
           class="w-full h-[229px] object-cover rounded-lg"
-          :src="props.thumbnail"
+          :src="props.imageUrl"
           alt="Project Image"
         >
       </figure>
@@ -46,12 +46,12 @@ const props = withDefaults(
     <div class="flex flex-col gap-y-4">
       <em
         class="font-bai-jamjuree text-xs text-gray-10 font-medium w-fit not-italic px-2 py-1 border border-gray-10 rounded-[100px]"
-      >{{ props.tag }}</em>
+      >{{ props.category }}</em>
       <NuxtLink :to="'/project/' + props.id + '/'">
         <p
           class="transition-all line-clamp-3 text-lg md:text-xl font-medium text-gray-10 leading-[22px] md:leading-6 h-[66px] md:h-[72px] hover:text-chrysler-blue"
         >
-          {{ props.description }}
+          {{ props.title }}
         </p>
       </NuxtLink>
     </div>

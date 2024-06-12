@@ -16,7 +16,7 @@ const props = withDefaults(
     modelValue: StepOneState
     userData: {
       email: string
-      photoUrl: string | null
+      photoUrl: string
       name: string
     }
     titles?: Option[]

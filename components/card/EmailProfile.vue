@@ -2,7 +2,7 @@
 const props = defineProps<{
   email: string
   name: string
-  photoUrl: string | null
+  photoUrl: string
 }>()
 </script>
 

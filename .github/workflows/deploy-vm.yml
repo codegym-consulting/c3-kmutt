@@ -2,7 +2,7 @@ name: Deploy to KMUTT VM
 on:
   workflow_dispatch:
   push:
-    tags:
+    tags: 
       - v*.*.*
 env:
   HUSKY: 0
@@ -73,4 +73,7 @@ jobs:
             key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Run the Container
-        run: docker run -it --rm asia-docker.pkg.dev/c3-kmutt/asia.gcr.io/c3-website:latest
+        run: |
+          docker pull asia-docker.pkg.dev/c3-kmutt/asia.gcr.io/c3-website:latest
+          docker run -it --rm asia-docker.pkg.dev/c3-kmutt/asia.gcr.io/c3-website:latest
+          docker image prune -a

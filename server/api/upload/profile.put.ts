@@ -2,6 +2,7 @@ import path from 'path'
 import fs from 'fs'
 
 export default defineEventHandler(async (event) => {
+    const session = await requireUserSession(event)
     let uploadFilePath: string | null = null
     const files = await readMultipartFormData(event)
 
@@ -24,5 +25,7 @@ export default defineEventHandler(async (event) => {
     fs.writeFileSync(filePath, file.data)
     uploadFilePath = filePath
 
+    console.log(session.user.email)
+    // TODO: will upload to bucket path /users/${session.user.email}/profile.png
     return { url: uploadFilePath }
 })

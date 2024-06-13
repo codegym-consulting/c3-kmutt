@@ -25,5 +25,7 @@ export default defineEventHandler(async (event) => {
         uploadFilePath.push(filePath)
     })
 
+     // TODO: will upload to bucket path /users/${session.user.email}/resume/${file.filename}.pdf
+
     return { urls: uploadFilePath }
 })

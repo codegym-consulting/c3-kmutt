@@ -3,10 +3,10 @@ import { academicTitles, titles } from '~/data/common';
 
 const schema = z.object({
   email: z.string().email(),
-  title:  z.enum([titles[0].value, ...(titles.slice(1).map(title => title.value))] as [string, ...string[]]),
+  title: z.enum([titles[0].value, ...(titles.slice(1).map(title => title.value))] as [string, ...string[]]),
   name: z.string(),
   surname: z.string(),
-  academicTitle:  z.union([z.enum([academicTitles[0].value, ...(academicTitles.slice(1).map(title => title.value))] as [string, ...string[]]), z.null()]),
+  academicTitle: z.union([z.enum([academicTitles[0].value, ...(academicTitles.slice(1).map(title => title.value))] as [string, ...string[]]), z.null()]),
   nationality: z.string(),
   occupation: z.string(),
   teachingExperiences: z.array(z.any()),
@@ -20,7 +20,8 @@ const schema = z.object({
 export type Schema = z.infer<typeof schema>;
 
 export default defineEventHandler(async (event) => {
-    const result = await readValidatedBody(event, body => schema.safeParse(body))
+  const session = await requireUserSession(event)
+  const result = await readValidatedBody(event, body => schema.safeParse(body))
 
     if (!result.success) {
       throw createError({
@@ -29,8 +30,9 @@ export default defineEventHandler(async (event) => {
       })
     }
 
+    console.log(session.user.email)
     console.log(result.data)
   
     setResponseStatus(event, 201)
-    return { statusMessage: 'User created successfully' };
+    return { statusMessage: `User ${session.user.email} created successfully` };
 });

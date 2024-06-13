@@ -62,6 +62,7 @@ const schema = z.object({
 });
 
 export default defineEventHandler(async (event) => {
+    const session = await requireUserSession(event)
     const result = await readValidatedBody(event, body => schema.safeParse(body))
 
     if (!result.success) {
@@ -74,5 +75,5 @@ export default defineEventHandler(async (event) => {
     console.log(result.data)
   
     setResponseStatus(event, 201)
-    return { statusMessage: 'Resume created successfully' };
+    return { statusMessage: `Resume of ${session.user.email} created successfully` };
 });

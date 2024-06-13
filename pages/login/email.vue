@@ -60,7 +60,7 @@ watch(
       Continue with email
       <NuxtLink
         class="text-xs md:text-base text-chrysler-blue underline font-normal"
-        to="/forgot-password"
+        to="/login/forgot-password"
         >Forgot Password</NuxtLink
       >
     </h2>

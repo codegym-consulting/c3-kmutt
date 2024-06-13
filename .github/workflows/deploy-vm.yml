@@ -1,0 +1,76 @@
+name: Deploy to KMUTT VM
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - v*.*.*
+env:
+  HUSKY: 0
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Setup Docker Meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: asia-docker.pkg.dev/c3-kmutt/asia.gcr.io/c3-website
+
+      - name: Login to Google Cloud Artifact
+        uses: docker/login-action@v3
+        with:
+          registry: asia-docker.pkg.dev
+          username: _json_key
+          password: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+
+      - name: Build and Push
+        id: docker-build
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          file: Dockerfile
+          platforms: linux/amd64
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          builder: ${{ steps.buildx.outputs.name }}
+          build-args: |
+            DATABASE_URL=${{ secrets.DB_URL }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: View Image digest
+        run: echo ${{ steps.docker-build.outputs.digest }}
+
+  deploy:
+    if: ${{ github.ref_type == 'tag' }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Forticlient VPN
+        uses: horellana/openconnect@v1.0.1
+        with:
+            VPN_USER: ${{ secrets.VPN_USER }}
+            VPN_PWD: ${{ secrets.VPN_PWD }}
+            VPN_HOST: 147.50.6.194
+            VPN_PORT: 10443
+            VPN_SERVER_CERT: ''
+
+      - name: SSH into the VM
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+            host: 10.2.15.106
+            username: c3admin
+            port: 22
+            key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Run the Container
+        run: docker run -it --rm asia-docker.pkg.dev/c3-kmutt/asia.gcr.io/c3-website:latest

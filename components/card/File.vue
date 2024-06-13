@@ -28,7 +28,7 @@ const fileSizeMB = computed(() => {
       </div>
     </div>
     <div class="mt-2 flex items-center gap-x-6">
-      <div class="flex-1 h-1 rounded-[20px] bg-chrysler-blue"></div>
+      <div class="flex-1 h-1 rounded-[20px] bg-chrysler-blue"/>
       <UIcon
         class="cursor-pointer"
         name="humbleicons:times"

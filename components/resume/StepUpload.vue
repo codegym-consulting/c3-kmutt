@@ -34,8 +34,8 @@ const onRemove = (file: File) => {
     >
       <CardFile
         v-for="file in state"
-        :file="file"
         :key="file.name"
+        :file="file"
         @remove="onRemove"
       />
     </div>

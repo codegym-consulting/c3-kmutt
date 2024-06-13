@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { FixedLengthArray } from '~/models/common'
 
-type ButtonType = 'next' | 'back' | 'done' | ''
+type ButtonType = 'next' | 'continue' | 'back' | 'done' | ''
 
 const props = withDefaults(
   defineProps<{
@@ -31,6 +31,13 @@ const buttonConfig = computed(() => ({
   },
   next: {
     text: 'Next',
+    leadingIcon: '',
+    traillingIcon: 'flowbite:angle-right-outline',
+    disabled: props.disabledNext,
+    click: () => emit('clickNext'),
+  },
+  continue: {
+    text: 'Continue',
     leadingIcon: '',
     traillingIcon: 'flowbite:angle-right-outline',
     disabled: props.disabledNext,

@@ -72,6 +72,10 @@ body {
   font-family: 'IBM Plex Sans Thai', sans-serif;
 }
 
+* {
+  @apply transition-all;
+}
+
 .swiper-pagination-bullet-active {
   @apply !bg-chrysler-blue;
 }

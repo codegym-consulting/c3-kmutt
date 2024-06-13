@@ -17,18 +17,20 @@ function randomFillColor() {
   const randomId = Math.floor(Math.random() * (max - min + 1)) + min;
   const element = document.getElementById('TH' + randomId);
 
-  let isFilled = false;
-  element.hasAttribute('fill') ? isFilled = true : isFilled = false;
-  if (isFilled) {
-    element.removeAttribute('fill'); // Unfill color
-  } else {
-    element.setAttribute('fill', '#CCC0FD'); // Fill color
-    const randomId2 = Math.floor(Math.random() * (max - min + 1)) + min;
-    const element2 = document.getElementById('TH' + randomId2);
-    element2.removeAttribute('fill');
-  }
+  if (element) {
+    let isFilled = false;
+    element.hasAttribute('fill') ? isFilled = true : isFilled = false;
+    if (isFilled) {
+      element.removeAttribute('fill'); // Unfill color
+    } else {
+      element.setAttribute('fill', '#CCC0FD'); // Fill color
+      const randomId2 = Math.floor(Math.random() * (max - min + 1)) + min;
+      const element2 = document.getElementById('TH' + randomId2);
+      element2?.removeAttribute('fill');
+    }
 
-  isFilled = !isFilled;
+    isFilled = !isFilled;
+  }
 }
 
 </script>

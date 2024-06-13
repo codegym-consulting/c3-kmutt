@@ -133,7 +133,8 @@ const onClickNext = async () => {
       teachingExperiences: [101, 102],
       expertises: stepTwoState.expertise.map((e) => +e.value),
       organization: (stepTwoState.organization as Option).value.toString(),
-      subUnit: +(stepTwoState.department as Option).value,
+      faculty: +(stepTwoState.faculty as Option).value,
+      department: +(stepTwoState.department as Option).value,
       areaOfInterests: stepTwoState.areaOfInterest.map((a) => +a.value),
     })
 

@@ -1,18 +1,15 @@
-const excludePaths = [
+const publicPaths = [
     '/api/expertises', 
     '/api/interests', 
-    '/api/sub-unit', 
+    '/api/faculties', 
+    '/api/departments', 
     '/api/categories', 
-    '/api/project', 
-    '/api/user',
-    '/api/register',
-    '/api/resume',
-    '/api/upload/resume',
-    '/api/upload/profile'
+    '/api/projects', 
+    '/api/users'
 ]
 
 export default defineEventHandler(async (event) => {
-    if (excludePaths.includes(event.path.split('?')[0])) {
+    if (publicPaths.includes(event.path.split('?')[0])) {
         return
     }
 

@@ -8,7 +8,6 @@ type StepTwoState = {
   teachingExperience: string
   expertise: Option[]
   organization: Option
-  subUnit: Option
   faculty: Option
   department: Option
   areaOfInterest: Option[]
@@ -20,14 +19,12 @@ const props = withDefaults(
     expertises?: Option[]
     areaOfInterests?: Option[]
     occupations?: Option[]
-    subUnits?: Option[]
     faculties?: Option[]
     departments?: Option[]
     organizations?: Option[]
   }>(),
   {
     occupations: () => [],
-    subUnits: () => [],
     organizations: () => [],
     expertises: () => [],
     faculties: () => [],

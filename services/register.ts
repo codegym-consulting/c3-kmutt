@@ -9,10 +9,6 @@ export function getInterests(query?: string) {
   return useApi<Option[]>('/interests', { method: 'GET', query: { query } })
 }
 
-export function getSubUnits(query?: string) {
-  return useApi<Option[]>('/sub-unit', { method: 'GET', query: { query } })
-}
-
 export function postRegister(body: Schema) {
   return useApi<Response>('/register', { method: 'POST', body })
 }

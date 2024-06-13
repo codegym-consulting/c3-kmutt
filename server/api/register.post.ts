@@ -12,7 +12,8 @@ const schema = z.object({
   teachingExperiences: z.array(z.any()),
   expertises: z.array(z.number().int()),
   organization: z.string(),
-  subUnit: z.number().int(),
+  faculty: z.number().int(),
+  department: z.number().int(),
   areaOfInterests: z.array(z.number().int()),
 });
 

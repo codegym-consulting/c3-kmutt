@@ -1,5 +1,5 @@
 import type { Option, Response } from '~/models/common'
-import type { Schema } from '~/server/api/register.post'
+import type { Schema } from '~/server/api/register/index.post'
 
 export function getExpertises(query?: string) {
   return useApi<Option[]>('/expertises', { method: 'GET', query: { query } })

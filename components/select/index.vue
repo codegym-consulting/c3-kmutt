@@ -13,8 +13,9 @@ const props = withDefaults(
     required?: boolean
     placeholder?: string
     error?: string
+    disabled?: boolean
   }>(),
-  { name: '', placeholder: '', required: false, error: '' },
+  { name: '', placeholder: '', required: false, error: '', disabled: false },
 )
 
 const emit = defineEmits<{
@@ -42,12 +43,22 @@ const updateValue = (
     :name="name"
     :required="props.required"
     :error="props.error"
+    :ui="
+      props.disabled
+        ? {
+            label: {
+              base: 'text-gray-5',
+            },
+          }
+        : {}
+    "
   >
     <USelectMenu
       selected-icon=""
       :model-value="props.modelValue"
       :options="props.options"
       :placeholder="props.placeholder"
+      :disabled="props.disabled"
       :popper="{ offsetDistance: 0 }"
       :ui="{
         rounded:

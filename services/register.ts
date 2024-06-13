@@ -16,3 +16,14 @@ export function getSubUnits(query?: string) {
 export function postRegister(body: Schema) {
   return useApi<Response>('/register', { method: 'POST', body })
 }
+
+export function getFaculties() {
+  return useApi<Option[]>('/faculties', { method: 'GET' })
+}
+
+export function getDepartments(facultyId?: number) {
+  return useApi<Option[]>('/departments', {
+    method: 'GET',
+    query: facultyId ? { facultyId } : {},
+  })
+}

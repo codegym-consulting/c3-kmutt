@@ -14,6 +14,7 @@ export const registerStepTwoSchema = z.object({
   teachingExperience: z.string().optional(),
   expertise: z.array(selectSchema).min(1, 'Required'),
   organization: selectSchema,
-  subUnit: selectSchema,
+  faculty: selectSchema,
+  department: selectSchema,
   areaOfInterest: z.array(selectSchema).min(1, 'Required'),
 })

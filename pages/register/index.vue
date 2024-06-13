@@ -2,7 +2,8 @@
 import {
   getExpertises,
   getInterests,
-  getSubUnits,
+  getFaculties,
+  getDepartments,
   postRegister,
 } from '~/services/register'
 import {
@@ -34,11 +35,13 @@ const userData = reactive({
 const options = reactive<{
   expertises: Option[]
   areaOfInterests: Option[]
-  subUnits: Option[]
+  faculties: Option[]
+  departments: Option[]
 }>({
   expertises: [],
   areaOfInterests: [],
-  subUnits: [],
+  faculties: [],
+  departments: [],
 })
 
 const validate = reactive({
@@ -68,16 +71,29 @@ const stepTwoState = reactive<{
   teachingExperience: string
   expertise: Option[]
   organization: Option | {}
-  subUnit: Option | {}
   areaOfInterest: Option[]
+  faculty: Option | {}
+  department: Option | {}
 }>({
   occupation: {},
   teachingExperience: '',
   expertise: [],
   organization: organizations[0],
-  subUnit: {},
+  faculty: {},
+  department: {},
   areaOfInterest: [],
 })
+
+const queryFaculties = async () => {
+  const { data: faculties } = await getFaculties()
+  options.faculties = faculties?.value ?? []
+}
+
+const queryDepartments = async (facultyId?: number) => {
+  const { data: departments } = await getDepartments(facultyId)
+  stepTwoState.department = {}
+  options.departments = departments?.value ?? []
+}
 
 const queryExpertises = async (search?: string) => {
   const { data: expertises } = await getExpertises(search)
@@ -87,11 +103,6 @@ const queryExpertises = async (search?: string) => {
 const queryAreaOfInterests = async (search?: string) => {
   const { data: areaOfInterests } = await getInterests(search)
   options.areaOfInterests = areaOfInterests?.value ?? []
-}
-
-const querySubUnits = async (search?: string) => {
-  const { data: subUnits } = await getSubUnits(search)
-  options.subUnits = subUnits?.value ?? []
 }
 
 const onValidateStep = (value: boolean) => {
@@ -122,7 +133,7 @@ const onClickNext = async () => {
       teachingExperiences: [101, 102],
       expertises: stepTwoState.expertise.map((e) => +e.value),
       organization: (stepTwoState.organization as Option).value.toString(),
-      subUnit: +(stepTwoState.subUnit as Option).value,
+      subUnit: +(stepTwoState.department as Option).value,
       areaOfInterests: stepTwoState.areaOfInterest.map((a) => +a.value),
     })
 
@@ -149,9 +160,20 @@ watchDebounced(
   { debounce: 500 },
 )
 
+watch(
+  () => stepTwoState.faculty,
+  (option: Option | {}) => {
+    if ('value' in option) {
+      queryDepartments(+option.value)
+    }
+  },
+  { deep: true },
+)
+
 await queryExpertises()
 await queryAreaOfInterests()
-await querySubUnits()
+await queryFaculties()
+await queryDepartments()
 
 onMounted(() => {
   // Clear the user session beforehand
@@ -190,7 +212,8 @@ onMounted(() => {
         :area-of-interests="options.areaOfInterests"
         :organizations="organizations"
         :occupations="occupations"
-        :sub-units="options.subUnits"
+        :faculties="options.faculties"
+        :departments="options.departments"
         @validate="onValidateStep"
       />
     </div>

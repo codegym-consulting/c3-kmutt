@@ -9,6 +9,8 @@ type StepTwoState = {
   expertise: Option[]
   organization: Option
   subUnit: Option
+  faculty: Option
+  department: Option
   areaOfInterest: Option[]
 }
 
@@ -19,6 +21,8 @@ const props = withDefaults(
     areaOfInterests?: Option[]
     occupations?: Option[]
     subUnits?: Option[]
+    faculties?: Option[]
+    departments?: Option[]
     organizations?: Option[]
   }>(),
   {
@@ -26,10 +30,13 @@ const props = withDefaults(
     subUnits: () => [],
     organizations: () => [],
     expertises: () => [],
+    faculties: () => [],
+    departments: () => [],
     areaOfInterests: () => [],
   },
 )
 
+const isSelectedFaculty = ref(false)
 const expertiseSearch = defineModel<string>('expertiseSearch')
 const areaOfInterestSearch = defineModel<string>('areaOfInterestSearch')
 
@@ -72,11 +79,14 @@ const onTouch = (field: string) => {
 watch(
   () => state.value,
   (value) => {
+    if (!isEmpty(value.faculty)) {
+      isSelectedFaculty.value = true
+    }
     const allRequiredFieldAreFilled =
       !isEmpty(value.occupation) &&
       !isEmpty(value.expertise) &&
       !isEmpty(value.organization) &&
-      !isEmpty(value.subUnit) &&
+      !isEmpty(value.department) &&
       !isEmpty(value.areaOfInterest)
 
     // Check if all required fields are filled and then validate the form at once
@@ -137,16 +147,30 @@ watch(
           @focus="emit('focus')"
           @touched="onTouch('organization')"
         />
+      </div>
+      <div class="row md:[&>*]:w-[calc(50%-0.5rem)]">
         <Select
-          v-model="state.subUnit"
-          label="Sub unit (Organization)"
-          name="subUnit"
-          placeholder="Select sub unit"
+          v-model="state.faculty"
+          label="Faculty"
+          name="faculty"
+          placeholder="Select faculty"
           required
-          :error="errors.subUnit"
-          :options="props.subUnits"
+          :error="errors.faculty"
+          :options="props.faculties"
           @focus="emit('focus')"
-          @touched="onTouch('subUnit')"
+          @touched="onTouch('faculty')"
+        />
+        <Select
+          v-model="state.department"
+          label="Department"
+          name="department"
+          placeholder="Select department"
+          required
+          :disabled="!isSelectedFaculty"
+          :error="errors.department"
+          :options="props.departments"
+          @focus="emit('focus')"
+          @touched="onTouch('department')"
         />
       </div>
       <div class="row">

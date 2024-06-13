@@ -153,10 +153,10 @@ await queryExpertises()
 await queryAreaOfInterests()
 await querySubUnits()
 
-// onMounted(() => {
-//   // Clear the user session beforehand
-//   clear()
-// })
+onMounted(() => {
+  // Clear the user session beforehand
+  clear()
+})
 </script>
 
 <template>

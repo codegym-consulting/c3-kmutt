@@ -1,7 +1,9 @@
 <script lang="ts" setup>
+import { isEmpty } from '~/utils/validator'
+
 definePageMeta({
   layout: 'register',
-  middleware: 'auth'
+  middleware: 'auth',
 })
 
 const pageSubtitle = [
@@ -16,6 +18,7 @@ const stepOneState = reactive<{
 }>({
   method: '',
 })
+const stepTwoState = ref<File[] | null>(null)
 const validate = reactive({
   stepOne: false,
   stepTwo: false,
@@ -27,6 +30,9 @@ watch(
     validate.stepOne = !!value
   },
 )
+watch(stepTwoState, (value) => {
+  validate.stepTwo = !isEmpty(value)
+})
 
 const onClickNext = () => {
   if (step.value === 1 && stepOneState.method === 'upload') {
@@ -50,7 +56,7 @@ const onClickBack = () => {
 </script>
 
 <template>
-  <div class="flex flex-col h-full">
+  <div class="flex flex-col h-full flex-1">
     <h2
       class="text-2xl leading-7 md:text-[32px] md:leading-10 font-bold text-gray-10"
     >
@@ -59,7 +65,8 @@ const onClickBack = () => {
     <p class="text-base leading-5 text-gray-7 mt-2 mb-4">
       {{ pageSubtitle[step - 1] }}
     </p>
-    <ResumeStepOne v-if="step === 1" v-model="stepOneState" />
+    <ResumeStepSelectMethod v-if="step === 1" v-model="stepOneState" />
+    <ResumeStepUpload v-if="step === 2" v-model="stepTwoState" />
     <RegisterActionFooter
       :buttons="step === 1 ? ['', 'continue'] : ['back', 'done']"
       :disabled-next="step === 1 ? !validate.stepOne : !validate.stepTwo"

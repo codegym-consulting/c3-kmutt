@@ -1,17 +1,17 @@
 <script lang="ts" setup>
-type StepOneState = {
+type StepSelectMethod = {
   method: 'upload' | 'fill-in' | ''
 }
 
 const props = withDefaults(
   defineProps<{
-    modelValue: StepOneState
+    modelValue: StepSelectMethod
   }>(),
   {},
 )
 
 const emit = defineEmits<{
-  (event: 'update:modelValue', value: StepOneState): void
+  (event: 'update:modelValue', value: StepSelectMethod): void
 }>()
 
 const state = computed({

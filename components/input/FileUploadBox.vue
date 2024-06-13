@@ -80,8 +80,9 @@ const handleFileChange = (event: Event) => {
         class="opacity-0 absolute inset-0 w-full h-full cursor-pointer"
         type="file"
         multiple
+        accept="image/jpeg,image/png,image/webp,application/pdf"
         @change="handleFileChange"
-      />
+      >
       <div>
         <UIcon
           class="text-[20px] text-chrysler-blue [&_path]:stroke-[2px]"

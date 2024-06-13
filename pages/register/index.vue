@@ -50,11 +50,11 @@ const validate = reactive({
 })
 
 const stepOneState = reactive<{
-  title: Option | {}
-  academicTitle: Option | {}
+  title: Option | object
+  academicTitle: Option | object
   name: string
   surname: string
-  nationality: Option | {}
+  nationality: Option | object
 }>({
   title: {},
   academicTitle: {},
@@ -67,13 +67,13 @@ const stepOneState = reactive<{
 })
 
 const stepTwoState = reactive<{
-  occupation: Option | {}
+  occupation: Option | object
   teachingExperience: string
   expertise: Option[]
-  organization: Option | {}
+  organization: Option | object
   areaOfInterest: Option[]
-  faculty: Option | {}
-  department: Option | {}
+  faculty: Option | object
+  department: Option | object
 }>({
   occupation: {},
   teachingExperience: '',
@@ -163,7 +163,7 @@ watchDebounced(
 
 watch(
   () => stepTwoState.faculty,
-  (option: Option | {}) => {
+  (option: Option | object) => {
     if ('value' in option) {
       queryDepartments(+option.value)
     }

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { FixedLengthArray } from '~/models/common'
 
-type ButtonType = 'next' | 'continue' | 'back' | 'done' | ''
+export type ButtonType = 'next' | 'continue' | 'back' | 'done' | ''
 
 const props = withDefaults(
   defineProps<{

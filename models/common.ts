@@ -52,6 +52,20 @@ export const nameSchema = z
       'Special characters are not allowed (e.g., !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~)',
   })
 
+export const avatarSchema = z.custom<File>(
+  (file) => {
+    if (!(file instanceof File)) {
+      return false
+    }
+
+    const allowedMimeTypes = ['image/jpeg', 'image/png', 'image/webp']
+    return allowedMimeTypes.includes(file.type)
+  },
+  {
+    message: 'Invalid file type',
+  },
+)
+
 export enum ALERT_TYPE {
   SUCCESS = 'success',
   ERROR = 'error',

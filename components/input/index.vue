@@ -47,6 +47,16 @@ const clearValue = async () => {
     forceFocus.value = true
   }, 0)
 }
+
+// Function to prevent non-numeric input
+const onInput = (event: Event) => {
+  if (props.type === 'tel') {
+    const target = event.target as HTMLInputElement
+    const newValue = target.value.replace(/\D/g, '')
+    target.value = newValue
+    updateValue(newValue)
+  }
+}
 </script>
 
 <template>
@@ -96,6 +106,7 @@ const clearValue = async () => {
         }
       "
       @update:model-value="updateValue"
+      @input="onInput"
     >
       <template #trailing>
         <UButton

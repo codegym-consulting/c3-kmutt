@@ -1,4 +1,3 @@
- 
 import { ZodError, type ZodSchema, type ZodIssue } from 'zod'
 
 const formatZodIssue = (issue: ZodIssue): string => {
@@ -19,6 +18,10 @@ export function useFieldValidation<T>(
 ) {
   const _error = ref('')
 
+  const clear = () => {
+    _error.value = ''
+  }
+
   const validate = () => {
     const _state = state?.value
     try {
@@ -33,5 +36,5 @@ export function useFieldValidation<T>(
     }
   }
 
-  return { error: _error, validate }
+  return { error: _error, validate, clear }
 }

@@ -19,10 +19,10 @@ const emit = defineEmits<{
     />
     <div class="flex flex-col ga-y-1">
       <h3 class="text-base leading-5 font-medium text-gray-10">
-        {{ props.name }}
+        <slot name="title">{{ props.name }}</slot>
       </h3>
       <p class="text-sm leading-[18px] text-gray-6 break-words">
-        {{ props.description }}
+        <slot name="description">{{ props.description }}</slot>
       </p>
     </div>
   </article>

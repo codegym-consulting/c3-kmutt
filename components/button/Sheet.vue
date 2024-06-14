@@ -52,7 +52,7 @@ const emit = defineEmits<{
           {{ props.title }}
         </h3>
         <p
-          class="subtitle text-[14px] leading-[18px] md:text-base md:leading-5 text-gray-6"
+          class="subtitle text-[14px] text-left leading-[18px] md:text-base md:leading-5 text-gray-6"
         >
           {{ props.subtitle }}
         </p>

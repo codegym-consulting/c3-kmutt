@@ -2,6 +2,7 @@ export const useRegisterStore = defineStore('register', () => {
   const state = {
     registerNavbarFullSize: ref<boolean>(true),
     isRegisterationSuccess: ref<boolean>(false),
+    isCreateResumeSuccess: ref<boolean>(false),
   }
 
   const getters = {
@@ -11,6 +12,9 @@ export const useRegisterStore = defineStore('register', () => {
     isRegisterationSuccess: computed(() => {
       return state.isRegisterationSuccess.value
     }),
+    isCreateResumeSuccess: computed(() => {
+      return state.isCreateResumeSuccess.value
+    }),
   }
   const action = {
     setRegisterNavbarFullSize(flag: boolean) {
@@ -18,6 +22,9 @@ export const useRegisterStore = defineStore('register', () => {
     },
     setIsRegisterationSuccess(flag: boolean) {
       state.isRegisterationSuccess.value = flag
+    },
+    setIsCreateResumeSuccess(flag: boolean) {
+      state.isCreateResumeSuccess.value = flag
     },
   }
 

@@ -1,12 +1,17 @@
 <script lang="ts" setup generic="T">
 import { isEmpty } from '~/utils/validator'
 
-const props = defineProps<{
-  id: string
-  title: string
-  addLabel: string
-  modelValue: T
-}>()
+const props = withDefaults(
+  defineProps<{
+    id: string
+    title: string
+    addLabel?: string
+    modelValue: T
+  }>(),
+  {
+    addLabel: '',
+  },
+)
 
 const emit = defineEmits<{
   (event: 'update:modelValue', value: T): void
@@ -18,14 +23,19 @@ const hasValue = computed(() => !isEmpty(props.modelValue))
 
 <template>
   <div>
-    <div class="border-b-[1.5px] border-gray-2">
+    <div
+      class="border-b-[1.5px] border-gray-2 flex justify-between gap-x-2 items-center"
+    >
       <h3
         class="h-7 block font-medium dark:text-gray-200 text-base text-gray-10"
       >
         {{ props.title }}
       </h3>
       <ClientOnly>
-        <Teleport :to="`#add-${props.id}`" :disabled="hasValue">
+        <Teleport
+          :to="`#add-${props.id}`"
+          :disabled="hasValue || !props.addLabel"
+        >
           <button
             class="text-chrysler-blue text-base leading-5 font-medium"
             type="button"
@@ -33,7 +43,7 @@ const hasValue = computed(() => !isEmpty(props.modelValue))
           >
             <UIcon class="text-xl mr-2" name="humbleicons:plus" />
             <span class="inline-block translate-y-[2px]">{{
-              !hasValue ? props.addLabel : 'Add'
+              !hasValue && props.addLabel ? props.addLabel : 'Add'
             }}</span>
           </button>
         </Teleport>

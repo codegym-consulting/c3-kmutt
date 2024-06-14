@@ -51,3 +51,17 @@ export const nameSchema = z
     message:
       'Special characters are not allowed (e.g., !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~)',
   })
+
+export enum ALERT_TYPE {
+  SUCCESS = 'success',
+  ERROR = 'error',
+  INFO = 'info',
+}
+
+export type AlertPayload = {
+  id?: string
+  title: string
+  content: string
+  type: ALERT_TYPE
+  duration?: number
+}

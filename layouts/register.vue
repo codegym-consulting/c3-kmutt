@@ -43,6 +43,7 @@ const bottomSheet = ref(false)
       <slot/>
     </UCard>
     <BottomSheetNavbar v-model="bottomSheet" />
+    <Alert />
   </div>
 </template>
 
@@ -57,7 +58,7 @@ const bottomSheet = ref(false)
       @apply overflow-hidden rounded-t-none rounded-b-3xl md:rounded-b-[40px] lg:rounded-[40px] h-[403px] md:h-[502px] lg:h-[784px] bg-[url(~/public/register/bg_mobile_full.webp)] md:bg-[url(~/public/register/bg_tablet_full.webp)] lg:bg-[url(~/public/register/bg.webp)] bg-no-repeat bg-cover md:bg-contain bg-bottom;
 
       &.-half {
-        @apply flex items-end md:block h-[147px] md:h-[206px] lg:h-[784px] bg-cover lg:bg-contain bg-[url(~/public/register/bg_mobile_half.webp)] md:bg-[url(~/public/register/bg_tablet_half.webp)] lg:bg-[url(~/public/register/bg.webp)];
+        @apply flex justify-end items-end md:block h-[147px] md:h-[206px] lg:h-[784px] bg-cover lg:bg-contain bg-[url(~/public/register/bg_mobile_half.webp)] md:bg-[url(~/public/register/bg_tablet_half.webp)] lg:bg-[url(~/public/register/bg.webp)];
 
         h1 {
           @apply hidden lg:block;

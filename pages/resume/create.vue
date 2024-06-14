@@ -3,7 +3,7 @@ import { isEmpty } from '~/utils/validator'
 
 definePageMeta({
   layout: 'register',
-  middleware: 'auth',
+  // middleware: 'auth',
 })
 
 const pageSubtitle = [
@@ -12,6 +12,7 @@ const pageSubtitle = [
   'Enter your resume details directly into the provided fields.',
 ]
 
+const { setRegisterNavbarFullSize } = useRegisterStore()
 const step = ref(1)
 const stepOneState = reactive<{
   method: '' | 'upload' | 'fill-in'
@@ -27,6 +28,7 @@ const validate = reactive({
 watch(
   () => stepOneState.method,
   (value) => {
+    setRegisterNavbarFullSize(!value)
     validate.stepOne = !!value
   },
 )

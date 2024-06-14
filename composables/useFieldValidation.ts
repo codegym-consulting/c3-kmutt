@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-dynamic-delete */
+ 
 import { ZodError, type ZodSchema, type ZodIssue } from 'zod'
 
 const formatZodIssue = (issue: ZodIssue): string => {

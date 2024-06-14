@@ -5,44 +5,63 @@ const props = withDefaults(
   defineProps<{
     modelValue: File[] | null
     maxFileSize?: number
+    maxFile?: number
+    supportFileLabel?: string
     supportFileTypes?: string[]
   }>(),
   {
+    maxFile: 3,
     maxFileSize: 20, // MB
-    supportFileTypes: () => ['JPG', 'PNG', 'PDF'],
+    supportFileLabel: 'JPG, PNG, PDF',
+    supportFileTypes: () => [
+      'image/jpeg',
+      'image/png',
+      'image/webp',
+      'application/pdf',
+    ],
   },
 )
 
 const emit = defineEmits<{
   (event: 'update:modelValue', value: File[] | null): void
-  (event: 'error', invalidFiles: File[]): void
+  (
+    event: 'error',
+    payload: { type: 'size' | 'type' | 'total'; invalidFiles: File[] },
+  ): void
 }>()
-
-const supportFileTypes = props.supportFileTypes.map((type) =>
-  type.toUpperCase() === 'JPG' ? 'JPEG' : type.toUpperCase(),
-)
 
 const handleFileChange = (event: Event) => {
   const input = event.target as HTMLInputElement
   if (input.files) {
+    const currentFiles = props.modelValue ? props.modelValue : []
     const newFiles = Array.from(input.files)
+
+    if (currentFiles.length + newFiles.length > props.maxFile) {
+      emit('error', { type: 'total', invalidFiles: newFiles })
+      return
+    }
+
     const validNewFiles: File[] = []
-    const invalidFiles: File[] = []
+    const invalidFileType: File[] = []
+    const invalidFileSize: File[] = []
 
     newFiles.forEach((file) => {
-      const fileType = file.type.split('/').pop()?.toUpperCase() || ''
       const fileSizeMB = file.size / (1024 * 1024)
       if (
-        supportFileTypes.includes(fileType) &&
+        props.supportFileTypes.includes(file.type) &&
         fileSizeMB <= props.maxFileSize
       ) {
         validNewFiles.push(file)
       } else {
-        invalidFiles.push(file)
+        if (!props.supportFileTypes.includes(file.type)) {
+          invalidFileType.push(file)
+        }
+        if (fileSizeMB > props.maxFileSize) {
+          invalidFileSize.push(file)
+        }
       }
     })
 
-    const currentFiles = props.modelValue ? props.modelValue : []
     const allFiles = [...currentFiles, ...validNewFiles]
 
     // Remove duplicates
@@ -54,13 +73,17 @@ const handleFileChange = (event: Event) => {
         ),
     )
 
-    emit('update:modelValue', uniqueFiles.length > 0 ? uniqueFiles : null)
-    if (invalidFiles.length > 0) {
-      emit('error', invalidFiles)
-    }
-
     //clear input value
     input.value = ''
+
+    emit('update:modelValue', uniqueFiles.length > 0 ? uniqueFiles : null)
+    if (invalidFileType.length > 0) {
+      emit('error', { type: 'type', invalidFiles: invalidFileType })
+      return
+    }
+    if (invalidFileSize.length > 0) {
+      emit('error', { type: 'size', invalidFiles: invalidFileSize })
+    }
   }
 }
 </script>
@@ -80,7 +103,7 @@ const handleFileChange = (event: Event) => {
         class="opacity-0 absolute inset-0 w-full h-full cursor-pointer"
         type="file"
         multiple
-        accept="image/jpeg,image/png,image/webp,application/pdf"
+        :accept="props.supportFileTypes.join(',')"
         @change="handleFileChange"
       >
       <div>
@@ -114,7 +137,7 @@ const handleFileChange = (event: Event) => {
         </div>
         <div>
           Support file types:
-          <strong>{{ props.supportFileTypes.join(', ') }}</strong>
+          <strong>{{ props.supportFileLabel }}</strong>
         </div>
       </slot>
     </div>

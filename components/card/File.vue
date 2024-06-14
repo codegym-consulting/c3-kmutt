@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { formatFileSize } from '~/utils/formatter'
+
 const props = defineProps<{
   file: File
 }>()
@@ -8,8 +10,7 @@ const emit = defineEmits<{
 }>()
 
 const fileSizeMB = computed(() => {
-  const sizeInMB = props.file.size / (1024 * 1024)
-  return sizeInMB.toFixed(2)
+  return formatFileSize(props.file.size, 'MB')
 })
 </script>
 
@@ -28,7 +29,7 @@ const fileSizeMB = computed(() => {
       </div>
     </div>
     <div class="mt-2 flex items-center gap-x-6">
-      <div class="flex-1 h-1 rounded-[20px] bg-chrysler-blue"/>
+      <div class="flex-1 h-1 rounded-[20px] bg-chrysler-blue" />
       <UIcon
         class="cursor-pointer"
         name="humbleicons:times"

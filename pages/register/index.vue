@@ -183,15 +183,19 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="flex flex-col h-full">
-    <h2
-      class="text-2xl leading-7 md:text-[32px] md:leading-10 font-bold text-gray-10"
+  <div class="flex flex-col h-full relative">
+    <div
+      class="flex flex-col justify-end sticky top-0 bg-white z-10 flex-shrink-0 h-[124px] -mt-10 -translate-y-10"
     >
-      Register
-    </h2>
-    <p class="text-base leading-5 text-gray-7 mt-2 mb-4">
-      Enter your personal details to register.
-    </p>
+      <h2
+        class="text-2xl leading-7 md:text-[32px] md:leading-10 font-bold text-gray-10"
+      >
+        Register
+      </h2>
+      <p class="text-base leading-5 text-gray-7 mt-2 mb-4">
+        Enter your personal details to register.
+      </p>
+    </div>
     <Stepper v-model="step" :step="2" />
     <div class="mt-6 md:mt-8">
       <RegisterStepOne

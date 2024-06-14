@@ -65,7 +65,7 @@ interface State {
 </script>
 
 <template>
-  <div :class="['alert-wrapper', `-${state.type}`]">
+  <div :class="['alert-wrapper', `-${state.type}`, { '-show': state.show }]">
     <Transition name="slide-fade">
       <div v-if="state.show" :class="['alert-box', resolveColor]">
         <div class="alert-content">
@@ -89,8 +89,11 @@ interface State {
 
 <style lang="postcss" scoped>
 .alert-wrapper {
-  @apply max-w-[400px] w-full h-fit mt-auto mx-auto fixed inset-0 bottom-[10%]
+  @apply pointer-events-none max-w-[400px] w-full h-fit mt-auto mx-auto fixed inset-0 bottom-[10%]
   flex items-end justify-center z-[100] p-4;
+  &.-show {
+    @apply pointer-events-auto;
+  }
 }
 
 .alert-box {

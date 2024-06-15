@@ -2,7 +2,7 @@
 const props = withDefaults(
   defineProps<{
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    modelValue: string | number | Record<string, any> | unknown[]
+    modelValue: string | number | Record<string, any> | unknown[] | undefined
     options: {
       value: string | number
       label: string

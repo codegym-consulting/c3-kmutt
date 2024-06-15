@@ -25,10 +25,10 @@ export const registerStepTwoSchema = z.object({
 })
 
 export const educationSchema = z.object({
-  degree: selectSchema,
+  degree: selectSchema.optional(),
   fieldOfStudy: z.string().optional(),
   school: z.string().optional(),
-  graduation: z.string().optional(),
+  graduation: z.union([z.string(), z.number()]).optional(),
 })
 
 export type Education = z.infer<typeof educationSchema>

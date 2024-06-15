@@ -13,6 +13,8 @@ const props = withDefaults(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ui?: any
     icon?: string
+    focus?: boolean
+    inputProps?: Record<string, unknown>
   }>(),
   {
     label: '',
@@ -22,13 +24,17 @@ const props = withDefaults(
     error: '',
     type: 'text',
     required: false,
+    focus: false,
     ui: {},
+    inputProps: () => ({}),
   },
 )
 
 const input = ref<VNodeRef | null>(null)
 const focus = ref(false)
 const forceFocus = ref(false)
+
+const isCalendar = computed(() => props.type === 'calendar')
 
 const emit = defineEmits<{
   (event: 'update:modelValue', value: string): void
@@ -64,7 +70,7 @@ const onInput = (event: Event) => {
     :label="props.label"
     :name="name"
     :required="props.required"
-    :error="forceFocus ? false : error"
+    :error="forceFocus || props.focus ? false : error"
   >
     <UInput
       ref="input"
@@ -72,7 +78,9 @@ const onInput = (event: Event) => {
       :placeholder="props.placeholder"
       :model-value="props.modelValue"
       :type="props.type"
-      :class="[{ 'fancy-border': (focus && !error) || forceFocus }]"
+      :class="[
+        { 'fancy-border': (focus && !error) || forceFocus || props.focus },
+      ]"
       :ui="{
         base: '!font-bai-jamjuree !text-base !text-dark-theme !bg-white',
         placeholder: '!placeholder-gray-5',
@@ -107,13 +115,20 @@ const onInput = (event: Event) => {
       "
       @update:model-value="updateValue"
       @input="onInput"
+      v-bind="props.inputProps"
     >
       <template #trailing>
         <UButton
-          v-show="props.modelValue && focus"
+          v-show="props.modelValue && focus && !isCalendar"
           icon="humbleicons:times"
           class="min-w-5 w-5 h-5 [&_svg]:w-3"
           @mousedown="clearValue"
+        />
+        <NuxtIcon
+          v-show="isCalendar && !props.modelValue"
+          class="text-2xl"
+          name="c3/calendar"
+          filled
         />
       </template>
     </UInput>

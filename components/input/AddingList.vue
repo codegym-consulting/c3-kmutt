@@ -50,7 +50,13 @@ const hasValue = computed(() => !isEmpty(props.modelValue))
       </ClientOnly>
     </div>
     <div>
-      <div :id="`add-${props.id}`" class="mt-2">
+      <div
+        :id="`add-${props.id}`"
+        :class="[
+          hasValue ? 'mt-4' : 'mt-2',
+          'flex flex-col items-start gap-y-4',
+        ]"
+      >
         <slot />
       </div>
     </div>

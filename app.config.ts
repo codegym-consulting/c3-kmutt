@@ -16,6 +16,7 @@ export default defineAppConfig({
       },
     },
     modal: {
+      background: 'bg-gray-1',
       padding: '!p-4',
       container: 'flex min-h-full items-center justify-center text-center',
       base: 'py-14 px-4 md:px-12',
@@ -36,7 +37,8 @@ export default defineAppConfig({
       },
       color: {
         primary: {
-          solid: 'bg-gray-10 text-white hover:bg-white hover:text-gray-10',
+          solid:
+            'bg-gray-10 text-white hover:bg-white hover:text-gray-10 disabled:!bg-gray-4 disabled:!text-gray-3',
           outline:
             'text-gray-10 border-gray-10 hover:text-white hover:border-white border',
         },
@@ -48,7 +50,8 @@ export default defineAppConfig({
       },
       variant: {
         link: 'min-w-fit w-fit h-fit text-gray-10 text-base leading-5 font-bold !border-0 !ring-0 !outline-none hover:text-gray-10 [&_svg]:-translate-y-[1px] disabled:text-gray-4 disabled:no-underline',
-        'inline-link': 'min-w-fit w-fit h-fit text-chrysler-blue text-base underline font-normal p-0 leading-5 !border-0 !ring-0 !outline-none hover:text-gray-10 disabled:no-underline',
+        'inline-link':
+          'min-w-fit w-fit h-fit text-chrysler-blue text-base underline font-normal p-0 leading-5 !border-0 !ring-0 !outline-none hover:text-gray-10 disabled:no-underline',
         icon: 'rounded-2xl h-12 min-w-12 bg-gray-10 text-white hover:bg-white hover:text-gray-10',
       },
       default: {

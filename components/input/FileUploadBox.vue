@@ -3,6 +3,7 @@ const { $classes } = useNuxtApp()
 
 const props = withDefaults(
   defineProps<{
+    name: string,
     modelValue: File[] | null
     maxFileSize?: number
     maxFile?: number
@@ -10,6 +11,7 @@ const props = withDefaults(
     supportFileTypes?: string[]
   }>(),
   {
+    name: 'files',
     maxFile: 3,
     maxFileSize: 20, // MB
     supportFileLabel: 'JPG, PNG, PDF',
@@ -103,6 +105,7 @@ const handleFileChange = (event: Event) => {
         class="opacity-0 absolute inset-0 w-full h-full cursor-pointer"
         type="file"
         multiple
+        :name="props.name"
         :accept="props.supportFileTypes.join(',')"
         @change="handleFileChange"
       >

@@ -34,6 +34,12 @@ const emit = defineEmits<{
       :year-picker="props.yearPicker"
       :enable-time-picker="props.enableTimePicker"
       :model-type="modelType"
+      :max-date="new Date()"
+      :year-range="[new Date().getFullYear() - 40, new Date().getFullYear()]"
+      auto-apply
+      reverse-years
+      hide-offset-dates
+      prevent-min-max-navigation
       @update:model-value="emit('update:modelValue', $event)"
     >
       <template
@@ -70,7 +76,7 @@ const emit = defineEmits<{
   </div>
 </template>
 
-<style lang="postcss" scoped>
+<style lang="pcss" scoped>
 .vue-datepicker {
   :deep(.dp__theme_light) {
     --dp-primary-color: #5549ff;

@@ -33,9 +33,10 @@ const clearFile = () => {
     <input
       class="opacity-0 z-10 absolute inset-0 w-full h-full cursor-pointer"
       type="file"
+      name="avatar"
       accept="image/jpeg,image/png,image/webp"
       @change="handleFileChange"
-    />
+    >
     <div
       v-if="!previewImage"
       class="w-full h-full flex flex-col justify-center items-center gap-y-[10px]"
@@ -44,7 +45,7 @@ const clearFile = () => {
       <div
         class="text-center text-sm leading-[18px] text-chrysler-blue underline"
       >
-        Upload <br />
+        Upload <br >
         resume photo
       </div>
     </div>
@@ -56,10 +57,10 @@ const clearFile = () => {
         :src="previewImage"
         alt="preview avatar"
         class="absolute pointer-events-none inset-0 w-full h-full object-cover rounded-3xl"
-      />
+      >
       <UIcon
         name="lucide:trash-2"
-        class="text-2xl text-chrysler-blue z-20 relative ml-auto"
+        class="text-2xl text-chrysler-blue z-20 relative ml-auto hover:cursor-pointer hover:opacity-75"
         @click="clearFile"
       />
       <UButton

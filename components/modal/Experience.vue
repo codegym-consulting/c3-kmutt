@@ -92,13 +92,12 @@ watch(
           placeholder="Select end date"
           :error="
             !isEndDateValid
-              ? 'Please select an end date that is after the start date'
+              ? 'End date must be after start date.'
               : ''
           "
         />
       </div>
-      <div class="row">
-        <div></div>
+      <div class="row justify-end">
         <UButton
           class="!flex-none w-[180px]"
           label="Save"

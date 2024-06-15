@@ -1,26 +1,8 @@
-import { pgTable, serial, text, boolean, timestamp, integer } from "drizzle-orm/pg-core"
-  import { sql } from "drizzle-orm"
-
-
+import { pgTable, serial, text, timestamp, integer, jsonb } from "drizzle-orm/pg-core"
 
 export const expertise = pgTable("expertise", {
 	id: serial("id").primaryKey().notNull(),
 	name: text("name"),
-});
-
-export const orgUnit = pgTable("orgUnit", {
-	id: serial("id").primaryKey().notNull(),
-	name: text("name"),
-	is_header: boolean("is_header").default(false),
-});
-
-export const project = pgTable("project", {
-	id: serial("id").primaryKey().notNull(),
-});
-
-export const profile = pgTable("profile", {
-	id: serial("id").primaryKey().notNull(),
-	photoUrl: text("photoUrl"),
 });
 
 export const activity = pgTable("activity", {
@@ -55,4 +37,16 @@ export const department = pgTable("department", {
 	id: serial("id").primaryKey().notNull(),
 	name: text("name"),
 	facultyId: integer("facultyId"),
+});
+
+export const project = pgTable("project", {
+	id: serial("id").primaryKey().notNull(),
+	name: text("name"),
+	summary: text("summary"),
+	categories: jsonb("categories"),
+	hashtags: jsonb("hashtags"),
+	researchTheme: integer("researchTheme"),
+	SDGGoal: integer("SDGGoal"),
+	imageUrl: text("imageUrl"),
+	imageUrls: jsonb("imageUrls"),
 });

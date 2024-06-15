@@ -20,6 +20,8 @@ export default defineEventHandler(async (event) => {
         })
     }
 
+    // TODO: resize file fnc here
+
     // Validate file types before uploading
     for (const file of files) {
         if (!['application/pdf', 'image/jpeg', 'image/png', 'image/webp'].includes(file.type as string)) {

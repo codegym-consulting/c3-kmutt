@@ -1,9 +1,10 @@
 import path from 'path'
 import fs from 'fs'
+import uploadFile from '~/server/libs/storage'
+
 
 export default defineEventHandler(async (event) => {
     const session = await requireUserSession(event)
-    let uploadFilePath: string | null = null
     const files = await readMultipartFormData(event)
 
     if (!files || files && files[0].filename === '') {
@@ -16,16 +17,32 @@ export default defineEventHandler(async (event) => {
     if (files && files.length > 1) {
         throw createError({
             statusCode: 400,
-            statusMessage: 'Only one file can be uploaded'
+            statusMessage: 'Maximum to 1 files can be uploaded'
         })
     }
 
-    const file = files[0]
-    const filePath = path.join(process.cwd(), 'tmp', file.filename as string)
-    fs.writeFileSync(filePath, file.data)
-    uploadFilePath = filePath
+    // Validate file types before uploading
+    for (const file of files) {
+        if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type as string)) {
+            throw createError({
+                statusCode: 400,
+                statusMessage: 'Invalid file type. Only JPG, PNG, and WEBP files are allowed.'
+            })
+        }
+    }
 
-    console.log(session.user.email)
-    // TODO: will upload to bucket path /users/${session.user.email}/profile.png
-    return { url: uploadFilePath }
+    // TODO: resize file fnc here and transform to webp
+
+    // Upload files
+    const urls = files.map(async (file) => {
+        const filePath = path.join(process.cwd(), 'tmp', file.filename as string)
+        fs.writeFileSync(filePath, file.data)
+        const newFilename = `avatar.${file?.filename?.split('.').pop()}`;
+        const publicUrl = await uploadFile(filePath, `user/${session.user.email}/${newFilename}`)
+        fs.unlinkSync(filePath)
+        return publicUrl;
+    })
+
+    const result = await Promise.all(urls);
+    return { urls: result }
 })

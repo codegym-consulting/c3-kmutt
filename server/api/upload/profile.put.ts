@@ -17,7 +17,7 @@ export default defineEventHandler(async (event) => {
     if (files && files.length > 1) {
         throw createError({
             statusCode: 400,
-            statusMessage: 'Maximum to 1 files can be uploaded'
+            statusMessage: 'Maximum to 1 file can be uploaded'
         })
     }
 

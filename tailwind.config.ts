@@ -19,6 +19,7 @@ export default {
         'gray-10': '#1b1b1b',
         'dark-theme': '#262A37',
         'chrysler-blue': '#5549FF',
+        'bright-chrysler-blue': '#7E6BFE',
         'dark-chrysler-blue': '#000EDC',
         'mid-chrysler-blue': '#CCC0FD',
         'giants-orange': '#D24F28',

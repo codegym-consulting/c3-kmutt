@@ -79,3 +79,19 @@ export type AlertPayload = {
   type: ALERT_TYPE
   duration?: number
 }
+
+export enum Level {
+  NOVICE = 1,
+  BEGINNER = 2,
+  COMPETENT = 3,
+  PROFICIENT = 4,
+  EXPERT = 5,
+}
+
+export const levelLabel = {
+  [Level.NOVICE]: 'Novice',
+  [Level.BEGINNER]: 'Advanced beginner',
+  [Level.COMPETENT]: 'Competent',
+  [Level.PROFICIENT]: 'Proficient',
+  [Level.EXPERT]: 'Expert',
+}

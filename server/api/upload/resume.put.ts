@@ -1,8 +1,9 @@
+import uploadFile from '~/server/libs/storage'
 import path from 'path'
 import fs from 'fs'
 
 export default defineEventHandler(async (event) => {
-    const uploadFilePath: string[] = []
+    const session = await requireUserSession(event)
     const files = await readMultipartFormData(event)
 
     if (!files || files && files[0].filename === '') {
@@ -19,13 +20,26 @@ export default defineEventHandler(async (event) => {
         })
     }
 
-    files.forEach(file => {
+    // Validate file types before uploading
+    for (const file of files) {
+        if (!['application/pdf', 'image/jpeg', 'image/png', 'image/webp'].includes(file.type as string)) {
+        throw createError({
+            statusCode: 400,
+            statusMessage: 'Invalid file type. Only PDF, JPG, PNG, and WEBP files are allowed.'
+        })
+        }
+    }
+
+    // Upload files
+    const urls = files.map(async (file) => {
         const filePath = path.join(process.cwd(), 'tmp', file.filename as string)
         fs.writeFileSync(filePath, file.data)
-        uploadFilePath.push(filePath)
+        const newFilename = `${Date.now()}.${file?.filename?.split('.').pop()}`;
+        const publicUrl = await uploadFile(filePath, `user/${session.user.email}/resume/${newFilename}`)
+        fs.unlinkSync(filePath)
+        return publicUrl;
     })
 
-     // TODO: will upload to bucket path /users/${session.user.email}/resume/${file.filename}.pdf
-
-    return { urls: uploadFilePath }
+    const result = await Promise.all(urls);
+    return { urls: result }
 })

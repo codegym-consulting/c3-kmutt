@@ -12,11 +12,13 @@ export default defineNuxtConfig({
     "nuxt-auth-utils"
   ],
   routeRules: {
+    '/': { prerender: true },
     '/register/success': { static: true },
     '/resume/success': { static: true },
     '/about': { static: true },
     '/contact': { static: true },
     '/search': { prerender: true },
+    '/resume': { redirect: '/workspace/resume' },
     '/api/**': { cors: true }, // enable when deploy prod
   },
   runtimeConfig: {

@@ -103,7 +103,7 @@ const add = (type: Type) => {
           />
           <UIcon
             :class="[
-              'remove-icon',
+              'remove-icon transition-all',
               !!tool.label || !!tool.value ? 'w-6' : 'w-0',
               index === 0 ? 'mt-10' : 'mt-0',
             ]"

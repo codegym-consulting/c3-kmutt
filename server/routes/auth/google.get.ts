@@ -17,6 +17,7 @@ export default oauth.googleEventHandler({
             photoUrl: user.picture,
             expiredAt: Date.now() + 1000 * tokens.expires_in,
         },
+        isRegistered: false,
         loggedInAt: Date.now(),
         provider: 'google'
       })

@@ -173,7 +173,7 @@ watchDebounced(
           </CardExperience>
         </InputAddingList>
       </TemplateRow>
-      <div class="row mt-2">
+      <TemplateRow class="mt-2">
         <InputAddingList
           id="experience"
           title="Experience"
@@ -197,7 +197,7 @@ watchDebounced(
             @edit="() => onEditExperience(exp, index)"
           />
         </InputAddingList>
-      </div>
+      </TemplateRow>
     </div>
     <ModalEducation
       v-model="educationModal"

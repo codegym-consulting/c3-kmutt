@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { type ResumeFillInStepTwo } from '~/models/register'
+import type { ResumeFillInStepTwo } from '~/models/register'
 
 type Type = 'skill' | 'tool'
 
@@ -72,7 +72,7 @@ const add = (type: Type) => {
           />
           <UIcon
             :class="[
-              'remove-icon',
+              'remove-icon transition-all',
               !!skill.label || !!skill.value ? 'w-6' : 'w-0',
               index === 0 ? 'mt-10' : 'mt-0',
             ]"

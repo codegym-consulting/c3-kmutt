@@ -65,6 +65,6 @@ const modalLevel = ref(false)
       ]"
       >{{ levelLabel[hoverIndex as Level] }}</em
     >
-    <ModalLevelInfo v-model="modalLevel" />
+    <ModalLevelInfo v-if="props.showInfo" v-model="modalLevel" />
   </div>
 </template>

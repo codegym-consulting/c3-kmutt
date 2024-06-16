@@ -93,14 +93,14 @@ watch(
           :error="!isEndDateValid ? 'End date must be after start date.' : ''"
         />
       </TemplateRow>
-      <div class="row justify-end">
+      <TemplateRow class="justify-end">
         <UButton
           class="!flex-none w-[180px]"
           label="Save"
           :disabled="!canSave"
           @click="onSave"
         />
-      </div>
+      </TemplateRow>
     </div>
   </Modal>
 </template>

@@ -145,7 +145,7 @@ watch(
           @touched="onTouch('organization')"
         />
       </TemplateRow>
-      <div class="row md:[&>*]:w-[calc(50%-0.5rem)]">
+      <TemplateRow class="md:[&>*]:w-[calc(50%-0.5rem)]">
         <Select
           v-model="state.faculty"
           label="Faculty"
@@ -169,7 +169,7 @@ watch(
           @focus="emit('focus')"
           @touched="onTouch('department')"
         />
-      </div>
+      </TemplateRow>
       <TemplateRow>
         <SelectMultipleWithSearch
           v-model:search="areaOfInterestSearch"

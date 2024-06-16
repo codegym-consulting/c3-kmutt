@@ -74,3 +74,54 @@ export const resumeFillInStepTwoSchema = z.object({
 })
 
 export type ResumeFillInStepTwo = z.infer<typeof resumeFillInStepTwoSchema>
+
+export const researchSchema = z.object({
+  topic: z.string().optional(),
+  category: z.array(selectSchema).min(0),
+  date: z.string().optional(),
+})
+
+export type Research = z.infer<typeof researchSchema>
+
+export const trainingSchema = z.object({
+  course: z.string().optional(),
+  date: z.string().optional(),
+})
+
+export type Training = z.infer<typeof trainingSchema>
+
+export enum PUBLICATION_TYPE {
+  BOOK = 'Book',
+  BOOK_SECTION = 'Book section',
+  JOURNAL_ARTICLE = 'Journal article',
+  ARTICLE_IN_A_PERIODICAL = 'Article in a Periodical',
+  CONFERENCE_PROCEEDINGS = 'Conference proceedings',
+  REPORT = 'Report',
+  WEBSITE = 'Website',
+  ELECTRONIC_SOURCE = 'Electronic source',
+  ART = 'Art',
+  SOUND_RECORDING = 'Sound recording',
+  PERFORMANCE = 'Performance',
+  FILM = 'Film',
+  INTERVIEW = 'Interview',
+  PATENT = 'Patent',
+}
+
+export const publicationSchema = z.object({
+  type: selectSchema.optional(),
+  city: z.string().optional(),
+  author: z.array(z.string()).min(0),
+  publisher: z.string().optional(),
+  year: z.string().optional(),
+})
+
+export type Publication = z.infer<typeof publicationSchema>
+
+export const resumeFillInStepThreeSchema = z.object({
+  research: z.array(researchSchema).min(0),
+  training: z.array(trainingSchema).min(0),
+  academicService: z.array(researchSchema).min(0),
+  publication: z.array(publicationSchema).min(0),
+})
+
+export type ResumeFillInStepThree = z.infer<typeof resumeFillInStepThreeSchema>

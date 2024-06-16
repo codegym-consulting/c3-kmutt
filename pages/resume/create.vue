@@ -1,7 +1,11 @@
 <script lang="ts" setup>
 import type { FixedLengthArray } from '~/models/common'
 import type { ButtonType } from '~/components/register/ActionFooter.vue'
-import type { ResumeFillInStepOne } from '~/models/register'
+import type {
+  ResumeFillInStepOne,
+  ResumeFillInStepTwo,
+  ResumeFillInStepThree,
+} from '~/models/register'
 import { isEmpty } from '~/utils/validator'
 
 definePageMeta({
@@ -12,8 +16,6 @@ definePageMeta({
 const pageSubtitle = [
   'Add your resume to enhance your profile.',
   'Upload your resume file for submission.',
-  'Enter your resume details directly into the provided fields.',
-  'Enter your resume details directly into the provided fields.',
   'Enter your resume details directly into the provided fields.',
 ]
 
@@ -41,6 +43,16 @@ const fillInStepOneState = reactive<ResumeFillInStepOne>({
   education: [],
   experience: [],
   avatar: undefined,
+})
+const fillInStepTwoState = reactive<ResumeFillInStepTwo>({
+  skills: [{ label: '', value: 0 }],
+  tools: [{ label: '', value: 0 }],
+})
+const fillInStepThreeState = reactive<ResumeFillInStepThree>({
+  research: [],
+  training: [],
+  academicService: [],
+  publication: [],
 })
 
 const actionButton = computed<FixedLengthArray<[ButtonType, ButtonType]>>(
@@ -117,15 +129,15 @@ const onClickBack = () => {
         Input Resume
       </h2>
       <p class="text-base leading-5 text-gray-7 mt-2 mb-4">
-        {{ pageSubtitle[step - 1] }}
+        {{ pageSubtitle?.[step - 1] ?? pageSubtitle[pageSubtitle.length - 1] }}
       </p>
     </div>
     <Stepper v-if="step >= 3" v-model="fillInStep" :step="3" />
     <ResumeStepSelectMethod v-if="step === 1" v-model="stepOneState" />
     <ResumeStepUpload v-if="step === 2" v-model="stepTwoState" />
     <ResumeStepFillInOne v-if="step === 3" v-model="fillInStepOneState" />
-    <ResumeStepFillInTwo v-if="step === 4" />
-    <ResumeStepFillInThree v-if="step === 5" />
+    <ResumeStepFillInTwo v-if="step === 4" v-model="fillInStepTwoState" />
+    <ResumeStepFillInThree v-if="step === 5" v-model="fillInStepThreeState" />
     <RegisterActionFooter
       :buttons="actionButton"
       :disabled-next="!validate[step as 1 | 2 | 3 | 4 | 5]"

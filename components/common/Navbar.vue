@@ -53,6 +53,7 @@ const { user } = useUserSession()
                 :src="user.photoUrl"
                 icon="i-heroicons-photo"
                 size="xs"
+                img-class="rounded-[8px]"
                 alt="avatar"
               />
             </template>

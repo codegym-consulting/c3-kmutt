@@ -45,7 +45,7 @@ watch(
       Forgot Password
     </h2>
     <p class="text-base leading-5 text-gray-7 mt-2 mb-4">
-        Please enter your email address to receive a password reset link.
+      Please enter your email address to receive a password reset link.
     </p>
     <div class="flex flex-col gap-y-6 mt-6 md:mt-8">
       <Input

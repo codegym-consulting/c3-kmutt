@@ -23,7 +23,13 @@ export function useFieldValidation<T>(
   }
 
   const validate = () => {
-    const _state = state?.value
+    console.log(state)
+    
+    const _state = typeof state === 'object' ? Object.keys(state).reduce((acc, key: string) => {
+      // @ts-ignore
+      acc[key] = state[key]._value;
+      return acc;
+    }, {}) : state?.value
     try {
       schema.parse(_state)
       _error.value = ''

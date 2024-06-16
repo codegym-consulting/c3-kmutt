@@ -33,7 +33,6 @@ watchDebounced(
   () => {
     console.log('validate newPassword')
     validateForm()
-    validateNewPassword()
   },
   { debounce: 500 },
 )

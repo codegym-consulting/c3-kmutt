@@ -23,9 +23,7 @@ export function useFieldValidation<T>(
   }
 
   const validate = () => {
-    console.log(state)
-    
-    const _state = typeof state === 'object' ? Object.keys(state).reduce((acc, key: string) => {
+    const _state = Object.keys(state).length >= 2 && Object.keys(state).length != 5 ? Object.keys(state).reduce((acc, key: string) => {
       // @ts-ignore
       acc[key] = state[key]._value;
       return acc;

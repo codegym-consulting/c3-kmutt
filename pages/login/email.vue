@@ -27,7 +27,6 @@ const onFocus = () => {
 watchDebounced(
   email,
   () => {
-    console.log('validate email')
     validateEmail()
   },
   { debounce: 500 },
@@ -73,15 +72,18 @@ watch(
         label="Enter your email"
         name="email"
         type="email"
+        autocomplete="off"
         :error="emailError"
         @focus="onFocus"
         @touched="validateEmail"
+       
       />
       <Input
         v-model="password"
         label="Enter your password"
         name="password"
         type="password"
+        autocomplete="off"
         :error="passwordError"
         @focus="onFocus"
         @touched="validatePassword"

@@ -68,14 +68,13 @@ watch(
   },
   { deep: true },
 )
-
 </script>
 
 <template>
   <UForm :schema="registerStepOneSchema" :state="state" @error="validate">
     <CardEmailProfile v-bind="props.userData" />
     <div class="flex flex-col gap-y-6 mt-[60px] md:mt-8 lg:mt-10">
-      <div class="row">
+      <TemplateRow>
         <Select
           v-model="state.title"
           label="Title"
@@ -96,8 +95,8 @@ watch(
           @focus="emit('focus')"
           @touched="onTouch('academicTitle')"
         />
-      </div>
-      <div class="row">
+      </TemplateRow>
+      <TemplateRow>
         <Input
           v-model="state.name"
           label="Name"
@@ -116,8 +115,8 @@ watch(
           @focus="emit('focus')"
           @touched="onTouch('surname')"
         />
-      </div>
-      <div class="row">
+      </TemplateRow>
+      <TemplateRow>
         <Select
           v-model="state.nationality"
           label="Nationality"
@@ -128,13 +127,7 @@ watch(
           @touched="onTouch('nationality')"
         />
         <div />
-      </div>
+      </TemplateRow>
     </div>
   </UForm>
 </template>
-
-<style lang="pcss" scoped>
-.row {
-  @apply flex gap-4 flex-col md:flex-row [&>*]:flex-1;
-}
-</style>

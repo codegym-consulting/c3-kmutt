@@ -36,16 +36,10 @@ const hasValue = computed(() => !isEmpty(props.modelValue))
           :to="`#add-${props.id}`"
           :disabled="hasValue || !props.addLabel"
         >
-          <button
-            class="text-chrysler-blue text-base leading-5 font-medium"
-            type="button"
+          <ButtonAdd
+            :label="!hasValue && props.addLabel ? props.addLabel : 'Add'"
             @click="emit('add')"
-          >
-            <UIcon class="text-xl mr-2" name="humbleicons:plus" />
-            <span class="inline-block translate-y-[2px]">{{
-              !hasValue && props.addLabel ? props.addLabel : 'Add'
-            }}</span>
-          </button>
+          />
         </Teleport>
       </ClientOnly>
     </div>

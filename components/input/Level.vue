@@ -10,8 +10,8 @@ const props = withDefaults(
   }>(),
   {
     id: '',
-    showLabel: true,
-    showInfo: true,
+    showLabel: false,
+    showInfo: false,
     modelValue: undefined,
   },
 )
@@ -59,8 +59,10 @@ const modalLevel = ref(false)
       />
     </div>
     <em
-      v-if="hoverIndex > 0"
-      class="text-xs font-bai-jamjuree font-medium leading-4 text-bright-chrysler-blue not-italic"
+      :class="[
+        'text-xs h-4 font-bai-jamjuree font-medium leading-4 text-bright-chrysler-blue not-italic',
+        { invisible: hoverIndex === 0 },
+      ]"
       >{{ levelLabel[hoverIndex as Level] }}</em
     >
     <ModalLevelInfo v-model="modalLevel" />

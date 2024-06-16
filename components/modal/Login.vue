@@ -8,20 +8,17 @@ const updateValue = (value: boolean) => {
 }
 
 const emit = defineEmits<{
-    (event: 'update:modelValue', value: boolean): void
+  (event: 'update:modelValue', value: boolean): void
 }>()
-
 </script>
 
 <template>
-    <Modal title="Login with KMUTT account" sub-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
-        :model-value="props.modelValue"  @update:model-value="updateValue">
-        Login form over here
-    </Modal>
+  <Modal
+    title="Login with KMUTT account"
+    sub-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+    :model-value="props.modelValue"
+    @update:model-value="updateValue"
+  >
+    Login form over here
+  </Modal>
 </template>
-
-<style lang="pcss" scoped>
-.row {
-  @apply flex gap-4 flex-col md:flex-row [&>*]:flex-1;
-}
-</style>

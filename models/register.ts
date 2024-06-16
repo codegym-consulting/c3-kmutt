@@ -58,3 +58,19 @@ export const resumeFillInStepOneSchema = z.object({
 })
 
 export type ResumeFillInStepOne = z.infer<typeof resumeFillInStepOneSchema>
+
+export const skillLevelSchema = z
+  .object({
+    value: z.number(),
+    label: z.string(),
+  })
+  .strict()
+
+export type SkillLevel = z.infer<typeof skillLevelSchema>
+
+export const resumeFillInStepTwoSchema = z.object({
+  skills: z.array(skillLevelSchema).min(0),
+  tools: z.array(skillLevelSchema).min(0),
+})
+
+export type ResumeFillInStepTwo = z.infer<typeof resumeFillInStepTwoSchema>

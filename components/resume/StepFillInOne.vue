@@ -113,7 +113,7 @@ watchDebounced(
 <template>
   <div>
     <div class="mt-6 md:mt-8 flex flex-col gap-y-4 md:gap-y-6">
-      <div class="row">
+      <TemplateRow>
         <div class="flex flex-col gap-y-6">
           <div id="upload-box" class="flex gap-x-2 justify-between">
             <div
@@ -132,8 +132,8 @@ watchDebounced(
             </div>
           </Teleport>
         </ClientOnly>
-      </div>
-      <div class="row">
+      </TemplateRow>
+      <TemplateRow>
         <Input
           v-model="state.email"
           label="Contact email"
@@ -147,8 +147,8 @@ watchDebounced(
           name="phone"
           type="tel"
         />
-      </div>
-      <div class="row">
+      </TemplateRow>
+      <TemplateRow>
         <InputAddingList
           id="education"
           title="Education"
@@ -172,7 +172,7 @@ watchDebounced(
             >
           </CardExperience>
         </InputAddingList>
-      </div>
+      </TemplateRow>
       <div class="row mt-2">
         <InputAddingList
           id="experience"
@@ -211,9 +211,3 @@ watchDebounced(
     />
   </div>
 </template>
-
-<style lang="pcss" scoped>
-.row {
-  @apply flex gap-4 flex-col md:flex-row [&>*]:flex-1;
-}
-</style>

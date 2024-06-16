@@ -53,7 +53,7 @@ watch(
     @update:model-value="updateValue"
   >
     <div class="flex flex-col gap-y-4 md:gap-y-10">
-      <div class="row">
+      <TemplateRow>
         <Select
           v-model="education.degree"
           label="Type of degree"
@@ -61,22 +61,22 @@ watch(
           placeholder="Select type of degree"
           :options="[]"
         />
-      </div>
-      <div class="row">
+      </TemplateRow>
+      <TemplateRow>
         <Input
           v-model="education.school"
           label="School/Institute/University"
           name="school"
         />
-      </div>
-      <div class="row">
+      </TemplateRow>
+      <TemplateRow>
         <Input
           v-model="education.fieldOfStudy"
           label="Field of study"
           name="fieldOfStudy"
         />
-      </div>
-      <div class="row">
+      </TemplateRow>
+      <TemplateRow>
         <InputDatePicker
           v-model="education.graduation"
           label="Graduation"
@@ -85,8 +85,8 @@ watch(
           year-picker
         />
         <div></div>
-      </div>
-      <div class="row">
+      </TemplateRow>
+      <TemplateRow>
         <div></div>
         <UButton
           class="!flex-none w-[180px]"
@@ -94,13 +94,7 @@ watch(
           :disabled="!canSave"
           @click="onSave"
         />
-      </div>
+      </TemplateRow>
     </div>
   </Modal>
 </template>
-
-<style lang="pcss" scoped>
-.row {
-  @apply flex gap-4 flex-col md:flex-row [&>*]:flex-1;
-}
-</style>

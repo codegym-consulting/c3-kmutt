@@ -96,7 +96,7 @@ watch(
 <template>
   <UForm :schema="registerStepTwoSchema" :state="state" @error="validate">
     <div class="flex flex-col gap-y-6">
-      <div class="row">
+      <TemplateRow>
         <Select
           v-model="state.occupation"
           label="Occupation"
@@ -108,8 +108,8 @@ watch(
           @focus="emit('focus')"
           @touched="onTouch('occupation')"
         />
-      </div>
-      <div class="row">
+      </TemplateRow>
+      <TemplateRow>
         <UFormGroup label="Teaching experience">
           <ul class="flex flex-col gap-y-4">
             <li v-for="exp in experiences" :key="exp.name">
@@ -117,8 +117,8 @@ watch(
             </li>
           </ul>
         </UFormGroup>
-      </div>
-      <div class="row">
+      </TemplateRow>
+      <TemplateRow>
         <SelectMultipleWithSearch
           v-model:search="expertiseSearch"
           v-model="state.expertise"
@@ -131,8 +131,8 @@ watch(
           @focus="emit('focus')"
           @touched="onTouch('expertise')"
         />
-      </div>
-      <div class="row">
+      </TemplateRow>
+      <TemplateRow>
         <Select
           v-model="state.organization"
           label="Organization"
@@ -144,7 +144,7 @@ watch(
           @focus="emit('focus')"
           @touched="onTouch('organization')"
         />
-      </div>
+      </TemplateRow>
       <div class="row md:[&>*]:w-[calc(50%-0.5rem)]">
         <Select
           v-model="state.faculty"
@@ -170,7 +170,7 @@ watch(
           @touched="onTouch('department')"
         />
       </div>
-      <div class="row">
+      <TemplateRow>
         <SelectMultipleWithSearch
           v-model:search="areaOfInterestSearch"
           v-model="state.areaOfInterest"
@@ -183,13 +183,7 @@ watch(
           @focus="emit('focus')"
           @touched="onTouch('areaOfInterest')"
         />
-      </div>
+      </TemplateRow>
     </div>
   </UForm>
 </template>
-
-<style lang="pcss" scoped>
-.row {
-  @apply flex gap-4 flex-col md:flex-row [&>*]:flex-1;
-}
-</style>

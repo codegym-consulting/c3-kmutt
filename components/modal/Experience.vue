@@ -65,20 +65,20 @@ watch(
     @update:model-value="updateValue"
   >
     <div class="flex flex-col gap-y-4 md:gap-y-10">
-      <div class="row">
+      <TemplateRow>
         <Input v-model="experience.job" label="Job title" name="job" />
-      </div>
-      <div class="row">
+      </TemplateRow>
+      <TemplateRow>
         <Input
           v-model="experience.company"
           label="Company/Organization"
           name="company"
         />
-      </div>
-      <div class="row">
+      </TemplateRow>
+      <TemplateRow>
         <Input v-model="experience.location" label="Location" name="location" />
-      </div>
-      <div class="row">
+      </TemplateRow>
+      <TemplateRow>
         <InputDatePicker
           v-model="experience.start"
           label="Start date"
@@ -90,13 +90,9 @@ watch(
           label="End date"
           name="end"
           placeholder="Select end date"
-          :error="
-            !isEndDateValid
-              ? 'End date must be after start date.'
-              : ''
-          "
+          :error="!isEndDateValid ? 'End date must be after start date.' : ''"
         />
-      </div>
+      </TemplateRow>
       <div class="row justify-end">
         <UButton
           class="!flex-none w-[180px]"
@@ -108,9 +104,3 @@ watch(
     </div>
   </Modal>
 </template>
-
-<style lang="pcss" scoped>
-.row {
-  @apply flex gap-4 flex-col md:flex-row [&>*]:flex-1;
-}
-</style>

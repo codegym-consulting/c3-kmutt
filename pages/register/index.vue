@@ -176,10 +176,11 @@ await queryAreaOfInterests()
 await queryFaculties()
 await queryDepartments()
 
-onMounted(() => {
-  // Clear the user session beforehand
-  clear()
-})
+// TODO: handle missing cookie when request API
+// onMounted(() => {
+//   // Clear the user session beforehand
+//   clear()
+// })
 </script>
 
 <template>

@@ -15,10 +15,13 @@ export default oauth.googleEventHandler({
             email: user.email,
             name: user.name,
             photoUrl: user.picture,
-            expiredAt: Date.now() + 1000 * tokens.expires_in,
+            emailVerified: user.email_verified
         },
-        isRegistered: false,
+        accessToken: tokens.access_token,
+        refreshToken: tokens.refresh_token,
+        expiredAt: Date.now() + 1000 * tokens.expires_in,
         loggedInAt: Date.now(),
+        isRegistered: true,
         provider: 'google'
       })
       setCookie(event, 'accessToken', tokens.access_token, { httpOnly: true, secure: true, sameSite: 'lax' })

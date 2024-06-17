@@ -49,9 +49,11 @@ export default async function useApi<T>(
 
   const opts: any = options ? (({ headers, ...opts }) => opts)(options) : null
   const response = await useFetch<T>(_request, {
+    $fetch: useNuxtApp().$api,
     key: cacheKey,
     baseURL: config.public.baseApiUrl,
     headers,
+    credentials: 'include',
     ...cacheLayer,
     ...opts,
   })

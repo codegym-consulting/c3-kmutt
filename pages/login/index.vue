@@ -13,9 +13,6 @@ definePageMeta({
   },
 })
 
-const url = useRequestURL()
-const microsoftUrl = `https://auth.kmutt.ac.th/adfs/oauth2/authorize?client_id=40c3f68a-059d-42d4-a443-a63285dd1377&response_type=code&redirect_uri=${url.origin}&response_mode=query&state=123456`
-
 const terms = ref(false)
 const policy = ref(false)
 </script>
@@ -67,7 +64,7 @@ const policy = ref(false)
             <UButton
               id="kmutt-login"
               label="Continue with KMUTT account"
-              :to="microsoftUrl"
+              to="/auth/microsoft"
               external
             >
               <template #leading>

@@ -3,14 +3,16 @@ declare module '#auth-utils' {
       email: string
       name: string
       photoUrl: string
-      email_verified?: boolean
-      expiredAt?: number
+      emailVerified?: boolean
     }
   
     interface UserSession {
-      loggedInAt: number
-      provider: string
+      accessToken: string
+      refreshToken: string
+      expiredAt?: number
+      loggedInAt?: number
       isRegistered: boolean
+      provider: string
       // Add your own fields
     }
   }

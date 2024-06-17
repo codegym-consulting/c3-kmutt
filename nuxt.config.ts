@@ -33,6 +33,11 @@ export default defineNuxtConfig({
         clientId: process.env.GOOGLE_ID,
         clientSecret: process.env.GOOGLE_SECRET
       },
+      microsoft: {
+        clientId: process.env.NUXT_OAUTH_MICROSOFT_CLIENT_ID,
+        clientSecret: process.env.NUXT_OAUTH_MICROSOFT_CLIENT_SECRET,
+        tenant: process.env.NUXT_OAUTH_MICROSOFT_TENANT
+      }
     }
   },
   css: ['@/assets/css/main.css', 'v-network-graph/lib/style.css'],

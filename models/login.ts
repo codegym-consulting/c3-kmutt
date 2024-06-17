@@ -13,7 +13,6 @@ export const resetPasswordSchema = z.object({
 }).refine(data => data.confirmPassword === '' || data.newPassword === data.confirmPassword, {
   message: 'Password does not match',
   path: ['confirmPassword'], // path of error
-  fatal: true
 })
 
 

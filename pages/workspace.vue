@@ -38,6 +38,7 @@ const logout = async () => {
         <p>{{session}}</p>
         <hr class="dark:border-gray-700">
         <p>{{ user }}</p>
+        <UButton v-if="user" icon="i-heroicons-arrow-left-on-rectangle" :trailing="false" label="Create Resume" to="/resume/create" />
     </template>
     <UButton v-if="user" color="red" icon="i-heroicons-arrow-left-on-rectangle" :trailing="false" label="Logout" @click="logout" />
   </UCard>

@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev --host 127.0.0.1 & npx drizzle-kit studio",
+    "dev": "nuxt dev --host 0.0.0.0 & npx drizzle-kit studio",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint .",

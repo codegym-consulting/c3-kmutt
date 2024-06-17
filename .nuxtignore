@@ -1,0 +1,17 @@
+./* # ignore everything
+!./components/**
+!./configs/**
+!./assets/**
+!./app/**
+!./composabls/**
+!./data/**
+!./layouts/**
+!./middleware/**
+!./models/**
+!./pages/**
+!./plugins/**
+!./public/**
+!./services/**
+!./store/**
+!./utils/**
+!./server/**

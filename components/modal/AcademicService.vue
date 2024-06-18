@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { isEmpty } from '~/utils/validator'
+import { getCategories } from '~/services/resume'
 import type { Research } from '~/models/register'
+import type { Option } from '~/models/common'
 
 const props = defineProps<{
   modelValue: boolean
@@ -13,6 +15,7 @@ const emit = defineEmits<{
 
 const academic = defineModel<Research>('academic')
 const categorySearch = ref('')
+const categories = ref<Option[]>([])
 const canSave = computed(() => {
   const _academic = { ...academic.value }
   delete _academic.date
@@ -27,7 +30,18 @@ const onSave = () => {
   emit('update:modelValue', false)
   academic.value && emit('save', academic.value)
 }
+const queryCategories = async (search?: string) => {
+  const { data: categoryLists } = await getCategories(search)
+  categories.value = categoryLists?.value ?? []
+}
 
+watchDebounced(
+  categorySearch,
+  (value) => {
+    queryCategories(value)
+  },
+  { debounce: 500 },
+)
 watch(
   () => props.modelValue,
   (value) => {
@@ -40,6 +54,7 @@ watch(
     }
   },
 )
+await queryCategories()
 </script>
 
 <template>
@@ -65,7 +80,7 @@ watch(
           label="Category"
           name="category"
           placeholder="Select category"
-          :options="[]"
+          :options="categories"
         />
       </TemplateRow>
       <TemplateRow>

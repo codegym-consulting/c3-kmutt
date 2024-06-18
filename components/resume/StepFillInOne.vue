@@ -46,12 +46,13 @@ const state = computed({
   get: () => props.modelValue,
   set: (value) => emit('update:modelValue', value),
 })
+const email = ref(state.value.email)
 
 const {
   error: emailError,
   validate,
   clear,
-} = useFieldValidation(resumeFillInStepOneSchema.shape.email, state.value.email)
+} = useFieldValidation(resumeFillInStepOneSchema.shape.email, email)
 
 const onSaveEducation = (value: Education) => {
   if (editEducationIndex.value !== -1 && state.value.education) {
@@ -96,6 +97,15 @@ watch(educationModal, (value) => {
 })
 watch(experienceModal, (value) => {
   if (!value) editExperienceIndex.value = -1
+})
+watch(
+  () => state.value.email,
+  (value) => {
+    email.value = value
+  },
+)
+watch(emailError, (error) => {
+  emit('validate', !error)
 })
 watchDebounced(
   () => state.value.email,

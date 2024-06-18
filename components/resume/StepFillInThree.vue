@@ -113,7 +113,10 @@ watch(
           :name="research.topic"
           :description="
             [
-              research.category.filter(Boolean).join(', '),
+              research.category
+                .filter((c) => !!c)
+                .map((c) => c.label)
+                .join(', '),
               formatFullDate(research.date),
             ]
               .filter(Boolean)
@@ -152,7 +155,10 @@ watch(
           :name="academic.topic"
           :description="
             [
-              academic.category.filter(Boolean).join(', '),
+              academic.category
+                .filter((c) => !!c)
+                .map((c) => c.label)
+                .join(', '),
               formatFullDate(academic.date),
             ]
               .filter(Boolean)

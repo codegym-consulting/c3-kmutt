@@ -98,7 +98,7 @@ const add = (type: Type) => {
         <div class="input">
           <Input
             v-model="tool.label"
-            :label="index === 0 ? 'Skills' : ''"
+            :label="index === 0 ? 'Tools' : ''"
             :id="'tool-name' + index"
           />
           <UIcon

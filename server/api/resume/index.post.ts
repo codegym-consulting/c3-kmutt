@@ -61,6 +61,8 @@ const schema = z.object({
   publications: z.array(Publication),
 });
 
+export type Resume = z.infer<typeof schema>
+
 export default defineEventHandler(async (event) => {
     const session = await requireUserSession(event)
     const result = await readValidatedBody(event, body => schema.safeParse(body))

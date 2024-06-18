@@ -44,6 +44,12 @@ export type Response = {
   statusMessage: string
 }
 
+export type FileUploadSuccessResponse = {
+  urls: string[]
+}
+
+export type FileUploadResponse = Response | FileUploadSuccessResponse
+
 export const nameSchema = z
   .string()
   .min(1, 'Required')

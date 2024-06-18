@@ -226,6 +226,21 @@ const onClickNext = async () => {
     if (response.status.value === 'success') {
       setIsCreateResumeSuccess(true)
       navigateTo('/resume/success/?type=fill-in')
+    } else {
+      const _response = response.data.value
+      if (!!_response && 'message' in _response) {
+        $alert({
+          title: 'Cannot create resume',
+          content: _response.message,
+          type: ALERT_TYPE.ERROR,
+        })
+        return
+      }
+      $alert({
+        title: 'Cannot create resume',
+        content: 'please try again later',
+        type: ALERT_TYPE.ERROR,
+      })
     }
   }
 }

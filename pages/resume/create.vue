@@ -120,10 +120,10 @@ const onClickNext = async () => {
     const fileResponse = await uploadResume(stepTwoState.value)
     const data = fileResponse.data.value
     isLoading.value = false
-    if (!!data && 'statusMessage' in data) {
+    if (!!data && 'message' in data) {
       $alert({
         title: 'Cannot upload file',
-        content: data.statusMessage,
+        content: data.message,
         type: ALERT_TYPE.ERROR,
       })
 
@@ -150,10 +150,10 @@ const onClickNext = async () => {
     if (fillInStepOneState.avatar) {
       const fileResponse = await uploadProfile(fillInStepOneState.avatar)
       const data = fileResponse.data.value
-      if (!!data && 'statusMessage' in data) {
+      if (!!data && 'message' in data) {
         $alert({
           title: 'Cannot upload profile image',
-          content: data.statusMessage,
+          content: data.message,
           type: ALERT_TYPE.ERROR,
         })
         return
@@ -165,6 +165,7 @@ const onClickNext = async () => {
     }
 
     const response = await postCreateResume({
+      photoUrl,
       nickname: fillInStepOneState?.nickname ?? '',
       contactEmail: fillInStepOneState?.email ?? '',
       contactNumber: fillInStepOneState?.phone ?? '',
@@ -195,35 +196,31 @@ const onClickNext = async () => {
           name: t.label,
           level: t.value,
         })),
-      projects: [],
-      // projects:
-      //   fillInStepThreeState.research?.map((p) => ({
-      //     name: p.topic,
-      //     category: p.category?.map((c) => +c.value) ?? [],
-      //     date: p.date,
-      //   })) ?? [],
+      projects:
+        fillInStepThreeState.research?.map((p) => ({
+          name: p.topic ?? '',
+          categories: p.category?.map((c) => +c.value) ?? [],
+          date: p.date,
+        })) ?? [],
       trainings:
         fillInStepThreeState.training?.map((t) => ({
           class: t.course ?? '',
           date: t.date,
         })) ?? [],
-      academicServices: [],
-      // academicServices:
-      //   fillInStepThreeState.academicService?.map((a) => ({
-      //     name: a.topic,
-      //     category: a.category?.map((c) => +c.value) ?? [],
-      //     date: a.date,
-      //   })) ?? [],
-      publications: [],
-      // publications:
-      //   fillInStepThreeState.publication?.map((p) => ({
-      //     typeOfSource: p.type?.value?.toString?.() ?? '',
-      //     city: p.city,
-      //     authors: p.author,
-      //     publisher: p.publisher,
-      //     year: p.year,
-      //   })) ?? [],
-      photoUrl,
+      academicServices:
+        fillInStepThreeState.academicService?.map((a) => ({
+          name: a.topic ?? '',
+          categories: a.category?.map((c) => +c.value) ?? [],
+          date: a.date,
+        })) ?? [],
+      publications:
+        fillInStepThreeState.publication?.map((p) => ({
+          typeOfSource: p.type?.value?.toString?.() ?? '',
+          city: p.city,
+          authors: p.author,
+          publisher: p.publisher,
+          year: p.year,
+        })) ?? [],
     })
     isLoading.value = false
     if (response.status.value === 'success') {

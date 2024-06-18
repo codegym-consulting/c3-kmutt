@@ -42,6 +42,7 @@ export const optionalSelectSchema = z.union([
 export type Response = {
   statusCode?: number
   statusMessage: string
+  message: string
 }
 
 export type FileUploadSuccessResponse = {

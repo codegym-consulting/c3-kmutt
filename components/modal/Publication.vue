@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { isEmpty } from '~/utils/validator'
-import { type Publication, PUBLICATION_TYPE } from '~/models/register'
+import { typeOfSources } from '~/data/common'
+import { type Publication } from '~/models/register'
 
 const props = defineProps<{
   modelValue: boolean
@@ -12,10 +13,6 @@ const emit = defineEmits<{
 }>()
 
 const publication = defineModel<Publication>('publication')
-const options = Object.values(PUBLICATION_TYPE).map((value) => ({
-  value,
-  label: value,
-}))
 const canSave = computed(() => {
   const _publication = { ...publication.value }
   delete _publication.year
@@ -79,7 +76,7 @@ watch(
           label="Type of source"
           name="type"
           placeholder="Select type of source"
-          :options="options"
+          :options="typeOfSources"
         />
       </TemplateRow>
       <template v-if="publication.type?.value">

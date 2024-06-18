@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { isEmpty } from '~/utils/validator'
+import { typeOfDegrees } from '~/data/common';
 import type { Education } from '~/models/register'
 
 const props = defineProps<{
@@ -59,7 +60,7 @@ watch(
           label="Type of degree"
           name="degree"
           placeholder="Select type of degree"
-          :options="[]"
+          :options="typeOfDegrees"
         />
       </TemplateRow>
       <TemplateRow>

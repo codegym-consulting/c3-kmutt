@@ -90,23 +90,6 @@ export const trainingSchema = z.object({
 
 export type Training = z.infer<typeof trainingSchema>
 
-export enum PUBLICATION_TYPE {
-  BOOK = 'Book',
-  BOOK_SECTION = 'Book section',
-  JOURNAL_ARTICLE = 'Journal article',
-  ARTICLE_IN_A_PERIODICAL = 'Article in a Periodical',
-  CONFERENCE_PROCEEDINGS = 'Conference proceedings',
-  REPORT = 'Report',
-  WEBSITE = 'Website',
-  ELECTRONIC_SOURCE = 'Electronic source',
-  ART = 'Art',
-  SOUND_RECORDING = 'Sound recording',
-  PERFORMANCE = 'Performance',
-  FILM = 'Film',
-  INTERVIEW = 'Interview',
-  PATENT = 'Patent',
-}
-
 export const publicationSchema = z.object({
   type: selectSchema.optional(),
   city: z.string().optional(),

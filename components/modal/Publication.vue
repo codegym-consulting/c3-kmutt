@@ -14,7 +14,10 @@ const emit = defineEmits<{
 
 const publication = defineModel<Publication>('publication')
 const canSave = computed(() => {
-  const _publication = { ...publication.value }
+  const _publication = {
+    ...publication.value,
+    author: publication.value?.author?.filter((author) => author),
+  }
   delete _publication.year
   delete _publication.type
   return (
@@ -107,8 +110,11 @@ watch(
             <Input
               :model-value="author"
               :label="'Author ' + (index + 1 + (row - 1) * 2)"
-              :name="'author' + index"
-              @update:model-value="($event) => onUpdateAuthor(index, $event)"
+              :name="'author' + (index + 1 + (row - 1) * 2)"
+              @update:model-value="
+                ($event) =>
+                  onUpdateAuthor(index + 1 + (row - 1) * 2 - 1, $event)
+              "
             />
             <div
               v-if="publication.author.slice((row - 1) * 2, row * 2).length < 2"

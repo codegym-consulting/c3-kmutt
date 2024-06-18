@@ -1,7 +1,7 @@
 import { validateFileSize, validateFileType } from '~/utils/validator'
 import { uploadFiles } from '~/server/services/upload'
 
-const MAX_FILE_SIZE = 20 * 1024 * 1024 // 20MB
+const MAX_FILE_SIZE = 5 * 1024 * 1024 // 5MB
 
 export default defineEventHandler(async (event) => {
     const session = await requireUserSession(event)

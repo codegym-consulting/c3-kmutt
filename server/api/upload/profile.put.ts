@@ -10,14 +10,16 @@ export default defineEventHandler(async (event) => {
     if (!files || files && files[0].filename === '') {
         throw createError({
             statusCode: 400,
-            statusMessage: 'No files selected'
+            statusMessage: "Bad Request",
+            message: 'No files selected'
         })
     }
 
     if (files && files.length > 1) {
         throw createError({
             statusCode: 400,
-            statusMessage: 'Maximum to 1 file can be uploaded'
+            statusMessage: "Bad Request",
+            message: 'Maximum to 1 file can be uploaded'
         })
     }
     validateFileSize(files, MAX_FILE_SIZE)

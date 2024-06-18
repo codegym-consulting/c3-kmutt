@@ -24,9 +24,16 @@ export default defineEventHandler(async (event) => {
   const result = await readValidatedBody(event, body => schema.safeParse(body))
 
     if (!result.success) {
+      const errorDetails = result.error.flatten();
+      const errorMessage = result.error.errors
+        .map(({ path, message }) => `${path[path.length - 1]} in ${path[0]} is ${message}`)
+        .join('\n');
+
       throw createError({
         statusCode: 400,
-        statusMessage: result.error.issues[0].message
+        statusMessage: "Bad Request",
+        message: errorMessage,
+        data: errorDetails
       })
     }
 

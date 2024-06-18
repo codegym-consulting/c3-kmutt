@@ -23,7 +23,7 @@ const Skill = z.object({
 
 const Project = z.object({
     name: z.string(),
-    category: z.number().int().optional(),
+    categories: z.array(z.number().int()).optional(),
     date: z.string().optional(),
 })
 
@@ -34,16 +34,12 @@ const Training = z.object({
     date: z.string().optional(),
 })
 
-const Author = z.object({
-    name: z.string().optional(),
-    publisher: z.string().optional(),
-    year: z.string().optional(),
-})
-
 const Publication = z.object({
     typeOfSource: z.enum([typeOfSources[0].value, ...(typeOfSources.slice(1).map(item => item.value))] as [string, ...string[]]),
     city: z.string().optional(),
-    authors: z.array(Author)
+    publisher: z.string().optional(),
+    year: z.string().optional(),
+    authors: z.array(z.string()).optional()
 })
 
 const schema = z.object({
@@ -68,10 +64,17 @@ export default defineEventHandler(async (event) => {
     const result = await readValidatedBody(event, body => schema.safeParse(body))
 
     if (!result.success) {
-      throw createError({
-        statusCode: 400,
-        statusMessage: result.error.issues[0].message
-      })
+        const errorDetails = result.error.flatten();
+        const errorMessage = result.error.errors
+        .map(({ path, message }) => `${path[path.length - 1]} in ${path[0]} is ${message}`)
+        .join('\n');
+        
+        throw createError({
+            statusCode: 400,
+            statusMessage: "Bad Request",
+            message: errorMessage,
+            data: errorDetails
+        })
     }
 
     console.log(result.data)

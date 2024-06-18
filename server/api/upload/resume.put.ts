@@ -10,6 +10,7 @@ export default defineEventHandler(async (event) => {
     if (!files || files && files[0].filename === '') {
         throw createError({
             statusCode: 400,
+            message: "Bad Request",
             statusMessage: 'No files selected'
         })
     }
@@ -17,7 +18,8 @@ export default defineEventHandler(async (event) => {
     if (files && files.length > 3) {
         throw createError({
             statusCode: 400,
-            statusMessage: 'Maximum to 3 files can be uploaded'
+            statusMessage: "Bad Request",
+            message: 'Maximum to 3 files can be uploaded'
         })
     }
 

@@ -19,7 +19,8 @@ export const validateFileType = (files: MultiPartData[], supportTypes: string[])
       if (!supportTypes.includes(file.type as string)) {
           throw createError({
               statusCode: 400,
-              statusMessage: `Invalid file type. Only ${supportTypes.join(',')} types are allowed.`
+              statusMessage: "Bad Request",
+              message: `Invalid file type. Only ${supportTypes.join(',')} types are allowed.`
           })
       }
   }
@@ -32,7 +33,8 @@ export const validateFileSize = (files: MultiPartData[], maxSize: number) => {
     if (file.data.length > maxSize) {
         throw createError({
             statusCode: 400,
-            statusMessage: `Maximum file size is ${maxSize} MB.`
+            statusMessage: "Bad Request",
+            message: `Maximum file size is ${maxSize} MB.`
         })
     }
   }

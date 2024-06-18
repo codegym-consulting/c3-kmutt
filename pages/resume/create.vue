@@ -174,7 +174,7 @@ const onClickNext = async () => {
           typeOfDegree: e.degree?.value?.toString?.() ?? '',
           institution: e.school,
           fieldOfStudy: e.fieldOfStudy,
-          graduationYear: e.graduation?.toString(),
+          graduationYear: e.graduation?.toString?.() ?? '',
         })) ?? [],
       experiences:
         fillInStepOneState.experience?.map((e) => ({
@@ -219,7 +219,7 @@ const onClickNext = async () => {
           city: p.city,
           authors: p.author,
           publisher: p.publisher,
-          year: p.year,
+          year: p.year?.toString?.() ?? '',
         })) ?? [],
     })
     isLoading.value = false

@@ -43,7 +43,7 @@ const Publication = z.object({
 })
 
 const schema = z.object({
-  photoUrl: z.string().url().optional(),
+  photoUrl: z.string().url().or(z.literal('')).optional(), // TODO: are you sure?
   nickname: z.string(),
   contactEmail: z.string().email(),
   contactNumber: z.string(),

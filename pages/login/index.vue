@@ -13,8 +13,34 @@ definePageMeta({
   },
 })
 
+const route = useRoute()
 const terms = ref(false)
 const policy = ref(false)
+
+//check hash #privacy-policy and #terms to open modal
+const checkHash = () => {
+  const hash = route.hash
+
+  if (hash === '#privacy-policy') {
+    policy.value = true
+  } else if (hash === '#terms') {
+    terms.value = true
+  }
+}
+
+// Watch for changes to the route
+watch(
+  route,
+  () => {
+    checkHash()
+  },
+  { immediate: true },
+)
+
+// Also check hash on initial mount
+onMounted(() => {
+  checkHash()
+})
 </script>
 
 <template>
@@ -52,12 +78,12 @@ const policy = ref(false)
               <source
                 media="(min-width: 1024px)"
                 srcset="/logo/logo_full_vertical.svg"
-              >
-              <img src="/logo/logo_full.svg" alt="3c_logo" >
+              />
+              <img src="/logo/logo_full.svg" alt="3c_logo" />
             </picture>
           </ULink>
           <h1 class="text-3xl md:text-[40px] md:leading-[50px] text-gray-6">
-            <span>KMUTT</span> network<br >
+            <span>KMUTT</span> network<br />
             knowledge <span>sharing platform</span>
           </h1>
           <div class="flex flex-col items-center gap-y-2 [&>*]:w-full">

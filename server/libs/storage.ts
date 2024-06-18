@@ -13,9 +13,6 @@ export default async function uploadFile(filePath: string, destination: string) 
     }
   });
 
-  // Make the file public
-  // await storage.bucket(bucketName).file(destination).makePublic();
-
   // TODO: find some CDN to wrap the bucket
   const publicUrl = `https://storage.googleapis.com/${bucketName}/${destination}`;
   return publicUrl;

@@ -1,6 +1,7 @@
-import uploadFile from '~/server/libs/storage'
-import path from 'path'
-import fs from 'fs'
+import { validateFileSize, validateFileType } from '~/utils/validator'
+import { uploadFiles } from '~/server/services/upload'
+
+const MAX_FILE_SIZE = 20 * 1024 * 1024 // 20MB
 
 export default defineEventHandler(async (event) => {
     const session = await requireUserSession(event)
@@ -20,28 +21,10 @@ export default defineEventHandler(async (event) => {
         })
     }
 
+    validateFileSize(files, MAX_FILE_SIZE)
+    validateFileType(files, ['application/pdf', 'image/jpeg', 'image/png', 'image/webp'])
     // TODO: resize file fnc here
 
-    // Validate file types before uploading
-    for (const file of files) {
-        if (!['application/pdf', 'image/jpeg', 'image/png', 'image/webp'].includes(file.type as string)) {
-        throw createError({
-            statusCode: 400,
-            statusMessage: 'Invalid file type. Only PDF, JPG, PNG, and WEBP files are allowed.'
-        })
-        }
-    }
-
-    // Upload files
-    const urls = files.map(async (file) => {
-        const filePath = path.join(process.cwd(), 'tmp', file.filename as string)
-        fs.writeFileSync(filePath, file.data)
-        const newFilename = `${Date.now()}.${file?.filename?.split('.').pop()}`;
-        const publicUrl = await uploadFile(filePath, `user/${session.user.email}/resume/${newFilename}`)
-        fs.unlinkSync(filePath)
-        return publicUrl;
-    })
-
-    const result = await Promise.all(urls);
-    return { urls: result }
+    const urls = await Promise.all(uploadFiles(files, `user/${session.user.email}/resume`));
+    return { urls }
 })

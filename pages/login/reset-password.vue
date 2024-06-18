@@ -60,7 +60,6 @@ watch(
         :error="formError" @focus="onFocus" @touched="validateForm" />
       <Input v-model="confirmPassword" label="Enter password confirmation" name="confirmPassword" type="password"
         :error="formError" @focus="onFocus" @touched="validateForm" />
-        {{ formError }}
     </div>
     <RegisterActionFooter :buttons="['', 'done']" :disabled-next="!formValid" @click-next="onSubmit" />
   </div>

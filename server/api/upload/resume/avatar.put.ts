@@ -27,6 +27,6 @@ export default defineEventHandler(async (event) => {
 
     // TODO: resize file fnc here and transform to webp
 
-    const urls = await Promise.all(uploadFiles(files, `user/${session.user.email}/resume`, 'profile'));
+    const urls = await Promise.all(uploadFiles(files, `user/${session.user.email}/resume`, 'avatar'));
     return { urls }
 })

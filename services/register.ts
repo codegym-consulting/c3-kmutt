@@ -10,7 +10,7 @@ export function getInterests(query?: string) {
 }
 
 export function postRegister(body: Schema) {
-  return useApi<Response>('/register', { method: 'POST', body })
+  return useDollarFetch<Response>('/register', { method: 'POST', body })
 }
 
 export function getFaculties() {

@@ -30,6 +30,7 @@ const { setRegisterNavbarFullSize, setIsCreateResumeSuccess } =
 const step = ref(1)
 const fillInStep = ref(1)
 const isLoading = ref(false)
+const photoUrl = ref('')
 const stepOneState = reactive<{
   method: '' | 'upload' | 'fill-in'
 }>({
@@ -118,12 +119,12 @@ const onClickNext = async () => {
   ) {
     isLoading.value = true
     const fileResponse = await uploadResume(stepTwoState.value)
-    const data = fileResponse.data.value
     isLoading.value = false
-    if (!!data && 'message' in data) {
+    if (!!fileResponse && 'message' in fileResponse) {
       $alert({
+        id: new Date().getSeconds().toString(),
         title: 'Cannot upload file',
-        content: data.message,
+        content: fileResponse.message,
         type: ALERT_TYPE.ERROR,
       })
 
@@ -132,9 +133,9 @@ const onClickNext = async () => {
     }
 
     if (
-      !!data &&
-      'urls' in data &&
-      data.urls.length === stepTwoState.value.length
+      !!fileResponse &&
+      'urls' in fileResponse &&
+      fileResponse.urls.length === stepTwoState.value.length
     ) {
       setIsCreateResumeSuccess(true)
       navigateTo('/resume/success/?type=upload')
@@ -146,26 +147,29 @@ const onClickNext = async () => {
   // Step Fill In Resume
   if (step.value === 5 && stepOneState.method === 'fill-in') {
     isLoading.value = true
-    let photoUrl = ''
-    if (fillInStepOneState.avatar) {
+    if (fillInStepOneState.avatar && !photoUrl.value) {
       const fileResponse = await uploadProfile(fillInStepOneState.avatar)
-      const data = fileResponse.data.value
-      if (!!data && 'message' in data) {
+      if (!!fileResponse && 'message' in fileResponse) {
         $alert({
+          id: new Date().getSeconds().toString(),
           title: 'Cannot upload profile image',
-          content: data.message,
+          content: fileResponse.message,
           type: ALERT_TYPE.ERROR,
         })
         return
       }
 
-      if (!!data && 'urls' in data && data.urls.length) {
-        photoUrl = data.urls?.pop?.() ?? ''
+      if (
+        !!fileResponse &&
+        'urls' in fileResponse &&
+        fileResponse.urls.length
+      ) {
+        photoUrl.value = fileResponse.urls?.pop?.() ?? ''
       }
     }
 
     const response = await postCreateResume({
-      photoUrl,
+      photoUrl: photoUrl.value,
       nickname: fillInStepOneState?.nickname ?? '',
       contactEmail: fillInStepOneState?.email ?? '',
       contactNumber: fillInStepOneState?.phone ?? '',
@@ -223,20 +227,21 @@ const onClickNext = async () => {
         })) ?? [],
     })
     isLoading.value = false
-    if (response.status.value === 'success') {
+    if (response.statusCode === 201) {
       setIsCreateResumeSuccess(true)
       navigateTo('/resume/success/?type=fill-in')
     } else {
-      const _response = response.data.value
-      if (!!_response && 'message' in _response) {
+      if (!!response && 'message' in response) {
         $alert({
+          id: new Date().getSeconds().toString(),
           title: 'Cannot create resume',
-          content: _response.message,
+          content: response.message,
           type: ALERT_TYPE.ERROR,
         })
         return
       }
       $alert({
+        id: new Date().getSeconds().toString(),
         title: 'Cannot create resume',
         content: 'please try again later',
         type: ALERT_TYPE.ERROR,

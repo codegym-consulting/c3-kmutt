@@ -6,7 +6,7 @@ export function uploadResume(files: File[]) {
   for (let i = 0; i < files.length; i++) {
     formData.append('file', files[i])
   }
-  return useApi<FileUploadResponse>('/upload/resume', {
+  return useDollarFetch<FileUploadResponse>('/upload/resume', {
     method: 'PUT',
     body: formData,
   })
@@ -15,14 +15,14 @@ export function uploadResume(files: File[]) {
 export function uploadProfile(files: File) {
   const formData = new FormData()
   formData.append('file', files)
-  return useApi<FileUploadResponse>('/upload/profile', {
+  return useDollarFetch<FileUploadResponse>('/upload/resume/avatar', {
     method: 'PUT',
     body: formData,
   })
 }
 
 export function postCreateResume(body: Resume) {
-  return useApi<Response>('/resume', { method: 'POST', body })
+  return useDollarFetch<Response>('/resume', { method: 'POST', body })
 }
 
 export function getCategories(query?: string) {

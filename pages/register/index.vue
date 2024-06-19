@@ -18,7 +18,7 @@ import { watchDebounced } from '@vueuse/core'
 
 definePageMeta({
   layout: 'register',
-  middleware: 'auth'
+  middleware: 'auth',
 })
 
 const { user, clear } = useUserSession()
@@ -138,7 +138,7 @@ const onClickNext = async () => {
       areaOfInterests: stepTwoState.areaOfInterest.map((a) => +a.value),
     })
 
-    if (res.status.value === 'success') {
+    if (res.statusCode === 201) {
       register.setIsRegisterationSuccess(true)
       router.push('/register/success')
     }

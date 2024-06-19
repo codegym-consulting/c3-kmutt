@@ -3,7 +3,7 @@
 import { type UseFetchOptions } from '#app'
 import { type NitroFetchRequest } from 'nitropack'
 
-export type useApiOptions<T> =
+type useApiOptions<T> =
   | (UseFetchOptions<T, (res: T) => T> & { [others: string]: any })
   | undefined
 

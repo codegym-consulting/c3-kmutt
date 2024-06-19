@@ -2,7 +2,7 @@
 import type { NitroFetchRequest } from 'nitropack'
 import type { Response } from '~/models/common'
 
-export type useApiOptions<T> =
+type useApiOptions<T> =
   | ({ [others: string]: any } & {
       method?: string
       params?: Record<string, any>

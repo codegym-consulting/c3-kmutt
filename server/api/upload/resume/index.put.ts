@@ -25,8 +25,6 @@ export default defineEventHandler(async (event) => {
 
     validateFileSize(files, MAX_FILE_SIZE)
     validateFileType(files, ['application/pdf', 'image/jpeg', 'image/png', 'image/webp'])
-    // TODO: resize file fnc here
-
-    const urls = await Promise.all(uploadFiles(files, `user/${session.user.email}/resume`));
+    const urls = await uploadFiles(files, `user/${session.user.email}/resume`);
     return { urls }
 })

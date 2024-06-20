@@ -12,8 +12,6 @@ export default async function uploadFile(filePath: string, destination: string) 
       cacheControl
     }
   });
-
-  // TODO: find some CDN to wrap the bucket
   const publicUrl = `https://storage.googleapis.com/${bucketName}/${destination}`;
   return publicUrl;
 }

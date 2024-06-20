@@ -112,9 +112,10 @@ export default defineNuxtConfig({
       ],
     },
   },
-  typescript: {
-    typeCheck: 'build',
-  },
+  // So sad https://github.com/vuejs/language-tools/issues/3969
+  // typescript: {
+  //   typeCheck: 'build',
+  // },
   experimental: {
     viewTransition: true,
     appManifest: false,

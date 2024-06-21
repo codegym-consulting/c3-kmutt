@@ -3,7 +3,7 @@ import { sendRedirect } from 'h3'
 export default oauth.microsoftEventHandler({
     config: {
       redirectUrl: 'https://c3-kmutt.netlify.app/auth/microsoft',
-      authorizationURL: 'https://auth.kmutt.ac.th/adfs/oauth2/authorize',
+      authorizationURL: 'https://login.microsoftonline.com/6f4432dc-20d2-441d-b1db-ac3380ba633d/oauth2/authorize',
       authorizationParams: {
         response_type: "code",
         response_mode: "query"

@@ -1,7 +1,13 @@
 import { Storage } from '@google-cloud/storage';
 import { Readable } from 'stream';
 
-const storage = new Storage();
+const storage = new Storage({
+  projectId: 'c3-kmutt',
+  credentials: {
+    client_email: 'storage@c3-kmutt.iam.gserviceaccount.com',
+    private_key: process.env.GCLOUD_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+  },
+});
 const bucketName = 'c3-kmutt';
 const cacheControl = 'public, max-age=604800'; // 1 week in seconds
 

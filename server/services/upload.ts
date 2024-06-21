@@ -1,21 +1,11 @@
 import type { MultiPartData } from 'h3'
-import path from 'path'
-import fs from 'fs'
 import uploadFile from '../libs/storage'
 
 export const uploadFiles = async (files: MultiPartData[], destination: string, fileName?: string) => {
     try {
-        const dirPath = path.join(__dirname, 'tmp');
-        if (!fs.existsSync(dirPath)) {
-            fs.mkdirSync(dirPath, { recursive: true });
-        }
-
-        const tasks = files.map(async (file) => {
-            const filePath = path.join(dirPath, file?.filename as string)    
+        const tasks = files.map(async (file) => { 
             const extension = file?.filename?.split('.').pop() 
-            fs.writeFileSync(filePath, file.data)
-            const url = await uploadFile(filePath, `${destination}/${fileName ? `${fileName}.${extension}` : `${Date.now()}.${extension}`}`)
-            fs.unlinkSync(filePath)
+            const url = await uploadFile(file.data, `${destination}/${fileName ? `${fileName}.${extension}` : `${Date.now()}.${extension}`}`)
             return url;
         })
 

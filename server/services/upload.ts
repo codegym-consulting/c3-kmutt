@@ -5,7 +5,7 @@ import uploadFile from '../libs/storage'
 
 export const uploadFiles = async (files: MultiPartData[], destination: string, fileName?: string) => {
     try {
-        const dirPath = path.join(process.cwd(), 'tmp');
+        const dirPath = path.join(__dirname, 'tmp');
         if (!fs.existsSync(dirPath)) {
             fs.mkdirSync(dirPath, { recursive: true });
         }

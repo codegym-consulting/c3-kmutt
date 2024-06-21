@@ -25,6 +25,4 @@ logs
 
 .netlify
 
-tmp/*
-
 c3-kmutt-service-account.json

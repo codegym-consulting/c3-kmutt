@@ -4,6 +4,7 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev --host 0.0.0.0 & npx drizzle-kit studio",
+    "dev2": "bunx --bun nuxt dev --host 0.0.0.0",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
@@ -34,6 +35,7 @@
     "nuxt-swiper": "^1.2.2",
     "pinia": "^2.1.7",
     "postgres": "^3.4.4",
+    "resend": "^3.3.0",
     "sharp": "^0.33.4",
     "unstorage": "^1.10.2",
     "v-network-graph": "^0.9.15",
@@ -44,6 +46,7 @@
   "devDependencies": {
     "@nuxt/eslint": "^0.3.13",
     "@nuxt/test-utils": "^3.13.1",
+    "@types/bun": "^1.1.5",
     "@vue/test-utils": "^2.4.6",
     "@vueuse/core": "^10.11.0",
     "@vueuse/nuxt": "^10.11.0",

@@ -24,15 +24,6 @@ export const faculty = pgTable("faculty", {
 	name: text("name"),
 });
 
-export const user = pgTable("user", {
-	id: serial("id").primaryKey().notNull(),
-	email: text("email"),
-	name: text("name"),
-	photoUrl: text("photoUrl"),
-	provider: text("provider"),
-	loggedInAt: timestamp("loggedInAt", { withTimezone: true, mode: 'string' }),
-});
-
 export const department = pgTable("department", {
 	id: serial("id").primaryKey().notNull(),
 	name: text("name"),
@@ -49,4 +40,14 @@ export const project = pgTable("project", {
 	SDGGoal: integer("SDGGoal"),
 	imageUrl: text("imageUrl"),
 	imageUrls: jsonb("imageUrls"),
+});
+
+export const user = pgTable("user", {
+	id: serial("id").primaryKey().notNull(),
+	email: text("email"),
+	name: text("name"),
+	photoUrl: text("photoUrl"),
+	provider: text("provider"),
+	loggedInAt: timestamp("loggedInAt", { withTimezone: true, mode: 'string' }),
+	password: text("password"),
 });

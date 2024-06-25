@@ -58,9 +58,24 @@ const clearValue = async () => {
 const onInput = (event: Event) => {
   if (props.type === 'tel') {
     const target = event.target as HTMLInputElement
-    const newValue = target.value.replace(/\D/g, '')
-    target.value = newValue
-    updateValue(newValue)
+    const numeric = target.value.replace(/\D/g, '')
+    if (numeric.length <= 10) {
+      // xxx-xxx-xxxx
+      const match = numeric.match(/^(\d{0,3})(\d{0,3})(\d{0,4})$/)
+      if (match) {
+        target.value = [match[1], match[2], match[3]].filter((x) => x).join('-')
+      }
+    } else {
+      // xxx-xxx-xxx
+      let formatted = ''
+      for (let i = 0; i < numeric.length; i += 3) {
+        if (i > 0) formatted += '-'
+        formatted += numeric.substring(i, i + 3)
+      }
+      target.value = formatted
+    }
+
+    updateValue(target.value)
   }
 }
 </script>

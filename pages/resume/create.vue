@@ -172,7 +172,7 @@ const onClickNext = async () => {
       photoUrl: photoUrl.value,
       nickname: fillInStepOneState?.nickname ?? '',
       contactEmail: fillInStepOneState?.email ?? '',
-      contactNumber: fillInStepOneState?.phone ?? '',
+      contactNumber: fillInStepOneState?.phone?.replaceAll?.('-', '') ?? '',
       educations:
         fillInStepOneState.education?.map((e) => ({
           typeOfDegree: e.degree?.value?.toString?.() ?? '',

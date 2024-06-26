@@ -3,6 +3,19 @@ definePageMeta({
   layout: 'workspace',
   middleware: 'auth',
 })
+
+const { user, session, clear, loggedIn } = useUserSession()
+
+watch(loggedIn, () => {
+  if (!loggedIn.value) {
+    navigateTo('/login')
+  }
+})
+
+const logout = async () => {
+  await clear()
+  navigateTo('/login')
+}
 </script>
 
 <template>

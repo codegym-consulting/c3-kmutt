@@ -1,3 +1,5 @@
+import { updateUser } from "~/server/services/user/update"
+
 export default oauth.googleEventHandler({
     config: {
         authorizationParams: {
@@ -10,6 +12,7 @@ export default oauth.googleEventHandler({
     async onSuccess(event, { user, tokens }) {
       console.log(tokens)
       console.log(user)
+      await updateUser(user.email, user.name, user.picture, 'google')
       await setUserSession(event, {
         user: {
             email: user.email,

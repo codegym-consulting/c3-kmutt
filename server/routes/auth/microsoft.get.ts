@@ -1,4 +1,5 @@
 import { sendRedirect } from 'h3'
+import { updateUser } from '~/server/services/user/update'
 
 export default oauth.microsoftEventHandler({
     config: {
@@ -13,6 +14,7 @@ export default oauth.microsoftEventHandler({
     async onSuccess(event, { user, tokens }) {
       console.log(tokens)
       console.log(user)
+      await updateUser(user.email, user.name, user.picture, 'microsoft')
       await setUserSession(event, {
         user: {
             email: user.email,

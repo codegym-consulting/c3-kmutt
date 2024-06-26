@@ -4,8 +4,11 @@
 
 @layer components {
   .round-icon-btn {
-    @apply transition-all w-12 h-12 bg-gray-10 rounded-full text-white flex items-center justify-center text-xl;
+    @apply cursor-pointer transition-all w-12 h-12 bg-gray-10 rounded-full text-white flex items-center justify-center text-xl;
     &:hover {
+      @apply bg-chrysler-blue text-white;
+    }
+    &.-active {
       @apply !bg-chrysler-blue !text-white;
     }
     svg {
@@ -13,6 +16,12 @@
     }
     &.-invert {
       @apply bg-white text-gray-10;
+      &:hover {
+        @apply bg-gray-10 text-white;
+      }
+      &.-active {
+        @apply !bg-gray-10 !text-white;
+      }
     }
     &.-big {
       @apply w-[66px] h-[66px] text-2xl;

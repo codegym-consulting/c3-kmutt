@@ -31,7 +31,7 @@ const props = withDefaults(
 )
 
 const input = ref<VNodeRef | null>(null)
-const focus = ref(false)
+const _focus = ref(false)
 const forceFocus = ref(false)
 
 const isCalendar = computed(() => props.type === 'calendar')
@@ -94,7 +94,7 @@ const onInput = (event: Event) => {
       :model-value="props.modelValue"
       :type="props.type"
       :class="[
-        { 'fancy-border': (focus && !error) || forceFocus || props.focus },
+        { 'fancy-border': (_focus && !error) || forceFocus || props.focus },
       ]"
       :ui="{
         base: '!font-bai-jamjuree !text-base !text-dark-theme !bg-white',
@@ -115,26 +115,26 @@ const onInput = (event: Event) => {
         },
         ...props.ui,
       }"
+      v-bind="props.inputProps"
       @focus="
         () => {
           emit('focus')
-          focus = true
+          _focus = true
         }
       "
       @blur="
         () => {
           emit('touched')
-          focus = false
+          _focus = false
           forceFocus = false
         }
       "
       @update:model-value="updateValue"
       @input="onInput"
-      v-bind="props.inputProps"
     >
       <template #trailing>
         <UButton
-          v-show="props.modelValue && focus && !isCalendar"
+          v-show="props.modelValue && _focus && !isCalendar"
           icon="humbleicons:times"
           class="min-w-5 w-5 h-5 [&_svg]:w-3"
           @mousedown="clearValue"

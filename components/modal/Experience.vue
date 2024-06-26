@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { isEmpty } from '~/utils/validator'
-import type { Experience } from '~/models/register'
+import type { Experience } from '~/utils/repositories/register/model'
 
 const props = defineProps<{
   modelValue: boolean

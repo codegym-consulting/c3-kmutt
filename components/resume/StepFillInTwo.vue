@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { ResumeFillInStepTwo } from '~/models/register'
+import type { ResumeFillInStepTwo } from '~/utils/repositories/resume/model'
 
 type Type = 'skill' | 'tool'
 
@@ -66,9 +66,9 @@ const add = (type: Type) => {
       >
         <div class="input">
           <Input
+            :id="'skill-name' + index"
             v-model="skill.label"
             :label="index === 0 ? 'Skills' : ''"
-            :id="'skill-name' + index"
           />
           <UIcon
             :class="[
@@ -81,8 +81,8 @@ const add = (type: Type) => {
           />
         </div>
         <InputLevel
-          v-model="skill.value"
           :id="'skill-level' + index"
+          v-model="skill.value"
           :show-label="index === 0"
           :show-info="index === 0"
         />
@@ -97,9 +97,9 @@ const add = (type: Type) => {
       <TemplateRow v-for="(tool, index) in state.tools" :key="'tool' + index">
         <div class="input">
           <Input
+            :id="'tool-name' + index"
             v-model="tool.label"
             :label="index === 0 ? 'Tools' : ''"
-            :id="'tool-name' + index"
           />
           <UIcon
             :class="[
@@ -112,8 +112,8 @@ const add = (type: Type) => {
           />
         </div>
         <InputLevel
-          v-model="tool.value"
           :id="'tool-level' + index"
+          v-model="tool.value"
           :show-label="index === 0"
         />
       </TemplateRow>

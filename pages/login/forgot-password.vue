@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { loginSchema } from '~/models/login'
+import { loginSchema } from '~/utils/repositories/login/model'
 import { watchDebounced } from '@vueuse/core'
 
 definePageMeta({

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { isEmpty } from '~/utils/validator'
-import type { Training } from '~/models/register'
+import type { Training } from '~/utils/repositories/resume/model'
 
 const props = defineProps<{
   modelValue: boolean
@@ -63,10 +63,10 @@ watch(
           name="date"
           placeholder="Select date"
         />
-        <div></div>
+        <div/>
       </TemplateRow>
       <TemplateRow>
-        <div></div>
+        <div/>
         <UButton
           class="!flex-none w-[180px]"
           label="Save"

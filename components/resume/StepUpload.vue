@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { formatFileSize } from '~/utils/formatter'
-import { ALERT_TYPE } from '~/models/common'
+import { ALERT_TYPE } from '~/utils/repositories/common/model'
 
 const { $alert } = useNuxtApp()
 

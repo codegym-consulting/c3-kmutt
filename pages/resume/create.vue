@@ -1,17 +1,15 @@
 <script lang="ts" setup>
-import { ALERT_TYPE, type FixedLengthArray } from '~/models/common'
+import {
+  ALERT_TYPE,
+  type FixedLengthArray,
+} from '~/utils/repositories/common/model'
 import type { ButtonType } from '~/components/register/ActionFooter.vue'
 import type {
   ResumeFillInStepOne,
   ResumeFillInStepTwo,
   ResumeFillInStepThree,
-} from '~/models/register'
+} from '~/utils/repositories/resume/model'
 import { isEmpty } from '~/utils/validator'
-import {
-  uploadResume,
-  uploadProfile,
-  postCreateResume,
-} from '~/services/resume'
 
 definePageMeta({
   layout: 'register',
@@ -24,7 +22,8 @@ const pageSubtitle = [
   'Enter your resume details directly into the provided fields.',
 ]
 
-const { $alert } = useNuxtApp()
+const { $alert, $fetchApi } = useNuxtApp()
+const resumeRepo = resumeRepository($fetchApi)
 const { setRegisterNavbarFullSize, setIsCreateResumeSuccess } =
   useRegisterStore()
 const step = ref(1)
@@ -118,135 +117,136 @@ const onClickNext = async () => {
     stepTwoState.value
   ) {
     isLoading.value = true
-    const fileResponse = await uploadResume(stepTwoState.value)
-    isLoading.value = false
-    if (!!fileResponse && 'message' in fileResponse) {
-      $alert({
-        id: new Date().getSeconds().toString(),
-        title: 'Cannot upload file',
-        content: fileResponse.message,
-        type: ALERT_TYPE.ERROR,
-      })
+    await resumeRepo.uploadResume(
+      stepTwoState.value,
+      () => {
+        isLoading.value = false
+        setIsCreateResumeSuccess(true)
+        navigateTo('/resume/success/?type=upload')
+      },
+      (error) => {
+        isLoading.value = false
+        $alert({
+          id: new Date().getSeconds().toString(),
+          title: 'Cannot upload file',
+          content: error,
+          type: ALERT_TYPE.ERROR,
+        })
 
-      stepTwoState.value = null
-      return
-    }
-
-    if (
-      !!fileResponse &&
-      'urls' in fileResponse &&
-      fileResponse.urls.length === stepTwoState.value.length
-    ) {
-      setIsCreateResumeSuccess(true)
-      navigateTo('/resume/success/?type=upload')
-    }
-
+        stepTwoState.value = null
+      },
+    )
     return
   }
 
   // Step Fill In Resume
   if (step.value === 5 && stepOneState.method === 'fill-in') {
+    let isUploadFailed = false
     isLoading.value = true
     if (fillInStepOneState.avatar && !photoUrl.value) {
-      const fileResponse = await uploadProfile(fillInStepOneState.avatar)
-      if (!!fileResponse && 'message' in fileResponse) {
-        $alert({
-          id: new Date().getSeconds().toString(),
-          title: 'Cannot upload profile image',
-          content: fileResponse.message,
-          type: ALERT_TYPE.ERROR,
-        })
-        return
-      }
-
-      if (
-        !!fileResponse &&
-        'urls' in fileResponse &&
-        fileResponse.urls.length
-      ) {
-        photoUrl.value = fileResponse.urls?.pop?.() ?? ''
-      }
+      await resumeRepo.uploadProfile(
+        fillInStepOneState.avatar,
+        (urls) => {
+          photoUrl.value = urls?.pop?.() ?? ''
+        },
+        (error) => {
+          isUploadFailed = true
+          isLoading.value = false
+          $alert({
+            id: new Date().getSeconds().toString(),
+            title: 'Cannot upload profile image',
+            content: error,
+            type: ALERT_TYPE.ERROR,
+          })
+        },
+      )
     }
 
-    const response = await postCreateResume({
-      photoUrl: photoUrl.value,
-      nickname: fillInStepOneState?.nickname ?? '',
-      contactEmail: fillInStepOneState?.email ?? '',
-      contactNumber: fillInStepOneState?.phone?.replaceAll?.('-', '') ?? '',
-      educations:
-        fillInStepOneState.education?.map((e) => ({
-          typeOfDegree: e.degree?.value?.toString?.() ?? '',
-          institution: e.school,
-          fieldOfStudy: e.fieldOfStudy,
-          graduationYear: e.graduation?.toString?.() ?? '',
-        })) ?? [],
-      experiences:
-        fillInStepOneState.experience?.map((e) => ({
-          title: e.job,
-          company: e.company,
-          location: e.location,
-          startDate: e.start,
-          endDate: e.end,
-        })) ?? [],
-      skills: fillInStepTwoState.skills
-        .filter((s) => s.value)
-        .map((s) => ({
-          name: s.label,
-          level: s.value,
-        })),
-      tools: fillInStepTwoState.tools
-        .filter((s) => s.value)
-        .map((t) => ({
-          name: t.label,
-          level: t.value,
-        })),
-      projects:
-        fillInStepThreeState.research?.map((p) => ({
-          name: p.topic ?? '',
-          categories: p.category?.map((c) => +c.value) ?? [],
-          date: p.date,
-        })) ?? [],
-      trainings:
-        fillInStepThreeState.training?.map((t) => ({
-          class: t.course ?? '',
-          date: t.date,
-        })) ?? [],
-      academicServices:
-        fillInStepThreeState.academicService?.map((a) => ({
-          name: a.topic ?? '',
-          categories: a.category?.map((c) => +c.value) ?? [],
-          date: a.date,
-        })) ?? [],
-      publications:
-        fillInStepThreeState.publication?.map((p) => ({
-          typeOfSource: p.type?.value?.toString?.() ?? '',
-          city: p.city,
-          authors: p.author,
-          publisher: p.publisher,
-          year: p.year?.toString?.() ?? '',
-        })) ?? [],
-    })
-    isLoading.value = false
-    if (response.statusCode === 201) {
-      setIsCreateResumeSuccess(true)
-      navigateTo('/resume/success/?type=fill-in')
-    } else {
-      if (!!response && 'message' in response) {
-        $alert({
-          id: new Date().getSeconds().toString(),
-          title: 'Cannot create resume',
-          content: response.message,
-          type: ALERT_TYPE.ERROR,
-        })
-        return
-      }
-      $alert({
-        id: new Date().getSeconds().toString(),
-        title: 'Cannot create resume',
-        content: 'please try again later',
-        type: ALERT_TYPE.ERROR,
-      })
-    }
+    if (isUploadFailed) return
+
+    await resumeRepo.postCreateResume(
+      {
+        photoUrl: photoUrl.value,
+        nickname: fillInStepOneState?.nickname ?? '',
+        contactEmail: fillInStepOneState?.email ?? '',
+        contactNumber: fillInStepOneState?.phone?.replaceAll?.('-', '') ?? '',
+        educations:
+          fillInStepOneState.education?.map((e) => ({
+            typeOfDegree: e.degree?.value?.toString?.() ?? '',
+            institution: e.school,
+            fieldOfStudy: e.fieldOfStudy,
+            graduationYear: e.graduation?.toString?.() ?? '',
+          })) ?? [],
+        experiences:
+          fillInStepOneState.experience?.map((e) => ({
+            title: e.job,
+            company: e.company,
+            location: e.location,
+            startDate: e.start,
+            endDate: e.end,
+          })) ?? [],
+        skills: fillInStepTwoState.skills
+          .filter((s) => s.value)
+          .map((s) => ({
+            name: s.label,
+            level: s.value,
+          })),
+        tools: fillInStepTwoState.tools
+          .filter((s) => s.value)
+          .map((t) => ({
+            name: t.label,
+            level: t.value,
+          })),
+        projects:
+          fillInStepThreeState.research?.map((p) => ({
+            name: p.topic ?? '',
+            categories: p.category?.map((c) => +c.value) ?? [],
+            date: p.date,
+          })) ?? [],
+        trainings:
+          fillInStepThreeState.training?.map((t) => ({
+            class: t.course ?? '',
+            date: t.date,
+          })) ?? [],
+        academicServices:
+          fillInStepThreeState.academicService?.map((a) => ({
+            name: a.topic ?? '',
+            categories: a.category?.map((c) => +c.value) ?? [],
+            date: a.date,
+          })) ?? [],
+        publications:
+          fillInStepThreeState.publication?.map((p) => ({
+            typeOfSource: p.type?.value?.toString?.() ?? '',
+            city: p.city,
+            authors: p.author,
+            publisher: p.publisher,
+            year: p.year?.toString?.() ?? '',
+          })) ?? [],
+      },
+      (status, data) => {
+        isLoading.value = false
+        if (status === 201) {
+          setIsCreateResumeSuccess(true)
+          navigateTo('/resume/success/?type=fill-in')
+        } else {
+          if (!!data && 'message' in data) {
+            $alert({
+              id: new Date().getSeconds().toString(),
+              title: 'Cannot create resume',
+              content: data.message,
+              type: ALERT_TYPE.ERROR,
+            })
+            return
+          }
+          $alert({
+            id: new Date().getSeconds().toString(),
+            title: 'Cannot create resume',
+            content: 'please try again later',
+            type: ALERT_TYPE.ERROR,
+          })
+        }
+      },
+    )
   }
 }
 

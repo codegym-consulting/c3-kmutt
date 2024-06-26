@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import type { Option } from '~/models/common'
+import type { Option } from '~/utils/repositories/common/model'
 import { isEmpty } from '~/utils/validator'
-import { registerStepOneSchema } from '~/models/register'
+import { registerStepOneSchema } from '~/utils/repositories/register/model'
 
 type StepOneState = {
   title: Option

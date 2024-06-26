@@ -21,7 +21,7 @@ onMounted(() => {
       <UButton variant="inline-link" to="/resume/create"
         >create an online resume</UButton
       >
-      to<br />
+      to<br >
       showcase your skills and experiences.
     </template>
   </TemplateSuccess>

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { FixedLengthArray } from '~/models/common'
+import type { FixedLengthArray } from '~/utils/repositories/common/model'
 
 export type ButtonType = 'next' | 'continue' | 'back' | 'done' | ''
 

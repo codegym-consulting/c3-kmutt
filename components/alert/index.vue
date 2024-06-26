@@ -1,9 +1,17 @@
 <script setup lang="ts">
-import { ALERT_TYPE } from '~/models/common'
+import { ALERT_TYPE } from '~/utils/repositories/common/model'
 
 const alertStore = useAlertStore()
 
-const state = reactive<State>({
+const state = reactive<{
+  show: boolean
+  title: string
+  message: string
+  type: ALERT_TYPE
+  duration: number
+  timeout: Timer | null
+  id: string
+}>({
   show: false,
   title: '',
   message: '',
@@ -52,16 +60,6 @@ const close = () => {
   state.timeout && clearTimeout(state.timeout)
   state.duration = 0
 }
-
-interface State {
-  show: boolean
-  title: string
-  message: string
-  type: ALERT_TYPE
-  duration: number
-  timeout: NodeJS.Timeout | null
-  id: string
-}
 </script>
 
 <template>
@@ -89,8 +87,8 @@ interface State {
 
 <style lang="postcss" scoped>
 .alert-wrapper {
-  @apply pointer-events-none max-w-[400px] w-full h-fit mt-auto mx-auto fixed inset-0 bottom-[10%]
-  flex items-end justify-center z-[100] p-4;
+  @apply pointer-events-none max-w-[400px] w-full h-fit mt-auto mx-auto fixed inset-0 bottom-[10%] flex items-end justify-center z-[100] p-4;
+
   &.-show {
     @apply pointer-events-auto;
   }

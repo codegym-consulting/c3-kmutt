@@ -1,4 +1,4 @@
-import { type AlertPayload, ALERT_TYPE } from '~/models/common'
+import { type AlertPayload, ALERT_TYPE } from '~/utils/repositories/common/model'
 
 export default defineNuxtPlugin(() => {
   const alert = useAlertStore()

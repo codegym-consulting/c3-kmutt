@@ -1,47 +1,33 @@
 <script lang="ts" setup>
 import {
-  getExpertises,
-  getInterests,
-  getFaculties,
-  getDepartments,
-  postRegister,
-} from '~/services/register'
-import {
   organizations,
   occupations,
   titles,
   academicTitles,
   nationalities,
 } from '~/data/common'
-import type { Option } from '~/models/common'
-import { watchDebounced } from '@vueuse/core'
+import type { Option } from '~/utils/repositories/common/model'
+import { refDebounced } from '@vueuse/core'
 
 definePageMeta({
   layout: 'register',
   middleware: 'auth',
 })
 
-const { user, clear } = useUserSession()
+const { $fetchApi } = useNuxtApp()
+const { user } = useUserSession()
+const registerRepo = registerRepository($fetchApi)
 const router = useRouter()
 const register = useRegisterStore()
 const step = ref(1)
 const expertiseSearch = ref('')
+const expertiseSearchDebounced = refDebounced(expertiseSearch, 500)
 const areaOfInterestSearch = ref('')
+const areaOfInterestSearchDebounced = refDebounced(areaOfInterestSearch, 500)
 const userData = reactive({
   email: user.value?.email ?? '',
   photoUrl: user.value?.photoUrl ?? '',
   name: user.value?.name ?? '',
-})
-const options = reactive<{
-  expertises: Option[]
-  areaOfInterests: Option[]
-  faculties: Option[]
-  departments: Option[]
-}>({
-  expertises: [],
-  areaOfInterests: [],
-  faculties: [],
-  departments: [],
 })
 
 const validate = reactive({
@@ -84,26 +70,28 @@ const stepTwoState = reactive<{
   areaOfInterest: [],
 })
 
-const queryFaculties = async () => {
-  const { data: faculties } = await getFaculties()
-  options.faculties = faculties?.value ?? []
-}
-
-const queryDepartments = async (facultyId?: number) => {
-  const { data: departments } = await getDepartments(facultyId)
-  stepTwoState.department = {}
-  options.departments = departments?.value ?? []
-}
-
-const queryExpertises = async (search?: string) => {
-  const { data: expertises } = await getExpertises(search)
-  options.expertises = expertises?.value ?? []
-}
-
-const queryAreaOfInterests = async (search?: string) => {
-  const { data: areaOfInterests } = await getInterests(search)
-  options.areaOfInterests = areaOfInterests?.value ?? []
-}
+const { data: faculties } = useAsyncData('faculties', registerRepo.getFaculties)
+const { data: departments } = useAsyncData(
+  'departments',
+  () => {
+    const option = stepTwoState.faculty
+    if ('value' in option) {
+      return registerRepo.getDepartments(+option.value)
+    }
+    return registerRepo.getDepartments()
+  },
+  { watch: [() => stepTwoState.faculty], deep: true },
+)
+const { data: expertises } = useAsyncData(
+  'expertises',
+  () => registerRepo.getExpertises(expertiseSearchDebounced.value),
+  { watch: [expertiseSearchDebounced] },
+)
+const { data: areaOfInterests } = useAsyncData(
+  'expertises',
+  () => registerRepo.getInterests(areaOfInterestSearchDebounced.value),
+  { watch: [areaOfInterestSearchDebounced] },
+)
 
 const onValidateStep = (value: boolean) => {
   if (step.value === 1) {
@@ -122,59 +110,39 @@ const onClickNext = async () => {
   }
 
   if (step.value === 2) {
-    const res = await postRegister({
-      email: userData.email,
-      title: (stepOneState.title as Option).value.toString(),
-      name: stepOneState.name,
-      surname: stepOneState.surname,
-      academicTitle: (stepOneState.academicTitle as Option).value.toString(),
-      nationality: (stepOneState.nationality as Option).value.toString(),
-      occupation: (stepTwoState.occupation as Option).value.toString(),
-      teachingExperiences: [101, 102],
-      expertises: stepTwoState.expertise.map((e) => +e.value),
-      organization: (stepTwoState.organization as Option).value.toString(),
-      faculty: +(stepTwoState.faculty as Option).value,
-      department: +(stepTwoState.department as Option).value,
-      areaOfInterests: stepTwoState.areaOfInterest.map((a) => +a.value),
-    })
-
-    if (res.statusCode === 201) {
-      register.setIsRegisterationSuccess(true)
-      router.push('/register/success')
-    }
+    await registerRepo.postRegister(
+      {
+        email: userData.email,
+        title: (stepOneState.title as Option).value.toString(),
+        name: stepOneState.name,
+        surname: stepOneState.surname,
+        academicTitle: (stepOneState.academicTitle as Option).value.toString(),
+        nationality: (stepOneState.nationality as Option).value.toString(),
+        occupation: (stepTwoState.occupation as Option).value.toString(),
+        teachingExperiences: [101, 102],
+        expertises: stepTwoState.expertise.map((e) => +e.value),
+        organization: (stepTwoState.organization as Option).value.toString(),
+        faculty: +(stepTwoState.faculty as Option).value,
+        department: +(stepTwoState.department as Option).value,
+        areaOfInterests: stepTwoState.areaOfInterest.map((a) => +a.value),
+      },
+      (status) => {
+        if (status === 201) {
+          register.setIsRegisterationSuccess(true)
+          router.push('/register/success')
+        }
+      },
+    )
   }
 }
 
-watchDebounced(
-  expertiseSearch,
-  (value) => {
-    queryExpertises(value)
-  },
-  { debounce: 500 },
-)
-
-watchDebounced(
-  areaOfInterestSearch,
-  (value) => {
-    queryAreaOfInterests(value)
-  },
-  { debounce: 500 },
-)
-
 watch(
   () => stepTwoState.faculty,
-  (option: Option | object) => {
-    if ('value' in option) {
-      queryDepartments(+option.value)
-    }
+  () => {
+    stepTwoState.department = {}
   },
   { deep: true },
 )
-
-await queryExpertises()
-await queryAreaOfInterests()
-await queryFaculties()
-await queryDepartments()
 
 // TODO: handle missing cookie when request API
 // onMounted(() => {
@@ -214,12 +182,12 @@ await queryDepartments()
         v-model="stepTwoState"
         v-model:expertise-search="expertiseSearch"
         v-model:area-of-interest-search="areaOfInterestSearch"
-        :expertises="options.expertises"
-        :area-of-interests="options.areaOfInterests"
+        :expertises="expertises ?? []"
+        :area-of-interests="areaOfInterests ?? []"
         :organizations="organizations"
         :occupations="occupations"
-        :faculties="options.faculties"
-        :departments="options.departments"
+        :faculties="faculties ?? []"
+        :departments="departments ?? []"
         @validate="onValidateStep"
       />
     </div>

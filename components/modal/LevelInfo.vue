@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Level, levelLabel } from '~/models/common'
+import { Level, levelLabel } from '~/utils/repositories/common/model'
 const levels = [
   {
     title: `Level 1: ${levelLabel[Level.BEGINNER]}`,

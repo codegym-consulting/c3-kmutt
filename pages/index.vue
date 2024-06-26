@@ -1,17 +1,20 @@
 <script lang="ts" setup>
 import type { Swiper } from 'swiper'
 import { Navigation, Pagination } from 'swiper/modules'
-import { getProjects } from '~/services/landing'
 
 definePageMeta({
   layout: 'home',
 })
 
-const { $classes } = useNuxtApp()
+const { $classes, $fetchApi } = useNuxtApp()
+const landingRepo = landingRepository($fetchApi)
 const { width } = useWindowSize()
 const isMobile = computed(() => width.value < 500)
 
-const { data: projects } = await getProjects()
+const { data: projects } = useAsyncData(
+  'highlight-projects',
+  landingRepo.getProjects,
+)
 
 const networks = [
   {

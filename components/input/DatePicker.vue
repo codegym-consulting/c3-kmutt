@@ -30,7 +30,7 @@ const emit = defineEmits<{
 <template>
   <div :class="['vue-datepicker', { '-error': !!props.error }]">
     <VueDatePicker
-      v-model="props.modelValue"
+      :model-value="props.modelValue"
       :year-picker="props.yearPicker"
       :enable-time-picker="props.enableTimePicker"
       :model-type="modelType"
@@ -82,10 +82,10 @@ const emit = defineEmits<{
     --dp-primary-color: #5549ff;
   }
   :deep(.dp__clear_icon) {
-    @apply top-[70%] focus:outline-none focus-visible:outline-0 
-    disabled:cursor-not-allowed disabled:opacity-75 
-    flex-shrink-0 justify-center transition-all rounded-lg 
-    text-base font-medium gap-x-2 box-border p-1 bg-gray-10 text-white 
+    @apply top-[70%] focus:outline-none focus-visible:outline-0
+    disabled:cursor-not-allowed disabled:opacity-75
+    flex-shrink-0 justify-center transition-all rounded-lg
+    text-base font-medium gap-x-2 box-border p-1 bg-gray-10 text-white
     hover:bg-white hover:text-gray-10  mx-4
     inline-flex items-center min-w-5 w-5 h-5 [&_svg]:w-3;
   }

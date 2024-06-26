@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@vueuse/nuxt',
     '@nuxt/eslint',
-    "nuxt-auth-utils"
+    'nuxt-auth-utils',
   ],
   routeRules: {
     '/': { prerender: true },
@@ -21,24 +21,27 @@ export default defineNuxtConfig({
     '/resume': { redirect: '/workspace/resume' },
     '/api/**': { cors: true }, // enable when deploy prod
   },
+  imports: {
+    dirs: ['./utils', 'utils/**', 'utils/**/**'],
+  },
   runtimeConfig: {
     public: {
-      baseApiUrl: process.env.NUXT_PUBLIC_BASE_API_URL
+      baseApiUrl: process.env.NUXT_PUBLIC_BASE_API_URL,
     },
     session: {
-      maxAge: 60 * 60 * 24 * 14 // 2 week
+      maxAge: 60 * 60 * 24 * 14, // 2 week
     },
     oauth: {
       google: {
         clientId: process.env.GOOGLE_ID,
-        clientSecret: process.env.GOOGLE_SECRET
+        clientSecret: process.env.GOOGLE_SECRET,
       },
       microsoft: {
         clientId: process.env.NUXT_OAUTH_MICROSOFT_CLIENT_ID,
         clientSecret: process.env.NUXT_OAUTH_MICROSOFT_CLIENT_SECRET,
-        tenant: process.env.NUXT_OAUTH_MICROSOFT_TENANT
-      }
-    }
+        tenant: process.env.NUXT_OAUTH_MICROSOFT_TENANT,
+      },
+    },
   },
   css: ['@/assets/css/main.css', 'v-network-graph/lib/style.css'],
   postcss: {

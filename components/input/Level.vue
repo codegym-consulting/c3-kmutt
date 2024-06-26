@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { Level, levelLabel } from '~/models/common'
+import type { Level} from '~/utils/repositories/common/model';
+import { levelLabel } from '~/utils/repositories/common/model'
 
 const props = withDefaults(
   defineProps<{

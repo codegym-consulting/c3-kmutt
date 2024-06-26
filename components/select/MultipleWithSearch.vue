@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { Option } from '~/models/common'
+import type { Option } from '~/utils/repositories/common/model'
 
 const props = withDefaults(
   defineProps<{
@@ -113,7 +113,10 @@ const removeChip = (chip: Option) => {
           >{{ props.placeholder }}</span
         >
         <ul v-else class="flex flex-wrap gap-1">
-          <li v-for="(chip, i) in props.modelValue" :key="chip.label + i">
+          <li
+            v-for="(chip, i) in props.modelValue"
+            :key="chip.label + chip.value + i"
+          >
             <span
               class="inline-flex gap-x-1 font-bai-jamjuree items-center px-4 py-[7px] text-base text-gray-7 rounded-full bg-gray-2"
             >
@@ -157,7 +160,7 @@ const removeChip = (chip: Option) => {
               <ul v-if="props.options.length" class="flex flex-col">
                 <li
                   v-for="option in props.options"
-                  :key="option.label"
+                  :key="option.label + option.value"
                   class="pt-[10px] pb-[17px] border-b border-gray-1"
                 >
                   <UCheckbox

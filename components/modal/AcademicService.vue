@@ -1,8 +1,7 @@
 <script lang="ts" setup>
 import { isEmpty } from '~/utils/validator'
-import { getCategories } from '~/services/resume'
-import type { Research } from '~/models/register'
-import type { Option } from '~/models/common'
+import type { Research } from '~/utils/repositories/resume/model'
+import { refDebounced } from '@vueuse/core'
 
 const props = defineProps<{
   modelValue: boolean
@@ -13,14 +12,22 @@ const emit = defineEmits<{
   (event: 'save', value: Research): void
 }>()
 
+const { $fetchApi } = useNuxtApp()
+const resumeRepo = resumeRepository($fetchApi)
 const academic = defineModel<Research>('academic')
 const categorySearch = ref('')
-const categories = ref<Option[]>([])
+const categorySearchDebounced = refDebounced(categorySearch, 500)
 const canSave = computed(() => {
   const _academic = { ...academic.value }
   delete _academic.date
   return _academic && Object.values(_academic).some((value) => !isEmpty(value))
 })
+
+const { data: categoryLists } = useAsyncData(
+  'expertises',
+  () => resumeRepo.getCategories(categorySearchDebounced.value),
+  { watch: [categorySearchDebounced] },
+)
 
 const updateValue = (value: boolean) => {
   emit('update:modelValue', value)
@@ -30,18 +37,7 @@ const onSave = () => {
   emit('update:modelValue', false)
   academic.value && emit('save', academic.value)
 }
-const queryCategories = async (search?: string) => {
-  const { data: categoryLists } = await getCategories(search)
-  categories.value = categoryLists?.value ?? []
-}
 
-watchDebounced(
-  categorySearch,
-  (value) => {
-    queryCategories(value)
-  },
-  { debounce: 500 },
-)
 watch(
   () => props.modelValue,
   (value) => {
@@ -54,7 +50,6 @@ watch(
     }
   },
 )
-await queryCategories()
 </script>
 
 <template>
@@ -80,7 +75,7 @@ await queryCategories()
           label="Category"
           name="category"
           placeholder="Select category"
-          :options="categories"
+          :options="categoryLists ?? []"
         />
       </TemplateRow>
       <TemplateRow>
@@ -90,10 +85,10 @@ await queryCategories()
           name="date"
           placeholder="Select date"
         />
-        <div></div>
+        <div/>
       </TemplateRow>
       <TemplateRow>
-        <div></div>
+        <div/>
         <UButton
           class="!flex-none w-[180px]"
           label="Save"

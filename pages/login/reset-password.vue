@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { resetPasswordSchema } from '~/models/login'
+import { resetPasswordSchema } from '~/utils/repositories/login/model'
 import { watchDebounced } from '@vueuse/core'
 
 definePageMeta({

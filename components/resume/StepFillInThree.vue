@@ -5,7 +5,7 @@ import type {
   Research,
   Training,
   Publication,
-} from '~/models/register'
+} from '~/utils/repositories/resume/model'
 
 type DataType = {
   research: Research
@@ -103,13 +103,13 @@ watch(
     <TemplateRow>
       <InputAddingList
         id="research"
-        title="Research project"
         v-model="state.research"
+        title="Research project"
         @add="modal.research = true"
       >
         <CardExperience
-          v-for="(research, index) in state.research"
-          :key="`research-${index}`"
+          v-for="(research, i) in state.research"
+          :key="`research-${i}`"
           :name="research.topic"
           :description="
             [
@@ -122,36 +122,36 @@ watch(
               .filter(Boolean)
               .join('\n') ?? ''
           "
-          @edit="() => onEditItem('research', research, index)"
+          @edit="() => onEditItem('research', research, i)"
         />
       </InputAddingList>
     </TemplateRow>
     <TemplateRow>
       <InputAddingList
         id="training"
-        title="Training and mentoring"
         v-model="state.training"
+        title="Training and mentoring"
         @add="modal.training = true"
       >
         <CardExperience
-          v-for="(training, index) in state.training"
-          :key="`training-${index}`"
+          v-for="(training, i) in state.training"
+          :key="`training-${i}`"
           :name="training.course"
           :description="formatFullDate(training.date)"
-          @edit="() => onEditItem('training', training, index)"
+          @edit="() => onEditItem('training', training, i)"
         />
       </InputAddingList>
     </TemplateRow>
     <TemplateRow>
       <InputAddingList
         id="academic-service"
-        title="Academic service"
         v-model="state.academicService"
+        title="Academic service"
         @add="modal.academicService = true"
       >
         <CardExperience
-          v-for="(academic, index) in state.academicService"
-          :key="`academic-service-${index}`"
+          v-for="(academic, i) in state.academicService"
+          :key="`academic-service-${i}`"
           :name="academic.topic"
           :description="
             [
@@ -164,20 +164,20 @@ watch(
               .filter(Boolean)
               .join('\n') ?? ''
           "
-          @edit="() => onEditItem('academicService', academic, index)"
+          @edit="() => onEditItem('academicService', academic, i)"
         />
       </InputAddingList>
     </TemplateRow>
     <TemplateRow>
       <InputAddingList
         id="publication"
-        title="Publication"
         v-model="state.publication"
+        title="Publication"
         @add="modal.publication = true"
       >
         <CardExperience
-          v-for="(publication, index) in state.publication"
-          :key="`publication-${index}`"
+          v-for="(publication, i) in state.publication"
+          :key="`publication-${i}`"
           :name="publication.type?.label ?? ''"
           :description="
             [
@@ -189,7 +189,7 @@ watch(
               .filter(Boolean)
               .join(' ∙ ')
           "
-          @edit="() => onEditItem('publication', publication, index)"
+          @edit="() => onEditItem('publication', publication, i)"
         />
       </InputAddingList>
     </TemplateRow>

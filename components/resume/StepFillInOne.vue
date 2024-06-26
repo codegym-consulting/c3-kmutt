@@ -1,10 +1,12 @@
 <script lang="ts" setup>
 import {
-  type ResumeFillInStepOne,
   type Education,
   type Experience,
+} from '~/utils/repositories/register/model'
+import {
+  type ResumeFillInStepOne,
   resumeFillInStepOneSchema,
-} from '~/models/register'
+} from '~/utils/repositories/resume/model'
 import { isEmpty } from '~/utils/validator'
 
 const firstName = 'Nattaporn'
@@ -129,7 +131,7 @@ watchDebounced(
             <div
               class="text-[22px] leading-[26px] md:text-2xl md:leading-7 text-gray-10 font-bold"
             >
-              {{ firstName }} <br />
+              {{ firstName }} <br >
               {{ surName }}
             </div>
           </div>
@@ -161,9 +163,9 @@ watchDebounced(
       <TemplateRow>
         <InputAddingList
           id="education"
+          v-model="state.education"
           title="Education"
           add-label="Add new education"
-          v-model="state.education"
           @add="educationModal = true"
         >
           <CardExperience
@@ -186,9 +188,9 @@ watchDebounced(
       <TemplateRow class="mt-2">
         <InputAddingList
           id="experience"
+          v-model="state.experience"
           title="Experience"
           add-label="Add new experience"
-          v-model="state.experience"
           @add="experienceModal = true"
         >
           <CardExperience

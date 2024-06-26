@@ -21,13 +21,13 @@ const Skill = z.object({
     level: z.number().int().min(1).max(5)
 })
 
-const Project = z.object({
+const Research = z.object({
     name: z.string(),
     categories: z.array(z.number().int()).optional(),
     date: z.string().optional(),
 })
 
-const Acacemic = Project
+const Acacemic = Research
 
 const Training = z.object({
     class: z.string(),
@@ -51,7 +51,7 @@ export const schema = z.object({
   experiences: z.array(Experience),
   skills: z.array(Skill),
   tools: z.array(Skill),
-  projects: z.array(Project),
+  research: z.array(Research),
   trainings: z.array(Training),
   academicServices: z.array(Acacemic),
   publications: z.array(Publication),

@@ -1,8 +1,8 @@
-import { eq } from "drizzle-orm";
-import { z } from "zod";
-import { user } from "~/server/drizzle/schema";
-import db from "~/server/libs/pg";
-import sendEmail from "~/server/libs/resend";
+import { eq } from "drizzle-orm"
+import { z } from "zod"
+import { user } from "~/server/drizzle/schema"
+import db from "~/server/libs/pg"
+import sendEmail from "~/server/libs/resend"
 
 const schema = z.object({
     email: z.string().email(),
@@ -28,6 +28,6 @@ export default defineEventHandler(async (event) => {
         sendEmail(result[0].email ?? '', 'Reset password', 'Please click the link to reset your password')
         return 'ok'
     } catch (error) {
-      return { error };
+      return { error }
     }
-  });
+  })

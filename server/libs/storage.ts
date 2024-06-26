@@ -1,5 +1,5 @@
-import { Storage } from '@google-cloud/storage';
-import { Readable } from 'stream';
+import { Storage } from '@google-cloud/storage'
+import { Readable } from 'stream'
 
 const storage = new Storage({
   projectId: 'c3-kmutt',
@@ -7,9 +7,9 @@ const storage = new Storage({
     client_email: 'storage@c3-kmutt.iam.gserviceaccount.com',
     private_key: process.env.GCLOUD_PRIVATE_KEY?.replace(/\\n/g, '\n'),
   },
-});
-const bucketName = 'c3-kmutt';
-const cacheControl = 'public, max-age=604800'; // 1 week in seconds
+})
+const bucketName = 'c3-kmutt'
+const cacheControl = 'public, max-age=604800' // 1 week in seconds
 
 export default async function uploadFile(data: Buffer, destination: string) {
   const bucket = storage.bucket(bucketName)
@@ -20,12 +20,12 @@ export default async function uploadFile(data: Buffer, destination: string) {
   if (exists) {
     await file.setMetadata({
       cacheControl: 'public, max-age=0',
-    });
+    })
   }
 
-  const stream = new Readable();
-  stream.push(data);
-  stream.push(null);
+  const stream = new Readable()
+  stream.push(data)
+  stream.push(null)
 
   await new Promise((resolve, reject) => {
     stream.pipe(file.createWriteStream({
@@ -36,9 +36,9 @@ export default async function uploadFile(data: Buffer, destination: string) {
       predefinedAcl: 'publicRead',
     }))
     .on('error', reject)
-    .on('finish', resolve);
-  });
+    .on('finish', resolve)
+  })
 
-  const publicUrl = `https://storage.googleapis.com/${bucketName}/${destination}`;
-  return publicUrl;
+  const publicUrl = `https://storage.googleapis.com/${bucketName}/${destination}`
+  return publicUrl
 }

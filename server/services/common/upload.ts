@@ -6,13 +6,13 @@ export const uploadFiles = async (files: MultiPartData[], destination: string, f
         const tasks = files.map(async (file) => { 
             const extension = file?.filename?.split('.').pop() 
             const url = await uploadFile(file.data, `${destination}/${fileName ? `${fileName}.${extension}` : `${Date.now()}.${extension}`}`)
-            return url;
+            return url
         })
 
         return await Promise.all(tasks)
 
     } catch (error) {
-        console.error(`Error uploading files: ${error}`);
-        throw error;
+        console.error(`Error uploading files: ${error}`)
+        throw error
     }
 }

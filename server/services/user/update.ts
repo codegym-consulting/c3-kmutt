@@ -6,7 +6,7 @@ export const updateUser = async (email: string, name: string, photoUrl: string, 
         const values = { email, name, photoUrl, provider, loggedInAt: new Date().toISOString() }
         await db.insert(user)
                 .values(values)
-                .onConflictDoUpdate({ target: user.email, set: values }); 
+                .onConflictDoUpdate({ target: user.email, set: values }) 
     } catch (error) {
         console.error(`Error updating user: ${error}`)
         throw error

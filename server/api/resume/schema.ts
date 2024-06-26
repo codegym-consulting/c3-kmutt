@@ -1,5 +1,5 @@
-import { z } from 'zod';
-import { typeOfDegrees, typeOfSources } from '~/data/common';
+import { z } from 'zod'
+import { typeOfDegrees, typeOfSources } from '~/data/common'
 
 const Experience = z.object({
     title: z.string().optional(),
@@ -55,6 +55,6 @@ export const schema = z.object({
   trainings: z.array(Training),
   academicServices: z.array(Acacemic),
   publications: z.array(Publication),
-});
+})
 
 export type Resume = z.infer<typeof schema>

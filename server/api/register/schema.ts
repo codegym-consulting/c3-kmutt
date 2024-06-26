@@ -1,5 +1,5 @@
-import { z } from "zod";
-import { academicTitles, titles } from "~/data/common";
+import { z } from "zod"
+import { academicTitles, titles } from "~/data/common"
 
 export const schema = z.object({
     email: z.string().email(),
@@ -15,6 +15,6 @@ export const schema = z.object({
     faculty: z.number().int(),
     department: z.number().int(),
     areaOfInterests: z.array(z.number().int()),
-  });
+  })
   
-  export type Schema = z.infer<typeof schema>;
+  export type Schema = z.infer<typeof schema>

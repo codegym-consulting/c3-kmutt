@@ -13,10 +13,10 @@ export default defineNitroPlugin(() => {
     //   }
     })
 
-    // const latestUserData = await findUserById(session.user.id);
-    // const { subscribed, isCanceled, proPlan } = await checkPlan(latestUserData);
-    // session.user.subscribed = subscribed;
-    // session.user.isCanceled = isCanceled;
+    // const latestUserData = await findUserById(session.user.id)
+    // const { subscribed, isCanceled, proPlan } = await checkPlan(latestUserData)
+    // session.user.subscribed = subscribed
+    // session.user.isCanceled = isCanceled
   
     sessionHooks.hook('clear', async (_session) => {
       // Log that user logged out

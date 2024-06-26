@@ -2,6 +2,7 @@ import { eq } from "drizzle-orm";
 import { z } from "zod";
 import { user } from "~/server/drizzle/schema";
 import db from "~/server/libs/pg";
+import * as argon2 from 'argon2';
 
 const schema = z.object({
     email: z.string().email(),
@@ -28,8 +29,8 @@ export default defineEventHandler(async (event) => {
 
     try {
         // Generate a salt and hash the password
-        const hashedPassword = await Bun.password.hash(result.data?.password ?? '')
-        // const isMatch = await Bun.password.verify(result.data?.password, hashedPassword);
+        const hashedPassword = await argon2.hash(result.data?.password ?? '')
+        // const isMatch = await argon2.verify(result.data?.password, hashedPassword);
         await db
             .update(user)
             .set({ password: hashedPassword })

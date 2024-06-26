@@ -14,7 +14,7 @@ const updateValue = (value: boolean) => {
 }
 
 const logout = async () => {
-  clear()
+  await clear()
   await navigateTo('/login')
 }
 </script>

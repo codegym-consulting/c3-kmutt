@@ -1,6 +1,6 @@
 import { validateFileSize, validateFileType } from '~/utils/validator'
-import { uploadFiles } from '~/server/services/upload'
-import { resizeImage } from '~/server/services/resize'
+import { uploadFiles } from '~/server/services/common/upload'
+import { resizeImage } from '~/server/services/common/resize'
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024 // 5MB
 

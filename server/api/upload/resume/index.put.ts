@@ -1,5 +1,5 @@
+import { uploadFiles } from '~/server/services/common/upload'
 import { validateFileSize, validateFileType } from '~/utils/validator'
-import { uploadFiles } from '~/server/services/upload'
 
 const MAX_FILE_SIZE = 20 * 1024 * 1024 // 20MB
 

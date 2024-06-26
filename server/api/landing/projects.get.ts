@@ -1,5 +1,6 @@
 export default defineEventHandler(async () => {
   try {
+    // TODO: Query from pin_projects table
     return [{
         id: 1,
         imageUrl: 'https://plus.unsplash.com/premium_photo-1713823799895-bddbbf670531?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
@@ -43,6 +44,7 @@ export default defineEventHandler(async () => {
     }]
   } catch (error) {
     console.error(error)
+    return []
   }
 })
 

@@ -1,5 +1,5 @@
 import type { MultiPartData } from 'h3'
-import uploadFile from '../libs/storage'
+import uploadFile from '~/server/libs/storage'
 
 export const uploadFiles = async (files: MultiPartData[], destination: string, fileName?: string) => {
     try {

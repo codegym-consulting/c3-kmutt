@@ -88,7 +88,7 @@ const { data: expertises } = useAsyncData(
   { watch: [expertiseSearchDebounced] },
 )
 const { data: areaOfInterests } = useAsyncData(
-  'expertises',
+  'interests',
   () => registerRepo.getInterests(areaOfInterestSearchDebounced.value),
   { watch: [areaOfInterestSearchDebounced] },
 )

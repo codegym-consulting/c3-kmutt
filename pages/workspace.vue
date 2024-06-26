@@ -14,7 +14,7 @@ watch(loggedIn, () => {
 
 const logout = async () => {
   clear()
-  await navigateTo('/')
+  await navigateTo('/login')
 }
 </script>
 

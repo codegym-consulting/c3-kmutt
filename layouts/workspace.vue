@@ -12,27 +12,27 @@ const menus = [
   },
   {
     icon: 'c3/user',
-    to: '/profile',
+    to: '/workspace/profile',
     activeRouteName: 'profile',
   },
   {
     icon: 'c3/document',
-    to: '/resume',
+    to: '/workspace/resume',
     activeRouteName: 'resume',
   },
   {
     icon: 'c3/folder',
-    to: '/my-project',
+    to: '/workspace/my-project',
     activeRouteName: 'my-project',
   },
   {
     icon: 'c3/group',
-    to: '/network',
+    to: '/workspace/network',
     activeRouteName: 'network',
   },
   {
     icon: 'c3/bookmark',
-    to: '/bookmark',
+    to: '/workspace/bookmark',
     activeRouteName: 'bookmark',
   },
 ]
@@ -62,7 +62,7 @@ const menus = [
           'bg-no-repeat bg-[size:100%_80%] bg-[center_bottom]',
         )
       "
-    ></div>
+    />
     <UContainer class="py-12 flex gap-x-0 md:gap-x-8 lg:gap-x-12">
       <div
         class="hidden md:flex flex-col justify-between h-[calc(100vh-70px-96px)] top-[118px] sticky"

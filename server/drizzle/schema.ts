@@ -1,4 +1,4 @@
-import { pgTable, serial, text, timestamp, integer, jsonb } from "drizzle-orm/pg-core"
+import { pgTable, serial, text, timestamp, integer, jsonb, boolean } from "drizzle-orm/pg-core"
 
 export const expertise = pgTable("expertise", {
 	id: serial("id").primaryKey().notNull(),
@@ -50,4 +50,43 @@ export const user = pgTable("user", {
 	provider: text("provider"),
 	loggedInAt: timestamp("loggedInAt", { withTimezone: true, mode: 'string' }),
 	password: text("password"),
+});
+
+export const resume = pgTable("resume", {
+	id: serial("id").primaryKey().notNull(),
+	userId: integer("userId"),
+	isFileType: boolean("isFileType").default(false).notNull(),
+	fileUrls: jsonb("fileUrls"),
+	name: text("name"),
+	email: text("email"),
+	phoneNo: text("phoneNo"),
+	updatedAt: timestamp("updatedAt", { withTimezone: true, mode: 'string' }).defaultNow(),
+	createdAt: timestamp("createdAt", { withTimezone: true, mode: 'string' }),
+});
+
+export const education = pgTable("education", {
+	id: serial("id").primaryKey().notNull(),
+	resumeId: integer("resumeId"),
+	typeOfDegree: text("typeOfDegree"),
+	institution: text("institution"),
+	fieldOfStudy: text("fieldOfStudy"),
+	graduationYear: integer("graduationYear"),
+});
+
+export const experience = pgTable("experience", {
+	id: serial("id").primaryKey().notNull(),
+	resumeId: integer("resumeId"),
+	title: text("title"),
+	company: text("company"),
+	location: text("location"),
+	startDate: timestamp("startDate", { withTimezone: true, mode: 'string' }),
+	endDate: timestamp("endDate", { withTimezone: true, mode: 'string' }),
+});
+
+export const research = pgTable("research", {
+	id: serial("id").primaryKey().notNull(),
+	resumeId: integer("resumeId"),
+	name: text("name"),
+	categories: jsonb("categories"),
+	date: timestamp("date", { withTimezone: true, mode: 'string' }),
 });

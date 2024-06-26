@@ -197,7 +197,7 @@ const onClickNext = async () => {
             name: t.label,
             level: t.value,
           })),
-        projects:
+        research:
           fillInStepThreeState.research?.map((p) => ({
             name: p.topic ?? '',
             categories: p.category?.map((c) => +c.value) ?? [],

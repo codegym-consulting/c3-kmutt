@@ -73,6 +73,16 @@ export const education = pgTable("education", {
 	graduationYear: integer("graduationYear"),
 });
 
+export const note = pgTable("note", {
+	id: serial("id").primaryKey().notNull(),
+	userId: integer("userId"),
+	isTextOnly: boolean("isTextOnly"),
+	title: text("title"),
+	content: text("content"),
+	imageUrl: text("imageUrl"),
+	createdAt: timestamp("createdAt", { withTimezone: true, mode: 'string' }).defaultNow(),
+});
+
 export const experience = pgTable("experience", {
 	id: serial("id").primaryKey().notNull(),
 	resumeId: integer("resumeId"),
@@ -89,4 +99,24 @@ export const research = pgTable("research", {
 	name: text("name"),
 	categories: jsonb("categories"),
 	date: timestamp("date", { withTimezone: true, mode: 'string' }),
+});
+
+export const academic_service = pgTable("academic_service", {
+	id: integer("id").primaryKey().notNull(),
+	resumeId: integer("resumeId"),
+	name: text("name"),
+	categories: jsonb("categories"),
+	date: timestamp("date", { withTimezone: true, mode: 'string' }),
+});
+
+export const profile = pgTable("profile", {
+	id: serial("id").primaryKey().notNull(),
+	userId: integer("userId"),
+	name: text("name"),
+	surname: text("surname"),
+	nickname: text("nickname"),
+	email: text("email"),
+	phoneNo: text("phoneNo"),
+	linkUrl: text("linkUrl"),
+	address: text("address"),
 });

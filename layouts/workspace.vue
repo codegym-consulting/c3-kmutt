@@ -94,7 +94,7 @@ const menus = [
           @click="logoutModal = true"
         />
       </div>
-      <div>
+      <div class="w-full">
         <slot />
       </div>
     </UContainer>

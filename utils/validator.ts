@@ -14,29 +14,40 @@ export const isEmpty = (value: any) => {
   return false
 }
 
-export const validateFileType = (files: MultiPartData[], supportTypes: string[]) => {
-    for (const file of files) {
-      if (!supportTypes.includes(file.type as string)) {
-          throw createError({
-              statusCode: 400,
-              statusMessage: "Bad Request",
-              message: `Invalid file type. Only ${supportTypes.join(',')} types are allowed.`
-          })
-      }
+export const isObjectDifferece = (
+  obj1: Record<string, unknown>,
+  obj2: Record<string, unknown>,
+) => {
+  return JSON.stringify(obj1) !== JSON.stringify(obj2)
+}
+
+export const validateFileType = (
+  files: MultiPartData[],
+  supportTypes: string[],
+) => {
+  for (const file of files) {
+    if (!supportTypes.includes(file.type as string)) {
+      throw createError({
+        statusCode: 400,
+        statusMessage: 'Bad Request',
+        message: `Invalid file type. Only ${supportTypes.join(
+          ',',
+        )} types are allowed.`,
+      })
+    }
   }
   return
 }
 
-
 export const validateFileSize = (files: MultiPartData[], maxSize: number) => {
   for (const file of files) {
     if (file.data.length > maxSize) {
-        throw createError({
-            statusCode: 400,
-            statusMessage: "Bad Request",
-            message: `Maximum file size is ${maxSize} MB.`
-        })
+      throw createError({
+        statusCode: 400,
+        statusMessage: 'Bad Request',
+        message: `Maximum file size is ${maxSize} MB.`,
+      })
     }
   }
-return
+  return
 }

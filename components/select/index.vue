@@ -61,6 +61,7 @@ const updateValue = (
       :disabled="props.disabled"
       :popper="{ offsetDistance: 0 }"
       :ui="{
+        base: '!bg-white',
         rounded:
           'rounded-lg' +
           (isPopper

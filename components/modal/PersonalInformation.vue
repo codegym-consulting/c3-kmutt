@@ -83,17 +83,6 @@ watch(
     }
   },
 )
-// watch(
-//   () => personalInfo.value?.faculty,
-//   () => {
-//     if (personalInfo.value?.department) {
-//       personalInfo.value = {
-//         ...personalInfo.value,
-//         department: {} as Option,
-//       }
-//     }
-//   },
-// )
 </script>
 
 <template>

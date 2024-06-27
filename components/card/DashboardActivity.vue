@@ -13,6 +13,5 @@
       body: { padding: 'p-0 mt-6 md:mt-[26px]' },
       footer: { padding: 'p-0 mt-6 md:mt-[26px]' },
     }"
-  >
-  </UCard>
+  />
 </template>

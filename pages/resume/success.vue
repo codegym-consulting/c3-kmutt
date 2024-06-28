@@ -21,8 +21,7 @@ const template = {
 
 const route = useRoute()
 const register = useRegisterStore()
-const templateData =
-  template?.[route.query.type as keyof typeof template] ?? template.upload
+const templateData = template?.[route.query.type as keyof typeof template] ?? template.upload
 
 onMounted(() => {
   register.setIsCreateResumeSuccess(false)

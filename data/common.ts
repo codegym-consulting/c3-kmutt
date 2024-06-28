@@ -290,7 +290,7 @@ export const typeOfDegrees = [
   },
   {
     label: 'Doctorate',
-    value: 'doctor',
+    value: 'doctorate',
   },
 ]
 

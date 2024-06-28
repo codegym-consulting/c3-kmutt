@@ -1,4 +1,6 @@
 import { sendRedirect } from 'h3'
+import { FiveMinutes, TwoWeeks } from '~/configs/session'
+import { getUser } from '~/server/services/user/get'
 import { updateUser } from '~/server/services/user/update'
 
 export default oauth.microsoftEventHandler({
@@ -14,28 +16,34 @@ export default oauth.microsoftEventHandler({
     async onSuccess(event, { user, tokens }) {
       console.log(tokens)
       console.log(user)
-      await updateUser(user.email, user.name, user.picture, 'microsoft')
-      await setUserSession(event, {
+
+      const userData = (await getUser(user.email))[0]
+      const sessionData = {
         user: {
-            email: user.email,
-            name: '', // user.name,
-            photoUrl: '', // user.picture,
-            emailVerified: true,
+          id: userData ? userData.id : user.sub,
+          email: user.email,
+          name: user.name,
+          photoUrl: user.picture,
+          emailVerified: user.email_verified
         },
-        accessToken: '', // tokens.access_token,
-        refreshToken: '', // tokens.refresh_token,
-        expiredAt: Date.now() + 1000, // * tokens.expires_in,
+        accessToken: tokens.access_token,
+        refreshToken: tokens.refresh_token,
+        expiredAt: Date.now() + 1000 * tokens.expires_in,
         loggedInAt: Date.now(),
-        isRegistered: false,
-        provider: 'microsoft'
-      })
-      setCookie(event, 'accessToken', tokens.access_token, { httpOnly: true, secure: true, sameSite: 'lax' })
+        provider: 'microsoft',
+      }
 
-      // TODO: not found user then redirect to register page
-      // return sendRedirect(event, '/register')
+      setCookie(event, 'accessToken', tokens.access_token, { httpOnly: true, secure: true, sameSite: 'lax', maxAge: userData ? FiveMinutes : TwoWeeks })
+ 
+      await Promise.all([
+        setUserSession(event, {
+          ...sessionData,
+          isRegistered: userData ? true : false,
+        }), 
+        updateUser(user.email, user.name, user.picture, sessionData.provider)
+      ])
 
-      return sendRedirect(event, '/workspace')
-      
+      return userData ? sendRedirect(event, '/workspace') : sendRedirect(event, '/register')
     },
     // Optional, will return a json error and 401 status code by default
     onError(event, error) {

@@ -14,12 +14,14 @@ export default defineNuxtConfig({
   ],
   routeRules: {
     '/': { prerender: true },
-    '/register/success': { static: true },
-    '/resume/success': { static: true },
     '/about': { static: true },
     '/contact': { static: true },
     '/search': { prerender: true },
+    '/dashboard': { redirect: '/workspace' },
+    '/profile': { redirect: '/workspace/profile' },
     '/resume': { redirect: '/workspace/resume' },
+    '/network': { redirect: '/workspace/network' },
+    '/bookmark': { redirect: '/workspace/bookmark' },
     '/api/**': { cors: true }, // enable when deploy prod
   },
   imports: {
@@ -28,9 +30,6 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       baseApiUrl: process.env.NUXT_PUBLIC_BASE_API_URL,
-    },
-    session: {
-      maxAge: 60 * 60 * 24 * 14, // 2 week
     },
     oauth: {
       google: {

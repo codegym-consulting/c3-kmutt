@@ -1,7 +1,5 @@
 {
-  "id": "601b65a8-cde1-4383-a13f-c687119f50ac",
-  "prevId": "00000000-0000-0000-0000-000000000000",
-  "version": "6",
+  "version": "7",
   "dialect": "postgresql",
   "tables": {
     "public.users": {
@@ -36,8 +34,10 @@
   "enums": {},
   "schemas": {},
   "_meta": {
-    "columns": {},
     "schemas": {},
-    "tables": {}
-  }
+    "tables": {},
+    "columns": {}
+  },
+  "id": "601b65a8-cde1-4383-a13f-c687119f50ac",
+  "prevId": "00000000-0000-0000-0000-000000000000"
 }

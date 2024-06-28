@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX IF NOT EXISTS "resume_user_id" ON "resume" USING btree ("email");

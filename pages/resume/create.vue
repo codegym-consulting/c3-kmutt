@@ -122,7 +122,7 @@ const onClickNext = async () => {
       () => {
         isLoading.value = false
         setIsCreateResumeSuccess(true)
-        navigateTo('/resume/success/?type=upload')
+        navigateTo('/resume/success?type=upload')
       },
       (error) => {
         isLoading.value = false

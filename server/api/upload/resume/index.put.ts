@@ -1,4 +1,5 @@
 import { uploadFiles } from '~/server/services/common/upload'
+import { createResume } from '~/server/services/resume/create'
 import { validateFileSize, validateFileType } from '~/utils/validator'
 
 const MAX_FILE_SIZE = 20 * 1024 * 1024 // 20MB
@@ -26,5 +27,6 @@ export default defineEventHandler(async (event) => {
     validateFileSize(files, MAX_FILE_SIZE)
     validateFileType(files, ['application/pdf', 'image/jpeg', 'image/png', 'image/webp'])
     const urls = await uploadFiles(files, `user/${session.user.email}/resume`)
+    await createResume({ userId: session.user.id, isFileType: true, fileUrls: urls, name: session.user.name, email: session.user.email })
     return { urls }
 })

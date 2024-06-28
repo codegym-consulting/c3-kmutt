@@ -60,19 +60,10 @@ const onSlideChange = (swiper: Swiper) => {
       data-aos="fade-up"
       class="flex flex-col justify-center items-center relative h-fit md:h-[650px] mt-16 md:mt-0"
     >
-      <picture>
-        <source
-          media="(min-width: 768px)"
-          srcset="/landing/3c_water_mark.svg"
-        >
-        <img src="/landing/3c_water_mark_mobile.svg" alt="3c_water_mark" >
-      </picture>
       <div class="flex flex-col items-center">
-        <h1>
-          We are a collaborative<br >
+        <h1>We are a collaborative<br >
           platform for sharing<br >
-          knowledge in innovation
-        </h1>
+          knowledge in innovation</h1>
         <p
           class="text-sm md:text-lg font-medium max-w-[730px] px-4 text-center text-white"
         >
@@ -82,6 +73,13 @@ const onSlideChange = (swiper: Swiper) => {
           partners to drive future economic growth.
         </p>
       </div>
+      <picture class="select-none">
+        <source
+          media="(min-width: 768px)"
+          srcset="/landing/3c_water_mark.svg"
+        >
+        <img src="/landing/3c_water_mark_mobile.svg" alt="3c_water_mark" >
+      </picture>
       <UButton
         class="block lg:hidden mt-10 z-10"
         label="Search"

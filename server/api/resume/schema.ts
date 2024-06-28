@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { typeOfDegrees, typeOfSources } from '~/data/common'
+import { type_of_degree, type_of_source } from '~/server/drizzle/schema'
 
 const Experience = z.object({
     title: z.string().optional(),
@@ -10,7 +10,7 @@ const Experience = z.object({
 })
 
 const Education = z.object({
-    typeOfDegree: z.enum([typeOfDegrees[0].value, ...(typeOfDegrees.slice(1).map(item => item.value))] as [string, ...string[]]),
+    typeOfDegree: z.enum(type_of_degree.enumValues),
     institution: z.string().optional(),
     fieldOfStudy: z.string().optional(),
     graduationYear: z.string().optional(),
@@ -35,7 +35,7 @@ const Training = z.object({
 })
 
 const Publication = z.object({
-    typeOfSource: z.enum([typeOfSources[0].value, ...(typeOfSources.slice(1).map(item => item.value))] as [string, ...string[]]),
+    typeOfSource: z.enum(type_of_source.enumValues),
     city: z.string().optional(),
     publisher: z.string().optional(),
     year: z.string().optional(),
@@ -57,4 +57,4 @@ export const schema = z.object({
   publications: z.array(Publication),
 })
 
-export type Resume = z.infer<typeof schema>
+export type CreateResumeSchema = z.infer<typeof schema>

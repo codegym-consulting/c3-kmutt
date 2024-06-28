@@ -1,20 +1,21 @@
 import { z } from "zod"
-import { academicTitles, titles } from "~/data/common"
+import { createInsertSchema, } from 'drizzle-zod';
+import { academic_title, profile, profile_title } from "~/server/drizzle/schema"
 
-export const schema = z.object({
+export const schema = createInsertSchema(profile, {
     email: z.string().email(),
-    title: z.enum([titles[0].value, ...(titles.slice(1).map(title => title.value))] as [string, ...string[]]),
+    title: z.enum(profile_title.enumValues),
     name: z.string(),
     surname: z.string(),
-    academicTitle: z.union([z.enum([academicTitles[0].value, ...(academicTitles.slice(1).map(title => title.value))] as [string, ...string[]]), z.null()]),
+    academicTitle: z.enum(academic_title.enumValues),
     nationality: z.string(),
     occupation: z.string(),
-    teachingExperiences: z.array(z.any()),
-    expertises: z.array(z.number().int()),
     organization: z.string(),
     faculty: z.number().int(),
     department: z.number().int(),
     areaOfInterests: z.array(z.number().int()),
+    expertises: z.array(z.number().int()),
+    teachingExperiences: z.array(z.any()),
   })
   
-  export type Schema = z.infer<typeof schema>
+  export type CreateProfileSchema = z.infer<typeof schema>

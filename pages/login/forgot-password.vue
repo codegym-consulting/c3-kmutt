@@ -22,7 +22,6 @@ const onFocus = () => {
 watchDebounced(
   email,
   () => {
-    console.log('validate email')
     validateEmail()
   },
   { debounce: 500 },

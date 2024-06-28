@@ -14,13 +14,11 @@ export default oauth.microsoftEventHandler({
       scope: ['email', 'openid', 'profile'],
     },
     async onSuccess(event, { user, tokens }) {
-      console.log(tokens)
-      console.log(user)
-
+      console.debug(tokens)
       const userData = (await getUser(user.email))[0]
       const sessionData = {
         user: {
-          id: userData ? userData.id : user.sub,
+          id: userData ? userData.id : 0,
           email: user.email,
           name: user.name,
           photoUrl: user.picture,
@@ -45,7 +43,6 @@ export default oauth.microsoftEventHandler({
 
       return userData ? sendRedirect(event, '/workspace') : sendRedirect(event, '/register')
     },
-    // Optional, will return a json error and 401 status code by default
     onError(event, error) {
       console.error('Microsoft OAuth error:', error)
       return sendRedirect(event, '/login')

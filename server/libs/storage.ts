@@ -13,9 +13,7 @@ const cacheControl = 'public, max-age=604800' // 1 week in seconds
 
 export default async function uploadFile(data: Buffer, destination: string) {
   const bucket = storage.bucket(bucketName)
-  console.log(destination)
   const file = bucket.file(destination)
-  
   const [exists] = await file.exists()
   if (exists) {
     await file.setMetadata({

@@ -1,5 +1,6 @@
 export default defineNitroPlugin(() => {
     sessionHooks.hook('fetch', async (_session, _event) => {
+      console.log('fetch session here')
       // const now = new Date()
       // const expirationDate = new Date(session.user.expirationDate)
       // const jwt = getCookie(event, 'accessToken')

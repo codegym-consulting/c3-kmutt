@@ -8,13 +8,12 @@ declare module '#auth-utils' {
     }
   
     interface UserSession {
-      accessToken: string
-      refreshToken: string
+      accessToken?: string
+      refreshToken?: string
       expiredAt?: number
       loggedInAt?: number
       isRegistered: boolean
-      provider: string
-      // Add your own fields
+      provider?: string
     }
   }
   

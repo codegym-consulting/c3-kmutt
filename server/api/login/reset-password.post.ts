@@ -41,7 +41,7 @@ export default defineEventHandler(async (event) => {
             statusMessage: 'Password reset successfully'
         }
     } catch (error) {
-        console.log(error)
-      return { error }
+        console.error(error)
+        throw error
     }
   })

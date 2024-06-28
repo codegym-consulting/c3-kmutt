@@ -21,7 +21,6 @@ export default defineEventHandler(async (event) => {
       })
     }
 
-    console.log(result.data)
     const user = await createUser({ ...session.user, provider: session.provider })
   
     if (user.length > 0) {

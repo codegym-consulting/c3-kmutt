@@ -31,7 +31,6 @@ const onFocus = () => {
 watchDebounced(
   [newPassword, confirmPassword],
   () => {
-    console.log('validate newPassword')
     validateForm()
   },
   { debounce: 500 },

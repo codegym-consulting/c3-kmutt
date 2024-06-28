@@ -1,10 +1,10 @@
 import type { $Fetch, NitroFetchRequest } from 'nitropack'
+import type { CreateResumeSchema } from '~/server/api/resume/schema'
 import type {
   Option,
   FileUploadResponse,
   Response,
 } from '~/utils/repositories/common/model'
-import type { Resume } from '~/server/api/resume/index.post'
 
 export const resumeRepository = <T>(fetch: $Fetch<T, NitroFetchRequest>) => ({
   async uploadResume(
@@ -54,7 +54,7 @@ export const resumeRepository = <T>(fetch: $Fetch<T, NitroFetchRequest>) => ({
     })
   },
   async postCreateResume(
-    body: Resume,
+    body: CreateResumeSchema,
     onResponse?: (statusCode: number, res: Response) => void,
   ): Promise<Response> {
     return fetch('/resume', {

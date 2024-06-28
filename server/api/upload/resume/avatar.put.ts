@@ -28,6 +28,6 @@ export default defineEventHandler(async (event) => {
     validateFileType(files, ['image/jpeg', 'image/png', 'image/webp'])
     const resizedFiles = await resizeImage(files, 500, 500)
     const urls = await uploadFiles(resizedFiles, `user/${session.user.email}/resume`, 'avatar')
-    await updateResume({ userId: session.user.id, photoUrl: urls[0] })
+    await updateResume({ userId: session.user.id, avatarUrl: urls[0] })
     return { urls }
 })

@@ -4,9 +4,9 @@ import db from "~/server/libs/pg"
 
 type InsertResume = typeof resume.$inferInsert;
 
-export const updateResume = async ({ userId = 1, photoUrl }: Partial<InsertResume>) => {
+export const updateResume = async ({ userId = 1, avatarUrl }: Partial<InsertResume>) => {
     try {
-        const values = { userId, photoUrl }
+        const values = { userId, avatarUrl }
         return await db.update(resume)
                 .set(values)
                 .where(eq(resume.userId, userId))

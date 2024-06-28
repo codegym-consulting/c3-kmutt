@@ -40,7 +40,7 @@ export default oauth.microsoftEventHandler({
           ...sessionData,
           isRegistered: userData ? true : false,
         }), 
-        updateUser(user.email, user.name, user.picture, sessionData.provider)
+        updateUser({ email: user.email, name: user.name, photoUrl: user.picture, provider: sessionData.provider })
       ])
 
       return userData ? sendRedirect(event, '/workspace') : sendRedirect(event, '/register')

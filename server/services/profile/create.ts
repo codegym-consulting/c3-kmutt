@@ -1,5 +1,5 @@
 
-import type { CreateProfileSchema } from "~/server/api/register/schema";
+import type { RegisterUserSchema } from "~/server/api/register/schema";
 import { profile } from "~/server/drizzle/schema"
 import db from "~/server/libs/pg"
 
@@ -20,8 +20,8 @@ export const createProfile = async ({
     teachingExperiences, 
     areaOfInterests, 
     expertises,
-    photoUrl
-}: Partial<CreateProfileSchema>) => {
+    avatarUrl
+}: Partial<RegisterUserSchema>) => {
     try {
         const values = { 
             userId, 
@@ -38,7 +38,7 @@ export const createProfile = async ({
             teachingExperiences, 
             areaOfInterests, 
             expertises,
-            photoUrl
+            avatarUrl
         }
 
         await db.insert(profile)

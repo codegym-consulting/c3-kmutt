@@ -18,4 +18,4 @@ export const schema = createInsertSchema(profile, {
     teachingExperiences: z.array(z.any()),
   })
   
-  export type CreateProfileSchema = z.infer<typeof schema>
+  export type RegisterUserSchema = z.infer<typeof schema>

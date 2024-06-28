@@ -15,7 +15,7 @@
     "lint:fix": "eslint . --fix",
     "clean": "npx nuxi cleanup",
     "analyze": "npx nuxi analyze",
-    "typecheck": "npx nuxi typecheck",
+    "type-check": "tsc --noEmit --pretty",
     "info": "npx nuxi info",
     "db-generate": "drizzle-kit generate",
     "db-apply": "drizzle-kit migrate",

@@ -2,7 +2,10 @@ import { eq } from "drizzle-orm"
 import { user } from "~/server/drizzle/schema"
 import db from "~/server/libs/pg"
 
-export const updateUser = async (email: string, name: string, photoUrl: string, provider: string) => {
+type InsertUser = typeof user.$inferInsert;
+type AtLeastOne<T, U = {[K in keyof T]: Pick<T, K> }> = Partial<T> & U[keyof U]
+
+export const updateUser = async ({ email, name, photoUrl, provider }: AtLeastOne<InsertUser, { email: { email: string } }>) => {
     try {
         const values = { email, name, photoUrl, provider, loggedInAt: new Date().toISOString() }
         await db.update(user)

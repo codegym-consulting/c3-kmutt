@@ -57,6 +57,13 @@
       "when": 1719605021011,
       "tag": "0007_late_chamber",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1719607093460,
+      "tag": "0008_cold_kingpin",
+      "breakpoints": true
     }
   ]
 }

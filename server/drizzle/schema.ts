@@ -119,7 +119,7 @@ export const resume = pgTable("resume", {
 	name: text("name"),
 	email: text("email"),
 	phoneNo: text("phoneNo"),
-	photoUrl: text("photoUrl"),
+	avatarUrl: text("avatarUrl"),
 	updatedAt: timestamp("updatedAt", { withTimezone: true, mode: 'string' }).defaultNow(),
 	createdAt: timestamp("createdAt", { withTimezone: true, mode: 'string' }).defaultNow(),
 });
@@ -130,7 +130,7 @@ export const profile = pgTable("profile", {
 	name: text("name"),
 	surname: text("surname"),
 	nickname: text("nickname"),
-	photoUrl: text("photoUrl"),
+	avatarUrl: text("avatarUrl"),
 	phoneNo: text("phoneNo"),
 	email: text("email"),
 	linkUrl: text("linkUrl"),

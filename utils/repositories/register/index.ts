@@ -1,6 +1,6 @@
 import type { $Fetch, NitroFetchRequest } from 'nitropack'
+import type { RegisterUserSchema } from '~/server/api/register/schema'
 import type { Option, Response } from '~/utils/repositories/common/model'
-import type { Schema } from '~/server/api/register/index.post'
 
 export const registerRepository = <T>(fetch: $Fetch<T, NitroFetchRequest>) => ({
   async getExpertises(query?: string): Promise<Option[]> {
@@ -10,7 +10,7 @@ export const registerRepository = <T>(fetch: $Fetch<T, NitroFetchRequest>) => ({
     return fetch('/interests', { query: { query } })
   },
   async postRegister(
-    body: Schema,
+    body: RegisterUserSchema,
     onResponse?: (statusCode: number, res: Response) => void,
   ): Promise<Response> {
     return fetch('/register', {

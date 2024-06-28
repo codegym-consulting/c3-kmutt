@@ -25,7 +25,7 @@ export default defineEventHandler(async (event) => {
     const user = await createUser({ ...session.user, provider: session.provider })
   
     if (user.length > 0) {
-      await createProfile({ userId: user[0].insertedId, photoUrl: session.user.photoUrl, ...result.data, })
+      await createProfile({ userId: user[0].insertedId, avatarUrl: session.user.photoUrl, ...result.data, })
     }
 
     setResponseStatus(event, 201)

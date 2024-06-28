@@ -6,6 +6,10 @@
     "dev": "nuxt dev --host 0.0.0.0 & npx drizzle-kit studio",
     "dev2": "bunx --bun nuxt dev --host 0.0.0.0",
     "preview": "nuxt preview",
+    "test:api": "vitest run",
+    "e2e": "npx playwright test",
+    "e2e:debug": "npx playwright test --ui",
+    "e2e:report": "npx playwright show-report",
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
@@ -30,6 +34,7 @@
     "argon2": "^0.40.3",
     "dayjs": "^1.11.11",
     "drizzle-orm": "^0.31.2",
+    "drizzle-zod": "^0.5.1",
     "nuxt": "^3.12.2",
     "nuxt-auth-utils": "^0.1.0",
     "nuxt-icons": "^3.2.1",
@@ -47,6 +52,7 @@
   "devDependencies": {
     "@nuxt/eslint": "^0.3.13",
     "@nuxt/test-utils": "^3.13.1",
+    "@playwright/test": "^1.45.0",
     "@types/bun": "^1.1.5",
     "@vue/test-utils": "^2.4.6",
     "@vueuse/core": "^10.11.0",
@@ -68,5 +74,8 @@
   ],
   "engines": {
     "node": ">=20"
+  },
+  "playwright": {
+    "testDir": "tests"
   }
 }

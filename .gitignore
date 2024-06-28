@@ -26,3 +26,7 @@ logs
 .netlify
 
 c3-kmutt-service-account.json
+
+tests-output
+tests-screenshot
+playwright-report

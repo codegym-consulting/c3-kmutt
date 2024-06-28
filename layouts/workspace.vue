@@ -13,27 +13,27 @@ const menus = [
   {
     icon: 'c3/user',
     to: '/workspace/profile',
-    activeRouteName: 'profile',
+    activeRouteName: 'workspace-profile',
   },
   {
     icon: 'c3/document',
     to: '/workspace/resume',
-    activeRouteName: 'resume',
+    activeRouteName: 'workspace-resume',
   },
   {
     icon: 'c3/folder',
     to: '/workspace/my-project',
-    activeRouteName: 'my-project',
+    activeRouteName: 'workspace-my-project',
   },
   {
     icon: 'c3/group',
     to: '/workspace/network',
-    activeRouteName: 'network',
+    activeRouteName: 'workspace-network',
   },
   {
     icon: 'c3/bookmark',
     to: '/workspace/bookmark',
-    activeRouteName: 'bookmark',
+    activeRouteName: 'workspace-bookmark',
   },
 ]
 </script>

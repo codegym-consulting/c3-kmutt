@@ -11,3 +11,10 @@ export const personalInfomationSchema = z.object({
 })
 
 export type PersonalInformation = z.infer<typeof personalInfomationSchema>
+
+export interface ProfileInformation extends PersonalInformation {
+  avatarUrl: string
+  firstName: string
+  lastName: string
+  surName: string
+}

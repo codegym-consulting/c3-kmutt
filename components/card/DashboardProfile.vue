@@ -1,30 +1,16 @@
 <script lang="ts" setup>
-import type { PersonalInformation } from '~/utils/repositories/dashboard/model'
+import type {
+  PersonalInformation,
+  ProfileInformation,
+} from '~/utils/repositories/dashboard/model'
 
-//@TODO Query profile data from API
-const profile = {
-  avatarUrl: '',
-  firstName: 'Pitikorn',
-  lastName: 'Chulitawong',
-  surName: 'Beam',
-  teachingExperience: '',
-  occupation: { label: 'Student', value: 'student' },
-  organization: { label: 'KMUTT', value: 'kmutt' },
-  faculty: { label: 'คณะวิทยาศาสตร์', value: 3 },
-  department: { label: 'สายวิชาเทคโนโลยีวัสดุ', value: 35 },
-  expertises: [
-    { label: '1st gen biofuels', value: 1 },
-    { label: '2st gen biofuels', value: 2 },
-  ],
-  areaOfInterests: [
-    { label: '1st gen biofuels', value: 1 },
-    { label: '2st gen biofuels', value: 2 },
-  ],
-}
+const props = defineProps<{
+  profile: ProfileInformation
+}>()
 
 const modal = ref(false)
-const editData = ref<PersonalInformation>({ ...profile })
-const stateData = ref<PersonalInformation>({ ...profile })
+const editData = ref<PersonalInformation>({ ...props.profile })
+const stateData = ref<PersonalInformation>({ ...props.profile })
 
 const edit = () => {
   modal.value = true
@@ -35,11 +21,11 @@ const save = (data: PersonalInformation) => {
 const format = (options?: Option[]) => {
   return options?.length ? options.map((o) => o.label).join(', ') : '-'
 }
-const avatar = computed(() => profile.avatarUrl || '/common/avatar.png')
+const avatar = computed(() => props.profile.avatarUrl || '/common/avatar.png')
 const name = computed(() =>
-  !profile.firstName && !profile.lastName
+  !props.profile.firstName && !props.profile.lastName
     ? '-'
-    : `${profile.firstName} <br /> ${profile.lastName}`,
+    : `${props.profile.firstName} <br /> ${props.profile.lastName}`,
 )
 const _occupation = computed(() => editData.value.occupation?.label ?? '-')
 const _organization = computed(() =>
@@ -91,12 +77,9 @@ watch(
           >
         </figure>
         <div class="flex flex-col justify-between gap-y-2">
-          <h3
-            class="text-2xl leading-7 text-gray-10 font-bold"
-            v-html="name"
-          />
+          <h3 class="text-2xl leading-7 text-gray-10 font-bold" v-html="name" />
           <em class="not-italic text-base leading-5 font-bold text-gray-10">{{
-            profile.surName || '-'
+            props.profile.surName || '-'
           }}</em>
         </div>
       </div>

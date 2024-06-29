@@ -1,7 +1,7 @@
 import type { MultiPartData } from 'h3'
 import sharp from 'sharp'
 
-export const resizeImage = async (files: MultiPartData[], width: number, height: number) => {
+export const resizeImage = async (files: MultiPartData[], width?: number | null, height?: number | null) => {
     const tasks = files.map(async (file) => {
       const buffer = await sharp(file.data)
         .resize(width, height)

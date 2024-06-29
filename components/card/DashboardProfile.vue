@@ -21,7 +21,7 @@ const save = (data: PersonalInformation) => {
 const format = (options?: Option[]) => {
   return options?.length ? options.map((o) => o.label).join(', ') : '-'
 }
-const avatar = computed(() => props.profile.avatarUrl || '/common/avatar.png')
+const avatar = computed(() => props.profile.avatarUrl || '/common/avatar.svg')
 const name = computed(() =>
   !props.profile.name && !props.profile.surname
     ? '-'

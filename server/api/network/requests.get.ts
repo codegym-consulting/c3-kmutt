@@ -1,7 +1,7 @@
 export default defineEventHandler(async (event) => {
     await requireUserSession(event)
     try {
-      // TODO: Query from network_activity table
+      // TODO: Query from network_request table
       return [{
           id: 1,
           userId: 23,

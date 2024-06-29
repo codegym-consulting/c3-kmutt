@@ -140,7 +140,7 @@ const handleFileChange = (event: Event) => {
           :name="props.name"
           :accept="props.supportFileTypes.join(',')"
           @change="handleFileChange"
-        />
+        >
         <div
           :class="[
             { 'flex flex-col items-center mb-10': props.design === 'large' },
@@ -205,7 +205,7 @@ const handleFileChange = (event: Event) => {
         :src="_previewImage"
         alt="preview-image"
         class="w-full h-auto rounded-lg"
-      />
+      >
       <button
         class="square-icon-btn -invert transition-all absolute bottom-4 right-4"
         type="button"

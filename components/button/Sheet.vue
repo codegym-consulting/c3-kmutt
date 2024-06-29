@@ -3,11 +3,13 @@ const { $classes } = useNuxtApp()
 const props = withDefaults(
   defineProps<{
     icon?: string
+    c3Icon?: string
     title: string
     subtitle: string
     active?: boolean
+    class?: string
   }>(),
-  { icon: '', active: false },
+  { icon: '', c3Icon: '', active: false, class: '' },
 )
 
 const hover = ref(false)
@@ -28,10 +30,11 @@ const emit = defineEmits<{
           : 'bg-gray-1 hover:bg-mid-chrysler-blue',
         props.active
           ? '[&_.icon]:!text-white'
-          : '[&_.icon]:hover:!text-dark-chrysler-blue',
+          : '[&_.icon]:hover:!text-dark-chrysler-blue [&_.icon_path]:hover:!stroke-chrysler-blue',
         props.active
           ? '[&_.title]:!text-white [&_.subtitle]:!text-white'
           : '[&_.title]:hover:!text-dark-chrysler-blue [&_.subtitle]:hover:!text-dark-chrysler-blue',
+        props.class,
       )
     "
     type="button"
@@ -42,7 +45,17 @@ const emit = defineEmits<{
     <div class="flex flex-col md:flex-row gap-6 w-full">
       <div class="flex justify-center items-center w-[88px] h-[88px]">
         <slot name="icon" :hover="hover">
-          <UIcon class="icon text-[55px]" :name="props.icon" />
+          <UIcon
+            v-if="props.icon"
+            class="icon text-[55px]"
+            :name="props.icon"
+          />
+          <NuxtIcon
+            v-if="props.c3Icon"
+            :name="props.c3Icon"
+            class="icon text-[55px]"
+            filled
+          />
         </slot>
       </div>
       <div class="flex flex-col gap-y-4 items-start">

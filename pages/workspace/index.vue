@@ -4,26 +4,29 @@ definePageMeta({
   middleware: 'auth',
 })
 
-//@TODO Query profile data from API
-const profile = {
-  avatarUrl: '',
-  name: 'Pitikorn',
-  surname: 'Chulitawong',
-  nickname: 'Beam',
-  teachingExperience: '',
-  occupation: { label: 'Student', value: 'student' },
-  organization: { label: 'KMUTT', value: 'kmutt' },
-  faculty: { label: 'คณะวิทยาศาสตร์', value: 3 },
-  department: { label: 'สายวิชาเทคโนโลยีวัสดุ', value: 35 },
-  expertises: [
-    { label: '1st gen biofuels', value: 1 },
-    { label: '2st gen biofuels', value: 2 },
-  ],
-  areaOfInterests: [
-    { label: '1st gen biofuels', value: 1 },
-    { label: '2st gen biofuels', value: 2 },
-  ],
-}
+const { $fetchApi } = useNuxtApp()
+const dashboardRepo = dashboardRepository($fetchApi)
+
+const { data: profile } = useAsyncData(
+  'dashboard-profile',
+  dashboardRepo.getProfile,
+)
+
+const _profile = computed(() => ({
+  ...profile.value,
+  ...{
+    faculty: { label: 'คณะวิทยาศาสตร์', value: 3 },
+    department: { label: 'สายวิชาเทคโนโลยีวัสดุ', value: 35 },
+    expertises: [
+      { label: '1st gen biofuels', value: 1 },
+      { label: '2st gen biofuels', value: 2 },
+    ],
+    areaOfInterests: [
+      { label: '1st gen biofuels', value: 1 },
+      { label: '2st gen biofuels', value: 2 },
+    ],
+  },
+}))
 //@TODO Query stat data from API
 const stat = [
   {
@@ -44,10 +47,10 @@ const stat = [
     >
       <div class="flex flex-col gap-y-1">
         <h1
-          :title="profile.name + 'workspace'"
+          :title="profile?.name + 'workspace'"
           class="text-[32px] leading-10 font-bold text-gray-10"
         >
-          Welcome, <span class="block lg:inline">{{ profile.name }}</span>
+          Welcome, <span class="block lg:inline">{{ profile?.name }}</span>
         </h1>
         <p class="text-sm leading-[18px] font-normal text-gray-10">
           Keep track of your activities, notes, and
@@ -75,7 +78,7 @@ const stat = [
       </div>
     </div>
     <div class="grid gap-5 grid-cols-1 lg:grid-cols-[400px,1fr]">
-      <CardDashboardProfile :profile="profile" />
+      <CardDashboardProfile :profile="(_profile as ProfileInformation)" />
       <CardDashboardActivity />
       <CardDashboardNote />
       <CardDashboardRecentProject />

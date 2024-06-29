@@ -18,3 +18,14 @@ export interface ProfileInformation extends PersonalInformation {
   surname: string
   nickname: string
 }
+
+export interface ProfileInformationResponse
+  extends Omit<
+    ProfileInformation,
+    'faculty' | 'department' | 'expertises' | 'areaOfInterests'
+  > {
+  faculty: number
+  department: number
+  expertises: number[]
+  areaOfInterests: number[]
+}

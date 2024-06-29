@@ -19,3 +19,6 @@ export const schema = createInsertSchema(profile, {
   })
   
   export type RegisterUserSchema = z.infer<typeof schema>
+
+  export type ProfileTitle = z.infer<typeof schema.shape.title>
+  export type AcademicTitle = z.infer<typeof schema.shape.academicTitle>

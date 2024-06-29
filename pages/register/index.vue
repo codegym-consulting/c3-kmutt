@@ -8,6 +8,7 @@ import {
 } from '~/data/common'
 import type { Option } from '~/utils/repositories/common/model'
 import { refDebounced } from '@vueuse/core'
+import type { ProfileTitle, AcademicTitle } from '~/server/api/register/schema'
 
 definePageMeta({
   layout: 'register',
@@ -112,11 +113,13 @@ const onClickNext = async () => {
   if (step.value === 2) {
     await registerRepo.postRegister(
       {
+        userId: user.value?.id ?? 0,
         email: userData.email,
-        title: (stepOneState.title as Option).value.toString(),
+        title: (stepOneState.title as Option<ProfileTitle>).value,
         name: stepOneState.name,
         surname: stepOneState.surname,
-        academicTitle: (stepOneState.academicTitle as Option).value.toString(),
+        academicTitle: (stepOneState.academicTitle as Option<AcademicTitle>)
+          .value,
         nationality: (stepOneState.nationality as Option).value.toString(),
         occupation: (stepTwoState.occupation as Option).value.toString(),
         teachingExperiences: [101, 102],

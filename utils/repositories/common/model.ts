@@ -24,8 +24,8 @@ export const selectSchema = z
   })
   .strict()
 
-export type Option = {
-  value: string | number
+export type Option<T = string | number> = {
+  value: T
   label: string
   disabled?: boolean
 }

@@ -16,6 +16,9 @@ const Education = z.object({
     graduationYear: z.string().optional(),
 })
 
+
+export type TypeOfDegree = z.infer<typeof Education.shape.typeOfDegree>
+
 const Skill = z.object({
     name: z.string(),
     level: z.number().int().min(1).max(5)
@@ -41,6 +44,8 @@ const Publication = z.object({
     year: z.string().optional(),
     authors: z.array(z.string()).optional()
 })
+
+export type TypeOfSource = z.infer<typeof Publication.shape.typeOfSource>
 
 export const schema = z.object({
   photoUrl: z.string().url().or(z.literal('')).optional(),

@@ -14,7 +14,7 @@ export type PersonalInformation = z.infer<typeof personalInfomationSchema>
 
 export interface ProfileInformation extends PersonalInformation {
   avatarUrl: string
-  firstName: string
-  lastName: string
-  surName: string
+  name: string
+  surname: string
+  nickname: string
 }

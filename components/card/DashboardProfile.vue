@@ -23,9 +23,9 @@ const format = (options?: Option[]) => {
 }
 const avatar = computed(() => props.profile.avatarUrl || '/common/avatar.png')
 const name = computed(() =>
-  !props.profile.firstName && !props.profile.lastName
+  !props.profile.name && !props.profile.surname
     ? '-'
-    : `${props.profile.firstName} <br /> ${props.profile.lastName}`,
+    : `${props.profile.name} <br /> ${props.profile.surname}`,
 )
 const _occupation = computed(() => editData.value.occupation?.label ?? '-')
 const _organization = computed(() =>
@@ -79,7 +79,7 @@ watch(
         <div class="flex flex-col justify-between gap-y-2">
           <h3 class="text-2xl leading-7 text-gray-10 font-bold" v-html="name" />
           <em class="not-italic text-base leading-5 font-bold text-gray-10">{{
-            props.profile.surName || '-'
+            props.profile.nickname || '-'
           }}</em>
         </div>
       </div>

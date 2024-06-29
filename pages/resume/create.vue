@@ -10,6 +10,7 @@ import type {
   ResumeFillInStepThree,
 } from '~/utils/repositories/resume/model'
 import { isEmpty } from '~/utils/validator'
+import type { TypeOfDegree, TypeOfSource } from '~/server/api/resume/schema'
 
 definePageMeta({
   layout: 'register',
@@ -172,7 +173,7 @@ const onClickNext = async () => {
         contactNumber: fillInStepOneState?.phone?.replaceAll?.('-', '') ?? '',
         educations:
           fillInStepOneState.education?.map((e) => ({
-            typeOfDegree: e.degree?.value?.toString?.() ?? '',
+            typeOfDegree: (e.degree as Option<TypeOfDegree>)?.value,
             institution: e.school,
             fieldOfStudy: e.fieldOfStudy,
             graduationYear: e.graduation?.toString?.() ?? '',
@@ -216,7 +217,7 @@ const onClickNext = async () => {
           })) ?? [],
         publications:
           fillInStepThreeState.publication?.map((p) => ({
-            typeOfSource: p.type?.value?.toString?.() ?? '',
+            typeOfSource: (p.type as Option<TypeOfSource>)?.value,
             city: p.city,
             authors: p.author,
             publisher: p.publisher,

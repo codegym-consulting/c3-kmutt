@@ -7,9 +7,9 @@ definePageMeta({
 //@TODO Query profile data from API
 const profile = {
   avatarUrl: '',
-  firstName: 'Pitikorn',
-  lastName: 'Chulitawong',
-  surName: 'Beam',
+  name: 'Pitikorn',
+  surname: 'Chulitawong',
+  nickname: 'Beam',
   teachingExperience: '',
   occupation: { label: 'Student', value: 'student' },
   organization: { label: 'KMUTT', value: 'kmutt' },
@@ -44,10 +44,10 @@ const stat = [
     >
       <div class="flex flex-col gap-y-1">
         <h1
-          :title="profile.firstName + 'workspace'"
+          :title="profile.name + 'workspace'"
           class="text-[32px] leading-10 font-bold text-gray-10"
         >
-          Welcome, <span class="block lg:inline">{{ profile.firstName }}</span>
+          Welcome, <span class="block lg:inline">{{ profile.name }}</span>
         </h1>
         <p class="text-sm leading-[18px] font-normal text-gray-10">
           Keep track of your activities, notes, and

@@ -115,10 +115,6 @@ export default defineNuxtConfig({
       ],
     },
   },
-  // So sad https://github.com/vuejs/language-tools/issues/3969
-  // typescript: {
-  //   typeCheck: 'build',
-  // },
   experimental: {
     viewTransition: true,
     appManifest: false,
@@ -126,7 +122,7 @@ export default defineNuxtConfig({
 
   // https://nuxt.com/docs/guide/directory-structure/server#server-storage
   nitro: {
-    preset: 'bun', // node-server, netlify_edge
+    // preset: 'bun', // node-server, netlify_edge
     rollupConfig: {
       external: ['cloudflare:sockets'],
     },

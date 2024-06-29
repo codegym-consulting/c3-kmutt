@@ -53,7 +53,7 @@ const props = defineProps<{
           <SwiperSlide
             v-for="project in props.projects"
             :key="project.id"
-            class="mobile:!w-fit"
+            class="!w-fit"
           >
             <CardProject v-bind="project" classes="mx-auto" size="small" />
           </SwiperSlide>

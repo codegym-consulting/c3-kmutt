@@ -43,3 +43,14 @@ export type PreviewNote = Omit<Note, 'image'> & {
   image?: string
   createdAt: string
 }
+
+export type NotificationData = {
+  imageUrl: string
+  title: string
+  description: string
+  createdAt: string
+}
+
+export interface ActivityData extends ProfileInformationResponse {
+  bio: string
+}

@@ -17,3 +17,19 @@ export const formatFullDate = (
   if (!date) return ''
   return dayjs(date).locale('en').format(format)
 }
+
+export const timeAgo = (date: string): string => {
+  // support minute ago, hour ago, above 1 day show date
+  const now = dayjs()
+  const target = dayjs(date)
+  const diff = now.diff(target, 'minute')
+  if (diff < 60) {
+    return `${diff} minute${diff > 1 ? 's' : ''} ago`
+  }
+  if (diff < 1440) {
+    return `${now.diff(target, 'hour')} hour${
+      now.diff(target, 'hour') > 1 ? 's' : ''
+    } ago`
+  }
+  return formatFullDate(date, 'DD MMM YYYY')
+}

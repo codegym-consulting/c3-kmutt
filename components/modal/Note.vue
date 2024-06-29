@@ -127,7 +127,7 @@ watch(
               placeholder="Add your new note here"
             />
           </TemplateRow>
-          <TemplateRow class="justify-between items-center">
+          <TemplateRow class="justify-between md:items-center">
             <div
               v-if="!isEmpty(note)"
               tabindex="0"
@@ -172,7 +172,7 @@ watch(
               :rows="2"
             />
           </TemplateRow>
-          <TemplateRow class="justify-between items-center">
+          <TemplateRow class="justify-between md:items-center">
             <div
               v-if="!isEmpty(note)"
               tabindex="0"

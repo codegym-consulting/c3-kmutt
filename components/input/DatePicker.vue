@@ -35,7 +35,7 @@ const emit = defineEmits<{
       :enable-time-picker="props.enableTimePicker"
       :model-type="modelType"
       :max-date="new Date()"
-      :year-range="[new Date().getFullYear() - 40, new Date().getFullYear()]"
+      :year-range="[new Date().getFullYear() - 30, new Date().getFullYear()]"
       auto-apply
       reverse-years
       hide-offset-dates

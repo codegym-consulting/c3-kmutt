@@ -104,5 +104,6 @@ const menus = [
       </UContainer>
     </div>
     <ModalLogout v-model="logoutModal" />
+    <Alert />
   </div>
 </template>

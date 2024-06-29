@@ -38,6 +38,14 @@ const stat = [
     value: 12,
   },
 ]
+//@TODO Query stat data from API
+const notes = Array.from({ length: 12 }).map((_, index) => ({
+  title: 'Lorem ipsum dolor sit amet',
+  image: index % 2 === 0 ? 'https://picsum.photos/200/300' : undefined,
+  description:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+  createdAt: '2021-09-01T00:00:00Z',
+}))
 </script>
 
 <template>
@@ -80,7 +88,7 @@ const stat = [
     <div class="grid gap-5 grid-cols-1 lg:grid-cols-[400px,1fr]">
       <CardDashboardProfile :profile="(_profile as ProfileInformation)" />
       <CardDashboardActivity />
-      <CardDashboardNote />
+      <CardDashboardNote :notes="notes" />
       <CardDashboardRecentProject />
     </div>
   </div>

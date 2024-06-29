@@ -12,7 +12,7 @@ const notification = computed(() => props.data)
       :src="notification.imageUrl"
       alt="image"
       class="w-10 h-10 rounded-lg"
-    />
+    >
     <div>
       <h4 class="text-base text-gray-10 leading-5 font-medium break-words">
         {{ notification.title }}

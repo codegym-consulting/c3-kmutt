@@ -78,8 +78,8 @@ const activeMenu = ref('notification')
           />
         </div>
         <Swiper
-          class="md:!hidden w-full p-4"
           key="notification"
+          class="md:!hidden w-full p-4"
           :modules="[Pagination]"
           :slides-per-view="1"
           :space-between="8"
@@ -102,7 +102,7 @@ const activeMenu = ref('notification')
         </div>
         <div class="text-gray-6 text-sm leading-[18px] text-center">
           You haven't performed any activities yet. Start exploring the platform
-          to <br />
+          to <br >
           see your actions here.
         </div>
       </div>

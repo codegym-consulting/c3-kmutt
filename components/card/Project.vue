@@ -61,7 +61,7 @@ const props = withDefaults(
           ]"
           :src="props.imageUrl"
           alt="Project Image"
-        />
+        >
       </figure>
     </template>
 

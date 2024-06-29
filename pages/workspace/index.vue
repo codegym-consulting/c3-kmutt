@@ -6,6 +6,12 @@ definePageMeta({
 
 const { $fetchApi } = useNuxtApp()
 const dashboardRepo = dashboardRepository($fetchApi)
+const landingRepo = landingRepository($fetchApi)
+
+const { data: projects } = useAsyncData(
+  'highlight-projects',
+  landingRepo.getProjects,
+)
 
 const { data: profile } = useAsyncData(
   'dashboard-profile',
@@ -89,7 +95,7 @@ const notes = Array.from({ length: 12 }).map((_, index) => ({
       <CardDashboardProfile :profile="(_profile as ProfileInformation)" />
       <CardDashboardActivity />
       <CardDashboardNote :notes="notes" />
-      <CardDashboardRecentProject />
+      <CardDashboardRecentProject :projects="projects ?? []" />
     </div>
   </div>
 </template>

@@ -66,7 +66,7 @@ const onSaveNote = (note: Note) => {
         </div>
         <div
           :class="[
-            'flex-1 overflow-auto lg:overflow-y-auto lg:overflow-x-hidden',
+            'flex-1 overflow-x-auto overflow-y-hidden lg:overflow-y-auto lg:overflow-x-hidden',
             { 'flex justify-center items-center': noNotes },
           ]"
         >

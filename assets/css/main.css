@@ -68,6 +68,13 @@
         @apply w-[29px];
       }
     }
+    &.-small {
+      @apply w-10 h-10 text-lg;
+      svg {
+        @apply w-[18px];
+      }
+    
+    }
   }
 }
 

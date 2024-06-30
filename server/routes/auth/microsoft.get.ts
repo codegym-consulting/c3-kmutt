@@ -1,5 +1,5 @@
 import { sendRedirect } from 'h3'
-import { FiveMinutes, TwoWeeks, defaultAvatarUrl } from '~/configs/session'
+import { FiveMinutes, TwoWeeks } from '~/configs/session'
 import { getUser } from '~/server/services/user/get'
 import { updateUser } from '~/server/services/user/update'
 
@@ -21,14 +21,15 @@ export default oauth.microsoftEventHandler({
           id: userData ? userData.id : 0,
           email: user.email,
           name: user.name,
-          photoUrl: user.picture || defaultAvatarUrl,
-          emailVerified: user.email_verified
+          photoUrl: user.picture,
+          emailVerified: user.email_verified,
+          provider: 'microsoft'
         },
         accessToken: tokens.access_token,
         refreshToken: tokens.refresh_token,
         expiredAt: Date.now() + 1000 * tokens.expires_in,
         loggedInAt: Date.now(),
-        provider: 'microsoft',
+        provider: 'microsoft'
       }
 
       setCookie(event, 'accessToken', tokens.access_token, { httpOnly: true, secure: true, sameSite: 'lax', maxAge: userData ? FiveMinutes : TwoWeeks })
@@ -36,7 +37,7 @@ export default oauth.microsoftEventHandler({
       await Promise.all([
         setUserSession(event, {
           ...sessionData,
-          isRegistered: userData ? true : false,
+          isRegistered: !!userData,
         }), 
         updateUser({ email: user.email, name: user.name, photoUrl: user.picture, provider: sessionData.provider })
       ])

@@ -1,4 +1,4 @@
-import { FiveMinutes, TwoWeeks, defaultAvatarUrl } from "~/configs/session"
+import { FiveMinutes, TwoWeeks } from "~/configs/session"
 import { getUser } from "~/server/services/user/get"
 import { updateUser } from "~/server/services/user/update"
 
@@ -19,8 +19,9 @@ export default oauth.googleEventHandler({
           id: userData ? userData.id : 0,
           email: user.email,
           name: user.name,
-          photoUrl: user.picture || defaultAvatarUrl,
-          emailVerified: user.email_verified
+          photoUrl: user.picture,
+          emailVerified: user.email_verified,
+          provider: 'google',
         },
         accessToken: tokens.access_token,
         refreshToken: tokens.refresh_token,
@@ -34,7 +35,7 @@ export default oauth.googleEventHandler({
       await Promise.all([
         setUserSession(event, {
           ...sessionData,
-          isRegistered: userData ? true : false,
+          isRegistered: !!userData,
         }), 
         updateUser({ email: user.email, name: user.name, photoUrl: user.picture, provider: sessionData.provider })
       ])

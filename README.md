@@ -8,7 +8,15 @@ Make sure to install the dependencies:
 
 If you not have bun install it from <https://bun.sh/>
 
-```bash
+Set NodeJs to LTS 20
+
+```zsh
+nvm use --lts Iron
+```
+
+Install depedencies
+
+```zsh
 # bun
 bun install
 ```
@@ -28,6 +36,7 @@ Start the development server on `http://localhost:3000`:
 pnpm run dev
 
 # bun
+bun run db-generate
 bun run dev
 ```
 

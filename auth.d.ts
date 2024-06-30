@@ -5,6 +5,7 @@ declare module '#auth-utils' {
       name: string
       photoUrl: string
       emailVerified: boolean
+      provider: string
     }
   
     interface UserSession {

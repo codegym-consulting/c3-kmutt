@@ -13,11 +13,14 @@ export const getProfile = async (userId: number) => {
         const [facultyData, departmentData, areaOfInterests, expertises] = await Promise.all([
             result.faculty ? db.select({ label: faculty.name, value: faculty.id })
                 .from(faculty)
-                .where(eq(faculty.id, result.faculty)).limit(1) : null,
+                .limit(1)
+                .where(eq(faculty.id, result.faculty))
+                : null,
             result.department ? db.select({ label: department.name, value: department.id })
                 .from(department)
+                .limit(1)
                 .where(eq(department.id, result.department))
-                .limit(1) : null,
+                : null,
             db.select({ label: interest.name, value: interest.id })
                 .from(interest)
                 .where(inArray(interest.id, result.areaOfInterests || [])),
@@ -25,9 +28,9 @@ export const getProfile = async (userId: number) => {
                 .from(expertise)
                 .where(inArray(expertise.id, result.expertises || []))
         ])
-        const academicTitle = academicTitles.find(academicTitle => academicTitle.value === result.academicTitle)
-        const occupation = occupations.find(occupation => occupation.value === result.occupation)
-        const organization = organizations.find(organization => organization.value === result.organization)
+        const academicTitle = academicTitles.find(academicTitle => academicTitle.value === result.academicTitle) ?? null
+        const occupation = occupations.find(occupation => occupation.value === result.occupation) ?? null
+        const organization = organizations.find(organization => organization.value === result.organization) ?? null
         return { 
             ...result,
             occupation,
@@ -37,8 +40,8 @@ export const getProfile = async (userId: number) => {
             academicTitle,
             areaOfInterests, 
             expertises,
-            yourProject: 0, 
-            yourNetwork: 0, 
+            yourProject: 10, 
+            yourNetwork: 3, 
         }
     } catch (error) {
         console.error(`Error selecting profile: ${error}`)

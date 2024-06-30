@@ -6,6 +6,7 @@ const baseSchema = z.object({
     type: z.enum(note_type.enumValues).default('text'),
     title: z.string(),
     content: z.string().optional(),
+    imageUrl: z.string().optional(),
 });
 
 export const refinedSchema = baseSchema.extend({
@@ -15,12 +16,7 @@ export const refinedSchema = baseSchema.extend({
     path: ["imageUrl"], // This specifies the path of the field that the error message is associated with.
 });
 
-export const schema = createInsertSchema(note, {
-    type: z.enum(note_type.enumValues).default('text'),
-    title: z.string(),
-    content: z.string().optional(),
-    imageUrl: z.string().optional(),
-})
+export const schema = createInsertSchema(note, baseSchema.shape)
 
 export const updateSchema = schema.omit({ type: true, userId: true, id: true })
 

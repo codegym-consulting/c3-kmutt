@@ -1,11 +1,11 @@
 import { createUser } from "~/server/services/user/create"
-import { schema } from "./schema"
+import { createProfileSchema } from "./schema"
 import { createProfile } from "~/server/services/profile/create"
 import { createErrorResponse } from "~/server/utils/errorResponse"
 
 export default defineEventHandler(async (event) => {
   const session = await requireUserSession(event)
-  const requestSchema = schema.omit({ userId: true })
+  const requestSchema = createProfileSchema.omit({ userId: true })
   const result = await readValidatedBody(event, body => requestSchema.safeParse(body))
 
   if (result.error) {

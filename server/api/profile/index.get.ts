@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
       return profile
     } catch (error) {
       console.error(error)
-      return null
+      throw error
     }
   })
   

@@ -18,7 +18,7 @@ export const registerRepository = <T>(fetch: $Fetch<T, NitroFetchRequest>) => ({
       body,
       onResponse: ({ response }) => {
         const data = response._data
-        const status = response.status as number
+        const status = response.status
         onResponse?.(status, data)
       },
     })

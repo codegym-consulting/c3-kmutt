@@ -20,8 +20,8 @@ const _createdAt = computed(() =>
   >
     <figure class="bg-white w-full h-[88px] rounded-t-2xl">
       <img
-        v-if="note.image"
-        :src="note.image"
+        v-if="note.imageUrl"
+        :src="note.imageUrl"
         class="object-cover rounded-t-2xl w-full h-full"
       >
     </figure>

@@ -104,7 +104,7 @@ watch(
           :options="occupations"
         />
         <Input
-          v-model="personalInfo.teachingExperience"
+          v-model="personalInfo.teachingExperiences"
           label="Teaching experience"
           name="teachingExperience"
         />

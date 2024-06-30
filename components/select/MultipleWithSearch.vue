@@ -108,7 +108,7 @@ const removeChip = (chip: Option) => {
         ]"
       >
         <span
-          v-if="!props.modelValue.length"
+          v-if="!props.modelValue?.length"
           class="block truncate font-bai-jamjuree text-base text-gray-5"
           >{{ props.placeholder }}</span
         >

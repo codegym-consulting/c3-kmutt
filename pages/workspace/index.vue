@@ -6,11 +6,10 @@ definePageMeta({
 
 const { $fetchApi } = useNuxtApp()
 const dashboardRepo = dashboardRepository($fetchApi)
-const landingRepo = landingRepository($fetchApi)
 
 const { data: projects } = useAsyncData(
   'highlight-projects',
-  landingRepo.getProjects,
+  dashboardRepo.getRecentProjects,
 )
 
 const { data: profile } = useAsyncData(
@@ -18,40 +17,43 @@ const { data: profile } = useAsyncData(
   dashboardRepo.getProfile,
 )
 
-const _profile = computed(() => ({
-  ...profile.value,
-  ...{
-    faculty: { label: 'คณะวิทยาศาสตร์', value: 3 },
-    department: { label: 'สายวิชาเทคโนโลยีวัสดุ', value: 35 },
-    expertises: [
-      { label: '1st gen biofuels', value: 1 },
-      { label: '2st gen biofuels', value: 2 },
-    ],
-    areaOfInterests: [
-      { label: '1st gen biofuels', value: 1 },
-      { label: '2st gen biofuels', value: 2 },
-    ],
-  },
-}))
-//@TODO Query stat data from API
-const stat = [
+const _profile = computed(() => {
+  return {
+    ...profile.value,
+    ...{
+      faculty: { label: 'คณะวิทยาศาสตร์', value: 3 },
+      department: { label: 'สายวิชาเทคโนโลยีวัสดุ', value: 35 },
+    },
+  }
+})
+
+const stat = computed(() => [
   {
     title: 'Your network',
-    value: 152,
+    value: profile.value?.yourNetwork ?? 0,
   },
   {
     title: 'Your projects',
-    value: 12,
+    value: profile.value?.yourProjects ?? 0,
   },
-]
-//@TODO Query stat data from API
-const notes = Array.from({ length: 12 }).map((_, index) => ({
-  title: 'Lorem ipsum dolor sit amet',
-  image: index % 2 === 0 ? 'https://picsum.photos/200/300' : undefined,
-  description:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-  createdAt: '2021-09-01T00:00:00Z',
-}))
+])
+
+const { data: noteLists } = useAsyncData(
+  'dashboard-notes',
+  dashboardRepo.getNotes,
+)
+
+const notes = computed<PreviewNote[]>(() => {
+  return (
+    noteLists.value?.map((note) => ({
+      title: note.title,
+      image: note.type === 'text' ? undefined : note.imageUrl,
+      imageUrl: note.imageUrl,
+      description: note.content,
+      createdAt: note.createdAt,
+    })) ?? []
+  )
+})
 </script>
 
 <template>

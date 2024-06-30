@@ -1,6 +1,6 @@
 
 import { eq } from "drizzle-orm";
-import type { RegisterUserSchema } from "~/server/api/register/schema";
+import type { UpdateProfileSchema } from "~/server/api/register/schema";
 import { profile } from "~/server/drizzle/schema"
 import db from "~/server/libs/pg"
 
@@ -11,6 +11,11 @@ export const updateProfile = async ({
     title, 
     name, 
     surname, 
+    nickname,
+    shortBio,
+    phoneNo,
+    linkUrl,
+    address,
     nationality, 
     academicTitle, 
     occupation, 
@@ -21,13 +26,18 @@ export const updateProfile = async ({
     areaOfInterests, 
     expertises,
     avatarUrl
-}: Partial<RegisterUserSchema>, userId: number) => {
+}: Partial<UpdateProfileSchema>, userId: number) => {
     try {
         const values = { 
             email, 
             title, 
             name, 
             surname, 
+            nickname,
+            shortBio,
+            phoneNo,
+            linkUrl,
+            address,
             nationality, 
             academicTitle, 
             occupation, 

@@ -44,6 +44,14 @@ const _organization = computed(() =>
 const _expertise = computed(() => format(editData.value.expertises))
 
 watch(
+  () => props.profile,
+  () => {
+    editData.value = { ...props.profile }
+    stateData.value = { ...props.profile }
+  },
+  { deep: true },
+)
+watch(
   () => modal.value,
   (isOpen) => {
     if (!isOpen) {
@@ -74,7 +82,7 @@ watch(
             class="w-[94px] h-[94px] object-cover rounded-2xl"
             :src="avatar"
             alt="profile image"
-          >
+          />
         </figure>
         <div class="flex flex-col justify-between gap-y-2">
           <h3 class="text-2xl leading-7 text-gray-10 font-bold" v-html="name" />

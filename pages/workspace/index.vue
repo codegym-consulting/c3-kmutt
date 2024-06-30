@@ -32,13 +32,8 @@ const { data: noteLists, refresh: refreshNote } = useAsyncData(
 const _profile = computed(() => {
   return {
     ...profile.value,
-    ...{
-      faculty: { label: 'คณะวิทยาศาสตร์', value: 3 },
-      department: { label: 'สายวิชาเทคโนโลยีวัสดุ', value: 35 },
-    },
   }
 })
-
 const stat = computed(() => [
   {
     title: 'Your network',
@@ -49,7 +44,6 @@ const stat = computed(() => [
     value: profile.value?.yourProjects ?? 0,
   },
 ])
-
 const notes = computed<PreviewNote[]>(() => {
   return (
     noteLists.value?.map((note) => ({

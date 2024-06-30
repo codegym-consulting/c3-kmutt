@@ -8,9 +8,7 @@ const props = withDefaults(
   },
 )
 
-const emit = defineEmits<{
-  (event: 'create' | 'remove' | 'update', value: Note): void
-}>()
+const emit = defineEmits<(event: 'create' | 'remove' | 'update', value: Note) => void>()
 
 const { $fetchApi, $alert } = useNuxtApp()
 const dashboardRepo = dashboardRepository($fetchApi)

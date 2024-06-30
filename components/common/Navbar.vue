@@ -3,13 +3,13 @@ import type { VNodeRef } from 'vue'
 import { navigations } from '~/configs/home'
 import { formatName } from '~/utils/formatter'
 
+const { user } = useUserSession()
+const { $classes } = useNuxtApp()
+const bottomSheet = ref(false)
 const props = defineProps<{
   relativeElement?: VNodeRef
 }>()
 
-const { $classes } = useNuxtApp()
-const bottomSheet = ref(false)
-const { user } = useUserSession()
 </script>
 
 <template>
@@ -30,10 +30,10 @@ const { user } = useUserSession()
       <nav>
         <NuxtLink class="flex-shrink-0" to="/">
           <picture class="hide-on-affix">
-            <source media="(min-width: 768px)" srcset="/logo/logo_full.svg" >
-            <img src="/logo/logo.svg" alt="3c_logo" >
+            <source media="(min-width: 768px)" srcset="/logo/logo_full.svg" height="46" >
+            <img src="/logo/logo.svg" alt="3c_logo" height="46" width="46" >
           </picture>
-          <img class="show-on-affix" src="/logo/logo.svg" alt="3c_logo" >
+          <img class="show-on-affix" src="/logo/logo.svg" alt="3c_logo" height="46" width="46" >
         </NuxtLink>
         <ul class="navigation-menu">
           <li v-for="{ to, label } in navigations" :key="label">
@@ -59,7 +59,6 @@ const { user } = useUserSession()
             </template>
           </UButton>
           <UButton v-else label="Login" to="/login" />
-
         </div>
         <UButton
           class="inline-flex md:hidden ml-auto"

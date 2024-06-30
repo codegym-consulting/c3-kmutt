@@ -7,26 +7,17 @@ definePageMeta({
 const { $fetchApi } = useNuxtApp()
 const dashboardRepo = dashboardRepository($fetchApi)
 
-const { data: projects, refresh: refreshProjects } = useAsyncData(
+const { data: projects } = useAsyncData(
   'highlight-projects',
-  dashboardRepo.getRecentProjects,
-  {
-    immediate: false,
-  },
+  dashboardRepo.getRecentProjects
 )
-const { data: profile, refresh: refreshProfile } = useAsyncData(
+const { data: profile } = useAsyncData(
   'dashboard-profile',
   dashboardRepo.getProfile,
-  {
-    immediate: false,
-  },
 )
-const { data: noteLists, refresh: refreshNote } = useAsyncData(
+const { data: noteLists } = useAsyncData(
   'dashboard-notes',
-  dashboardRepo.getNotes,
-  {
-    immediate: false,
-  },
+  dashboardRepo.getNotes
 )
 
 const _profile = computed(() => {
@@ -56,15 +47,9 @@ const notes = computed<PreviewNote[]>(() => {
   )
 })
 
-onMounted(() => {
-  refreshProjects()
-  refreshProfile()
-  refreshNote()
-})
 </script>
 
 <template>
-  <ClientOnly>
     <div class="min-h-screen">
       <div
         class="flex w-full gap-y-7 justify-between mb-4 md:mb-6 flex-col md:flex-row"
@@ -110,5 +95,4 @@ onMounted(() => {
         <CardDashboardRecentProject :projects="projects ?? []" />
       </div>
     </div>
-  </ClientOnly>
 </template>

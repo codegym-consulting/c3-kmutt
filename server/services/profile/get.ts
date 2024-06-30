@@ -1,7 +1,7 @@
 import { department, expertise, faculty, interest, profile } from "~/server/drizzle/schema"
 import db from "~/server/libs/pg"
 import { eq, inArray } from 'drizzle-orm';
-import { occupations, organizations } from "~/data/common";
+import { academicTitles, occupations, organizations } from "~/data/common";
 
 export const getProfile = async (userId: number) => {
     try {
@@ -27,6 +27,7 @@ export const getProfile = async (userId: number) => {
                 .from(expertise)
                 .where(inArray(expertise.id, result.expertises || []))
         ])
+        const academicTitle = academicTitles.find(academicTitle => academicTitle.value === result.academicTitle)
         const occupation = occupations.find(occupation => occupation.value === result.occupation)
         const organization = organizations.find(organization => organization.value === result.organization)
         return { 
@@ -35,8 +36,11 @@ export const getProfile = async (userId: number) => {
             organization,
             faculty: facultyData,
             department: departmentData,
+            academicTitle,
             areaOfInterests, 
             expertises,
+            yourProject: 0, 
+            yourNetwork: 0, 
         }
     } catch (error) {
         console.error(`Error selecting profile: ${error}`)

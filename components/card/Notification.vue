@@ -9,7 +9,7 @@ const notification = computed(() => props.data)
     class="flex flex-col md:flex-row items-start md:items-center gap-2 py-2 pl-2 pr-4 rounded-lg bg-white z-[1]"
   >
     <img
-      :src="notification.imageUrl"
+      :src="notification.imageUrl || '/common/thumbnail.svg'"
       alt="image"
       class="w-10 h-10 rounded-lg"
     >
@@ -18,7 +18,7 @@ const notification = computed(() => props.data)
         {{ notification.title }}
       </h4>
       <p class="break-words text-sm text-gray-7 leading-[18px]">
-        “{{ notification.description }}”
+        “{{ notification.content }}”
       </p>
     </div>
     <time

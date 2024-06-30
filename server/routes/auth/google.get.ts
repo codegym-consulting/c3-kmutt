@@ -19,7 +19,7 @@ export default oauth.googleEventHandler({
           id: userData ? userData.id : 0,
           email: user.email,
           name: user.name,
-          photoUrl: user.picture,
+          photoUrl: userData?.photoUrl || user.picture,
           emailVerified: user.email_verified,
           provider: 'google',
         },

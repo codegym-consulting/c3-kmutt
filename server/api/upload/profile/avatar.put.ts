@@ -2,6 +2,7 @@ import { validateFileSize, validateFileType } from '~/utils/validator'
 import { uploadFiles } from '~/server/services/common/upload'
 import { resizeImage } from '~/server/services/common/resize'
 import { updateProfile } from '~/server/services/profile/update'
+import { updateUser } from '~/server/services/user/update'
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024 // 5MB
 
@@ -29,5 +30,6 @@ export default defineEventHandler(async (event) => {
     const resizedFiles = await resizeImage(files, 500, 500)
     const urls = await uploadFiles(resizedFiles, `user/${session.user.email}/profile`, 'avatar')
     await updateProfile({ avatarUrl: urls[0] }, session.user.id)
+    await updateUser({ email: session.user.email, photoUrl: urls[0] })
     return { urls }
 })

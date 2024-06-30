@@ -20,6 +20,7 @@ export const formatFullDate = (
 
 export const timeAgo = (date: string): string => {
   // support minute ago, hour ago, above 1 day show date
+  if (!date) return ''
   const now = dayjs()
   const target = dayjs(date)
   const diff = now.diff(target, 'minute')

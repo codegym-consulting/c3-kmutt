@@ -1,5 +1,5 @@
 import type { $Fetch, NitroFetchRequest } from 'nitropack'
-import type { ProfileInformation } from './model'
+import type { NotificationData, ProfileInformation } from './model'
 
 export const dashboardRepository = <T>(
   fetch: $Fetch<T, NitroFetchRequest>,
@@ -12,5 +12,8 @@ export const dashboardRepository = <T>(
   },
   async getRecentProjects(): Promise<Project[]> {
     return fetch('/profile/recent-projects')
+  },
+  async getNotifications(): Promise<NotificationData[]> {
+    return fetch('/notification/activities')
   },
 })

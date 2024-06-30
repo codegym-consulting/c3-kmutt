@@ -13,15 +13,15 @@ const menus = [
   },
 ]
 
-//@Todo: Replace with real data
-const notifications: NotificationData[] = Array.from({ length: 10 }, () => ({
-  imageUrl: '/common/thumbnail.svg',
-  title: 'Nattaporn S. Has comment on your project',
-  content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-  createdAt: new Date().toLocaleDateString(),
-}))
+const { $fetchApi } = useNuxtApp()
+const dashboardRepo = dashboardRepository($fetchApi)
 
 const activeMenu = ref('notification')
+
+const { data: notifications } = useAsyncData(
+  'dashboard-notifications',
+  dashboardRepo.getNotifications,
+)
 </script>
 
 <template>
@@ -67,7 +67,7 @@ const activeMenu = ref('notification')
         </div>
       </div>
       <div
-        v-if="activeMenu === 'notification' && notifications.length"
+        v-if="activeMenu === 'notification' && notifications?.length"
         class="p-4 md:p-0 overflow-x-hidden overflow-y-hidden md:overflow-y-auto main-bg"
       >
         <div class="hidden md:flex flex-col gap-y-2 p-4 z-10">
@@ -102,7 +102,7 @@ const activeMenu = ref('notification')
         </div>
         <div class="text-gray-6 text-sm leading-[18px] text-center">
           You haven't performed any activities yet. Start exploring the platform
-          to <br >
+          to <br />
           see your actions here.
         </div>
       </div>

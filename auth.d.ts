@@ -3,7 +3,7 @@ declare module '#auth-utils' {
       id: number
       email: string
       name: string
-      photoUrl: string | null
+      photoUrl: string
       emailVerified: boolean
     }
   

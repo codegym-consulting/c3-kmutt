@@ -1,5 +1,5 @@
 import { sendRedirect } from 'h3'
-import { FiveMinutes, TwoWeeks } from '~/configs/session'
+import { FiveMinutes, TwoWeeks, defaultAvatarUrl } from '~/configs/session'
 import { getUser } from '~/server/services/user/get'
 import { updateUser } from '~/server/services/user/update'
 
@@ -21,7 +21,7 @@ export default oauth.microsoftEventHandler({
           id: userData ? userData.id : 0,
           email: user.email,
           name: user.name,
-          photoUrl: user.picture,
+          photoUrl: user.picture || defaultAvatarUrl,
           emailVerified: user.email_verified
         },
         accessToken: tokens.access_token,

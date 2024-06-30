@@ -81,8 +81,8 @@ watch(
           <img
             class="w-[94px] h-[94px] object-cover rounded-2xl"
             :src="avatar"
-            alt="profile image"
-          />
+            alt="profile"
+          >
         </figure>
         <div class="flex flex-col justify-between gap-y-2">
           <h3 class="text-2xl leading-7 text-gray-10 font-bold" v-html="name" />

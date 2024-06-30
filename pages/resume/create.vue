@@ -123,7 +123,7 @@ const onClickNext = async () => {
       () => {
         isLoading.value = false
         setIsCreateResumeSuccess(true)
-        navigateTo('/resume/success?type=upload')
+        return navigateTo('/resume/success?type=upload')
       },
       (error) => {
         isLoading.value = false
@@ -228,7 +228,7 @@ const onClickNext = async () => {
         isLoading.value = false
         if (status === 201) {
           setIsCreateResumeSuccess(true)
-          navigateTo('/resume/success/?type=fill-in')
+          return navigateTo('/resume/success/?type=fill-in')
         } else {
           if (!!data && 'message' in data) {
             $alert({

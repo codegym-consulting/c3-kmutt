@@ -3,8 +3,8 @@ declare module '#auth-utils' {
       id: number
       email: string
       name: string
-      photoUrl: string
-      emailVerified?: boolean
+      photoUrl: string | null
+      emailVerified: boolean
     }
   
     interface UserSession {
@@ -13,7 +13,7 @@ declare module '#auth-utils' {
       expiredAt?: number
       loggedInAt?: number
       isRegistered: boolean
-      provider?: string
+      provider: string
     }
   }
   

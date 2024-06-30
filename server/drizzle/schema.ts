@@ -1,6 +1,7 @@
 import { pgTable, pgEnum, serial, text, timestamp, integer, jsonb, uniqueIndex, boolean } from "drizzle-orm/pg-core"
 
 export const academic_title = pgEnum("academic_title", ['dr', 'prof', 'prof_dr', 'asst_prof', 'asst_prof_dr', 'assoc_prof', 'assoc_prof_dr'])
+export const occupation_type = pgEnum("occupation_type", ['student',  'instructor', 'lecturer', 'researcher', 'research_assistant', 'support', 'consultant'])
 export const note_type = pgEnum("note_type", ['text', 'image'])
 export const profile_title = pgEnum("profile_title", ['mr', 'miss', 'mrs'])
 export const type_of_degree = pgEnum("type_of_degree", ['diploma', 'bachelor', 'master', 'doctorate'])
@@ -51,10 +52,10 @@ export const project = pgTable("project", {
 
 export const user = pgTable("user", {
 	id: serial("id").primaryKey().notNull(),
-	email: text("email"),
-	name: text("name"),
+	email: text("email").notNull(),
+	name: text("name").notNull(),
 	photoUrl: text("photoUrl"),
-	provider: text("provider"),
+	provider: text("provider").notNull(),
 	loggedInAt: timestamp("loggedInAt", { withTimezone: true, mode: 'string' }),
 	password: text("password"),
 },
@@ -117,7 +118,7 @@ export const profile = pgTable("profile", {
 	address: text("address"),
 	shortBio: text("shortBio"),
 	nationality: text("nationality"),
-	occupation: text("occupation"),
+	occupation: occupation_type("occupation"),
 	organization: text("organization"),
 	faculty: integer("faculty"),
 	department: integer("department"),

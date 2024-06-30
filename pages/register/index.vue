@@ -8,7 +8,7 @@ import {
 } from '~/data/common'
 import type { Option } from '~/utils/repositories/common/model'
 import { refDebounced } from '@vueuse/core'
-import type { ProfileTitle, AcademicTitle } from '~/server/api/register/schema'
+import type { ProfileTitle, AcademicTitle, Occupation } from '~/server/api/register/schema'
 
 definePageMeta({
   layout: 'register',
@@ -27,7 +27,7 @@ const areaOfInterestSearch = ref('')
 const areaOfInterestSearchDebounced = refDebounced(areaOfInterestSearch, 500)
 const userData = reactive({
   email: user.value?.email ?? '',
-  photoUrl: user.value?.photoUrl ?? '',
+  photoUrl: user.value?.photoUrl ?? '/common/avatar.svg',
   name: user.value?.name ?? '',
 })
 
@@ -118,10 +118,9 @@ const onClickNext = async () => {
         title: (stepOneState.title as Option<ProfileTitle>).value,
         name: stepOneState.name,
         surname: stepOneState.surname,
-        academicTitle: (stepOneState.academicTitle as Option<AcademicTitle>)
-          .value,
+        academicTitle: (stepOneState.academicTitle as Option<AcademicTitle>).value,
         nationality: (stepOneState.nationality as Option).value.toString(),
-        occupation: (stepTwoState.occupation as Option).value.toString(),
+        occupation: (stepTwoState.occupation as Option<Occupation>).value,
         teachingExperiences: [101, 102],
         expertises: stepTwoState.expertise.map((e) => +e.value),
         organization: (stepTwoState.organization as Option).value.toString(),

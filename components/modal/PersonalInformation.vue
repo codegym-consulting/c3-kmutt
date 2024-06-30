@@ -134,18 +134,18 @@ watch(
       <TemplateRow>
         <Select
           :model-value="personalInfo.faculty"
-          label="Sub organization"
+          label="Faculty"
           name="faculty"
-          placeholder="Select sub organization"
+          placeholder="Select Faculty"
           required
           :options="faculties ?? []"
           @update:model-value="(change) => onFacultyChange(change as Option)"
         />
         <Select
           v-model="personalInfo.department"
-          label="Sub unit"
+          label="Department"
           name="department"
-          placeholder="Select sub unit"
+          placeholder="Select Department"
           required
           :disabled="!personalInfo.faculty"
           :error="!personalInfo.department?.value ? 'Required' : ''"

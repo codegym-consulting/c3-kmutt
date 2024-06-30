@@ -1,6 +1,6 @@
 import { z } from "zod"
 import { createInsertSchema, } from 'drizzle-zod';
-import { academic_title, profile, profile_title } from "~/server/drizzle/schema"
+import { academic_title, occupation_type, profile, profile_title } from "~/server/drizzle/schema"
 
 export const schema = createInsertSchema(profile, {
     email: z.string().email(),
@@ -9,7 +9,7 @@ export const schema = createInsertSchema(profile, {
     surname: z.string(),
     academicTitle: z.enum(academic_title.enumValues),
     nationality: z.string(),
-    occupation: z.string(),
+    occupation: z.enum(occupation_type.enumValues),
     organization: z.string(),
     faculty: z.number().int(),
     department: z.number().int(),
@@ -22,3 +22,4 @@ export const schema = createInsertSchema(profile, {
 
   export type ProfileTitle = z.infer<typeof schema.shape.title>
   export type AcademicTitle = z.infer<typeof schema.shape.academicTitle>
+  export type Occupation = z.infer<typeof schema.shape.occupation>

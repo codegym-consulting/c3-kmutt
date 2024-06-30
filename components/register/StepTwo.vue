@@ -148,9 +148,9 @@ watch(
       <TemplateRow class="md:[&>*]:w-[calc(50%-0.5rem)]">
         <Select
           v-model="state.faculty"
-          label="Sub organization"
+          label="Faculty"
           name="faculty"
-          placeholder="Select sub organization"
+          placeholder="Select Faculty"
           required
           :error="errors.faculty"
           :options="props.faculties"
@@ -159,9 +159,9 @@ watch(
         />
         <Select
           v-model="state.department"
-          label="Sub unit"
+          label="Department"
           name="department"
-          placeholder="Select sub unit"
+          placeholder="Select Department"
           required
           :disabled="!isSelectedFaculty"
           :error="errors.department"

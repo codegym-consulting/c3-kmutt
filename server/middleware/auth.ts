@@ -24,6 +24,7 @@ export default defineEventHandler(async (event) => {
         setUserSession(event, {
             ...sessionData,
             isRegistered: userData ? true : false,
+            provider: userData.provider,
         })
     }
     // const session = await requireUserSession(event)

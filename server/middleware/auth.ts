@@ -18,12 +18,9 @@ export default defineEventHandler(async (event) => {
     const { user } = await getUserSession(event)
     if (user) {
         const userData = (await getUser(user.email))[0]
-        const sessionData = {
-            user: { ...user, id: userData ? userData.id : 0 },
-        }
         setUserSession(event, {
-            ...sessionData,
-            isRegistered: userData ? true : false,
+            ...user,
+            isRegistered: Boolean(userData),
             provider: userData.provider,
         })
     }

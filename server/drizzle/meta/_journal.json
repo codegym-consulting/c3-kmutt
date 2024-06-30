@@ -71,6 +71,13 @@
       "when": 1719690484415,
       "tag": "0009_modern_retro_girl",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1719737028175,
+      "tag": "0010_brainy_fixer",
+      "breakpoints": true
     }
   ]
 }

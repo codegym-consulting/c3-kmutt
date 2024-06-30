@@ -68,7 +68,7 @@ const notes = Array.from({ length: 12 }).map((_, index) => ({
         </h1>
         <p class="text-sm leading-[18px] font-normal text-gray-10">
           Keep track of your activities, notes, and
-          <span class="block lg:inline"> projects from yourworkspace.</span>
+          <span class="block lg:inline"> projects from your workspace.</span>
         </p>
       </div>
       <div class="flex md:items-center flex-col md:flex-row gap-8">

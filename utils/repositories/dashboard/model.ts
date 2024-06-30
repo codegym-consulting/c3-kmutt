@@ -45,9 +45,9 @@ export type PreviewNote = Omit<Note, 'image'> & {
 }
 
 export type NotificationData = {
-  imageUrl: string
+  imageUrl: string | null
   title: string
-  description: string
+  content: string
   createdAt: string
 }
 

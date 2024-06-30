@@ -15,9 +15,9 @@ const menus = [
 
 //@Todo: Replace with real data
 const notifications: NotificationData[] = Array.from({ length: 10 }, () => ({
-  imageUrl: 'https://via.placeholder.com/150',
+  imageUrl: '/common/thumbnail.svg',
   title: 'Nattaporn S. Has comment on your project',
-  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+  content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
   createdAt: new Date().toLocaleDateString(),
 }))
 

@@ -2,19 +2,25 @@ import type { FetchOptions } from 'ofetch'
 
 export default defineNuxtPlugin(() => {
   const config = useRuntimeConfig()
+  const accessToken = useCookie('accessToken').value
+  const session = useCookie('nuxt-session').value
+  const Cookie = [
+    accessToken ? `accessToken=${accessToken}` : '',
+    session ? `nuxt-session=${session}` : '',
+  ]
+    .filter(Boolean)
+    .join(';')
   const base = (): FetchOptions => ({
     baseURL: config.public.baseApiUrl,
     onRequest({ options }) {
       const headers = (options.headers ||= {})
-      //@TODO add token to headers
-      const token = ''
       const _headers = {
-        ...(token
+        ...headers,
+        ...(Cookie
           ? {
-              Authorization: `Bearer ${token}`,
+              Cookie,
             }
           : {}),
-        ...headers,
       }
       if (Array.isArray(headers)) {
         Object.entries(_headers).forEach(([key, value]) => {
@@ -31,7 +37,6 @@ export default defineNuxtPlugin(() => {
   })
 
   const fetchApi = $fetch.create(base())
-
   return {
     provide: {
       fetchApi,

@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev --host 0.0.0.0 & npx drizzle-kit studio",
+    "dev": "nuxt dev --host 0.0.0.0",
     "dev:bun": "bunx --bun nuxt dev --host 0.0.0.0",
     "preview": "nuxt preview",
     "test:api": "vitest run",

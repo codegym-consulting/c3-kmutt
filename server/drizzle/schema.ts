@@ -8,7 +8,6 @@ export const profile_title = pgEnum("profile_title", ['mr', 'miss', 'mrs'])
 export const type_of_degree = pgEnum("type_of_degree", ['diploma', 'bachelor', 'master', 'doctorate'])
 export const type_of_source = pgEnum("type_of_source", ['book', 'book_section', 'journal_article', 'article_in_a_periodical', 'conference', 'report', 'website', 'electronic', 'art', 'sound_recording', 'performance', 'film', 'interview', 'patent'])
 
-
 export const expertise = pgTable("expertise", {
 	id: serial("id").primaryKey().notNull(),
 	name: text("name").notNull(),
@@ -20,6 +19,7 @@ export const notification = pgTable("notification", {
 	title: text("title").notNull(),
 	content: text("content").notNull(),
 	thumbnailUrl: text("thumbnailUrl").notNull(),
+	externalUrl: text("externalUrl").notNull(),
 	createdAt: timestamp("createdAt", { withTimezone: true, mode: 'string' }).defaultNow(),
 });
 
@@ -136,9 +136,9 @@ export const resume = pgTable("resume", {
 	name: text("name").notNull(),
 	email: text("email"),
 	phoneNo: text("phoneNo"),
+	avatarUrl: text("avatarUrl"),
 	updatedAt: timestamp("updatedAt", { withTimezone: true, mode: 'string' }).defaultNow(),
 	createdAt: timestamp("createdAt", { withTimezone: true, mode: 'string' }).defaultNow(),
-	avatarUrl: text("avatarUrl"),
 });
 
 export const interest = pgTable("interest", {
@@ -149,7 +149,7 @@ export const interest = pgTable("interest", {
 export const note = pgTable("note", {
 	id: serial("id").primaryKey().notNull(),
 	userId: integer("userId").notNull(),
-	type: note_type("type").default("text"),
+	type: note_type("type").notNull().default("text"),
 	title: text("title").notNull(),
 	content: text("content"),
 	imageUrl: text("imageUrl"),

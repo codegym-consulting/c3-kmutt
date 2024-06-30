@@ -37,13 +37,16 @@ const stat = computed(() => [
 ])
 const notes = computed<PreviewNote[]>(() => {
   return (
-    noteLists.value?.map((note) => ({
-      title: note.title,
-      image: note.type === 'text' ? undefined : note.imageUrl,
-      imageUrl: note.imageUrl,
-      description: note.content,
-      createdAt: note.createdAt,
-    })) ?? []
+    noteLists.value?.map((note) => {
+      const noteImage = note.imageUrl ?? '/note/default-thumbnail.svg'
+      return { 
+        title: note.title,
+        image: note.type === 'text' ? undefined : noteImage,
+        imageUrl: note.type === 'text' ? '/note/text-type-thumbnail.svg' : noteImage,
+        description: note.content,
+        createdAt: note.createdAt
+      }
+    }) ?? []
   )
 })
 </script>

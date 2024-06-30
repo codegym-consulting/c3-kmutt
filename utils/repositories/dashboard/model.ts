@@ -16,18 +16,18 @@ export type PersonalInformation = z.infer<typeof personalInfomationSchema>
 export interface ProfileInformation extends PersonalInformation {
   yourProjects: number
   yourNetwork: number
-  avatarUrl: string
+  avatarUrl: string  
+  title: string
   name: string
   surname: string
-  nickname: string
-  phoneNo: string
-  title: string
   userId: number
   email: string
-  linkUrl: string
-  address: string
-  shortBio: string
   nationality: string
+  nickname: string | null
+  phoneNo: string | null
+  linkUrl: string | null
+  address: string | null
+  shortBio: string | null
 }
 
 export const noteSchema = z.object({
@@ -42,8 +42,8 @@ export type Note = z.infer<typeof noteSchema>
 export type NoteResponse = {
   id: number
   title: string
-  content: string
-  imageUrl: string
+  content: string | null
+  imageUrl: string | null
   type: 'image' | 'text'
   createdAt: string
 }
@@ -56,7 +56,7 @@ export type PreviewNote = Omit<Note, 'image'> & {
 export type NotificationData = {
   id: number
   userId: number
-  thumbnailUrl: string | null
+  thumbnailUrl: string
   title: string
   content: string
   externalUrl: string

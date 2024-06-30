@@ -4,7 +4,7 @@ import { note, note_type } from '~/server/drizzle/schema'
   
 const baseSchema = z.object({
     type: z.enum(note_type.enumValues).default('text'),
-    title: z.string().min(1),
+    title: z.string().trim().min(1),
     content: z.string().optional(),
     imageUrl: z.string().optional(),
 });

@@ -8,7 +8,7 @@ export default defineNitroPlugin(() => {
       // if (expirationDate < now || !jwt) {}
 
       // Extend User Session
-      // Or throw createError({ ... }) if session is invalid
+      // Or return createError({ ... }) if session is invalid
     //   session.extended = {
     //     fromHooks: true,
     //   }

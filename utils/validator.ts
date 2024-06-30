@@ -27,7 +27,7 @@ export const validateFileType = (
 ) => {
   for (const file of files) {
     if (!supportTypes.includes(file.type as string)) {
-      throw createError({
+      return createError({
         statusCode: 400,
         statusMessage: 'Bad Request',
         message: `Invalid file type. Only ${supportTypes.join(
@@ -42,7 +42,7 @@ export const validateFileType = (
 export const validateFileSize = (files: MultiPartData[], maxSize: number) => {
   for (const file of files) {
     if (file.data.length > maxSize) {
-      throw createError({
+      return createError({
         statusCode: 400,
         statusMessage: 'Bad Request',
         message: `Maximum file size is ${maxSize} MB.`,

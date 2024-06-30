@@ -1,3 +1,4 @@
+import { createErrorResponse } from "~/server/utils/errorResponse"
 import { schema } from "./schema"
 
 export default defineEventHandler(async (event) => {
@@ -5,21 +6,11 @@ export default defineEventHandler(async (event) => {
     const result = await readValidatedBody(event, body => schema.safeParse(body))
 
     if (result.error) {
-        const errorDetails = result.error.flatten()
-        const errorMessage = result.error.errors
-        .map(({ path, message }) => `${path[path.length - 1]} in ${path[0]} is ${message}`)
-        .join('\n')
-        
-        throw createError({
-            statusCode: 400,
-            statusMessage: "Bad Request",
-            message: errorMessage,
-            data: errorDetails
-        })
+        return createErrorResponse(result.error)
     }
-
+    
     console.log(result.data)
   
-    setResponseStatus(event, 201)
+    setResponseStatus(event, 201, `Resume of ${session.user.email} created successfully`)
     return { statusMessage: `Resume of ${session.user.email} created successfully` }
 })

@@ -40,3 +40,12 @@ export default async function uploadFile(data: Buffer, destination: string) {
   const publicUrl = `https://storage.googleapis.com/${bucketName}/${destination}`
   return publicUrl
 }
+
+export async function deleteFile(destination: string) {
+  const bucket = storage.bucket(bucketName)
+  const file = bucket.file(destination)
+  const [exists] = await file.exists()
+  if (exists) {
+    await file.delete({ ignoreNotFound: true })
+  }
+}

@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
     const files = await readMultipartFormData(event)
 
     if (!files || files && files[0].filename === '') {
-        throw createError({
+        return createError({
             statusCode: 400,
             statusMessage: "Bad Request",
             message: 'No files selected'
@@ -18,7 +18,7 @@ export default defineEventHandler(async (event) => {
     }
 
     if (files && files.length > 1) {
-        throw createError({
+        return createError({
             statusCode: 400,
             statusMessage: "Bad Request",
             message: 'Maximum to 1 file can be uploaded'

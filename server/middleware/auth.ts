@@ -30,7 +30,7 @@ export default defineEventHandler(async (event) => {
     }
     // const session = await requireUserSession(event)
     // if (!session) {
-    //     throw createError({ statusMessage: 'Unauthenticated', statusCode: 401 })
+    //     return createError({ statusMessage: 'Unauthenticated', statusCode: 401 })
     // }
 
     return

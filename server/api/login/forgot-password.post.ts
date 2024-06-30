@@ -18,7 +18,7 @@ export default defineEventHandler(async (event) => {
             .where(eq(user.email, body.data?.email ?? '')).limit(1)
   
         if (result.length === 0) {
-            throw createError({
+            return createError({
                 statusCode: 400,
                 statusMessage: "Bad Request",
                 message: 'User not found'

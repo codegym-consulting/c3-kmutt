@@ -18,7 +18,7 @@ export default defineEventHandler(async (event) => {
         .map(({ path, message }) => `${path[path.length - 1]} in ${path[0]} is ${message}`)
         .join('\n')
         
-        throw createError({
+        return createError({
             statusCode: 400,
             statusMessage: "Bad Request",
             message: errorMessage,

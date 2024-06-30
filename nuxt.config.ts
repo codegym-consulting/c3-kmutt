@@ -11,6 +11,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@nuxt/eslint',
     'nuxt-auth-utils',
+    "@scalar/nuxt"
   ],
   routeRules: {
     '/': { prerender: true },
@@ -119,12 +120,15 @@ export default defineNuxtConfig({
     viewTransition: true,
     appManifest: false,
   },
-
   // https://nuxt.com/docs/guide/directory-structure/server#server-storage
   nitro: {
     // preset: 'bun', // node-server, netlify_edge
     rollupConfig: {
       external: ['cloudflare:sockets'],
+    },
+    experimental: {
+      openAPI: true,
+      wasm: true
     },
     //   storage: {
     //     redis: {

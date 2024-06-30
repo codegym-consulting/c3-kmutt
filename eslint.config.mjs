@@ -8,7 +8,6 @@ export default withNuxt(
       'vue/html-indent': 'off',
       'vue/no-v-html': 'off',
       'vue/first-attribute-linebreak': 'off',
-      'vue/singleline-html-element-content-newline': 'off',
       '@typescript-eslint/ban-ts-comment': 'off'
     },
   },

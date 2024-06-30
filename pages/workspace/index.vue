@@ -11,11 +11,11 @@ const { data: projects } = useAsyncData(
   'highlight-projects',
   dashboardRepo.getRecentProjects,
 )
-const { data: profile } = useAsyncData(
+const { data: profile, refresh: refreshProfile } = useAsyncData(
   'dashboard-profile',
   dashboardRepo.getProfile,
 )
-const { data: noteLists } = useAsyncData(
+const { data: noteLists, refresh: refreshNote } = useAsyncData(
   'dashboard-notes',
   dashboardRepo.getNotes,
 )
@@ -39,12 +39,14 @@ const notes = computed<PreviewNote[]>(() => {
   return (
     noteLists.value?.map((note) => {
       const noteImage = note.imageUrl ?? '/note/default-thumbnail.svg'
-      return { 
+      return {
+        id: note.id,
         title: note.title,
         image: note.type === 'text' ? undefined : noteImage,
-        imageUrl: note.type === 'text' ? '/note/text-type-thumbnail.svg' : noteImage,
-        description: note.content,
-        createdAt: note.createdAt
+        imageUrl:
+          note.type === 'text' ? '/note/text-type-thumbnail.svg' : noteImage,
+        description: note.content ?? '',
+        createdAt: note.createdAt,
       }
     }) ?? []
   )
@@ -91,9 +93,17 @@ const notes = computed<PreviewNote[]>(() => {
       </div>
     </div>
     <div class="grid gap-5 grid-cols-1 lg:grid-cols-[400px,1fr]">
-      <CardDashboardProfile :profile="(_profile as ProfileInformation)" />
+      <CardDashboardProfile
+        :profile="(_profile as ProfileInformation)"
+        @update="() => refreshProfile()"
+      />
       <CardDashboardActivity />
-      <CardDashboardNote :notes="notes" />
+      <CardDashboardNote
+        :notes="notes"
+        @create="() => refreshNote()"
+        @update="() => refreshNote()"
+        @remove="() => refreshNote()"
+      />
       <CardDashboardRecentProject :projects="projects ?? []" />
     </div>
   </div>

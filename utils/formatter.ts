@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-dynamic-delete */
 import dayjs from 'dayjs'
 
 export const formatName = (name: string) => {
@@ -16,6 +17,15 @@ export const formatFullDate = (
 ): string => {
   if (!date) return ''
   return dayjs(date).locale('en').format(format)
+}
+
+export const cleanObject = (obj: Record<string, unknown>) => {
+  Object.keys(obj).forEach((key) => {
+    const _key = key as keyof typeof obj
+    if (!obj[_key]) {
+      delete obj[_key]
+    }
+  })
 }
 
 export const timeAgo = (date: string): string => {

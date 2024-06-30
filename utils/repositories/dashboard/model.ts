@@ -49,6 +49,7 @@ export type NoteResponse = {
 }
 
 export type PreviewNote = Omit<Note, 'image'> & {
+  id: number
   image?: string
   createdAt: string
 }

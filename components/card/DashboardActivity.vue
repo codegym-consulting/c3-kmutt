@@ -102,7 +102,7 @@ const { data: notifications } = useAsyncData(
         </div>
         <div class="text-gray-6 text-sm leading-[18px] text-center">
           You haven't performed any activities yet. Start exploring the platform
-          to <br />
+          to <br >
           see your actions here.
         </div>
       </div>

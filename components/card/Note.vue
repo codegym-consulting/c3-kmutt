@@ -15,7 +15,7 @@ const _createdAt = computed(() =>
 
 <template>
   <article
-    class="w-[180px] h-[140px] rounded-2xl shadow-[0_4px_10px_0_#0000000D] cursor-pointer"
+    class="flex-shrink-0 w-[180px] h-[140px] rounded-2xl shadow-[0_4px_10px_0_#0000000D] cursor-pointer"
     @click="emit('click', note)"
   >
     <figure class="bg-white w-full h-[88px] rounded-t-2xl">

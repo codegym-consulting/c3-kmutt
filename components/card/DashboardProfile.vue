@@ -8,6 +8,13 @@ const props = defineProps<{
   profile: ProfileInformation
 }>()
 
+const emit = defineEmits<{
+  (event: 'update', data: PersonalInformation): void
+}>()
+
+const { $fetchApi, $alert } = useNuxtApp()
+const registerRepo = registerRepository($fetchApi)
+
 const modal = ref(false)
 const editData = ref<PersonalInformation>({ ...props.profile })
 const stateData = ref<PersonalInformation>({ ...props.profile })
@@ -16,7 +23,17 @@ const edit = () => {
   modal.value = true
 }
 const save = (data: PersonalInformation) => {
-  editData.value = { ...data }
+  registerRepo.updateDashboardProfile(data, (status) => {
+    if (!status?.toString()?.startsWith('2')) {
+      $alert({
+        title: 'Failed to update profile',
+        content: 'Please try again later',
+        type: ALERT_TYPE.ERROR,
+      })
+    } else {
+      emit('update', data)
+    }
+  })
 }
 const format = (options?: Option[]) => {
   return options?.length ? options.map((o) => o.label).join(', ') : '-'

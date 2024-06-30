@@ -5,15 +5,17 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   (event: 'update:modelValue', value: boolean): void
-  (event: 'save' | 'remove', value: Note): void
+  (event: 'save' | 'remove' | 'update', value: Note & { id?: number }): void
 }>()
 
 const { $alert } = useNuxtApp()
-const note = defineModel<Note>('note')
+const note = defineModel<Note & { id?: number }>('note')
 
 const mode = ref(1)
 const confirmRemoveModal = ref(false)
-const state = reactive<Note>({
+const state = reactive<
+  Omit<Note, 'image'> & { image: File[] | null | undefined }
+>({
   title: '',
   description: '',
   image: undefined,
@@ -23,11 +25,27 @@ const state = reactive<Note>({
 const hasImageToPreview = computed(() => !!state.image || !!state.imageUrl)
 
 const updateValue = (value: boolean) => {
-  emit('update:modelValue', value)
+  if (!confirmRemoveModal.value) {
+    emit('update:modelValue', value)
+  }
 }
 const onSave = () => {
+  const mode = note.value ? 'update' : 'save'
+  const _note = { ...note.value }
+  const _state = { ...state }
+  delete _note.id
+  cleanObject(_note)
+  cleanObject(_state)
+
+  if (mode === 'save' || isObjectDifferece(_note, _state)) {
+    emit(mode, {
+      ...state,
+      id: note.value?.id,
+      title: state.title || 'Untitled',
+      image: state.image ? state.image[0] : undefined,
+    })
+  }
   emit('update:modelValue', false)
-  emit('save', { ...state, title: state.title ?? 'Untitled' })
 }
 const handleFileError = (error: {
   type: 'total' | 'type' | 'size'
@@ -57,6 +75,11 @@ const clear = () => {
   state.image = undefined
 }
 const remove = () => {
+  emit('remove', {
+    ...state,
+    id: note.value?.id,
+    image: state.image ? state.image[0] : undefined,
+  })
   emit('update:modelValue', false)
   confirmRemoveModal.value = false
 }
@@ -77,8 +100,8 @@ watch(
       if (note.value) {
         state.title = note.value?.title ?? ''
         state.description = note.value?.description ?? ''
-        state.image = note.value?.image
-        state.imageUrl = note.value?.imageUrl ?? ''
+        ;(state.image = note.value?.image ? [note.value.image] : undefined),
+          (state.imageUrl = note.value?.imageUrl ?? '')
         if (state.title || state.description) {
           mode.value = state.image || note.value.imageUrl ? 3 : 2
         }
@@ -93,6 +116,7 @@ watch(
     <Modal
       title="New note"
       sub-title="Record your thoughts and ideas"
+      :prevent-close="confirmRemoveModal"
       :model-value="props.modelValue"
       @update:model-value="updateValue"
     >
@@ -137,7 +161,7 @@ watch(
               <UIcon name="lucide:trash-2" class="-translate-y-[2px]" />
               Delete note
             </div>
-            <div v-else/>
+            <div v-else />
             <UButton
               class="!flex-none w-[180px]"
               label="Save"
@@ -182,7 +206,7 @@ watch(
               <UIcon name="lucide:trash-2" class="-translate-y-[2px]" />
               Delete note
             </div>
-            <div v-else/>
+            <div v-else />
             <UButton
               class="!flex-none w-[180px]"
               label="Save"

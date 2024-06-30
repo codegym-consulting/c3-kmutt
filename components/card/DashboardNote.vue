@@ -8,8 +8,15 @@ const props = withDefaults(
   },
 )
 
+const emit = defineEmits<{
+  (event: 'create' | 'remove' | 'update', value: Note): void
+}>()
+
+const { $fetchApi, $alert } = useNuxtApp()
+const dashboardRepo = dashboardRepository($fetchApi)
+
 const noteModal = ref(false)
-const editNoteData = ref<Note>()
+const editNoteData = ref<Note & { id?: number }>()
 
 const noNotes = computed(() => isEmpty(props.notes))
 
@@ -19,6 +26,7 @@ const onCreateNote = () => {
 }
 const onEditNote = (note: PreviewNote) => {
   editNoteData.value = {
+    id: note.id,
     title: note.title,
     description: note.description,
     image: undefined,
@@ -26,8 +34,35 @@ const onEditNote = (note: PreviewNote) => {
   }
   noteModal.value = true
 }
-const onSaveNote = (note: Note) => {
-  console.log(note)
+const onRemoveNote = async (note: Note & { id?: number }) => {
+  // noteModal.value = false
+  if (!note?.id) return
+  await dashboardRepo.removeNote(note.id, (status) => {
+    if (!status?.toString()?.startsWith('2')) {
+      $alert({
+        title: 'Failed to remove note',
+        content: 'Please try again later',
+        type: ALERT_TYPE.ERROR,
+      })
+    } else {
+      emit('remove', note)
+    }
+  })
+}
+const onSaveNote = async (note: Note & { id?: number | string }) => {
+  await dashboardRepo.createOrUpdateNote(note, (status) => {
+    if (!status?.toString()?.startsWith('2')) {
+      $alert({
+        title: 'Failed to save note',
+        content: 'Please try again later',
+        type: ALERT_TYPE.ERROR,
+      })
+    } else {
+      noteModal.value = false
+      const mode = note.id ? 'update' : 'create'
+      emit(mode, note)
+    }
+  })
 }
 </script>
 
@@ -92,6 +127,8 @@ const onSaveNote = (note: Note) => {
       v-model="noteModal"
       v-model:note="editNoteData"
       @save="onSaveNote"
+      @update="onSaveNote"
+      @remove="onRemoveNote"
     />
   </div>
 </template>

@@ -13,13 +13,11 @@ export const getProfile = async (userId: number) => {
         const [facultyData, departmentData, areaOfInterests, expertises] = await Promise.all([
             result.faculty ? db.select({ label: faculty.name, value: faculty.id })
                 .from(faculty)
-                .where(eq(faculty.id, result.faculty)) : null,
-                result.department ? db.select({ label: department.name, value: department.id })
+                .where(eq(faculty.id, result.faculty)).limit(1) : null,
+            result.department ? db.select({ label: department.name, value: department.id })
                 .from(department)
-                .where(eq(department.id, result.department)) : null,
-                result.department ? db.select({ label: department.name, value: department.id })
-                .from(department)
-                .where(eq(department.id, result.department)) : null,
+                .where(eq(department.id, result.department))
+                .limit(1) : null,
             db.select({ label: interest.name, value: interest.id })
                 .from(interest)
                 .where(inArray(interest.id, result.areaOfInterests || [])),
@@ -34,8 +32,8 @@ export const getProfile = async (userId: number) => {
             ...result,
             occupation,
             organization,
-            faculty: facultyData,
-            department: departmentData,
+            faculty: facultyData?.[0] || null,
+            department: departmentData?.[0] || null,
             academicTitle,
             areaOfInterests, 
             expertises,

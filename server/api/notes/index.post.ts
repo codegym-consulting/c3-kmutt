@@ -11,7 +11,7 @@ export default defineEventHandler(async (event) => {
     }
 
     try {
-      await createNote(result.data, session.user.id)
+      createNote(result.data, session.user.id)
       setResponseStatus(event, 201, 'Note created successfully')
       return {
         statusMessage: 'Note created successfully'

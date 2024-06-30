@@ -128,7 +128,6 @@ export default defineNuxtConfig({
     },
     experimental: {
       openAPI: true,
-      wasm: true
     },
     //   storage: {
     //     redis: {

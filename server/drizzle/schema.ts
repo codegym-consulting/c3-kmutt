@@ -1,6 +1,6 @@
 import { pgTable, pgEnum, serial, text, timestamp, integer, jsonb, uniqueIndex, boolean } from "drizzle-orm/pg-core"
-import { defaultAvatarUrl } from "~/configs/session"
 
+const defaultAvatarUrl = "https://storage.googleapis.com/c3-kmutt/default/user.svg"
 export const academic_title = pgEnum("academic_title", ['dr', 'prof', 'prof_dr', 'asst_prof', 'asst_prof_dr', 'assoc_prof', 'assoc_prof_dr'])
 export const occupation_type = pgEnum("occupation_type", ['student',  'instructor', 'lecturer', 'researcher', 'research_assistant', 'support', 'consultant'])
 export const note_type = pgEnum("note_type", ['text', 'image'])

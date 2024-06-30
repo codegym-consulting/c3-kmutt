@@ -13,6 +13,13 @@ export const expertise = pgTable("expertise", {
 	name: text("name").notNull(),
 });
 
+export const skill = pgTable("skill", {
+	id: serial("id").primaryKey().notNull(),
+	resumeId: integer("resumeId").notNull(),
+	name: text("name").notNull(),
+	level: integer("level").notNull(),
+});
+
 export const notification = pgTable("notification", {
 	id: serial("id").primaryKey().notNull(),
 	userId: text("userId").notNull(),

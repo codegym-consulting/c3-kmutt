@@ -16,12 +16,13 @@ export default oauth.microsoftEventHandler({
     async onSuccess(event, { user, tokens }) {
       console.debug(tokens)
       const userData = (await getUser(user.email))[0]
+      const userAvatar = userData?.photoUrl || user.picture
       const sessionData = {
         user: {
           id: userData ? userData.id : 0,
           email: user.email,
           name: user.name,
-          photoUrl: userData?.photoUrl || user.picture,
+          photoUrl: userAvatar,
           emailVerified: user.email_verified,
           provider: 'microsoft'
         },
@@ -39,7 +40,7 @@ export default oauth.microsoftEventHandler({
           ...sessionData,
           isRegistered: !!userData,
         }), 
-        updateUser({ email: user.email, name: user.name, photoUrl: user.picture, provider: sessionData.provider })
+        updateUser({ email: user.email, name: user.name, photoUrl: userAvatar, provider: sessionData.provider })
       ])
 
       return userData ? sendRedirect(event, '/workspace') : sendRedirect(event, '/register')

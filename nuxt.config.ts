@@ -10,8 +10,7 @@ export default defineNuxtConfig({
     'nuxt-swiper',
     'nuxt-auth-utils',
     '@pinia/nuxt',
-    '@vueuse/nuxt',
-    "@scalar/nuxt"
+    '@vueuse/nuxt'
   ],
   routeRules: {
     '/': { prerender: true },
@@ -118,16 +117,13 @@ export default defineNuxtConfig({
   },
   experimental: {
     viewTransition: true,
-    appManifest: false,
+    asyncContext: true
   },
   // https://nuxt.com/docs/guide/directory-structure/server#server-storage
   nitro: {
     // preset: 'bun', // node-server, netlify_edge
     rollupConfig: {
       external: ['cloudflare:sockets'],
-    },
-    experimental: {
-      openAPI: true,
     },
     //   storage: {
     //     redis: {

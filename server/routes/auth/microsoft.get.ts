@@ -1,5 +1,5 @@
 import { sendRedirect } from 'h3'
-import { FiveMinutes, TwoWeeks } from '~/configs/session'
+import { FiveMinutes, FourWeeks } from '~/configs/session'
 import { getUser } from '~/server/services/user/get'
 import { updateUser } from '~/server/services/user/update'
 
@@ -14,7 +14,6 @@ export default oauth.microsoftEventHandler({
       scope: ['email', 'openid', 'profile'],
     },
     async onSuccess(event, { user, tokens }) {
-      console.debug(tokens)
       const userData = (await getUser(user.email))[0]
       const userAvatar = userData?.photoUrl || user.picture
       const sessionData = {
@@ -33,7 +32,7 @@ export default oauth.microsoftEventHandler({
         provider: 'microsoft'
       }
 
-      setCookie(event, 'accessToken', tokens.access_token, { httpOnly: true, secure: true, sameSite: 'lax', maxAge: userData ? FiveMinutes : TwoWeeks })
+      setCookie(event, 'accessToken', tokens.access_token, { httpOnly: true, secure: true, sameSite: 'lax', maxAge: userData ? FourWeeks : FiveMinutes })
  
       await Promise.all([
         setUserSession(event, {

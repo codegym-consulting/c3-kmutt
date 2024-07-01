@@ -119,12 +119,10 @@ onMounted(() => {
             </UButton>
             <p class="mt-2 text-sm leading-[18px] text-gray-7 md:!w-[90%]">
               By clicking “Continue with Google”, you acknowledge that you have
-              read, understood, and agree to C3’s
-              <span tabindex="0" @click="terms = true"
-                >Terms &amp; Conditions</span
-              >
+              read, understood, and agree to C3&#39;s
+              <a tabindex="0" @click="terms = true">Terms &amp; Conditions</a>
               and
-              <span tabindex="1" @click="policy = true">Privacy Policy.</span>
+              <a tabindex="-1" @click="policy = true">Privacy Policy.</a>
             </p>
           </div>
         </div>
@@ -140,7 +138,7 @@ onMounted(() => {
 h1 > span {
   @apply font-bold text-4xl md:text-[48px] md:leading-[56px] text-gray-10;
 }
-p > span {
+p > a {
   @apply underline cursor-pointer;
 }
 #kmutt-login :deep(.nuxt-icon svg),

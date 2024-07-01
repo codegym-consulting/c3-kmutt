@@ -19,28 +19,43 @@ const updateValue = (value: boolean) => {
     :model-value="props.modelValue"
     @update:model-value="updateValue"
   >
+  <article class="prose max-w-full text-sm text-gray-7">
     <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-      est laborum.
+      We are committed to protecting your privacy and personal information.
+      This Privacy Policy outlines how we collect, use, and safeguard your data when you use our services.
     </p>
     <p>
-      Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-      doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
-      inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-      Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
-      fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem
-      sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit
-      amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora
-      incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad
-      minima veniam, quis nostrum exercitationem ullam corporis suscipit
-      laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum
-      iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae
-      consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+      Information Collection: We collect personal information such as your name, email address, 
+      and student ID when you register for an account. We may also collect data on your usage patterns and preferences to improve our services.
     </p>
+    <p>
+      Data Usage: The information we collect is used to provide and enhance our services, 
+      personalize your experience, and communicate important updates. We do not sell your personal information to third parties.
+    </p>
+    <p>
+      Data Security: We implement industry-standard security measures to protect your personal information from unauthorized access, 
+      alteration, or disclosure. However, no method of data transmission over the internet is 100% secure.
+    </p>
+    <p>
+      Cookies: We use cookies to enhance your browsing experience and collect anonymous usage data. 
+      You can modify your browser settings to decline cookies, but this may affect some features of our service.
+    </p>
+    <p>
+      Third-Party Services: Our platform may include links to third-party websites or services. 
+      We are not responsible for the privacy practices of these external sites.
+    </p>
+    <p>
+      User Rights: You have the right to access, correct, or delete your personal information. 
+      To exercise these rights, please contact our support team.
+    </p>
+    <p>
+      Policy Updates: We may update this Privacy Policy from time to time. 
+      We will notify you of any significant changes via email or through our platform.
+    </p>
+    <p>
+      Contact Us: If you have any questions or concerns about this Privacy Policy, 
+      please contact us at c3-support@kmutt.ac.th
+    </p>
+  </article>
   </Modal>
 </template>

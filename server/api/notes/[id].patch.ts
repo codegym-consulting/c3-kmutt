@@ -16,11 +16,11 @@ export default defineEventHandler(async (event) => {
     }
 
     if (result.error) {
-        return createErrorResponse(result.error)
+      return createErrorResponse(result.error)
     }
 
     try {
-      const updateResult = await updateNote(+id, result.data, session.user.id)
+      const updateResult = await updateNote(+id, result.data, session.user.id, session.user.email)
       if (updateResult.length === 0) {
         return createError({
           statusCode: 400,

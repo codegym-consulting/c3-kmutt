@@ -5,7 +5,12 @@ export const uploadFiles = async (files: MultiPartData[], destination: string, f
     try {
         const tasks = files.map(async (file) => { 
             const extension = file?.filename?.split('.').pop() 
-            const url = await uploadFile(file.data, `${destination}/${fileName ? `${fileName}.${extension}` : `${Date.now()}.${extension}`}`)
+            let url;
+            if (fileName) {
+                url = await uploadFile(file.data, destination + '/' + fileName + '.' + extension);
+            } else {
+                url = await uploadFile(file.data, destination + '/' + Date.now() + '.' + extension);
+            }
             return url
         })
 

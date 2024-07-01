@@ -41,6 +41,13 @@ export default async function uploadFile(data: Buffer, destination: string) {
   return publicUrl
 }
 
+export async function deleteNoteImage(userEmail: string, imageUrl: string) {
+  const rawPath = imageUrl.split('/')
+  const fileName = rawPath[rawPath.length - 1]
+  const destination = `user/${userEmail}/notes/${fileName}`
+  await deleteFile(destination)
+}
+
 export async function deleteFile(destination: string) {
   const bucket = storage.bucket(bucketName)
   const file = bucket.file(destination)

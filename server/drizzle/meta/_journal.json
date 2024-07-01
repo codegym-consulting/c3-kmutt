@@ -78,6 +78,13 @@
       "when": 1719737028175,
       "tag": "0010_brainy_fixer",
       "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1719841473308,
+      "tag": "0011_slippery_fenris",
+      "breakpoints": true
     }
   ]
 }

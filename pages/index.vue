@@ -144,7 +144,7 @@ const onSlideChange = (swiper: Swiper) => {
         <SwiperSlide class="mobile:!w-fit self-center">
           <div class="flex items-center h-[471px] md:h-[497px]">
             <NuxtLink
-              to="/projects/"
+              to="/project/"
               class="flex items-center gap-x-2 pl-6 pr-[calc(calc(100vw-theme(screens.container)+4rem)/2)]"
             >
               <span class="font-semibold text-xl text-white">View more</span>

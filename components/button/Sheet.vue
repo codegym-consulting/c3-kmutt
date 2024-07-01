@@ -42,7 +42,7 @@ const emit = defineEmits<{
     @mouseover="hover = true"
     @mouseleave="hover = false"
   >
-    <div class="flex flex-col md:flex-row gap-6 w-full">
+    <div class="flex flex-col md:flex-row md:items-center gap-6 w-full">
       <div class="flex justify-center items-center w-[88px] h-[88px]">
         <slot name="icon" :hover="hover">
           <UIcon

@@ -140,3 +140,9 @@ body {
   .swiper-pagination-bullet {
   @apply !mx-[1px];
 }
+
+/* TODO: remove this when remove nuxt-icon */
+/* https://nuxt.com/modules/icons#i-dont-like-the-basic-styles-that-are-assigned-to-the-icons */
+.nuxt-icon svg{
+  margin-bottom: 0 !important;
+}

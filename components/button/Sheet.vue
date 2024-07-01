@@ -42,23 +42,23 @@ const emit = defineEmits<{
     @mouseover="hover = true"
     @mouseleave="hover = false"
   >
-    <div class="flex flex-col md:flex-row md:items-center gap-6 w-full">
-      <div class="flex justify-center items-center w-[88px] h-[88px]">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-center gap-6 w-full">
+      <div class="flex justify-center items-center max-w-[88px] h-[88px]">
         <slot name="icon" :hover="hover">
           <UIcon
             v-if="props.icon"
-            class="icon text-[55px]"
+            class="icon text-[70px]"
             :name="props.icon"
           />
           <NuxtIcon
             v-if="props.c3Icon"
             :name="props.c3Icon"
-            class="icon text-[55px]"
+            class="icon text-[70px]"
             filled
           />
         </slot>
       </div>
-      <div class="flex flex-col gap-y-4 items-start">
+      <div class="flex flex-col gap-y-2 md:gap-y-4 items-start">
         <h3
           class="title text-[22px] leading-[26px] md:text-2xl md:leading-7 font-bold text-gray-10"
         >

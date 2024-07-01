@@ -53,15 +53,15 @@ const props = withDefaults(
   >
     <template #header>
       <figure>
-        <img
+        <NuxtImg
           :class="[
             'w-full object-cover rounded-lg',
             { 'h-[229px]': props.size === 'default' },
             { 'h-[172px]': props.size === 'small' },
           ]"
           :src="props.imageUrl"
-          alt="Project Image"
-        >
+          :alt="props.title"
+        />
       </figure>
     </template>
 

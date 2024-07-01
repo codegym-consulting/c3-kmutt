@@ -19,11 +19,12 @@ const _createdAt = computed(() =>
     @click="emit('click', note)"
   >
     <figure class="bg-white w-full h-[88px] rounded-t-2xl">
-      <img
+      <NuxtImg
         v-if="note.imageUrl"
         :src="note.imageUrl"
+        :alt="note.title"
         class="object-cover rounded-t-2xl w-full h-full"
-      >
+      />
     </figure>
     <div class="h-[52px] bg-gray-1 py-2 px-4">
       <h4 class="truncate text-sm leading-[18px] font-medium text-gray-10">

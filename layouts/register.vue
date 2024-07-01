@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 const register = useRegisterStore()
 const bottomSheet = ref(false)
+const logoutModal = ref(false)
 </script>
 
 <template>
@@ -16,10 +17,12 @@ const bottomSheet = ref(false)
       },
     }">
       <div class="flex justify-between gap-x-6">
-        <ULink to="/">
+        <!-- <ULink to="/"> -->
+        <!-- TODO: change the link to landing page when deploy production -->
+        <ULink @click="logoutModal = true">
           <picture>
-            <source media="(min-width: 768px)" srcset="/logo/logo_full_vertical.svg">
-            <img src="/logo/logo.svg" alt="3c_logo">
+            <source media="(min-width: 768px)" srcset="/logo/logo_full_vertical.svg" width="225" height="46">
+            <NuxtImg src="/logo/logo.svg" alt="3c_logo" width="46" height="46"/>
           </picture>
         </ULink>
         <UButton class="inline-flex md:hidden ml-auto" icon="i-cil-hamburger-menu" variant="icon"
@@ -43,6 +46,7 @@ const bottomSheet = ref(false)
       <slot/>
     </UCard>
     <BottomSheetNavbar v-model="bottomSheet" />
+    <ModalLogout v-model="logoutModal" />
     <Alert />
   </div>
 </template>

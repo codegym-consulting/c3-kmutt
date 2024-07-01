@@ -203,7 +203,7 @@ const handleFileChange = (event: Event) => {
     <div v-if="canPreview && _previewImage" class="relative w-full rounded-lg">
       <img
         :src="_previewImage"
-        alt="preview-image"
+        alt="preview"
         class="w-full h-auto rounded-lg"
       >
       <button

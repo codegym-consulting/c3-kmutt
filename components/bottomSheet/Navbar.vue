@@ -20,7 +20,7 @@ const updateValue = (value: boolean) => {
 <template>
   <BottomSheet :model-value="props.modelValue" @update:model-value="updateValue">
     <div class="flex flex-col items-center justify-center gap-y-10 py-8 px-4">
-      <img class="logo" src="/logo/logo_full.svg" alt="3c_logo" >
+      <NuxtImg preload class="logo" src="/logo/logo_full.svg" alt="3c_logo" width="225" height="46" />
       <ul class="flex flex-col items-center justify-center gap-y-6">
         <li v-for="{ to, label } in navigations" :key="`bottom-sheet-${label}`">
           <NormalLink

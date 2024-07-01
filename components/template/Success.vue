@@ -42,7 +42,7 @@ const props = withDefaults(
           class="max-w-[820px] mx-auto text-center w-full flex flex-col items-center gap-y-14"
         >
           <figure class="hidden md:block">
-            <img src="/logo/logo_full.svg" alt="3c_logo" >
+            <NuxtImg src="/logo/logo_full.svg" alt="3c_logo" width="225" height="46" />
           </figure>
           <div class="flex flex-col items-center gap-y-6">
             <UIcon name="prime:thumbs-up" class="w-12 h-12 text-gray-10" />

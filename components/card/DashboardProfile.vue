@@ -95,11 +95,14 @@ watch(
     >
       <div class="flex gap-x-2 md:gap-x-4">
         <figure>
-          <img
+          <NuxtImg
+            preload
             class="w-[94px] h-[94px] object-cover rounded-2xl"
             :src="avatar"
             alt="profile"
-          >
+            width="94"
+            height="94"
+          />
         </figure>
         <div class="flex flex-col justify-between gap-y-2">
           <h3 class="text-2xl leading-7 text-gray-10 font-bold" v-html="name" />

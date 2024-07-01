@@ -8,7 +8,7 @@ const props = defineProps<{
 
 <template>
   <div class="flex items-center gap-x-4 bg-gray-1 rounded-2xl p-6">
-    <img class="w-10 h-10 rounded-full" :src="props.photoUrl" alt="avatar" >
+    <NuxtImg class="w-10 h-10 rounded-full" :src="props.photoUrl" alt="avatar" width="40" height="40"/>
     <div class="flex flex-col">
       <span class="text-base leading-5 font-bold text-gray-10">{{
         props.name

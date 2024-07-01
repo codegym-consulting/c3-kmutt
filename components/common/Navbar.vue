@@ -30,10 +30,10 @@ const props = defineProps<{
       <nav>
         <NuxtLink class="flex-shrink-0" to="/">
           <picture class="hide-on-affix">
-            <source media="(min-width: 768px)" srcset="/logo/logo_full.svg" height="46" >
-            <img src="/logo/logo.svg" alt="3c_logo" height="46" width="46" >
+            <source media="(min-width: 768px)" srcset="/logo/logo_full.svg" height="46" width="225">
+            <NuxtImg preload src="/logo/logo.svg" alt="3c_logo" height="46" width="46" />
           </picture>
-          <img class="show-on-affix" src="/logo/logo.svg" alt="3c_logo" height="46" width="46" >
+          <NuxtImg preload class="show-on-affix" src="/logo/logo.svg" alt="3c_logo" height="46" width="46" />
         </NuxtLink>
         <ul class="navigation-menu">
           <li v-for="{ to, label } in navigations" :key="label">

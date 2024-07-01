@@ -13,12 +13,9 @@ const timeAgoLabel = computed(() => timeAgo(notification.value.createdAt))
       :href="notification.externalUrl"
       target="_blank"
       class="absolute w-full h-full top-0 left-0 cursor-pointer"
+      aria-label="Open notification"
     />
-    <img
-      :src="notification.thumbnailUrl || '/common/thumbnail.svg'"
-      alt="image"
-      class="w-10 h-10 rounded-lg"
-    >
+    <NuxtImg class="w-10 h-10 rounded-lg" :src="notification.thumbnailUrl || '/common/thumbnail.svg'" alt="thumbnail" width="40" height="40"/>
     <div>
       <h4 class="text-base text-gray-10 leading-5 font-medium break-words">
         {{ notification.title }}

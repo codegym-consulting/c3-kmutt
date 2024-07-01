@@ -77,8 +77,9 @@ const onSlideChange = (swiper: Swiper) => {
         <source
           media="(min-width: 768px)"
           srcset="/landing/3c_water_mark.svg"
+          width="781" height="651"
         >
-        <img src="/landing/3c_water_mark_mobile.svg" alt="3c_water_mark" >
+        <NuxtImg preload src="/landing/3c_water_mark_mobile.svg" alt="3c_water_mark" width="375" height="322" />
       </picture>
       <UButton
         class="block lg:hidden mt-10 z-10"
@@ -286,11 +287,11 @@ const onSlideChange = (swiper: Swiper) => {
               )
             "
           >
-            <img
+            <NuxtImg
               :class="$classes('w-full object-contain rounded-t-[32px]')"
               src="/landing/kmutt-smart-house.webp"
               alt="bg"
-            >
+            />
           </div>
           <div class="flex relative z-[2] pt-4 pb-[20%]">
             <p

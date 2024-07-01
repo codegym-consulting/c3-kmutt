@@ -28,6 +28,7 @@
   "type": "module",
   "dependencies": {
     "@google-cloud/storage": "^7.11.2",
+    "@nuxt/image": "^1.7.0",
     "@nuxt/ui": "^2.17.0",
     "@pinia/nuxt": "^0.5.1",
     "@vuepic/vue-datepicker": "^8.8.1",

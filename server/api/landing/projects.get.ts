@@ -1,5 +1,4 @@
 export default defineEventHandler(async () => {
-  try {
     // TODO: Query from pin_projects table
     return [{
         id: 1,
@@ -42,10 +41,7 @@ export default defineEventHandler(async () => {
         category: 'Art and Design',
         location: 'Chiang mai'
     }]
-  } catch (error) {
-    console.error(error)
-    return []
-  }
+
 })
 
 

@@ -26,7 +26,8 @@ export default defineNuxtConfig({
     '/api/**': { cors: true }, // enable when deploy prod
   },
   image: {
-    domains: ['lh3.googleusercontent.com', 'storage.googleapis.com']
+    quality: 100,
+    domains: ['lh3.googleusercontent.com', 'storage.googleapis.com', 'images.unsplash.com', 'plus.unsplash.com']
   },
   imports: {
     dirs: ['./utils', 'utils/**', 'utils/**/**'],

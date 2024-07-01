@@ -25,6 +25,9 @@ export default defineNuxtConfig({
     '/bookmark': { redirect: '/workspace/bookmark' },
     '/api/**': { cors: true }, // enable when deploy prod
   },
+  image: {
+    domains: ['lh3.googleusercontent.com', 'storage.googleapis.com']
+  },
   imports: {
     dirs: ['./utils', 'utils/**', 'utils/**/**'],
   },
